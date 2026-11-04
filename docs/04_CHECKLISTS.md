@@ -2,12 +2,14 @@
 
 ## Day-0 input checklist
 
-- [x] 2027 CS syllabus PDF (`data/raw/syllabus/CS_GATE2027_Syllabus.pdf`)
-- [ ] 2027 GA syllabus PDF as a separate file (GA topics in taxonomy.yaml follow the official GA syllabus)
+- [x] 2027 CS syllabus PDF (`data/raw/syllabus/CS_GATE2027_Syllabus.pdf`; sha256 matches taxonomy.yaml - tested)
+- [x] 2027 GA syllabus PDF (`data/raw/syllabus/GA_GATE2027_Syllabus.pdf`, added 5 Nov 2026; sha256 recorded in taxonomy.yaml,
+  GA text verified verbatim by `tests/test_syllabus_sources.py`; 4 syllabus items that lacked a concept were added:
+  GA.VA.SEQ, GA.QA.GEOM, GA.AA.ANALOGY, GA.SA.TRANSFORM)
 - [x] Papers 2007-2026 in `data/raw/papers/` (2007-2010 photographed pages deferred)
 - [x] Year-wise papers + keys 2021-2026 in `data/raw/` (20 papers with official keys in total)
 - [ ] Optional: PYQ books/solutions - local only, never cloud-processed without consent
-- [x] Docker Desktop, Python 3.12+, git installed; repo tests pass (223, 5 Nov 2026)
+- [x] Docker Desktop, Python 3.12+, git installed; repo tests pass (227, 5 Nov 2026)
 
 ## Per-paper reconciliation checklist (every paper, every run) - all 29 papers, 5 Nov 2026
 

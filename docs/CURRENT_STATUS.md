@@ -140,3 +140,7 @@ Local only (never in git): the candidate DB was retired to `backups/gate_cse.can
 stale chat batches and exports were deleted and the exports regenerated from the live DB; caches cleared.
 `scripts/ui_apptest.py`, `scripts/ui_browser_test.py` and `tests/test_prompt_v2.py` now read a copy of the live DB.
 Tests after cleanup: 223 passed, AppTest all PASS, `validate` 10/10.
+
+## GA syllabus PDF added (5 Nov 2026)
+
+`data/raw/syllabus/GA_GATE2027_Syllabus.pdf` (sha256 `3708769a...b7603`) is now recorded in `taxonomy.yaml` (`ga_source_pdf`, `ga_source_sha256`) next to the CS PDF (path corrected from the old `corpus/raw/...`). The GA section text was already verbatim from this PDF - verified by `tests/test_syllabus_sources.py` - so no topic or label changed. Four syllabus items had no concept and were added (official wording): GA.VA.SEQ Narrative sequencing, GA.QA.GEOM Mensuration and geometry, GA.AA.ANALOGY Analogy, GA.SA.TRANSFORM Transformation of shapes. Loaded into the live DB (backup `backups/gate_cse.20261105-035940.sqlite`): 112 concepts (was 108), 49 topics, 11 sections; classifications unchanged; `validate` 10/10.

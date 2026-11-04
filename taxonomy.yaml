@@ -2,8 +2,10 @@ exam: GATE
 paper: CS
 syllabus_year: 2027
 taxonomy_version: gate-cs-2027
-source_pdf: corpus/raw/syllabus/CS_GATE2027_Syllabus.pdf
+source_pdf: data/raw/syllabus/CS_GATE2027_Syllabus.pdf
 source_sha256: 81b23f40417bc1c2069782db7ad5ea0182175c9acb4766ebfdeefbe071a70bc0
+ga_source_pdf: data/raw/syllabus/GA_GATE2027_Syllabus.pdf
+ga_source_sha256: 3708769a165e5019d4fa0d2af95786dee8fbf239976d7d403d810bd54b9d7603
 sections:
 - id: GA
   name: General Aptitude
@@ -26,6 +28,8 @@ sections:
       name: Grammar
     - id: GA.VA.RC
       name: Reading comprehension
+    - id: GA.VA.SEQ
+      name: Narrative sequencing
   - id: GA.QA
     name: Quantitative Aptitude
     concepts:
@@ -37,6 +41,8 @@ sections:
       name: Numerical computation, estimation and optimization
     - id: GA.QA.FUNC
       name: 'Data interpretation: functions, graphs and tables'
+    - id: GA.QA.GEOM
+      name: Mensuration and geometry
   - id: GA.AA
     name: Analytical Aptitude
     concepts:
@@ -44,6 +50,8 @@ sections:
       name: Logical deduction and induction
     - id: GA.AA.ORDER
       name: Ordering, arrangement and relational reasoning
+    - id: GA.AA.ANALOGY
+      name: Analogy
   - id: GA.SA
     name: Spatial Aptitude
     concepts:
@@ -51,6 +59,8 @@ sections:
       name: Orthographic views and 3D visualization
     - id: GA.SA.PATTERN
       name: 'Pattern transformation: folding, cutting, tiling'
+    - id: GA.SA.TRANSFORM
+      name: 'Transformation of shapes: translation, rotation, scaling, mirroring'
   syllabus_note: GA PDF has four sections (Verbal, Quantitative, Analytical, Spatial); modelled here as topics under GA -
     structure is curation, text is verbatim.
 - id: EM

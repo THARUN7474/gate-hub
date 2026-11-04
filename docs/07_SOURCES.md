@@ -5,7 +5,7 @@
 | GATE 2027 portal (IIT Madras) | https://gate2027.iitm.ac.in/ | page fetched |
 | Test papers + syllabus page | https://gate2027.iitm.ac.in/exam_papers_and_syllabus | page fetched; states syllabi revised for 2027 |
 | CS 2027 syllabus PDF | https://gate2027.iitm.ac.in/static/doc/GATE2027_Syllabus/CS_GATE2027_Syllabus.pdf | DOWNLOADED AND READ (2 pages). sha256 81b23f40417bc1c2069782db7ad5ea0182175c9acb4766ebfdeefbe071a70bc0. 10 sections transcribed verbatim into taxonomy.yaml |
-| GA 2027 syllabus PDF | https://gate2027.iitm.ac.in/static/doc/GATE2027_Syllabus/GA_GATE2027_Syllabus.pdf | DOWNLOADED AND READ (1 page). sha256 3708769a165e5019d4fa0d2af95786dee8fbf239976d7d403d810bd54b9d7603 |
+| GA 2027 syllabus PDF | https://gate2027.iitm.ac.in/static/doc/GATE2027_Syllabus/GA_GATE2027_Syllabus.pdf | DOWNLOADED AND READ (1 page). sha256 3708769a165e5019d4fa0d2af95786dee8fbf239976d7d403d810bd54b9d7603 | Local copy `data/raw/syllabus/GA_GATE2027_Syllabus.pdf` (5 Nov 2026), sha256 `3708769a...b7603`, text matches taxonomy.yaml verbatim (tested).
 | 2027 paper pattern | https://gate2027.iitm.ac.in/question_paper_pattern | page fetched. 65 Q / 100 marks / MCQ-MSQ-NAT for 2027 ONLY - older years differ; per-year manifests decide |
 | Downloads page (year-wise 2021-2026) | https://gate2027.iitm.ac.in/download | listing verified; CS-1+CS-2 sessions for 2025-2026, single CS 2021-2023 |
 | Bulk archive (official Drive) | https://drive.google.com/drive/folders/1xUn7rGTzKlfvJDoo4SzCRi8jRlBD63ud | folder listing read: one ZIP per paper code 2007-2026, owned by helpdesk@gate.iitm.ac.in. CS.zip ~65.6 MB LISTED, NOT OPENED - contents are a Day-1 finding |

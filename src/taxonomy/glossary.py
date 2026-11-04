@@ -57,6 +57,7 @@ def build_glossary(path: str) -> dict:
         "structure_notes": notes,
         "syllabus_year": tax.get("syllabus_year"),
         "source_pdf": tax.get("source_pdf"),
+        "ga_source_pdf": tax.get("ga_source_pdf"),
     }
 
 

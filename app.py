@@ -1085,7 +1085,7 @@ elif page == "About the Data":
 else:  # Glossary & Syllabus
     st.subheader("Glossary & Syllabus")
     st.info("Which papers and years are in this project (2007-2026, PDFs, sessions, keys): see the **About the Data** screen.")
-    st.caption(f"GATE CS syllabus {GLOSSARY['syllabus_year']} (source: {GLOSSARY['source_pdf']}). "
+    st.caption(f"GATE CS syllabus {GLOSSARY['syllabus_year']} (sources: {GLOSSARY['source_pdf']} + {GLOSSARY.get('ga_source_pdf') or 'GA section'}). "
                "Every short code used anywhere in this app is expanded here.")
     st.markdown(
         "**How to read the provenance column.** Sections and their syllabus text are "
