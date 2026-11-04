@@ -4,7 +4,9 @@ from src.taxonomy import glossary as glos
 G = glos.build_glossary("taxonomy.yaml")
 
 def test_counts_and_official_sections():
-    assert len(G["sections"]) == 11
+    official = [x for x in G["sections"] if x["Provenance"].startswith("official")]
+    assert len(official) == 11                                   # the 2027 syllabus sections
+    assert [x["Code"] for x in G["sections"] if not x["Provenance"].startswith("official")] == ["LEGACY"]
     assert len(G["topics"]) > 40 and len(G["concepts"]) > 90
     ga = next(s for s in G["sections"] if s["Code"] == "GA")
     assert ga["Full name"] == "General Aptitude"

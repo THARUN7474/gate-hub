@@ -26,8 +26,9 @@ The older v4-v7 wording is in git history.
 
 - [ ] **Review scope:** start with the 120-question benchmark sample (recommended,
   `docs/22_BENCHMARK_REVIEW_GUIDE.md`). Decide later whether to review whole papers or the full bank.
-- [ ] **The 18 software-engineering questions:** adopt the proposed deprecated `LEGACY.SE` category, or
-  keep them unclassified (`docs/handoff/se18-syllabus-audit.md`).
+- [x] **The 18 software-engineering questions** (5 Nov 2026, owner: "classify them"): a historical section
+  `LEGACY` ("Out of 2027 syllabus") with topic `LEGACY.SE` was added; all 18 carry an AI-review label there
+  (suggested, never verified). Analytics show them as a separate LEGACY column.
 - [ ] **Topics outside the 2027 syllabus** (e.g. RSA in 2017-S1 Q44, three-schema architecture in
   2026-S2 Q15): keep them on the nearest topic, or give them a legacy tag.
 - [ ] **First FreeLLMAPI run:** save the key, run the 5-question `classify-compare` test, then decide on a

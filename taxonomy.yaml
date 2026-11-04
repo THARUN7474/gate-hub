@@ -461,6 +461,29 @@ sections:
       name: HTTP
     - id: CN.APP.DNS
       name: DNS
+- id: LEGACY
+  name: Out of 2027 syllabus (historical)
+  provenance: historical
+  syllabus_text: 'Information Systems and Software Engineering: information gathering, requirement and feasibility analysis,
+    data flow diagrams, process specifications, input/output design, process life cycle, planning and managing the project,
+    design, coding, testing, implementation, maintenance.'
+  syllabus_note: Historical section from the pre-2016 GATE CS&IT syllabus (secondary copy, see docs/handoff/se18-syllabus-audit.md).
+    NOT in the 2026/2027 syllabus. It exists so the 2011-2015 software-engineering questions are counted honestly; it is
+    not a GATE 2027 preparation topic.
+  topics:
+  - id: LEGACY.SE
+    name: Software Engineering (pre-2016 syllabus)
+    concepts:
+    - id: LEGACY.SE.EST
+      name: 'Project planning and estimation: COCOMO, function points, cost'
+    - id: LEGACY.SE.REQ
+      name: Requirements and feasibility analysis, SRS
+    - id: LEGACY.SE.DESIGN
+      name: 'Software design: cohesion and coupling'
+    - id: LEGACY.SE.TEST
+      name: 'Testing and quality: test design, inspection, fault seeding, cyclomatic complexity'
+    - id: LEGACY.SE.PROC
+      name: Software process life cycle models
 prerequisites:
 - concept: ALGO.SORT.HASH
   requires: PDS.LIN.ARR

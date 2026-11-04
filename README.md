@@ -29,15 +29,15 @@ Full detail: **[docs/CURRENT_STATUS.md](docs/CURRENT_STATUS.md)** (current) - `d
 
 - [x] 29 papers, **1,885 questions, 2011-2026**, in the live database `data/gate_cse.sqlite` (promoted 5 Nov 2026, all reconciled 65 q / 100 marks)
 - [x] Official keys for 20 papers; 9 papers have no key (questions only, never guessed - docs/16_MISSING_SOURCES.md)
-- [x] First-pass labels on 1,867 questions (1,493 suggested, 374 flagged); 18 software-engineering questions deliberately unclassified
+- [x] Labels on all 1,885 questions (1,510 suggested, 374 flagged, 1 human-verified); the 18 historical software-engineering questions sit in a separate `LEGACY` section (out of the 2027 syllabus)
 - [x] Extractor defects fixed (page footer in options, glued options, opening sentence above centred labels) - 67 questions repaired, audited
 - [x] `validate` 10/10; `papers-drift` exact on 1,875/1,885 (the 10 left are known OCR-noise questions, fixed by hand during review)
-- [x] 223 automated tests + Streamlit AppTest pass
-- [x] AI review by Claude of 2026 CS-2 (65 q) and the 120-question benchmark sample - labelled as AI review, never verified
+- [x] 230 automated tests + Streamlit AppTest pass
+- [x] AI review by Claude of 2026 CS-2 (65 q), the 120-question benchmark sample and the 18 SE questions - labelled as AI review, never verified
+- [x] Cleaner app: every screen opens with a one-line purpose; details are in collapsed toggles; progress bars on Pipeline Status
 - [x] FreeLLMAPI wired in as the ONLY chat-LLM path (one unified key); decision models (OpenAI Decisions, Jev) wired in, separate, off
 - [ ] **Your human review of the 120-question benchmark sample** (docs/22_BENCHMARK_REVIEW_GUIDE.md) - 0 verified so far
 - [ ] FreeLLMAPI key saved and a first 5-question test run (docs/23_LLM_ROUTER_AND_DECISION_MODELS.md)
-- [ ] Decision on the 18 software-engineering questions (proposed deprecated LEGACY.SE category)
 - [ ] Detailed enrichment (concepts / what-it-tests / prerequisites) - topic level only today
 - [ ] Phase 1 complete - **not yet**
 

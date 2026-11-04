@@ -144,3 +144,11 @@ Tests after cleanup: 223 passed, AppTest all PASS, `validate` 10/10.
 ## GA syllabus PDF added (5 Nov 2026)
 
 `data/raw/syllabus/GA_GATE2027_Syllabus.pdf` (sha256 `3708769a...b7603`) is now recorded in `taxonomy.yaml` (`ga_source_pdf`, `ga_source_sha256`) next to the CS PDF (path corrected from the old `corpus/raw/...`). The GA section text was already verbatim from this PDF - verified by `tests/test_syllabus_sources.py` - so no topic or label changed. Four syllabus items had no concept and were added (official wording): GA.VA.SEQ Narrative sequencing, GA.QA.GEOM Mensuration and geometry, GA.AA.ANALOGY Analogy, GA.SA.TRANSFORM Transformation of shapes. Loaded into the live DB (backup `backups/gate_cse.20261105-035940.sqlite`): 112 concepts (was 108), 49 topics, 11 sections; classifications unchanged; `validate` 10/10.
+
+## Full coverage + app redesign (5 Nov 2026)
+
+- **1,885 / 1,885 classified.** The 18 unclassified questions were historical software engineering (pre-2016 syllabus). Owner asked for them to be classified: `taxonomy.yaml` gained a section `LEGACY` ("Out of 2027 syllabus (historical)", provenance `historical`, text from the pre-2016 CS&IT syllabus) with topic `LEGACY.SE` and 5 concepts; the 18 got AI-review labels there (`exports/ai_review/legacy-se.decisions.json`, status suggested). Backup before: `backups/gate_cse.20261105-042729.sqlite`. Live now: 1,510 suggested + 374 flagged + 1 verified; `validate` 10/10.
+- **Your first verification**: 2011-S1 Q01 verified by `owner` as CD.LEX (all five checks pass).
+- **App**: every screen has an icon, title and one-line purpose; long explanations sit in collapsed "How to read this page" toggles; Pipeline Status has score cards, four progress bars and a new **Review progress per paper** table (`analyze.paper_review_table`). Theme in `.streamlit/config.toml` (Inter).
+- **Bug fixed**: opening LLM Classify froze the browser - the labels "Input $/M tokens" / "Output $/M tokens" were parsed as LaTeX (pre-existing; found by bisecting in a real browser). Labels now say USD; a test forbids bare `$`.
+- Tests: 230 passed; AppTest all PASS.

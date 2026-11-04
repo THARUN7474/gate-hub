@@ -22,7 +22,8 @@ What import writes (all append-only / audited):
      gold later, `proposals-report` shows agreement. Analytics never read proposals.
   2. review_events row field='ai_review', reviewer='<reviewer> (AI review - not human verification)',
      after = the verdict JSON - visible in the Review Workspace audit history.
-  3. verdict 'correct' on a question that is NOT in the benchmark sample and NOT human-reviewed: the
+  3. verdict 'correct' on a question with NO label: a first label is created (status suggested).
+     verdict 'correct' on a question that is NOT in the benchmark sample and NOT human-reviewed: the
      live label is changed to the AI reviewer's label (status stays 'suggested', model notes the AI
      review), each changed field logged with before/after. On BENCHMARK questions the live label is
      never changed, so your gold review stays your own independent judgement.
@@ -135,7 +136,7 @@ def cmd_import(a) -> int:
             c = s.scalar(select(Classification).where(Classification.question_id == qid))
             action = "record only"
             if d["verdict"] == "correct":
-                if c is None: action = "record only (question has no label - see proposal)"
+                if c is None: action = "create live label (question had no label)"
                 elif c.status == "verified" or c.provenance == "validated": action = "record only (human-reviewed row kept)"
                 elif qid in sampled: action = "record only (benchmark question: live label kept for your independent gold review)"
                 elif (c.section_id, c.primary_topic_id) == (d["section_id"], d["primary_topic_id"]): action = "record only (same label)"
@@ -189,6 +190,17 @@ def cmd_import(a) -> int:
                               before=None if c is None else f"{c.section_id}/{c.primary_topic_id} ({c.status})",
                               after=json.dumps(payload, ensure_ascii=False), reviewer=tag,
                               note=f"{d['verdict']}: {action}. {d.get('note') or ''}".strip()))
+            if action == "create live label (question had no label)":
+                nc = Classification(question_id=q.id, run_id=run.id, taxonomy_version=TAXV,
+                                    section_id=d["section_id"], primary_topic_id=d["primary_topic_id"],
+                                    topic_weight={d["primary_topic_id"]: 1.0}, concept_ids=d.get("concept_ids") or [],
+                                    what_it_tests=d.get("what_it_tests"), confidence=float(d.get("confidence") or 0.0),
+                                    provenance="inferred", status="suggested", model=f"ai-review:{reviewer}",
+                                    prompt_version=PROMPT_VERSION, evidence_quote=d.get("note"))
+                s.add(nc)
+                s.add(ReviewEvent(question_id=q.id, field="primary_topic_id", before=None, after=d["primary_topic_id"],
+                                  reviewer=tag, note="AI review created the first label (not human verification)"))
+                n_corr += 1
             if action == "correct live label":
                 for field, new in (("section_id", d["section_id"]), ("primary_topic_id", d["primary_topic_id"])):
                     if getattr(c, field) != new:

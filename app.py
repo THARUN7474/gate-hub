@@ -52,10 +52,30 @@ FIXTURE_BANNER = ("SYNTHETIC FIXTURE DATA - NOT REAL GATE DATA. This database co
                   "generated test content (scripts/make_fixture.py). Nothing shown is a real "
                   "GATE question, key or statistic.")
 
-st.set_page_config(page_title="GATE CSE Intelligence (local)", layout="wide")
-st.title("GATE CSE Intelligence - Phase 1 (local)")
-st.caption("All figures computed live from question records. Historical description only - "
-           "not a prediction for GATE 2027.")
+st.set_page_config(page_title="GATE CSE Intelligence", page_icon=":material/school:", layout="wide")
+
+# One line per screen: what it is for (shown under the page title) + its sidebar icon.
+PAGE_INFO = {
+    "Pipeline Status": (":material/dashboard:", "What is loaded, how much is labelled, and how far human review has got."),
+    "About the Data": (":material/folder_open:", "Which GATE CS papers exist 2007-2026, which PDF holds which session, where each key comes from."),
+    "Question Browser": (":material/search:", "Search and filter every question; click a row to open it for review."),
+    "Analysis Matrix": (":material/grid_on:", "Marks per section (or topic) per year - click any number to see the questions behind it."),
+    "Topic Report": (":material/leaderboard:", "Which topics carried the most marks historically (descriptive, not a prediction)."),
+    "Subject Overview": (":material/account_tree:", "One subject at a time: its topics, concepts, question counts and prerequisites."),
+    "Review Workspace": (":material/rate_review:", "Check one question at a time against the original PDF and verify, correct or flag it."),
+    "Approve Queue": (":material/playlist_add_check:", "Approve several already-checked questions at once."),
+    "LLM Classify": (":material/smart_toy:", "Provider status, cost estimate, dry run and gated classification runs (FreeLLMAPI)."),
+    "Glossary & Syllabus": (":material/menu_book:", "What every short code means, with the official syllabus text."),
+}
+
+def page_header(name: str) -> None:
+    icon, purpose = PAGE_INFO.get(name, ("", ""))
+    st.header(f"{icon} {name}" if icon else name)
+    st.caption(purpose)
+
+def how_to_read(label: str = "How to read this page"):
+    """Long explanations live here, collapsed, so each page opens on its main content."""
+    return st.expander(label, icon=":material/help:")
 
 # Streamlit re-executes this script on every interaction. Close the PREVIOUS run's session first:
 # on PostgreSQL an unclosed session stays 'idle in transaction' and holds locks (it also made the
@@ -76,26 +96,28 @@ from sqlalchemy.orm import sessionmaker as _sessionmaker
 def render_data_inventory(session):
     """About the Data: papers 2007-2026, PDFs, sessions, keys, what this database holds (read-only)."""
     from src.analytics import inventory as _inv
-    st.subheader("About the Data - which GATE CS papers exist and how they are stored")
-    st.caption("Computed live from manifests/papers.yaml, the files in data/raw and this database. A 'paper' = one exam "
-               "session (65 questions, 100 marks). One PDF can hold several sessions.")
+    page_header("About the Data")
+    with how_to_read():
+        st.caption("Computed live from manifests/papers.yaml, the files in data/raw and this database. A 'paper' = one exam "
+                   "session (65 questions, 100 marks). One PDF can hold several sessions.")
     inv = _inv.inventory(session)
     T = inv["totals"]
-    m = st.columns(5)
-    m[0].metric("Years 2007-2026", T["years"])
-    m[1].metric("Papers (sessions) registered", T["papers"], help="including the 4 deferred 2007-2010 papers")
-    m[2].metric("Active papers 2011-2026", T["active_papers"], help=f"{T['deferred_papers']} deferred (2007-2010)")
-    m[3].metric("Question PDFs / key PDFs", f"{T['question_pdfs']} / {T['key_pdfs']}")
-    m[4].metric("Papers with an official key", f"{T['active_with_key']} of {T['active_papers']}",
-                help=f"{T['active_without_key']} have no key file (listed as missing, never guessed)")
+    with st.container(horizontal=True):
+        st.metric("Years 2007-2026", T["years"], border=True)
+        st.metric("Papers registered", T["papers"], help="including the 4 deferred 2007-2010 papers", border=True)
+        st.metric("Active papers 2011-2026", T["active_papers"], help=f"{T['deferred_papers']} deferred (2007-2010)", border=True)
+        st.metric("Question / key PDFs", f"{T['question_pdfs']} / {T['key_pdfs']}", border=True)
+        st.metric("Papers with an official key", f"{T['active_with_key']} of {T['active_papers']}",
+                  help=f"{T['active_without_key']} have no key file (listed as missing, never guessed)", border=True)
     _in_db = T["questions_in_db"]
     (st.success if _in_db >= T["expected_questions_active"] else st.warning)(
         f"This database holds {_in_db:,} of the {T['expected_questions_active']:,} questions of the {T['active_papers']} active papers"
         + ("." if _in_db >= T["expected_questions_active"] else
            " - the rest are prepared and come in with the promotion (promote.cmd)."))
-    st.markdown("**Three groups of years**")
+    st.subheader("Three groups of years")
     st.dataframe(pd.DataFrame(inv["groups"]), hide_index=True, width="stretch")
-    st.markdown("**Year by year** - how many papers each year has, in which PDF(s), and where the key comes from")
+    st.subheader("Year by year")
+    st.caption("How many papers each year has, in which PDF(s), and where the key comes from.")
     st.dataframe(pd.DataFrame(inv["years"]), hide_index=True, width="stretch")
     with st.expander("Every paper (session): PDF pages, key source, layout, what this database holds"):
         _cols = ["paper_id", "status", "question_pdf", "pages", "papers_in_this_pdf", "key_source", "layout",
@@ -211,7 +233,11 @@ if rv.has_fixture_data(session):
     st.error(FIXTURE_BANNER)
 SCREENS = ["Pipeline Status", "About the Data", "Question Browser", "Analysis Matrix", "Topic Report",
            "Subject Overview", "Review Workspace", "Approve Queue", "LLM Classify", "Glossary & Syllabus"]
-page = st.sidebar.radio("Screen", SCREENS, key="screen")
+st.sidebar.markdown("### :material/school: GATE CSE Intelligence")
+st.sidebar.caption("Local, phase 1. Every figure is computed live from the question records - historical "
+                   "description only, not a prediction for GATE 2027.")
+page = st.sidebar.radio("Screen", SCREENS, key="screen",
+                        format_func=lambda x: f"{PAGE_INFO[x][0]} {x}" if x in PAGE_INFO else x)
 # Every human decision is written to the audit log under this name (default: GATE_REVIEWER or "owner").
 REVIEWER = st.sidebar.text_input("Reviewer name (audit log)", value=os.environ.get("GATE_REVIEWER", "owner"),
                                  key="reviewer_name").strip() or "owner"
@@ -219,16 +245,62 @@ st.sidebar.caption("Keyboard in the Review Workspace: **Ctrl+Enter** approve & n
                    "**Alt+V** verify as-is, **Alt+X** flag.")
 
 if page == "Pipeline Status":
+    page_header("Pipeline Status")
     cov = az.coverage_report(session)
-    c = st.columns(6)
-    for col, (label, key) in zip(c, [("Papers", "papers"), ("Questions", "questions"),
-                                     ("With keys", "with_keys"), ("Classified", "classified"),
-                                     ("Verified", "verified_by_human"), ("Pending review", "pending_review")]):
-        col.metric(label, cov[key])
-    st.caption(f"Pending review = every question without a human-verified classification "
-               f"(extraction issues: {cov['of_which_extraction_issues']}, unclassified: "
-               f"{cov['of_which_unclassified']}, flagged/unverified suggestions: "
-               f"{cov['flagged'] + max(cov['classified'] - cov['verified_by_human'] - cov['flagged'], 0)}).")
+    with st.container(horizontal=True):
+        for label, key, hlp in [("Papers", "papers", "exam sessions loaded (65 questions / 100 marks each)"),
+                                ("Questions", "questions", "all loaded questions"),
+                                ("With keys", "with_keys", "questions with an official answer key"),
+                                ("Classified", "classified", "questions with a topic label (machine suggestion or verified)"),
+                                ("Verified", "verified_by_human", "approved by a human after the five review checks"),
+                                ("Pending review", "pending_review", "no human-verified label yet")]:
+            st.metric(label, f"{cov[key]:,}", help=hlp, border=True)
+
+    _rev = az.paper_review_table(session)
+    _nq = cov["questions"] or 1
+    _ai = sum(r["ai_reviewed"] for r in _rev)
+    _bp = sum(r["benchmark_pending"] for r in _rev); _bg = sum(r["benchmark_gold"] for r in _rev)
+    st.subheader("Progress")
+    _p1, _p2 = st.columns(2)
+    _p1.progress(min(cov["classified"] / _nq, 1.0), text=f"Classified: {cov['classified']:,} of {cov['questions']:,}")
+    _p1.progress(min(_ai / _nq, 1.0), text=f"AI-reviewed (opinion, not verification): {_ai:,} of {cov['questions']:,}")
+    _p2.progress(min(cov["verified_by_human"] / _nq, 1.0),
+                 text=f"Human-verified: {cov['verified_by_human']:,} of {cov['questions']:,}")
+    _p2.progress(_bg / (_bp + _bg) if (_bp + _bg) else 0.0,
+                 text=f"Benchmark gold (your reviewed sample): {_bg} of {_bp + _bg}")
+
+    st.subheader("Papers")
+    ptab = az.paper_status_table(session)
+    _pcols = ["paper", "year", "session", "questions", "marks", "reconciled", "official_keys", "text_source",
+              "needs_review", "classified", "verified", "set"]
+    st.dataframe(pd.DataFrame(ptab)[_pcols], width="stretch", hide_index=True)
+    n_ocr = sum(1 for r in ptab if r["text_source"] != "digital")
+    nokey = [r["paper"].replace("GATE-CS-", "") for r in ptab if r["official_keys"] == 0]
+
+    st.subheader("Review progress per paper")
+    st.dataframe(
+        pd.DataFrame(_rev), width="stretch", hide_index=True,
+        column_config={
+            "verified_share": st.column_config.ProgressColumn("verified", format="percent", min_value=0, max_value=1,
+                                                              help="share of the paper's questions a human verified"),
+            "verified": st.column_config.NumberColumn("verified (n)"),
+            "ai_reviewed": st.column_config.NumberColumn("AI-reviewed", help="has an AI-review opinion (not verification)"),
+            "extraction_issues": st.column_config.NumberColumn("extraction issues", help="questions flagged for an extraction check"),
+            "benchmark_pending": st.column_config.NumberColumn("benchmark pending"),
+            "benchmark_gold": st.column_config.NumberColumn("benchmark gold"),
+        })
+
+    with how_to_read("How these numbers are counted"):
+        st.caption(f"**Pending review** = every question without a human-verified classification "
+                   f"(extraction issues: {cov['of_which_extraction_issues']}, unclassified: "
+                   f"{cov['of_which_unclassified']}, flagged/unverified suggestions: "
+                   f"{cov['flagged'] + max(cov['classified'] - cov['verified_by_human'] - cov['flagged'], 0)}).")
+        st.caption(f"{len(ptab)} papers. **text_source**: 'digital' = exact PDF text; 'OCR' = read from scanned pages "
+                   f"({n_ocr} papers) - OCR text can contain errors in formulas, the source region shown in the Review "
+                   f"Workspace is always the truth. **official_keys**: {len(nokey)} papers have no key "
+                   f"({', '.join(nokey) or 'none'}): listed as missing, never guessed. Papers 2007-2010 are photographed "
+                   f"scans, deferred.")
+        st.caption(cov["note"])
     from sqlalchemy import select as _sel
     from src.db.models import Classification as _Cls
     _pairs = session.execute(_sel(_Cls.model, _Cls.status).where(_Cls.status != "verified")).all()
@@ -237,44 +309,32 @@ if page == "Pipeline Status":
         _d = _agg.setdefault(_m or "unknown", {"suggested": 0, "flagged": 0})
         _d[_st if _st in ("suggested", "flagged") else "suggested"] += 1
     if _agg:
-        st.caption("Unverified suggestions by model: " + "; ".join(
-            f"{m} ({d['suggested']} suggested, {d['flagged']} flagged)" for m, d in sorted(_agg.items()))
-            + " - all machine suggestions, none verified until a human approves them.")
+        with st.expander("Where the unverified labels came from", icon=":material/source:"):
+            st.caption("Unverified suggestions by model: " + "; ".join(
+                f"{m} ({d['suggested']} suggested, {d['flagged']} flagged)" for m, d in sorted(_agg.items()))
+                + " - all machine suggestions, none verified until a human approves them.")
     from src.classification.classify import proposal_agreement as _pagree
     _prow = _pagree(session)
     if _prow:
-        st.caption("Independent provider proposals (classification_proposals table - a separate second "
-                   "opinion that NEVER overwrites the labels above; 'fills_unclassified' covers questions "
-                   "with no label at all):")
-        st.dataframe(pd.DataFrame(_prow), width="stretch", hide_index=True)
-    st.subheader("Papers")
-    ptab = az.paper_status_table(session)
-    _pcols = ["paper", "year", "session", "questions", "marks", "reconciled", "official_keys", "text_source",
-              "needs_review", "classified", "verified", "set"]
-    st.dataframe(pd.DataFrame(ptab)[_pcols], width="stretch", hide_index=True)
-    n_ocr = sum(1 for r in ptab if r["text_source"] != "digital")
-    nokey = [r["paper"].replace("GATE-CS-", "") for r in ptab if r["official_keys"] == 0]
-    st.caption(f"{len(ptab)} papers. **text_source**: 'digital' = exact PDF text; 'OCR' = read from scanned pages "
-               f"({n_ocr} papers) - OCR text can contain errors in formulas, the source region shown in the Review "
-               f"Workspace is always the truth. **official_keys**: {len(nokey)} papers have no key "
-               f"({', '.join(nokey) or 'none'}): listed as missing, never guessed. Papers 2007-2010 are photographed "
-               f"scans, deferred.")
-    _gap = list(session.scalars(select(ReviewEvent.question_id).where(
-        ReviewEvent.field == "taxonomy_gap").distinct()))
-    if _gap:
-        with st.expander(f"Taxonomy gap: {len(_gap)} questions left UNCLASSIFIED (no software-engineering topic "
-                         "in the taxonomy) - not counted as classified anywhere"):
-            st.caption("These are software-engineering questions (testing, COCOMO, SRS, cohesion/coupling, "
-                       "estimation). They were deliberately NOT forced into the programming topic. Decide: "
-                       "extend the taxonomy or leave unclassified.")
-            for _g in _gap:
+        with st.expander("Second opinions (AI review and API proposals)", icon=":material/compare_arrows:"):
+            st.caption("Independent provider proposals (classification_proposals table - a separate second "
+                       "opinion that NEVER overwrites the labels above; 'fills_unclassified' covers questions "
+                       "with no label at all):")
+            st.dataframe(pd.DataFrame(_prow), width="stretch", hide_index=True)
+    _legacy = list(session.scalars(select(Classification.question_id).where(Classification.section_id == "LEGACY")))
+    if _legacy:
+        with st.expander(f"Out of the 2027 syllabus: {len(_legacy)} historical software-engineering questions",
+                         icon=":material/history_edu:"):
+            st.caption("Software engineering was in the GATE CS&IT syllabus until about 2015 and is not in the 2027 "
+                       "syllabus. These 2011-2015 questions are counted under LEGACY.SE (section 'Out of 2027 "
+                       "syllabus') so every question is accounted for - they are not 2027 preparation topics "
+                       "(docs/handoff/se18-syllabus-audit.md).")
+            for _g in _legacy:
                 _gq = session.get(Question, _g)
-                st.markdown(f"- **{_g}** ({_gq.paper_id if _gq else ''}, "
-                            f"{(_gq.text or '')[:110]}...)" if _gq else f"- {_g}")
+                st.markdown(f"- **{_g}** - {(_gq.text or '')[:110]}..." if _gq else f"- {_g}")
     if cov["unreconciled_papers"]:
         st.warning("Unreconciled papers: " + ", ".join(cov["unreconciled_papers"]))
-    st.caption(cov["note"])
-    with st.expander("Back up the database"):
+    with st.expander("Back up the database", icon=":material/backup:"):
         st.write("Writes a verified, timestamped copy to `backups/` (safe while the app is open; the live "
                  "database is only read).")
         if st.button("Back up now", key="backup_now"):
@@ -287,6 +347,7 @@ if page == "Pipeline Status":
                 st.error(f"Backup failed: {e}")
 
 elif page == "Question Browser":
+    page_header("Question Browser")
     years = [r for r in session.scalars(select(Paper.year).distinct().order_by(Paper.year))]
     sections = [r for r in session.scalars(
         select(TaxonomyNode.node_id).where(TaxonomyNode.level == "section"))]
@@ -298,11 +359,12 @@ elif page == "Question Browser":
     f_topic = c2.selectbox("Topic", ["(all)"] + _topic_opts)
     f_years = c3.multiselect("Years", years, default=years)
     f_type = c4.selectbox("Type", ["(all)", "MCQ", "MSQ", "NAT"])
-    c5, c6 = st.columns(2)
-    f_rev = c5.selectbox("Review", ["(all)", "needs review", "ok"])
-    f_status = c6.selectbox("Classification status", ["(all)", "suggested", "flagged", "verified", "unclassified"],
-                            help="suggested/flagged are machine proposals awaiting human review; "
-                                 "verified = a human approved it; unclassified = no row yet (includes taxonomy gaps).")
+    with st.expander("More filters", icon=":material/tune:"):
+        c5, c6 = st.columns(2)
+        f_rev = c5.selectbox("Review", ["(all)", "needs review", "ok"])
+        f_status = c6.selectbox("Classification status", ["(all)", "suggested", "flagged", "verified", "unclassified"],
+                                help="suggested/flagged are machine proposals awaiting human review; "
+                                     "verified = a human approved it; unclassified = no row yet.")
     q_text = st.text_input("Search question text")
     if f_status == "unclassified":
         rows = srch.search_questions(
@@ -341,19 +403,21 @@ elif page == "Question Browser":
                  key="browser_grid")
     code_explainer(sorted({r["section_id"] for r in rows if r.get("section_id")}
                           | {r["primary_topic_id"] for r in rows if r.get("primary_topic_id")}))
-    st.caption("Click a table row to open that question in the Review Workspace.")
+    st.caption(f"{len(rows):,} questions. Click a table row to open that question in the Review Workspace.")
     def _jump_from_fallback():
         pick = st.session_state.get("browser_fallback_pick", "-")
         if pick != "-":
             st.session_state["_pending_screen"] = "Review Workspace"
             st.session_state["review_pick"] = pick
 
-    j1, j2 = st.columns([3, 1])
-    j1.selectbox("Fallback: choose a question if row-click is unavailable",
-                 ["-"] + [r["id"] for r in rows], key="browser_fallback_pick")
-    j2.button("Open in Review Workspace", on_click=_jump_from_fallback)
+    with st.expander("Row click not working? Pick a question here", icon=":material/open_in_new:"):
+        j1, j2 = st.columns([3, 1], vertical_alignment="bottom")
+        j1.selectbox("Fallback: choose a question if row-click is unavailable",
+                     ["-"] + [r["id"] for r in rows], key="browser_fallback_pick")
+        j2.button("Open in Review Workspace", on_click=_jump_from_fallback)
 
 elif page == "Analysis Matrix":
+    page_header("Analysis Matrix")
     c1, c2 = st.columns(2)
     _yrs = [y for (y,) in session.execute(select(Paper.year).distinct().order_by(Paper.year))] or [2011, 2026]
     yf = c1.number_input("From year", 2007, 2100, max(min(_yrs), 2007))
@@ -370,8 +434,7 @@ elif page == "Analysis Matrix":
         m = az.section_year_matrix(session, yf, yt, verified_only=True)
     if avg_mode:
         m = az.averaged_matrix(m, _ppy)
-    if m["years"]:
-        st.caption("Classified papers per year: " + ", ".join(f"{y}: {_ppy.get(y, 0)}" for y in m["years"]))
+    _ppy_txt = ("Classified papers per year: " + ", ".join(f"{y}: {_ppy.get(y, 0)}" for y in m["years"])) if m["years"] else ""
     drill = st.session_state.pop("drill", None)
     if drill:
         d_sec, d_year = drill
@@ -397,24 +460,27 @@ elif page == "Analysis Matrix":
         _stat_counts = dict(session.execute(
             select(Classification.status, func.count()).group_by(Classification.status)).all())
         _n_cls = sum(_stat_counts.values())
-        st.markdown("**Section x Year (marks, primary topic only)** - every number is "
-                    "**clickable** and opens that cell's contributing questions. Totals "
-                    "always reconcile to paper totals. Only classified questions are included: "
-                    f"**{_n_cls} of {_tot_q} questions** "
-                    f"({_stat_counts.get('verified', 0)} verified, {_stat_counts.get('suggested', 0)} suggested, "
-                    f"{_stat_counts.get('flagged', 0)} flagged - all machine suggestions until a human verifies them; "
-                    f"{_tot_q - _n_cls} unclassified, the software-engineering taxonomy gap listed on Pipeline Status).")
+        st.subheader("Section x year (marks)")
+        st.caption(f"Click any number to see its questions. {_n_cls:,} of {_tot_q:,} questions counted.")
+        with how_to_read():
+            st.markdown("Primary topic only; totals always reconcile to paper totals. Only classified questions are "
+                        f"included: **{_n_cls} of {_tot_q} questions** "
+                        f"({_stat_counts.get('verified', 0)} verified, {_stat_counts.get('suggested', 0)} suggested, "
+                        f"{_stat_counts.get('flagged', 0)} flagged - all machine suggestions until a human verifies "
+                        f"them). The LEGACY column is historical software engineering, out of the 2027 syllabus.")
+            if _ppy_txt:
+                st.caption(_ppy_txt)
         st.markdown(nav.matrix_html(m), unsafe_allow_html=True)
         code_explainer(list(m["sections"].keys()))
-        st.subheader("Drill down (fallback dropdowns)")
-        d1, d2 = st.columns(2)
-        d_sec = d1.selectbox("Cell section", list(m["sections"].keys()) or ["-"])
-        d_year = d2.selectbox("Cell year", m["years"] or ["-"])
-        if d_sec != "-" and d_year != "-":
-            st.write(az.drill_down(session, d_sec, d_year))
-    st.subheader("Type / marks mix")
-    st.dataframe(pd.DataFrame(az.type_marks_mix(session, yf, yt)), width="stretch")
-    st.subheader("Topic x Year (marks)")
+        with st.expander("Drill down (fallback dropdowns)", icon=":material/filter_list:"):
+            d1, d2 = st.columns(2)
+            d_sec = d1.selectbox("Cell section", list(m["sections"].keys()) or ["-"])
+            d_year = d2.selectbox("Cell year", m["years"] or ["-"])
+            if d_sec != "-" and d_year != "-":
+                st.write(az.drill_down(session, d_sec, d_year))
+    with st.expander("Type / marks mix (MCQ / MSQ / NAT, 1 and 2 marks)", icon=":material/pie_chart:"):
+        st.dataframe(pd.DataFrame(az.type_marks_mix(session, yf, yt)), width="stretch")
+    st.subheader("Topic x year (marks)")
     _secs, _tbs2, _, _names2 = taxonomy_maps(session)
     t_sec = st.selectbox("Section for topic matrix", _secs, key="topic_matrix_sec")
     t_rows = az.topic_year_matrix(session, t_sec, yf, yt)
@@ -427,10 +493,13 @@ elif page == "Analysis Matrix":
         st.caption("No classified questions for this section in the selected years.")
 
 elif page == "Topic Report":
-    st.caption("Only classified questions are included; papers not yet classified are excluded (see Pipeline Status).")
-    st.markdown("**Score-first priority** (historical marks share, recency-weighted x1.5 for recent years; "
-                "descriptive, not predictive. Prerequisite edges exist but are curated/inferred, "
-                "not official syllabus relationships - see exports/prerequisite_edges.csv provenance.)")
+    page_header("Topic Report")
+    with how_to_read():
+        st.caption("Only classified questions are included; papers not yet classified are excluded (see Pipeline Status).")
+        st.markdown("**Score-first priority** (historical marks share, recency-weighted x1.5 for recent years; "
+                    "descriptive, not predictive. Prerequisite edges exist but are curated/inferred, "
+                    "not official syllabus relationships - see exports/prerequisite_edges.csv provenance.) "
+                    "LEGACY.SE is historical software engineering - out of the 2027 syllabus.")
     pr = az.priority_ranking(session)
     st.dataframe(pd.DataFrame(pr), width="stretch")
     code_explainer([r["topic"] for r in pr])
@@ -450,9 +519,10 @@ elif page == "Topic Report":
     st.markdown(nav.drill_list_html([r["question"] for r in _rows]), unsafe_allow_html=True)
 
 elif page == "Subject Overview":
-    st.subheader("Subject Overview - main topics, what they test, prerequisites")
-    st.caption("Topics, concepts and prerequisite edges come from taxonomy.yaml (curated, not official "
-               "syllabus relationships). Question counts are machine suggestions until a human verifies them.")
+    page_header("Subject Overview")
+    with how_to_read():
+        st.caption("Topics, concepts and prerequisite edges come from taxonomy.yaml (curated, not official "
+                   "syllabus relationships). Question counts are machine suggestions until a human verifies them.")
     _secs3, _tbs3, _cbt3, _names3 = taxonomy_maps(session)
     ov_sec = st.selectbox("Subject", _secs3, key="ov_sec",
                           format_func=lambda x: f"{x} - {_names3.get(x, '')}")
@@ -471,7 +541,8 @@ elif page == "Subject Overview":
                       "verified": d["verified"], "suggested": d["suggested"], "flagged": d["flagged"]})
     st.dataframe(pd.DataFrame(_rows), width="stretch", hide_index=True)
     code_explainer(list(_tbs3.get(ov_sec, [])))
-    st.markdown("**Per-topic detail** (concepts with readable names, and what classified questions test):")
+    st.subheader("Per-topic detail")
+    st.caption("Open a topic for its concepts and what its questions test.")
     for t in _tbs3.get(ov_sec, []):
         with st.expander(f"{t} - {_names3.get(t, '')}"):
             _concept_names = [f"- **{c}** - {_names3.get(c, '')}" if _names3.get(c) else f"- {c}"
@@ -490,7 +561,8 @@ elif page == "Subject Overview":
             else:
                 st.caption("What it tests: not recorded - the v2 first pass is topic-level only; "
                            "the API proposals pass can supply these, or add during review.")
-    st.markdown("**Prerequisite edges in this subject** (curated/inferred - not official syllabus relationships):")
+    st.subheader("Prerequisites in this subject")
+    st.caption("Curated/inferred - not official syllabus relationships.")
     import yaml as _yaml
     _raw = _yaml.safe_load(open(APP_ROOT / "taxonomy.yaml"))
     _topic_set = set(_tbs3.get(ov_sec, []))
@@ -508,7 +580,7 @@ elif page == "Subject Overview":
         st.caption("No curated prerequisite edges for this subject's concepts yet.")
 
 elif page == "Review Workspace":
-    st.subheader("Review Workspace")
+    page_header("Review Workspace")
     _flash_msg = st.session_state.pop("_flash", None)
     if _flash_msg:
         st.success(_flash_msg)
@@ -517,10 +589,11 @@ elif page == "Review Workspace":
     st.progress(prog_all["verified"] / prog_all["classified"] if prog_all["classified"] else 0.0,
                 text=f"{prog_all['verified']} of {prog_all['classified']} classified questions verified by a human "
                      f"({prog_all['unclassified']} of {prog_all['total_questions']} loaded questions have no classification yet)")
-    st.caption(f"Awaiting a decision: extraction issues {counts['of_which_extraction_issues']}, "
-               f"classifier-flagged {counts['of_which_classifier_flagged']}, "
-               f"unverified suggestions {counts['of_which_unverified_suggestions']}, "
-               f"unclassified {counts['of_which_unclassified']} - reviewing as **{REVIEWER}**.")
+    with st.expander(f"Reviewing as **{REVIEWER}** - what is waiting for a decision", icon=":material/inbox:"):
+        st.caption(f"Awaiting a decision: extraction issues {counts['of_which_extraction_issues']}, "
+                   f"classifier-flagged {counts['of_which_classifier_flagged']}, "
+                   f"unverified suggestions {counts['of_which_unverified_suggestions']}, "
+                   f"unclassified {counts['of_which_unclassified']}.")
     pre = st.session_state.pop("review_pick", None)
     if pre:
         _pq = session.get(Question, pre)
@@ -529,7 +602,8 @@ elif page == "Review Workspace":
             # so the displayed paper can never disagree with the displayed question
             st.session_state["rw_paper"] = _pq.paper_id
     _paper_ids = [r for r in session.scalars(select(Paper.id).order_by(Paper.year, Paper.session))]
-    f1, f2, f3 = st.columns([2, 3, 2])
+    with st.container(border=True):
+        f1, f2, f3 = st.columns([2, 3, 2])
     f_paper = f1.selectbox("Paper", ["(all papers)"] + _paper_ids, key="rw_paper")
     f_show = f2.radio("Show", ["all questions", "suggestion awaiting my decision", "verified",
                                "no classification yet", "benchmark sample (gold review)"],
@@ -594,7 +668,8 @@ elif page == "Review Workspace":
                        f"**{_prio[uid][1].replace('_', ' ')}** (why this order: validation.review.PRIORITY_BUCKETS)")
         left, right = st.columns(2)
         with left:
-            st.markdown("**Original source** (rendered on demand from the PDF - no stored images)")
+            st.subheader(":material/picture_as_pdf: Original source")
+            st.caption("Rendered on demand from the PDF - this is the truth.")
             if qu.extraction_status == "ocr":
                 st.info("This paper is a scan. The text below was read by OCR and can contain errors, "
                         "especially in formulas - **the image is the original; trust it over the text.**")
@@ -652,7 +727,8 @@ elif page == "Review Workspace":
                     st.session_state["_flash"] = f"{uid}: {_n} extraction correction(s) saved" if _n else "no extraction changes to save"
                     st.rerun()
         with right:
-            st.markdown("**Classification (machine suggestion until verified)**")
+            st.subheader(":material/label: Label")
+            st.caption("A machine suggestion until you verify it.")
             if cls:
                 n_prov = cls.provider_count if cls.provider_count is not None else 1
                 legacy = any("pre-v6" in str(v.get("provider", ""))
@@ -701,7 +777,8 @@ elif page == "Review Workspace":
                                + list(cls.concept_ids or []) + list(cls.prerequisite_ids or []))
 
                 secs, topics_by_sec, concepts_by_topic, names = taxonomy_maps(session)
-                st.markdown("**Correct from the dropdowns** (full names in the Glossary screen)")
+                st.subheader(":material/edit: Correct the label")
+                st.caption("Full names of every code are on the Glossary screen.")
                 cur_sec = cls.section_id if cls.section_id in secs else secs[0]
                 new_sec = st.selectbox("Section", secs,
                                        index=secs.index(cur_sec),
@@ -727,7 +804,8 @@ elif page == "Review Workspace":
                 note = st.text_input("Note (optional, goes to audit log)", key=f"rw_note_{uid}")
 
                 # ---- five-point rubric: a reviewer's record, not a GATE score and not model confidence ----
-                st.markdown("**Review checks** - required before Verify: *Source fidelity* and *Primary topic* must pass")
+                st.subheader(":material/checklist: Review checks")
+                st.caption("Required before Verify: *Source fidelity* and *Primary topic* must pass.")
                 _prev = rv.latest_rubric(session, uid) or {}
                 scores = {}
                 for _k, _lab, _help in rv.RUBRIC:
@@ -836,12 +914,13 @@ elif page == "Review Workspace":
                 st.caption("No review events yet.")
 
 elif page == "Approve Queue":
-    st.subheader("Approve Queue - batch human approval")
-    st.caption("Review suggestions row by row, optionally correct the topic from the "
-               "dropdown, tick Approve, then apply. Every approval logs a ReviewEvent "
-               "(under the reviewer name in the sidebar) exactly like one-by-one verification. Verified records "
-               "are never overwritten by later runs. **Only questions that already have a saved review rubric with "
-               "Source fidelity and Primary topic passing can be approved here** - an AI suggestion alone is never enough.")
+    page_header("Approve Queue")
+    with how_to_read():
+        st.caption("Review suggestions row by row, optionally correct the topic from the "
+                   "dropdown, tick Approve, then apply. Every approval logs a ReviewEvent "
+                   "(under the reviewer name in the sidebar) exactly like one-by-one verification. Verified records "
+                   "are never overwritten by later runs. **Only questions that already have a saved review rubric with "
+                   "Source fidelity and Primary topic passing can be approved here** - an AI suggestion alone is never enough.")
     rows = [r for r in rv.review_queue(session) if r["status"] in ("suggested", "flagged")]
     f1, f2, f3 = st.columns(3)
     min_combo = f1.slider("Minimum combined score", 0.0, 1.0, 0.0, 0.05,
@@ -912,8 +991,9 @@ elif page == "Approve Queue":
                "the Review Workspace (clickable from the Analysis Matrix drill-down).")
 
 elif page == "LLM Classify":
-    st.subheader("LLM Classify - providers, setup, gated runs")
-    st.markdown(
+    page_header("LLM Classify")
+    with how_to_read("How keys and consent gates work"):
+      st.markdown(
         "Add API keys to `.env` (copy `.env.example`) and everything else is automatic: "
         "`auto` tries providers in your `GATE_LLM_PRIORITY` order with bounded failover "
         "(per-question, recorded, never crossing consent gates). "
@@ -921,11 +1001,10 @@ elif page == "LLM Classify":
         "leaves this machine). Providers with account-dependent billing (gemini, groq) "
         "additionally need your free-plan attestation (`GATE_LLM_FREE_PLAN_CONFIRMED=1`) "
         "or per-run spend approval; paid providers always need explicit spend approval "
-        "per run. Only OpenRouter `:free` models are listed at $0 by the provider itself. "
+        "per run. Only OpenRouter `:free` models are listed at USD 0 by the provider itself. "
         "Mock works fully offline.")
-    st.markdown("**Provider status** (secrets never shown - only whether a key is set. "
-                "A set key does NOT prove a free plan: gemini/groq bill per token when the "
-                "account/project has billing linked - confirm your plan, this tool cannot.)")
+    st.subheader("Provider status")
+    st.caption("Secrets are never shown - only whether a key is set. A set key does not prove a free plan.")
     _st_rows = cl.provider_status()
     _hist = cl.provider_history(session)
     _ext = settings.external_calls_allowed()
@@ -947,9 +1026,10 @@ elif page == "LLM Classify":
         _r["last_error"] = (_h.get("last_error") or "")[:60]
     _cols = ["provider", "key_set", "gate_state", "calls_ok", "calls_failed", "last_success", "last_error", "tier", "key_env"]
     st.dataframe(pd.DataFrame(_st_rows)[_cols], width="stretch", hide_index=True)
-    st.caption("`calls_ok` / `calls_failed` / `last_success` come from RECORDED attempts in the database - a key "
-               "being set only means a key exists, not that calls work. No live call has been recorded yet if these "
-               "are all 0 / never.")
+    with st.expander("What the columns mean", icon=":material/help:"):
+        st.caption("`calls_ok` / `calls_failed` / `last_success` come from RECORDED attempts in the database - a key "
+                   "being set only means a key exists, not that calls work. No live call has been recorded yet if these "
+                   "are all 0 / never.")
     def _show_err(err, prefix: str = ""):
         """Plain-language error: what happened + the fix. Consent-gate / setup messages (which already
         say what to do) are shown as written instead of being mislabelled 'provider failed'."""
@@ -973,16 +1053,16 @@ elif page == "LLM Classify":
             for _n, _why in _skipped.items():
                 st.write(f"- `{_n}`: {_why}")
 
-    st.markdown("**1. Measure first (offline)**")
+    st.subheader("1. Measure first (offline)")
     e1, e2, e3 = st.columns(3)
-    price_in = e1.number_input("Input $/M tokens", 0.0, 1000.0, 0.0)
-    price_out = e2.number_input("Output $/M tokens", 0.0, 1000.0, 0.0)
+    price_in = e1.number_input("Input USD per 1M tokens", 0.0, 1000.0, 0.0)
+    price_out = e2.number_input("Output USD per 1M tokens", 0.0, 1000.0, 0.0)
     est_paper = e3.selectbox("Paper", ["(all)"] + [p for p in session.scalars(select(Paper.id))])
     if st.button("Estimate cost"):
         st.json(cl.estimate_cost(session, None if est_paper == "(all)" else est_paper,
                                  price_in, price_out))
 
-    st.markdown("**2. Dry run - inspect exact payloads, no network**")
+    st.subheader("2. Dry run - exact payloads, no network")
     d1, d2 = st.columns(2)
     dry_provider = d1.selectbox("Provider", ["mock", "auto", "free", "freellmapi", "gemini", "groq",
                                              "openrouter", "anthropic", "openai"])
@@ -996,7 +1076,7 @@ elif page == "LLM Classify":
             session.rollback()
             _show_err(e)
 
-    st.markdown("**3. Classify**")
+    st.subheader("3. Classify")
     _scope = None if est_paper == "(all)" else est_paper
     _in_scope = session.scalar(select(func.count()).select_from(Question)
                                .where(Question.paper_id == _scope) if _scope else select(func.count()).select_from(Question))
@@ -1054,7 +1134,7 @@ elif page == "LLM Classify":
     if ens_skipped:
         st.caption("Ensemble skips: " + "; ".join(f"{n} ({w[:80]})" for n, w in ens_skipped.items()))
 
-    st.markdown("**4. Compare a provider with the existing suggestions (writes nothing)**")
+    st.subheader("4. Compare a provider with the existing labels (writes nothing)")
     st.caption("Runs ONE provider on a small sample of already-classified questions and shows how often it picks the "
                "same section/topic. This is AGREEMENT, not accuracy - the existing suggestions are unverified until a "
                "human verifies them. Same consent gates as above.")
@@ -1072,34 +1152,42 @@ elif page == "LLM Classify":
         except Exception as e:  # noqa: BLE001
             session.rollback()
             _show_err(e)
-    st.markdown("**Combined score distribution** (existing classifications)")
+    st.subheader("Combined score by status")
     dist = pd.DataFrame(session.execute(
         select(Classification.combo_score, Classification.status)).fetchall(),
         columns=["combo_score", "status"])
     if len(dist):
-        st.bar_chart(dist.dropna().groupby("status")["combo_score"].mean())
+        _d = dist.dropna().groupby("status")["combo_score"].agg(["count", "mean"]).reset_index()
+        _d.columns = ["status", "labels", "mean combined score"]
+        st.dataframe(_d, hide_index=True, width="stretch",
+                     column_config={"mean combined score": st.column_config.ProgressColumn(
+                         format="%.2f", min_value=0.0, max_value=1.0)})
 
 elif page == "About the Data":
     render_data_inventory(session)
 
 else:  # Glossary & Syllabus
-    st.subheader("Glossary & Syllabus")
-    st.info("Which papers and years are in this project (2007-2026, PDFs, sessions, keys): see the **About the Data** screen.")
-    st.caption(f"GATE CS syllabus {GLOSSARY['syllabus_year']} (sources: {GLOSSARY['source_pdf']} + {GLOSSARY.get('ga_source_pdf') or 'GA section'}). "
+    page_header("Glossary & Syllabus")
+    with how_to_read("Sources and how to read the provenance column"):
+      st.caption("Which papers and years are in this project (2007-2026, PDFs, sessions, keys): see the **About the Data** screen.")
+      st.caption(f"GATE CS syllabus {GLOSSARY['syllabus_year']} (sources: {GLOSSARY['source_pdf']} + {GLOSSARY.get('ga_source_pdf') or 'GA section'}). "
                "Every short code used anywhere in this app is expanded here.")
-    st.markdown(
+      st.markdown(
         "**How to read the provenance column.** Sections and their syllabus text are "
         "**official** - copied verbatim from the GATE syllabus PDF. Topics and concepts under "
         "them are **inferred** - our curation split of the official text, pending human review. "
-        "Prerequisite edges used elsewhere in the app are curated/inferred too, never official.")
-    st.markdown("**Sections** - the top-level subjects (GA, EM, DL, ...)")
+        "Prerequisite edges used elsewhere in the app are curated/inferred too, never official. "
+        "The LEGACY section is historical (pre-2016 syllabus), not part of GATE 2027.")
+    st.subheader("Sections")
+    st.caption("The top-level subjects (GA, EM, DL, ...).")
     st.dataframe(pd.DataFrame(GLOSSARY["sections"]), width="stretch")
-    st.markdown("**Topics** - the second level, shown in the app as e.g. `ALGO.SORT`. "
-                "Note SORT's full scope is *Searching, sorting, hashing*, not only sorting.")
+    st.subheader("Topics")
+    st.caption("The second level, e.g. `ALGO.SORT` (its full scope is *Searching, sorting, hashing*).")
     st.dataframe(pd.DataFrame(GLOSSARY["topics"]), width="stretch")
-    st.markdown("**Concepts** - the finest level, shown as e.g. `ALGO.SORT.HASH`")
+    st.subheader("Concepts")
+    st.caption("The finest level, e.g. `ALGO.SORT.HASH`.")
     st.dataframe(pd.DataFrame(GLOSSARY["concepts"]), width="stretch")
     if GLOSSARY["structure_notes"]:
-        st.markdown("**Structure notes**")
-        for n in GLOSSARY["structure_notes"]:
-            st.write("- " + n)
+        with st.expander("Structure notes", icon=":material/notes:"):
+            for n in GLOSSARY["structure_notes"]:
+                st.write("- " + n)

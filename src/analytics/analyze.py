@@ -102,6 +102,39 @@ def paper_status_table(s: Session) -> list[dict]:
                     "needs_review": int(flagged or 0), "classified": classified, "verified": verified})
     return out
 
+def paper_review_table(s: Session) -> list[dict]:
+    """One row per paper for the review-progress table: label status counts, human-verified share,
+    AI-review coverage and benchmark gold. Counts only - nothing here is accuracy."""
+    from sqlalchemy import case
+    from ..db.models import BenchmarkSample, ReviewEvent
+    papers = s.scalars(select(Paper).order_by(Paper.year, Paper.session)).all()
+    st = {}
+    for pid, status, n in s.execute(select(Question.paper_id, Classification.status, func.count())
+                                    .join(Classification, Classification.question_id == Question.id)
+                                    .group_by(Question.paper_id, Classification.status)):
+        st.setdefault(pid, {})[status] = n
+    nq = dict(s.execute(select(Question.paper_id, func.count()).group_by(Question.paper_id)).all())
+    extr = dict(s.execute(select(Question.paper_id, func.sum(case((Question.needs_review == True, 1), else_=0)))  # noqa: E712
+                          .group_by(Question.paper_id)).all())
+    ai = dict(s.execute(select(Question.paper_id, func.count(func.distinct(ReviewEvent.question_id)))
+                        .join(ReviewEvent, ReviewEvent.question_id == Question.id)
+                        .where(ReviewEvent.field == "ai_review").group_by(Question.paper_id)).all())
+    bench = {}
+    for pid, status, n in s.execute(select(Question.paper_id, BenchmarkSample.status, func.count())
+                                    .join(BenchmarkSample, BenchmarkSample.question_id == Question.id)
+                                    .group_by(Question.paper_id, BenchmarkSample.status)):
+        bench.setdefault(pid, {})[status] = n
+    out = []
+    for p in papers:
+        d = st.get(p.id, {}); b = bench.get(p.id, {}); total = nq.get(p.id, 0)
+        ver = d.get("verified", 0)
+        out.append({"paper": p.id, "questions": total, "suggested": d.get("suggested", 0),
+                    "flagged": d.get("flagged", 0), "verified": ver,
+                    "verified_share": round(ver / total, 4) if total else 0.0,
+                    "ai_reviewed": ai.get(p.id, 0), "extraction_issues": int(extr.get(p.id) or 0),
+                    "benchmark_pending": b.get("pending_user_review", 0), "benchmark_gold": b.get("gold_verified", 0)})
+    return out
+
 def papers_per_year(s: Session, classified_only: bool = True) -> dict[int, int]:
     """Number of distinct (classified) papers contributing to each year - the divisor for the
     'average over sessions' view, because a year with 4 sessions otherwise shows 4x the marks."""

@@ -9,7 +9,7 @@
 - [x] Papers 2007-2026 in `data/raw/papers/` (2007-2010 photographed pages deferred)
 - [x] Year-wise papers + keys 2021-2026 in `data/raw/` (20 papers with official keys in total)
 - [ ] Optional: PYQ books/solutions - local only, never cloud-processed without consent
-- [x] Docker Desktop, Python 3.12+, git installed; repo tests pass (227, 5 Nov 2026)
+- [x] Docker Desktop, Python 3.12+, git installed; repo tests pass (230, 5 Nov 2026)
 
 ## Per-paper reconciliation checklist (every paper, every run) - all 29 papers, 5 Nov 2026
 
@@ -93,6 +93,14 @@ AI review (Claude, labelled as such, NOT verification): 65 questions of 2026 CS-
 - [ ] First 5-question `classify-compare freellmapi` test (writes nothing)
 - [x] Decision models (OpenAI Decisions, Jev) wired in separately, dry-run only, `DECISIONS_ENABLED=0`
 - [ ] Decision-model run on the benchmark - only after gold exists and you approve the estimate (~$0.007 Jev / ~$0.017 Decisions)
+
+## v12 UI + full coverage checklist (5 Nov 2026)
+
+- [x] Every question classified: 1,885 / 1,885 (18 historical software-engineering questions under `LEGACY.SE`, out of the 2027 syllabus)
+- [x] Pipeline Status: score cards, horizontal progress bars (classified / AI-reviewed / human-verified / benchmark gold), papers table, review-progress-per-paper table
+- [x] Every screen: icon + title + one-line purpose; long explanations moved into collapsed "How to read this page" toggles (nothing removed)
+- [x] Theme: Inter font, tighter heading sizes, bordered metrics (`.streamlit/config.toml`)
+- [x] LLM Classify browser freeze fixed (a `$` in two labels was parsed as LaTeX); regression test `tests/test_ui_v12.py`
 
 ## Repository checklist
 

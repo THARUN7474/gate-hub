@@ -35,6 +35,7 @@ def test_about_the_data_screen_renders(loaded, monkeypatch):
     at.session_state["screen"] = "About the Data"
     at.run()
     assert not at.exception
-    text = " ".join(m.value for m in at.markdown) + " ".join(str(x.value) for x in at.metric)
+    text = (" ".join(m.value for m in at.markdown) + " ".join(str(x.value) for x in at.metric)
+            + " ".join(h.value for h in at.subheader))
     assert "Three groups of years" in text and "Year by year" in text
-    assert any(m.label == "Papers (sessions) registered" and str(m.value) == "33" for m in at.metric)
+    assert any(m.label == "Papers registered" and str(m.value) == "33" for m in at.metric)

@@ -24,7 +24,8 @@ def build_glossary(path: str) -> dict:
             "Code": sec["id"],
             "Full name": sec["name"],
             "What it covers (official syllabus text, verbatim)": stext,
-            "Provenance": OFFICIAL,
+            "Provenance": OFFICIAL if sec.get("provenance", "official") == "official" else
+                          "historical - NOT in the 2027 syllabus (pre-2016 GATE CS&IT text, secondary copy)",
         })
         if sec.get("syllabus_note"):
             notes.append(f'{sec["id"]}: {sec["syllabus_note"]}')
