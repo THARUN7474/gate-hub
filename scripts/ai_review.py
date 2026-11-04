@@ -1,0 +1,229 @@
+"""AI REVIEW pass: an AI (e.g. Claude in chat, or a model behind FreeLLMAPI) reads questions one by
+one the way a human reviewer would and records its own verdict - ALWAYS labelled as an AI review,
+NEVER as human verification and NEVER as benchmark gold.
+
+    python scripts/ai_review.py export --paper GATE-CS-2026-S2          # -> exports/ai_review/GATE-CS-2026-S2.json
+    python scripts/ai_review.py export --benchmark                      # -> exports/ai_review/benchmark.json
+    python scripts/ai_review.py import exports/ai_review/<file>.decisions.json            # DRY RUN
+    python scripts/ai_review.py import exports/ai_review/<file>.decisions.json --yes      # backup, then write
+
+Decisions file: {"reviewer": "claude-opus-5-5", "decisions": [ {
+    "question_id": "GATE-CS-2026-S2-Q01",
+    "verdict": "agree" | "correct" | "flag",
+    "section_id": "GA", "primary_topic_id": "GA.VA",          # the AI reviewer's own label (always given)
+    "concept_ids": [...], "what_it_tests": "...",             # optional
+    "confidence": 0.9,
+    "checks": {"source_fidelity": true, "options_ok": true, "key_ok": true, "taxonomy_fit": true},
+    "note": "why" } ]}
+
+What import writes (all append-only / audited):
+  1. classification_proposals row, provider='ai-review', model='<reviewer>', prompt_version='ai-review-v1'
+     - an independent second opinion; `evaluate-benchmark --provider ai-review` scores it against YOUR
+     gold later, `proposals-report` shows agreement. Analytics never read proposals.
+  2. review_events row field='ai_review', reviewer='<reviewer> (AI review - not human verification)',
+     after = the verdict JSON - visible in the Review Workspace audit history.
+  3. verdict 'correct' on a question that is NOT in the benchmark sample and NOT human-reviewed: the
+     live label is changed to the AI reviewer's label (status stays 'suggested', model notes the AI
+     review), each changed field logged with before/after. On BENCHMARK questions the live label is
+     never changed, so your gold review stays your own independent judgement.
+  4. verdict 'flag': live status -> 'flagged' with the note (never on verified/validated rows).
+Nothing is ever set to verified. Benchmark gold is never written."""
+from __future__ import annotations
+import argparse, json, sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from sqlalchemy import select  # noqa: E402
+from src.db.models import (AnswerKey, BenchmarkSample, Classification, ClassificationProposal,  # noqa: E402
+                           ClassificationRun, Option, Paper, Question, ReviewEvent, TaxonomyNode, utcnow)
+from src.db.session import make_session  # noqa: E402
+from src.classification.classify import question_content_hash  # noqa: E402
+
+TAXV = "gate-cs-2027"
+PROVIDER = "ai-review"
+PROMPT_VERSION = "ai-review-v1"
+OUT = ROOT / "exports" / "ai_review"
+INSTRUCTIONS = (
+    "Review each question like a human reviewer: read the text, options and official key; decide which "
+    "GATE CS 2027 section/topic it actually tests (from the taxonomy below); check the extracted text and "
+    "options against the PDF crop where available (source_fidelity), that options look complete (options_ok) "
+    "and that the key is plausible (key_ok). verdict: agree (current label is right), correct (give your "
+    "label), flag (extraction problem or genuinely ambiguous - say why). Never invent concepts; leave "
+    "concept_ids empty if unsure. This is an AI review and is recorded as such - it is never human verification.")
+
+def taxonomy(s) -> dict:
+    nodes = s.scalars(select(TaxonomyNode).where(TaxonomyNode.version == TAXV, TaxonomyNode.deprecated == False)).all()  # noqa: E712
+    secs = {n.node_id: {"name": n.name, "topics": {}} for n in nodes if n.level == "section"}
+    for n in nodes:
+        if n.level == "topic" and n.parent_id in secs:
+            secs[n.parent_id]["topics"][n.node_id] = {"name": n.name, "concepts": {}}
+    for n in nodes:
+        if n.level == "concept":
+            for sec in secs.values():
+                if n.parent_id in sec["topics"]:
+                    sec["topics"][n.parent_id]["concepts"][n.node_id] = n.name
+    return secs
+
+def _qrow(s, q: Question, sampled: dict) -> dict:
+    opts = {o.label: o.content for o in s.scalars(select(Option).where(Option.question_id == q.id).order_by(Option.label))}
+    k = s.scalar(select(AnswerKey).where(AnswerKey.question_id == q.id))
+    c = s.scalar(select(Classification).where(Classification.question_id == q.id))
+    key = None
+    if k:
+        key = {"kind": k.answer_kind, "answer": k.answer_list, "min": k.answer_min, "max": k.answer_max}
+    return {"question_id": q.id, "label": q.printed_label, "marks": q.marks, "type": q.q_type, "text": q.text,
+            "options": opts, "key": key, "image": q.image_path,
+            "extraction": {"status": q.extraction_status, "needs_review": q.needs_review, "reason": q.review_reason},
+            "current_label": None if c is None else {
+                "section_id": c.section_id, "primary_topic_id": c.primary_topic_id, "concept_ids": c.concept_ids,
+                "what_it_tests": c.what_it_tests, "status": c.status, "confidence": c.confidence, "model": c.model},
+            "in_benchmark": q.id in sampled}
+
+def cmd_export(a) -> int:
+    OUT.mkdir(parents=True, exist_ok=True)
+    with make_session(a.db_url) as s:
+        sampled = {b.question_id: b.status for b in s.scalars(select(BenchmarkSample))}
+        if a.benchmark:
+            ids = sorted(sampled); name = "benchmark"
+            qs = [s.get(Question, i) for i in ids]
+        else:
+            if s.get(Paper, a.paper) is None:
+                print("unknown paper", a.paper); return 2
+            qs = s.scalars(select(Question).where(Question.paper_id == a.paper).order_by(Question.q_number)).all()
+            name = a.paper
+        doc = {"instructions": INSTRUCTIONS, "taxonomy_version": TAXV, "taxonomy": taxonomy(s),
+               "questions": [_qrow(s, q, sampled) for q in qs]}
+    path = OUT / f"{name}.json"
+    path.write_text(json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
+    print(f"wrote {path} ({len(doc['questions'])} questions). Decisions go in {path.with_suffix('')}.decisions.json")
+    return 0
+
+def _valid_ids(s) -> tuple[set, dict, set]:
+    nodes = s.scalars(select(TaxonomyNode).where(TaxonomyNode.version == TAXV, TaxonomyNode.deprecated == False)).all()  # noqa: E712
+    secs = {n.node_id for n in nodes if n.level == "section"}
+    topic_parent = {n.node_id: n.parent_id for n in nodes if n.level == "topic"}
+    concepts = {n.node_id for n in nodes if n.level == "concept"}
+    return secs, topic_parent, concepts
+
+def cmd_import(a) -> int:
+    data = json.loads(Path(a.decisions).read_text(encoding="utf-8"))
+    reviewer = data.get("reviewer") or "ai-reviewer"
+    tag = f"{reviewer} (AI review - not human verification)"
+    decisions = data["decisions"]
+    errors, plan = [], []
+    with make_session(a.db_url) as s:
+        secs, topic_parent, concepts = _valid_ids(s)
+        sampled = {b.question_id for b in s.scalars(select(BenchmarkSample))}
+        seen = set()
+        for d in decisions:
+            qid = d.get("question_id")
+            q = s.get(Question, qid) if qid else None
+            e = []
+            if q is None: e.append("unknown question")
+            if qid in seen: e.append("duplicate decision")
+            seen.add(qid)
+            if d.get("verdict") not in ("agree", "correct", "flag"): e.append("verdict must be agree|correct|flag")
+            gap = d.get("verdict") == "flag" and d.get("section_id") is None and d.get("primary_topic_id") is None
+            if not gap and d.get("section_id") not in secs: e.append(f"unknown section {d.get('section_id')}")
+            if not gap and topic_parent.get(d.get("primary_topic_id")) != d.get("section_id"):
+                e.append(f"topic {d.get('primary_topic_id')} is not in section {d.get('section_id')}")
+            bad_c = [c for c in d.get("concept_ids") or [] if c not in concepts]
+            if bad_c: e.append(f"unknown concepts {bad_c}")
+            if e:
+                errors.append({"question_id": qid, "errors": e}); continue
+            c = s.scalar(select(Classification).where(Classification.question_id == qid))
+            action = "record only"
+            if d["verdict"] == "correct":
+                if c is None: action = "record only (question has no label - see proposal)"
+                elif c.status == "verified" or c.provenance == "validated": action = "record only (human-reviewed row kept)"
+                elif qid in sampled: action = "record only (benchmark question: live label kept for your independent gold review)"
+                elif (c.section_id, c.primary_topic_id) == (d["section_id"], d["primary_topic_id"]): action = "record only (same label)"
+                else: action = "correct live label"
+            elif d["verdict"] == "flag":
+                if qid in sampled: action = "record only (benchmark question: live status kept for your review)"
+                elif c is not None and c.status not in ("verified",) and c.provenance != "validated":
+                    action = "flag live label"
+            plan.append((q, c, d, action))
+        from collections import Counter
+        print(json.dumps({"reviewer_tag": tag, "decisions": len(decisions), "valid": len(plan), "errors": len(errors),
+                          "verdicts": dict(Counter(d["verdict"] for _, _, d, _ in plan)),
+                          "actions": dict(Counter(x for *_, x in plan))}, indent=1))
+        for e in errors:
+            print("   ERROR", e)
+        if errors:
+            print("Fix the errors first - nothing written."); return 2
+        if not a.yes:
+            print("\nDRY RUN - nothing changed. Re-run with --yes to write (a backup is taken first)."); return 0
+        from src import backup as bk
+        b = bk.backup(a.db_url)
+        print("backup:", b["file"], "| integrity:", b.get("integrity_check"))
+        if b.get("integrity_check") not in (None, "ok"):
+            print("backup integrity FAILED - nothing changed"); return 1
+        run = ClassificationRun(model=reviewer, prompt_version=PROMPT_VERSION, provider=PROVIDER,
+                                finished_at=utcnow(), stats={"source": Path(a.decisions).name, "n": len(plan),
+                                                             "note": "AI review - not human verification"})
+        s.add(run); s.flush()
+        n_prop = n_corr = n_flag = 0
+        for q, c, d, action in plan:
+            payload = {k: d.get(k) for k in ("verdict", "section_id", "primary_topic_id", "concept_ids",
+                                              "what_it_tests", "confidence", "checks", "note")}
+            old = s.scalar(select(ClassificationProposal).where(
+                ClassificationProposal.question_id == q.id, ClassificationProposal.provider == PROVIDER,
+                ClassificationProposal.model == reviewer, ClassificationProposal.prompt_version == PROMPT_VERSION))
+            if d.get("primary_topic_id") is None:          # taxonomy gap: opinion recorded as an event only
+                old = prop = None
+            prop = None if d.get("primary_topic_id") is None else (old or ClassificationProposal(question_id=q.id, provider=PROVIDER, model=reviewer,
+                                                 prompt_version=PROMPT_VERSION, taxonomy_version=TAXV))
+            if prop is not None:
+                prop.run_id = run.id; prop.section_id = d["section_id"]; prop.primary_topic_id = d["primary_topic_id"]
+                prop.topic_weight = {d["primary_topic_id"]: 1.0}; prop.concept_ids = d.get("concept_ids") or []
+                prop.what_it_tests = d.get("what_it_tests"); prop.confidence = float(d.get("confidence") or 0.0)
+                prop.evidence_quote = d.get("note"); prop.raw_response = payload
+                prop.source_content_hash = question_content_hash(q)
+                prop.status = "flagged" if d["verdict"] == "flag" else "suggested"
+                if old is None:
+                    s.add(prop)
+                n_prop += 1
+            s.add(ReviewEvent(question_id=q.id, field="ai_review",
+                              before=None if c is None else f"{c.section_id}/{c.primary_topic_id} ({c.status})",
+                              after=json.dumps(payload, ensure_ascii=False), reviewer=tag,
+                              note=f"{d['verdict']}: {action}. {d.get('note') or ''}".strip()))
+            if action == "correct live label":
+                for field, new in (("section_id", d["section_id"]), ("primary_topic_id", d["primary_topic_id"])):
+                    if getattr(c, field) != new:
+                        s.add(ReviewEvent(question_id=q.id, field=field, before=getattr(c, field), after=new,
+                                          reviewer=tag, note="AI review correction (not human verification)"))
+                        setattr(c, field, new)
+                if d.get("concept_ids") is not None and d.get("concept_ids") != c.concept_ids:
+                    s.add(ReviewEvent(question_id=q.id, field="concept_ids", before=json.dumps(c.concept_ids),
+                                      after=json.dumps(d["concept_ids"]), reviewer=tag,
+                                      note="AI review correction (not human verification)"))
+                    c.concept_ids = d["concept_ids"]
+                c.topic_weight = {d["primary_topic_id"]: 1.0}
+                c.status = "suggested"; c.model = f"{c.model} + ai-review:{reviewer}"
+                n_corr += 1
+            elif action == "flag live label":
+                if c.status != "flagged":
+                    s.add(ReviewEvent(question_id=q.id, field="classification_flagged", before=c.status, after="flagged",
+                                      reviewer=tag, note=d.get("note") or "flagged by AI review"))
+                    c.status = "flagged"
+                n_flag += 1
+        s.commit()
+        print(f"written: {n_prop} AI-review proposals, {n_corr} live labels corrected, {n_flag} flagged. "
+              f"Nothing verified; no benchmark gold written.")
+    return 0
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    sub = ap.add_subparsers(dest="cmd", required=True)
+    e = sub.add_parser("export"); g = e.add_mutually_exclusive_group(required=True)
+    g.add_argument("--paper"); g.add_argument("--benchmark", action="store_true")
+    e.add_argument("--db-url", default=None)
+    i = sub.add_parser("import"); i.add_argument("decisions"); i.add_argument("--yes", action="store_true")
+    i.add_argument("--db-url", default=None)
+    a = ap.parse_args()
+    return cmd_export(a) if a.cmd == "export" else cmd_import(a)
+
+if __name__ == "__main__":
+    raise SystemExit(main())

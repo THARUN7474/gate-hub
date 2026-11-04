@@ -1,0 +1,48 @@
+====================================================================================================
+GATE-CS-2026-S1-Q21 | stored type MSQ | fresh type MCQ
+text  stored==fresh: True | len stored 151 len fresh 151
+options stored labels: ['A', 'B', 'C', 'D'] | fresh labels: ['A', 'B', 'C', 'D']
+  opt A: stored==fresh True
+  opt B: stored==fresh True
+  opt C: stored==fresh True
+  opt D: stored==fresh True
+  opt A combining marks: 8 (U+0305 count 8)
+  opt B combining marks: 0 (U+0305 count 0)
+  opt C combining marks: 1 (U+0305 count 1)
+  opt D combining marks: 2 (U+0305 count 2)
+====================================================================================================
+GATE-CS-2026-S1-Q37 | stored type MCQ | fresh type MCQ
+text  stored==fresh: True | len stored 528 len fresh 528
+options stored labels: ['A', 'B', 'C', 'D'] | fresh labels: ['A', 'B', 'C', 'D']
+  opt A: stored==fresh True
+  opt B: stored==fresh True
+  opt C: stored==fresh True
+  opt D: stored==fresh True
+  opt A combining marks: 5 (U+0305 count 5) | overbar preceded by a SPACE at idx [85]
+  opt B combining marks: 10 (U+0305 count 10) | overbar preceded by a SPACE at idx [65, 73, 90]
+  opt C combining marks: 10 (U+0305 count 10) | overbar preceded by a SPACE at idx [15, 23, 90]
+  opt D combining marks: 11 (U+0305 count 11) | overbar preceded by a SPACE at idx [14, 66, 91]
+====================================================================================================
+GATE-CS-2026-S1-Q48 | stored type MSQ | fresh type MCQ
+text  stored==fresh: True | len stored 213 len fresh 213
+options stored labels: ['A', 'B', 'C', 'D'] | fresh labels: ['A', 'B', 'C', 'D']
+  opt A: stored==fresh True
+  opt B: stored==fresh True
+  opt C: stored==fresh True
+  opt D: stored==fresh True
+  opt A combining marks: 6 (U+0305 count 6)
+  opt B combining marks: 5 (U+0305 count 5)
+  opt C combining marks: 4 (U+0305 count 4)
+  opt D combining marks: 5 (U+0305 count 5)
+====================================================================================================
+GATE-CS-2025-S1-Q59 | stored type NAT | fresh type NAT
+text  stored==fresh: False | len stored 277 len fresh 357
+  common prefix chars: 277 | stored is prefix of fresh: True
+  STORED tail: ''
+  FRESH  tail: ' A F B 0 0 B D C 0 0 C F E 0 0 D G A 1 0 E D C 0 0 F F B 1 1 G G H 0 1 H G A 1 0'
+options stored labels: [] | fresh labels: []
+====================================================================================================
+EVALUATION of what is PRINTED (read from the rendered PDF regions), against the official key
+Q21 options equal to F: ['A', 'C']   official key: A;C
+Q37 options matching the table: ['B']   official key: B
+Q48 options equal to F: ['B', 'D'] (equal as functions; 'minimal' needs a check below)  official key: B;D

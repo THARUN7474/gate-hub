@@ -1,0 +1,25 @@
+# GATE CSE Intelligence - Phase 1 local MVP (Python 3.12+)
+sqlalchemy>=2.0
+alembic>=1.13
+psycopg[binary]>=3.2        # PostgreSQL driver
+pymupdf==1.28.2        # pinned: extraction/drift results are PDF-library-version sensitive; this is the version the bundled data was built and verified with
+pdfplumber>=0.11
+pydantic>=2.0
+pyyaml>=6.0
+pandas>=2.0
+streamlit>=1.37
+plotly>=5.20
+python-dotenv>=1.0
+typer>=0.12
+pytest>=8.0
+reportlab>=4.0
+openpyxl>=3.1              # workbook (xlsx) generation
+# OCR for the scanned papers (2011, 2015, 2017, 2019-2021, 2021 key). pip-only, no admin install;
+# results are cached under data/extracted/ocr so a machine WITHOUT these can still use loaded data.
+rapidocr>=3.0
+onnxruntime>=1.18
+numpy>=1.26
+# Optional (Day 5+, only when embeddings are enabled; dimension set after model choice):
+# pgvector>=0.3
+# LLM provider SDK, installed separately after the owner picks one + approves spend:
+# anthropic>=0.40  OR  openai>=1.40

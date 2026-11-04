@@ -1,0 +1,1053 @@
+{
+ "reviewer": "claude-opus-5-5",
+ "reviewed_on": "2026-11-05",
+ "method": "read text+options+official key one by one in chat; no API call",
+ "decisions": [
+  {
+   "question_id": "GATE-CS-2026-S2-Q01",
+   "verdict": "agree",
+   "section_id": "GA",
+   "primary_topic_id": "GA.VA",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q02",
+   "verdict": "agree",
+   "section_id": "GA",
+   "primary_topic_id": "GA.SA",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": false,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests. Figure not visible to a text-only reviewer; judged from the stem."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q03",
+   "verdict": "agree",
+   "section_id": "GA",
+   "primary_topic_id": "GA.QA",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": true,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests. Official key recomputed and matches."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q04",
+   "verdict": "agree",
+   "section_id": "GA",
+   "primary_topic_id": "GA.QA",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": true,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests. Official key recomputed and matches."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q05",
+   "verdict": "agree",
+   "section_id": "GA",
+   "primary_topic_id": "GA.AA",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": true,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests. Official key recomputed and matches."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q06",
+   "verdict": "agree",
+   "section_id": "GA",
+   "primary_topic_id": "GA.AA",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q07",
+   "verdict": "agree",
+   "section_id": "GA",
+   "primary_topic_id": "GA.SA",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": false,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests. Figure not visible to a text-only reviewer; judged from the stem."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q08",
+   "verdict": "agree",
+   "section_id": "GA",
+   "primary_topic_id": "GA.AA",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": false,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests. Figure not visible to a text-only reviewer; judged from the stem."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q09",
+   "verdict": "correct",
+   "section_id": "GA",
+   "primary_topic_id": "GA.AA",
+   "concept_ids": [],
+   "confidence": 0.7,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": false,
+    "taxonomy_fit": true
+   },
+   "note": "Row/column shading counts is a logical-deduction puzzle (Analytical Aptitude), not a shape transformation (Spatial)."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q10",
+   "verdict": "agree",
+   "section_id": "GA",
+   "primary_topic_id": "GA.QA",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": true,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests. Official key recomputed and matches."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q11",
+   "verdict": "agree",
+   "section_id": "EM",
+   "primary_topic_id": "EM.DM",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": true,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests. Official key recomputed and matches."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q12",
+   "verdict": "agree",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.TREE",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": true,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests. Official key recomputed and matches."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q13",
+   "verdict": "agree",
+   "section_id": "TOC",
+   "primary_topic_id": "TOC.TM",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": true,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests. Official key recomputed and matches."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q14",
+   "verdict": "agree",
+   "section_id": "EM",
+   "primary_topic_id": "EM.PS",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": true,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests. Official key recomputed and matches."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q15",
+   "verdict": "flag",
+   "section_id": "DB",
+   "primary_topic_id": "DB.IDX",
+   "confidence": 0.5,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": null,
+    "taxonomy_fit": false
+   },
+   "note": "Three-schema architecture (logical/physical/external) is not named in the 2027 syllabus; nearest topic DB.IDX (physical schema = file organisation and indexes). Needs a taxonomy decision."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q16",
+   "verdict": "agree",
+   "section_id": "DL",
+   "primary_topic_id": "DL.BOOL",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": true,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests. Official key recomputed and matches."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q17",
+   "verdict": "agree",
+   "section_id": "CD",
+   "primary_topic_id": "CD.RUNTIME",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q18",
+   "verdict": "agree",
+   "section_id": "COA",
+   "primary_topic_id": "COA.IO",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q19",
+   "verdict": "agree",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.C",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q20",
+   "verdict": "agree",
+   "section_id": "DB",
+   "primary_topic_id": "DB.TXN",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": true,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests. Official key recomputed and matches."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q21",
+   "verdict": "correct",
+   "section_id": "CN",
+   "primary_topic_id": "CN.LAYER",
+   "concept_ids": [],
+   "confidence": 0.75,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": true,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Store-and-forward/bottleneck throughput over three links (32 Mb / 500 kbps = 64 s) is packet-switching basics, not TCP flow/congestion control."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q22",
+   "verdict": "correct",
+   "section_id": "CN",
+   "primary_topic_id": "CN.ROUTE",
+   "concept_ids": [],
+   "confidence": 0.75,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": true,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "DHCP is an IP support protocol (syllabus: Network layer - ARP, DHCP, ICMP); current concept CN.APP.HTTP is wrong, removed."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q23",
+   "verdict": "agree",
+   "section_id": "OS",
+   "primary_topic_id": "OS.SCHED",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": true,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests. Official key recomputed and matches."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q24",
+   "verdict": "agree",
+   "section_id": "ALGO",
+   "primary_topic_id": "ALGO.CMPLX",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": true,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests. Official key recomputed and matches."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q25",
+   "verdict": "agree",
+   "section_id": "ALGO",
+   "primary_topic_id": "ALGO.CMPLX",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": true,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests. Official key recomputed and matches."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q26",
+   "verdict": "agree",
+   "section_id": "EM",
+   "primary_topic_id": "EM.DM",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": true,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests. Official key recomputed and matches."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q27",
+   "verdict": "agree",
+   "section_id": "EM",
+   "primary_topic_id": "EM.CAL",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q28",
+   "verdict": "agree",
+   "section_id": "DL",
+   "primary_topic_id": "DL.NUM",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": true,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests. Official key recomputed and matches."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q29",
+   "verdict": "agree",
+   "section_id": "TOC",
+   "primary_topic_id": "TOC.CFG",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q30",
+   "verdict": "agree",
+   "section_id": "ALGO",
+   "primary_topic_id": "ALGO.SORT",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": true,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests. Official key recomputed and matches."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q31",
+   "verdict": "agree",
+   "section_id": "EM",
+   "primary_topic_id": "EM.LA",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": true,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests. Official key recomputed and matches."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q32",
+   "verdict": "agree",
+   "section_id": "ALGO",
+   "primary_topic_id": "ALGO.SORT",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q33",
+   "verdict": "agree",
+   "section_id": "CN",
+   "primary_topic_id": "CN.ROUTE",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": true,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests. Official key recomputed and matches."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q34",
+   "verdict": "agree",
+   "section_id": "DL",
+   "primary_topic_id": "DL.NUM",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": true,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests. Official key recomputed and matches."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q35",
+   "verdict": "agree",
+   "section_id": "CD",
+   "primary_topic_id": "CD.LEX",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q36",
+   "verdict": "correct",
+   "section_id": "EM",
+   "primary_topic_id": "EM.DM",
+   "concept_ids": [],
+   "confidence": 0.65,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Minimum Jaccard coefficient between spanning trees of K_n is graph-theory combinatorics (edge-disjoint spanning trees); no algorithm is asked."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q37",
+   "verdict": "agree",
+   "section_id": "ALGO",
+   "primary_topic_id": "ALGO.GRAPH",
+   "concept_ids": [
+    "ALGO.GRAPH.SP"
+   ],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": true,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests. Official key recomputed and matches."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q38",
+   "verdict": "agree",
+   "section_id": "ALGO",
+   "primary_topic_id": "ALGO.CMPLX",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q39",
+   "verdict": "flag",
+   "section_id": "ALGO",
+   "primary_topic_id": "ALGO.DESIGN",
+   "confidence": 0.85,
+   "checks": {
+    "text_readable": true,
+    "options_complete": false,
+    "key_recomputed_matches": null,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "EXTRACTION: the listings of Algorithm B1 and B2 are glued onto the end of option D; they belong to the stem. Topic (DP table fill order) is right. Fix option D in the Review Workspace."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q40",
+   "verdict": "agree",
+   "section_id": "DL",
+   "primary_topic_id": "DL.BOOL",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": true,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests. Official key recomputed and matches."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q41",
+   "verdict": "agree",
+   "section_id": "CD",
+   "primary_topic_id": "CD.LEX",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q42",
+   "verdict": "agree",
+   "section_id": "DB",
+   "primary_topic_id": "DB.NF",
+   "concept_ids": [
+    "DB.NF.FD"
+   ],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q43",
+   "verdict": "agree",
+   "section_id": "CN",
+   "primary_topic_id": "CN.DLL",
+   "concept_ids": [
+    "CN.DLL.ERR"
+   ],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q44",
+   "verdict": "agree",
+   "section_id": "COA",
+   "primary_topic_id": "COA.ISA",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q45",
+   "verdict": "agree",
+   "section_id": "CD",
+   "primary_topic_id": "CD.OPT",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": false,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests. Figure not visible to a text-only reviewer; judged from the stem."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q46",
+   "verdict": "agree",
+   "section_id": "DB",
+   "primary_topic_id": "DB.IDX",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q47",
+   "verdict": "agree",
+   "section_id": "TOC",
+   "primary_topic_id": "TOC.REG",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": false,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests. Figure not visible to a text-only reviewer; judged from the stem."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q48",
+   "verdict": "agree",
+   "section_id": "TOC",
+   "primary_topic_id": "TOC.RCFL",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q49",
+   "verdict": "agree",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.TREE",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q50",
+   "verdict": "agree",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.LIN",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q51",
+   "verdict": "agree",
+   "section_id": "OS",
+   "primary_topic_id": "OS.SYNC",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q52",
+   "verdict": "agree",
+   "section_id": "COA",
+   "primary_topic_id": "COA.MEM",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q53",
+   "verdict": "agree",
+   "section_id": "OS",
+   "primary_topic_id": "OS.FS",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q54",
+   "verdict": "agree",
+   "section_id": "OS",
+   "primary_topic_id": "OS.MEM",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q55",
+   "verdict": "agree",
+   "section_id": "OS",
+   "primary_topic_id": "OS.MEM",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q56",
+   "verdict": "agree",
+   "section_id": "COA",
+   "primary_topic_id": "COA.MEM",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q57",
+   "verdict": "agree",
+   "section_id": "COA",
+   "primary_topic_id": "COA.PIPE",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q58",
+   "verdict": "agree",
+   "section_id": "CN",
+   "primary_topic_id": "CN.TCP",
+   "concept_ids": [
+    "CN.TCP.CONG"
+   ],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q59",
+   "verdict": "agree",
+   "section_id": "DL",
+   "primary_topic_id": "DL.CIRC",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": false,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests. Figure not visible to a text-only reviewer; judged from the stem."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q60",
+   "verdict": "agree",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.C",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": true,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests. Official key recomputed and matches."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q61",
+   "verdict": "agree",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.REC",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q62",
+   "verdict": "agree",
+   "section_id": "EM",
+   "primary_topic_id": "EM.LA",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": true,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests. Official key recomputed and matches."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q63",
+   "verdict": "agree",
+   "section_id": "EM",
+   "primary_topic_id": "EM.PS",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q64",
+   "verdict": "correct",
+   "section_id": "EM",
+   "primary_topic_id": "EM.CAL",
+   "concept_ids": [],
+   "confidence": 0.8,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": true,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Counting points of discontinuity of a real function on (0,1) is limits/continuity (Calculus), not discrete mathematics."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q65",
+   "verdict": "agree",
+   "section_id": "CN",
+   "primary_topic_id": "CN.DLL",
+   "concept_ids": [],
+   "confidence": 0.9,
+   "checks": {
+    "text_readable": true,
+    "options_complete": true,
+    "key_recomputed_matches": null,
+    "figure_seen": null,
+    "taxonomy_fit": true
+   },
+   "note": "Topic matches what the question tests."
+  }
+ ]
+}

@@ -1,0 +1,89 @@
+﻿# Final state of the CANDIDATE database (2026-11-04T03:22:11)  - the live data/gate_cse.sqlite is unchanged
+
+## python -m src.cli doctor
+PASS  Python version  -  3.12.9
+PASS  Python packages  -  12 required packages importable
+PASS  PyMuPDF version  -  1.28.2 (matches the pin)
+PASS  OCR engine  -  rapidocr + onnxruntime available (scanned papers 2011/2015/2017/2019-2021)
+PASS  .env file  -  present (never printed)
+PASS  Database connection  -  sqlite: sqlite:///data/gate_cse.candidate.sqlite
+PASS  Database schema  -  13 tables, all model columns present
+PASS  Papers loaded  -  29 papers, 1885 questions, 65 classified, 0 human-verified
+PASS  Taxonomy  -  169 nodes
+PASS  Source PDFs findable  -  29/29 registered documents located
+PASS  Manifest source files  -  33 manifest papers, 0 source files missing
+PASS  Raw papers registered  -  24/24 PDFs in manifests/papers.yaml
+WARN  LLM provider keys  -  none set (mock/offline only)
+      fix: add a key to .env (see .env.example / docs/13_LLM_SETUP.md)
+WARN  External-call consent (GATE_LLM_ALLOW_EXTERNAL)  -  0 - no question text leaves this machine
+      fix: set 1 in .env ONLY when you intend a live LLM run
+PASS  Free-plan attestation (GATE_LLM_FREE_PLAN_CONFIRMED)  -  0
+PASS  Docker engine  -  running (server 29.9.2)
+PASS  Disk space  -  25.6 GB free
+
+15 pass, 2 warn, 0 fail
+
+## python -m src.cli validate
+PASS  no duplicate (paper, q_number)  
+PASS  no orphan questions  0 orphans
+PASS  no unexplained NULL marks/type  0 unflagged NULL (must be 0); 24 NULL questions are flagged for review
+PASS  all classification IDs exist in taxonomy  0 invalid: []
+PASS  all papers reconciled to manifests  
+PASS  matrix totals equal paper totals  
+PASS  all concept_ids exist in taxonomy  0 invalid: []
+PASS  no classification points at a deprecated node  0: []
+PASS  empty (figure-only) options are flagged for review  0 unflagged: []
+PASS  prerequisite edges reference known concepts  0 dangling: []
+
+## python -m src.cli stats
+  "papers": 29,
+  "questions": 1885,
+  "with_keys": 1300,
+  "classified": 65,
+  "verified_by_human": 0,
+  "flagged": 0,
+  "pending_review": 1885,
+  "of_which_extraction_issues": 165,
+  "of_which_unclassified": 1820,
+
+## per-paper table + human-data invariants vs the backup
+papers 29 | questions 1885 | options 5542 | answer_keys 1300
+classifications (65, 0) | review_events 3
+
+HUMAN-DATA INVARIANTS vs backup:
+  review_events    candidate=3 backup=3 identical=True
+  classifications  candidate=65 backup=65 identical=True
+
+per paper:  q  marks  keys  needs_review  ocr  types
+  GATE-CS-2011-S1     65  100.0    0     6    65  MCQ,NAT
+  GATE-CS-2012-S1     65  100.0   65     7     0  MCQ
+  GATE-CS-2013-S1     65  100.0    0     5     0  MCQ
+  GATE-CS-2013-S2     65  100.0    0     5     0  MCQ
+  GATE-CS-2013-S3     65  100.0    0     5     0  MCQ
+  GATE-CS-2013-S4     65  100.0    0     5     0  MCQ
+  GATE-CS-2014-S1     65  100.0   65     8    65  MCQ,NAT
+  GATE-CS-2014-S2     65  100.0   65     7    65  MCQ,NAT
+  GATE-CS-2014-S3     65  100.0   65     6    65  MCQ,NAT
+  GATE-CS-2015-S1     65  100.0    0    12    65  MCQ,NAT
+  GATE-CS-2015-S2     65  100.0    0    13    65  MCQ,NAT
+  GATE-CS-2015-S3     65  100.0    0    16    65  MCQ,NAT
+  GATE-CS-2016-S1     65  100.0   65     0     0  MCQ,NAT
+  GATE-CS-2016-S2     65  100.0   65     1     0  MCQ,NAT
+  GATE-CS-2017-S1     65  100.0    0     4    65  MCQ,NAT
+  GATE-CS-2017-S2     65  100.0   65     6    65  MCQ,NAT
+  GATE-CS-2018-S1     65  100.0   65     0     0  MCQ,NAT
+  GATE-CS-2019-S1     65  100.0   65     3    65  MCQ,NAT
+  GATE-CS-2020-S1     65  100.0   65     5    65  MCQ,NAT
+  GATE-CS-2021-S1     65  100.0   65    15    65  MCQ,MSQ,NAT
+  GATE-CS-2021-S2     65  100.0   65    27    65  MCQ,NAT,MSQ
+  GATE-CS-2022-S1     65  100.0   65     3     7  MCQ,MSQ,NAT
+  GATE-CS-2023-S1     65  100.0   65     2     0  MCQ,MSQ,NAT
+  GATE-CS-2024-S1     65  100.0   65     0     0  MCQ,MSQ,NAT
+  GATE-CS-2024-S2     65  100.0   65     0     0  MCQ,MSQ,NAT
+  GATE-CS-2025-S1     65  100.0   65     2     0  MCQ,MSQ,NAT
+  GATE-CS-2025-S2     65  100.0   65     1     0  MCQ,MSQ,NAT
+  GATE-CS-2026-S1     65  100.0   65     1     0  MCQ,MSQ,NAT
+  GATE-CS-2026-S2     65  100.0   65     0     0  MCQ,MSQ,NAT
+
+labels sample: [('GATE-CS-2019-S1-Q01', 'GA 1', 1), ('GATE-CS-2019-S1-Q10', 'GA 10', 10), ('GATE-CS-2019-S1-Q11', 'CS 1', 11), ('GATE-CS-2019-S1-Q65', 'CS 55', 65)]
+group_id (shared stems): 48

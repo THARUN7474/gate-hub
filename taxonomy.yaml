@@ -1,0 +1,541 @@
+exam: GATE
+paper: CS
+syllabus_year: 2027
+taxonomy_version: gate-cs-2027
+source_pdf: corpus/raw/syllabus/CS_GATE2027_Syllabus.pdf
+source_sha256: 81b23f40417bc1c2069782db7ad5ea0182175c9acb4766ebfdeefbe071a70bc0
+sections:
+- id: GA
+  name: General Aptitude
+  provenance: official
+  syllabus_text: 'Section 1: Verbal Aptitude Basic English grammar: tenses, articles, adjectives, prepositions, conjunctions,
+    verb-noun agreement, and other parts of speech. Basic vocabulary: words, idioms, and phrases in context. Reading and comprehension,
+    Narrative sequencing. Section 2: Quantitative Aptitude Data interpretation: data graphs (bar graphs, pie charts, and other
+    graphs representing data), 2-and 3-dimensional plots, maps, and tables. Numerical computation and estimation: ratios,
+    percentages, powers, exponents and logarithms, permutations and combinations, and series. Mensuration and geometry, Elementary
+    statistics and probability. Section 3: Analytical Aptitude Logic: deduction and induction, Analogy, Numerical relations
+    and reasoning. Section 4: Spatial Aptitude Transformation of shapes: translation, rotation, scaling, mirroring, assembling,
+    and grouping paper folding, cutting, and patterns in 2 and 3 dimensions.'
+  topics:
+  - id: GA.VA
+    name: Verbal Aptitude
+    concepts:
+    - id: GA.VA.VOCAB
+      name: Vocabulary in context
+    - id: GA.VA.GRAM
+      name: Grammar
+    - id: GA.VA.RC
+      name: Reading comprehension
+  - id: GA.QA
+    name: Quantitative Aptitude
+    concepts:
+    - id: GA.QA.COUNT
+      name: Counting, permutations and combinations
+    - id: GA.QA.PROB
+      name: Elementary statistics and probability
+    - id: GA.QA.OPTI
+      name: Numerical computation, estimation and optimization
+    - id: GA.QA.FUNC
+      name: 'Data interpretation: functions, graphs and tables'
+  - id: GA.AA
+    name: Analytical Aptitude
+    concepts:
+    - id: GA.AA.DEDUCT
+      name: Logical deduction and induction
+    - id: GA.AA.ORDER
+      name: Ordering, arrangement and relational reasoning
+  - id: GA.SA
+    name: Spatial Aptitude
+    concepts:
+    - id: GA.SA.VIEWS
+      name: Orthographic views and 3D visualization
+    - id: GA.SA.PATTERN
+      name: 'Pattern transformation: folding, cutting, tiling'
+  syllabus_note: GA PDF has four sections (Verbal, Quantitative, Analytical, Spatial); modelled here as topics under GA -
+    structure is curation, text is verbatim.
+- id: EM
+  name: Engineering Mathematics
+  provenance: official
+  syllabus_text: 'Discrete Mathematics: Propositional and first order logic. Sets, relations, functions, partial orders and
+    lattices. Monoids, Groups. Graphs: connectivity, matching, colouring. Combinatorics: counting, recurrence relations, generating
+    functions. Linear Algebra: Matrices, determinants, system of linear equations, eigenvalues and eigenvectors, LU decomposition.
+    Calculus: Limits, continuity and differentiability, Maxima and minima, Mean value theorem, Integration. Probability and
+    Statistics: Random variables, Uniform, normal, exponential, Poisson and binomial distributions. Mean, median, mode and
+    standard deviation. Conditional probability and Bayes theorem.'
+  topics:
+  - id: EM.DM
+    name: Discrete Mathematics
+    concepts:
+    - id: EM.DM.LOGIC
+      name: Propositional and first-order logic
+    - id: EM.DM.REL
+      name: Sets, relations, functions, partial orders and lattices
+    - id: EM.DM.GRAPH
+      name: 'Graph theory: connectivity, matching, colouring'
+    - id: EM.DM.COUNT
+      name: 'Combinatorics: counting, recurrence relations, generating functions'
+  - id: EM.LA
+    name: Linear Algebra
+    concepts:
+    - id: EM.LA.RANK
+      name: Matrices, determinants, rank, null space and linear systems
+    - id: EM.LA.EIGEN
+      name: Eigenvalues and eigenvectors
+    - id: EM.LA.LU
+      name: LU decomposition
+  - id: EM.CAL
+    name: Calculus
+    concepts:
+    - id: EM.CAL.CONT
+      name: Limits, continuity and differentiability
+    - id: EM.CAL.EXTREMA
+      name: Maxima and minima, mean value theorem
+    - id: EM.CAL.INTEG
+      name: Integration
+  - id: EM.PS
+    name: Probability and Statistics
+    concepts:
+    - id: EM.PS.RV
+      name: Random variables, mean and variance
+    - id: EM.PS.DIST
+      name: Uniform, normal, exponential, Poisson and binomial distributions
+    - id: EM.PS.COND
+      name: Conditional probability and Bayes theorem
+- id: DL
+  name: Digital Logic
+  provenance: official
+  syllabus_text: Boolean algebra and minimization - algebraic technique, Karnaugh map, tabular method. Design of combinational
+    and sequential circuits. Number representation and arithmetic (fixed and floating point).
+  topics:
+  - id: DL.BOOL
+    name: Boolean algebra and minimization
+    concepts:
+    - id: DL.BOOL.ALG
+      name: Boolean algebra manipulation
+    - id: DL.BOOL.MINIM
+      name: 'Minimization: Karnaugh map and tabular method'
+  - id: DL.CIRC
+    name: Combinational and sequential circuits
+    concepts:
+    - id: DL.CIRC.COMB
+      name: Combinational circuit design
+    - id: DL.CIRC.SEQ
+      name: 'Sequential circuit design: flip-flops, registers, counters'
+  - id: DL.NUM
+    name: Number representation and arithmetic
+    concepts:
+    - id: DL.NUM.FIXED
+      name: Fixed-point and sign-magnitude representation
+    - id: DL.NUM.FLOAT
+      name: Floating point (IEEE 754) representation and arithmetic
+- id: COA
+  name: Computer Organization and Architecture
+  provenance: official
+  syllabus_text: 'Instruction set and addressing modes. Design of arithmetic and logic unit (ALU). Design of control unit
+    - hardwired and microprogrammed. Memory interfacing and hierarchy: performance, cache memory mapping. I/O interface (interrupt
+    and DMA). Instruction pipelining, pipeline hazards.'
+  topics:
+  - id: COA.ISA
+    name: Instruction set and addressing modes
+    concepts:
+    - id: COA.ISA.ADDR
+      name: Addressing modes
+    - id: COA.ISA.INSTR
+      name: Instruction set and load-store architecture
+  - id: COA.ALU
+    name: ALU and control unit design
+    concepts:
+    - id: COA.ALU.ALU
+      name: ALU design
+    - id: COA.ALU.CTRL
+      name: 'Control unit: hardwired and microprogrammed'
+  - id: COA.MEM
+    name: Memory hierarchy and cache
+    concepts:
+    - id: COA.MEM.HIER
+      name: Memory hierarchy and performance
+    - id: COA.MEM.CACHE
+      name: Cache memory mapping
+  - id: COA.IO
+    name: I/O interface (interrupt and DMA)
+    concepts:
+    - id: COA.IO.INTR
+      name: Interrupt-driven I/O
+    - id: COA.IO.DMA
+      name: Direct memory access
+  - id: COA.PIPE
+    name: Pipelining and hazards
+    concepts:
+    - id: COA.PIPE.HAZARD
+      name: Pipeline hazards and stalls
+    - id: COA.PIPE.PERF
+      name: Pipeline performance
+- id: PDS
+  name: Programming and Data Structures
+  provenance: official
+  syllabus_text: Programming in C. Recursion. Arrays, stacks, queues, linked lists, trees, binary search trees, binary heaps,
+    graphs.
+  topics:
+  - id: PDS.C
+    name: Programming in C
+    concepts:
+    - id: PDS.C.SCOPE
+      name: 'C semantics: scoping, pointers, structures, program output'
+  - id: PDS.REC
+    name: Recursion
+    concepts:
+    - id: PDS.REC.REC
+      name: Recursion and recursive programs
+  - id: PDS.LIN
+    name: Arrays, stacks, queues, linked lists
+    concepts:
+    - id: PDS.LIN.ARR
+      name: Arrays
+    - id: PDS.LIN.STACKQ
+      name: Stacks and queues
+    - id: PDS.LIN.LL
+      name: Linked lists
+  - id: PDS.TREE
+    name: Trees, binary search trees, binary heaps
+    concepts:
+    - id: PDS.TREE.BTREE
+      name: Binary tree properties
+    - id: PDS.TREE.BST
+      name: Binary search trees
+    - id: PDS.TREE.HEAP
+      name: Binary heaps
+    - id: PDS.TREE.TRAV
+      name: Tree traversals and reconstruction
+  - id: PDS.GRAPH
+    name: Graphs
+    concepts:
+    - id: PDS.GRAPH.REP
+      name: Graph representations (adjacency matrix/list)
+- id: ALGO
+  name: Algorithms
+  provenance: official
+  syllabus_text: 'Searching, sorting, hashing. Asymptotic worst case time and space complexity. Algorithm design techniques:
+    greedy, dynamic programming and divide-and-conquer. Graph traversals, minimum spanning trees, shortest paths.'
+  topics:
+  - id: ALGO.SORT
+    name: Searching, sorting, hashing
+    concepts:
+    - id: ALGO.SORT.SEARCH
+      name: Searching algorithms
+    - id: ALGO.SORT.SORT
+      name: Sorting algorithms
+    - id: ALGO.SORT.HASH
+      name: Hashing and collision resolution (open addressing, linear probing)
+  - id: ALGO.CMPLX
+    name: Asymptotic complexity
+    concepts:
+    - id: ALGO.CMPLX.ASYMPT
+      name: Asymptotic worst-case time and space analysis
+    - id: ALGO.CMPLX.RECUR
+      name: Solving recurrences
+  - id: ALGO.DESIGN
+    name: Greedy, dynamic programming, divide-and-conquer
+    concepts:
+    - id: ALGO.DESIGN.GREEDY
+      name: Greedy algorithms
+    - id: ALGO.DESIGN.DP
+      name: Dynamic programming
+    - id: ALGO.DESIGN.DAC
+      name: Divide and conquer
+  - id: ALGO.GRAPH
+    name: Graph traversals, minimum spanning trees, shortest paths
+    concepts:
+    - id: ALGO.GRAPH.TRAV
+      name: Graph traversals (BFS/DFS)
+    - id: ALGO.GRAPH.MST
+      name: Minimum spanning trees
+    - id: ALGO.GRAPH.SP
+      name: Shortest paths
+    - id: ALGO.GRAPH.VC
+      name: Vertex cover and related graph problems (curation extension - not verbatim in syllabus)
+- id: TOC
+  name: Theory of Computation
+  provenance: official
+  syllabus_text: Regular expressions and finite automata. Context-free grammars and push-down automata. Regular and context-free
+    languages, pumping lemma. Turing machines and undecidability.
+  topics:
+  - id: TOC.REG
+    name: Regular expressions and finite automata
+    concepts:
+    - id: TOC.REG.FA
+      name: 'Finite automata: NFA, DFA, subset construction'
+    - id: TOC.REG.RE
+      name: Regular expressions
+  - id: TOC.CFG
+    name: Context-free grammars and push-down automata
+    concepts:
+    - id: TOC.CFG.CFG
+      name: Context-free grammars and ambiguity
+    - id: TOC.CFG.PDA
+      name: Pushdown automata
+  - id: TOC.RCFL
+    name: Regular and context-free languages, pumping lemma
+    concepts:
+    - id: TOC.RCFL.CLOSURE
+      name: Closure properties and language-class relationships
+    - id: TOC.RCFL.PUMPL
+      name: Pumping lemma
+  - id: TOC.TM
+    name: Turing machines and undecidability
+    concepts:
+    - id: TOC.TM.TM
+      name: Turing machines
+    - id: TOC.TM.UNDEC
+      name: Undecidability
+  - id: TOC.PUMP
+    name: Regular and context-free languages (superseded id - use TOC.RCFL)
+    deprecated: true
+- id: CD
+  name: Compiler Design
+  provenance: official
+  syllabus_text: 'Lexical analysis, parsing, syntax-directed translation. Runtime environments. Intermediate code generation.
+    Local optimisation, Data flow analyses: constant propagation, liveness analysis, common sub expression elimination.'
+  topics:
+  - id: CD.LEX
+    name: Lexical analysis and parsing
+    concepts:
+    - id: CD.LEX.LEX
+      name: Lexical analysis
+    - id: CD.LEX.PARSE
+      name: Parsing (LL/LR) and syntax-error classes
+  - id: CD.SDT
+    name: Syntax-directed translation
+    concepts:
+    - id: CD.SDT.SDD
+      name: 'Syntax-directed definitions: S-attributed and L-attributed'
+  - id: CD.RUNTIME
+    name: Runtime environments, intermediate code generation
+    concepts:
+    - id: CD.RUNTIME.RT
+      name: Runtime environments
+    - id: CD.RUNTIME.IR
+      name: Intermediate code generation
+  - id: CD.OPT
+    name: Optimisation and data-flow analysis
+    concepts:
+    - id: CD.OPT.DFLOW
+      name: Data-flow analysis and common subexpression elimination
+- id: OS
+  name: Operating System
+  provenance: official
+  syllabus_text: System calls, processes, threads, inter-process communication, concurrency and synchronization. Deadlock.
+    CPU and I/O scheduling. Memory management and virtual memory. File systems.
+  topics:
+  - id: OS.PROC
+    name: Processes, threads, IPC
+    concepts:
+    - id: OS.PROC.PROC
+      name: 'Processes and threads: creation, fork semantics'
+    - id: OS.PROC.IPC
+      name: Inter-process communication
+  - id: OS.SYNC
+    name: Concurrency and synchronization
+    concepts:
+    - id: OS.SYNC.SYNC
+      name: Synchronization primitives and race conditions
+  - id: OS.DL
+    name: Deadlock
+    concepts:
+    - id: OS.DL.DLOCK
+      name: Deadlock conditions and resource-allocation graphs
+    - id: OS.DL.BANKER
+      name: 'Deadlock avoidance: Banker''s algorithm, safe states'
+  - id: OS.SCHED
+    name: CPU and I/O scheduling
+    concepts:
+    - id: OS.SCHED.SCHED
+      name: CPU scheduling algorithms (FCFS, SJF, RR, priority)
+  - id: OS.MEM
+    name: Memory management and virtual memory
+    concepts:
+    - id: OS.MEM.VMEM
+      name: Virtual memory, paging and TLB
+  - id: OS.FS
+    name: File systems
+    concepts:
+    - id: OS.FS.FS
+      name: File system organization
+    - id: OS.FS.DISK
+      name: Disk access time and storage performance
+- id: DB
+  name: Databases
+  provenance: official
+  syllabus_text: 'ER-model. Relational model: relational algebra, tuple calculus, SQL. Integrity constraints, normal forms.
+    File organization, indexing (e.g., B and B+ trees). Transactions and concurrency control.'
+  topics:
+  - id: DB.ER
+    name: ER model
+    concepts:
+    - id: DB.ER.ER
+      name: ER modelling
+  - id: DB.REL
+    name: 'Relational model: algebra, calculus, SQL'
+    concepts:
+    - id: DB.REL.KEYS
+      name: 'Relational keys: superkey, candidate key, primary key'
+    - id: DB.REL.ALG
+      name: Relational algebra
+    - id: DB.REL.CALC
+      name: Tuple relational calculus
+    - id: DB.REL.SQL
+      name: SQL
+  - id: DB.NF
+    name: Integrity constraints, normal forms
+    concepts:
+    - id: DB.NF.IC
+      name: Integrity constraints
+    - id: DB.NF.FD
+      name: Functional dependencies
+    - id: DB.NF.NF
+      name: Normal forms (3NF, BCNF) and decomposition
+  - id: DB.IDX
+    name: File organization and indexing
+    concepts:
+    - id: DB.IDX.IDX
+      name: File organization, B and B+ tree indexing
+  - id: DB.TXN
+    name: Transactions and concurrency control
+    concepts:
+    - id: DB.TXN.TXN
+      name: Transactions, schedules and concurrency control
+- id: CN
+  name: Computer Networks
+  provenance: official
+  syllabus_text: 'Principles of Layering; Basics of switching (circuit, packet and virtual circuit) and performance metrics;
+    Data link layer: error detection, Medium Access Control, Ethernet; Distance vector and link state routing; IPv4 - Fragmentation,
+    CIDR Notation, Network Address Translation; TCP - flow control and congestion control, socket API; DNS and HTTP.'
+  topics:
+  - id: CN.LAYER
+    name: Layering and switching
+    concepts:
+    - id: CN.LAYER.LAYER
+      name: Layering principles and switching
+  - id: CN.DLL
+    name: 'Data link layer: error detection, MAC, Ethernet'
+    concepts:
+    - id: CN.DLL.ERR
+      name: Error detection
+    - id: CN.DLL.MAC
+      name: Medium access control and Ethernet
+    - id: CN.DLL.SW
+      name: Sliding window protocols
+  - id: CN.ROUTE
+    name: Routing, IPv4, CIDR, NAT
+    concepts:
+    - id: CN.ROUTE.ROUTE
+      name: Distance vector and link state routing
+    - id: CN.ROUTE.IPV4
+      name: IPv4 addressing and fragmentation
+    - id: CN.ROUTE.CIDR
+      name: CIDR, subnetting and supernetting
+    - id: CN.ROUTE.NAT
+      name: Network address translation
+  - id: CN.TCP
+    name: TCP flow and congestion control, socket API
+    concepts:
+    - id: CN.TCP.CONN
+      name: TCP connection management
+    - id: CN.TCP.FLOW
+      name: TCP flow control
+    - id: CN.TCP.CONG
+      name: TCP congestion control
+  - id: CN.APP
+    name: DNS and HTTP
+    concepts:
+    - id: CN.APP.HTTP
+      name: HTTP
+    - id: CN.APP.DNS
+      name: DNS
+prerequisites:
+- concept: ALGO.SORT.HASH
+  requires: PDS.LIN.ARR
+  note: curated from standard CS curriculum ordering; unverified curation
+- concept: PDS.LIN.LL
+  requires: PDS.C.SCOPE
+  note: curated from standard CS curriculum ordering; unverified curation
+- concept: PDS.TREE.BTREE
+  requires: PDS.REC.REC
+  note: curated from standard CS curriculum ordering; unverified curation
+- concept: PDS.TREE.BST
+  requires: PDS.TREE.BTREE
+  note: curated from standard CS curriculum ordering; unverified curation
+- concept: PDS.TREE.HEAP
+  requires: PDS.TREE.BTREE
+  note: curated from standard CS curriculum ordering; unverified curation
+- concept: PDS.TREE.TRAV
+  requires: PDS.REC.REC
+  note: curated from standard CS curriculum ordering; unverified curation
+- concept: ALGO.GRAPH.SP
+  requires: ALGO.GRAPH.TRAV
+  note: curated from standard CS curriculum ordering; unverified curation
+- concept: ALGO.GRAPH.MST
+  requires: ALGO.GRAPH.TRAV
+  note: curated from standard CS curriculum ordering; unverified curation
+- concept: ALGO.GRAPH.VC
+  requires: EM.DM.GRAPH
+  note: curated from standard CS curriculum ordering; unverified curation
+- concept: ALGO.CMPLX.RECUR
+  requires: ALGO.CMPLX.ASYMPT
+  note: curated from standard CS curriculum ordering; unverified curation
+- concept: COA.MEM.CACHE
+  requires: COA.MEM.HIER
+  note: curated from standard CS curriculum ordering; unverified curation
+- concept: OS.MEM.VMEM
+  requires: COA.MEM.HIER
+  note: curated from standard CS curriculum ordering; unverified curation
+- concept: OS.DL.BANKER
+  requires: OS.DL.DLOCK
+  note: curated from standard CS curriculum ordering; unverified curation
+- concept: OS.DL.DLOCK
+  requires: OS.PROC.PROC
+  note: curated from standard CS curriculum ordering; unverified curation
+- concept: OS.SCHED.SCHED
+  requires: OS.PROC.PROC
+  note: curated from standard CS curriculum ordering; unverified curation
+- concept: DL.CIRC.SEQ
+  requires: DL.BOOL.ALG
+  note: curated from standard CS curriculum ordering; unverified curation
+- concept: DL.BOOL.MINIM
+  requires: DL.BOOL.ALG
+  note: curated from standard CS curriculum ordering; unverified curation
+- concept: EM.LA.EIGEN
+  requires: EM.LA.RANK
+  note: curated from standard CS curriculum ordering; unverified curation
+- concept: TOC.RCFL.PUMPL
+  requires: TOC.REG.FA
+  note: curated from standard CS curriculum ordering; unverified curation
+- concept: TOC.RCFL.CLOSURE
+  requires: TOC.REG.FA
+  note: curated from standard CS curriculum ordering; unverified curation
+- concept: TOC.CFG.PDA
+  requires: TOC.REG.FA
+  note: curated from standard CS curriculum ordering; unverified curation
+- concept: CD.LEX.PARSE
+  requires: TOC.CFG.CFG
+  note: curated from standard CS curriculum ordering; unverified curation
+- concept: CD.SDT.SDD
+  requires: CD.LEX.PARSE
+  note: curated from standard CS curriculum ordering; unverified curation
+- concept: CD.OPT.DFLOW
+  requires: CD.LEX.PARSE
+  note: curated from standard CS curriculum ordering; unverified curation
+- concept: CN.ROUTE.CIDR
+  requires: CN.ROUTE.IPV4
+  note: curated from standard CS curriculum ordering; unverified curation
+- concept: CN.TCP.CONG
+  requires: CN.TCP.CONN
+  note: curated from standard CS curriculum ordering; unverified curation
+- concept: CN.TCP.FLOW
+  requires: CN.TCP.CONN
+  note: curated from standard CS curriculum ordering; unverified curation
+- concept: DB.NF.FD
+  requires: DB.REL.KEYS
+  note: curated from standard CS curriculum ordering; unverified curation
+- concept: DB.NF.NF
+  requires: DB.NF.FD
+  note: curated from standard CS curriculum ordering; unverified curation

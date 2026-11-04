@@ -1,0 +1,96 @@
+﻿# Baseline 2026-11-04T01:31:05  (python Python 3.12.9)
+
+## python -m src.cli llm-status
+warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
+{
+  "providers": [
+    {
+      "provider": "gemini",
+      "tier": "free-if-plan",
+      "key_env": "GEMINI_API_KEY",
+      "key_set": false
+    },
+    {
+      "provider": "groq",
+      "tier": "free-if-plan",
+      "key_env": "GROQ_API_KEY",
+      "key_set": false
+    },
+    {
+      "provider": "openrouter",
+      "tier": "free",
+      "key_env": "OPENROUTER_API_KEY",
+      "key_set": false
+    },
+    {
+      "provider": "anthropic",
+      "tier": "paid",
+      "key_env": "ANTHROPIC_API_KEY",
+      "key_set": false
+    },
+    {
+      "provider": "openai",
+      "tier": "paid",
+      "key_env": "OPENAI_API_KEY",
+      "key_set": false
+    }
+  ],
+  "priority": [
+    "gemini",
+    "groq",
+    "openrouter",
+    "anthropic",
+    "openai"
+  ],
+  "external_calls_allowed": false,
+  "auto_picks": null,
+  "auto_error": "no provider has a key. Add one of GEMINI_API_KEY, GROQ_API_KEY, OPENROUTER_API_KEY, ANTHROPIC_API_KEY, OPENAI_API_KEY to .env (see .env.example). Mock works offline with no key: --provider mock"
+}
+
+
+## python -m src.cli validate
+warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
+PASS  no duplicate (paper, q_number)  
+PASS  no orphan questions  0 orphans
+PASS  no unexplained NULL marks/type  0 questions NULL (should be in review)
+PASS  all classification IDs exist in taxonomy  0 invalid: []
+PASS  all papers reconciled to manifests  
+PASS  matrix totals equal paper totals  
+PASS  all concept_ids exist in taxonomy  0 invalid: []
+PASS  no classification points at a deprecated node  0: []
+PASS  empty (figure-only) options are flagged for review  0 unflagged: []
+PASS  prerequisite edges reference known concepts  0 dangling: []
+
+
+## python -m src.cli stats
+warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
+{
+  "papers": 2,
+  "papers_list": [
+    {
+      "paper_id": "GATE-CS-2025-S1",
+      "year": 2025,
+      "session": "CS-1",
+      "derived_questions": 65,
+      "reconciled": true
+    },
+    {
+      "paper_id": "GATE-CS-2026-S1",
+      "year": 2026,
+      "session": "CS-1",
+      "derived_questions": 65,
+      "reconciled": true
+    }
+  ],
+  "questions": 130,
+  "with_keys": 130,
+  "classified": 65,
+  "verified_by_human": 0,
+  "flagged": 0,
+  "pending_review": 130,
+  "of_which_extraction_issues": 6,
+  "of_which_unclassified": 65,
+  "unreconciled_papers": [],
+  "note": "Coverage is measured, not asserted. Unreconciled papers and review items must be resolved before any number is published."
+}
+

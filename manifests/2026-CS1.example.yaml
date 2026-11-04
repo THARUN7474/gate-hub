@@ -1,0 +1,12 @@
+# One manifest per paper. Fill expected_* from the official listing or the
+# paper's front page where available; null means derive and reconcile.
+# This is a TEMPLATE - values are illustrative, not verified data.
+year: 2026
+session: CS-1
+source_files: ["data/raw/papers/2026/CS1.pdf"]
+expected_questions: null      # e.g. 65 per the 2027 pattern page - confirm for THIS paper
+expected_marks: null          # e.g. 100 - confirm for THIS paper
+has_general_aptitude: null
+structure_notes: ""           # e.g. "linked questions Q52-Q53", "two-page questions frequent"
+key_file: "data/raw/keys/2026/CS1_key.csv"
+key_notes: ""                 # e.g. "final key after challenge window; Q31 dropped"

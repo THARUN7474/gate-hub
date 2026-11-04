@@ -1,0 +1,18 @@
+# GATE CSE Intelligence - Phase 1 configuration
+exam: GATE
+branch: CS
+analysis_window: [2012, 2026]          # default filter; ingestion accepts anything available
+taxonomy_file: taxonomy.yaml
+taxonomy_version: gate-cs-2027
+database_url_env: GATE_DB_URL          # see .env.example
+paths:
+  raw: data/raw
+  extracted: data/extracted
+  assets: data/assets
+  exports: exports
+llm:
+  provider: mock                        # mock | auto | free | gemini | groq | openrouter | anthropic | openai
+                                        # keys + consent gates live in .env (see .env.example)
+  model: ""
+  prompt_version: v1
+  allow_private_corpus_cloud: false    # books stay local unless owner consents per provider

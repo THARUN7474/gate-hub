@@ -1,0 +1,109 @@
+# Paper registry: ONE entry per (year, session). Everything the loader needs to
+# turn data/raw into question rows, in a form a human can read and correct.
+#
+#   file / pages  source PDF and the 1-based inclusive page range holding THIS
+#                 paper's questions (several PDFs bundle multiple sessions, and
+#                 some carry answer-key pages that must not be parsed as questions)
+#   expected_*    GATE has been 65 questions / 100 marks since 2011; a paper that
+#                 does not reconcile to this is NOT silently accepted
+#   key           where the official answer key lives (separate PDF/CSV, or pages
+#                 embedded in the paper PDF). Missing = listed in the report, never guessed.
+#   status        active | pending (OCR/layout work outstanding) | skip (deferred by owner)
+#
+# Layout notes record what each family looks like so a future 2027 paper can be added
+# by copying the nearest entry. See docs/15_DATA_ONBOARDING.md.
+
+defaults:
+  branch: CS
+  expected_questions: 65
+  expected_marks: 100.0
+  ocr: auto
+
+papers:
+  # ---- 2012: single booklet, Q1-65 (CS 1-55, GA 56-65), key table (codes A-D) on pp.18-19 ----
+  - {year: 2012, session: CS-1, file: data/raw/papers/2012_CS.pdf, pages: [2, 17], paper_code: "Code A",
+     layout: cs-first-continuous,
+     key: {kind: embedded-codes, pdf: data/raw/papers/2012_CS.pdf, pages: [18, 19], code: A}}
+
+  # ---- 2013: four 'SESSION - N' papers bundled in one PDF (separator page, instructions, Q1-65) ----
+  - {year: 2013, session: CS-1, file: data/raw/papers/2013_CS.pdf, pages: [2, 15],  layout: cs-first-continuous, key: null}
+  - {year: 2013, session: CS-2, file: data/raw/papers/2013_CS.pdf, pages: [17, 30], layout: cs-first-continuous, key: null}
+  - {year: 2013, session: CS-3, file: data/raw/papers/2013_CS.pdf, pages: [32, 45], layout: cs-first-continuous, key: null}
+  - {year: 2013, session: CS-4, file: data/raw/papers/2013_CS.pdf, pages: [47, 60], layout: cs-first-continuous, key: null}
+
+  # ---- 2014: three sessions in one PDF; each = GA Set (Q1-10) + CS Set (Q1-55) + key page ----
+  # ocr: always - the text layer of this PDF is shattered into overlapping glyph-run fragments
+  # ('Wh' + 'hich one of' + ...), so the rendered page is read instead of the text layer.
+  - {year: 2014, session: CS-1, file: data/raw/papers/2014_CS.pdf, pages: [6, 21],  paper_code: "CS Set-1 / GA Set-7", ocr: always,
+     layout: ga-first-restart, key: {kind: embedded-range, pdf: data/raw/papers/2014_CS.pdf, pages: [22, 22]}}
+  - {year: 2014, session: CS-2, file: data/raw/papers/2014_CS.pdf, pages: [28, 44], paper_code: "CS Set-2 / GA Set-8", ocr: always,
+     layout: ga-first-restart, key: {kind: embedded-range, pdf: data/raw/papers/2014_CS.pdf, pages: [45, 45]}}
+  - {year: 2014, session: CS-3, file: data/raw/papers/2014_CS.pdf, pages: [51, 66], paper_code: "CS Set-3 / GA Set-9", ocr: always,
+     layout: ga-first-restart, key: {kind: embedded-range, pdf: data/raw/papers/2014_CS.pdf, pages: [67, 67]}}
+
+  # ---- 2016: two sessions in one PDF (GA Set-5/6 + CS), key table after each ----
+  - {year: 2016, session: CS-1, file: data/raw/papers/2016_CS.pdf, pages: [1, 20],  paper_code: "GA Set-5",
+     layout: ga-first-restart, key: {kind: embedded-table, pdf: data/raw/papers/2016_CS.pdf, pages: [21, 22]}}
+  - {year: 2016, session: CS-2, file: data/raw/papers/2016_CS.pdf, pages: [23, 43], paper_code: "GA Set-6",
+     layout: ga-first-restart, key: {kind: embedded-table, pdf: data/raw/papers/2016_CS.pdf, pages: [44, 45]}}
+
+  # ---- 2018: single session, GA Set-3, key pages 24-26 ----
+  - {year: 2018, session: CS-1, file: data/raw/papers/2018_CS.pdf, pages: [1, 23], paper_code: "GA Set-3",
+     layout: ga-first-restart, key: {kind: embedded-table, pdf: data/raw/papers/2018_CS.pdf, pages: [24, 26]}}
+
+  # ---- scanned / image-only years: read through the cached OCR (src/extraction/ocr.py) ----
+  # 2011: single booklet, CS Q1-55 then GA Q56-65. No key file was supplied.
+  - {year: 2011, session: CS-1, file: data/raw/papers/2011_CS.pdf, pages: [2, 17], layout: cs-first-continuous, key: null}
+
+  # 2015: three sessions, a quiz-platform export ('Question Number : N  Question Type : MCQ',
+  # then 'Options : 1. x A 2. v B ...' with a tick on the right option). ocr: always because the
+  # first page of each session mixes a text layer with image content.
+  - {year: 2015, session: CS-1, file: data/raw/papers/2015_CS.pdf, pages: [2, 25],  ocr: always, layout: platform-export, key: null,
+     note: "answer ticks are printed in the PDF but no official key file was supplied"}
+  - {year: 2015, session: CS-2, file: data/raw/papers/2015_CS.pdf, pages: [27, 51], ocr: always, layout: platform-export, key: null}
+  - {year: 2015, session: CS-3, file: data/raw/papers/2015_CS.pdf, pages: [53, 79], ocr: always, layout: platform-export, key: null}
+
+  # 2017: two sessions, one PDF each, 'Question Number : N  Correct : 1  Wrong : -0.33' export (marks printed per question).
+  - {year: 2017, session: CS-1, file: data/raw/papers/2017_CS1.pdf, pages: [2, 27], layout: qnum-export, key: null}
+  #   CS-2's last pages (26-27) are an official-format key table (CS Q1-55, GA Q56-65, image -> OCR).
+  - {year: 2017, session: CS-2, file: data/raw/papers/2017_CS2.pdf, pages: [2, 25], layout: qnum-export,
+     key: {kind: ocr-embedded-table, pdf: data/raw/papers/2017_CS2.pdf, pages: [26, 27]}}
+
+  # 2019: GA Set-6 (pp.1-3) + CS Set-2 (pp.4-16, numbering restarts); key table pp.17-19 is an image.
+  - {year: 2019, session: CS-1, file: data/raw/papers/2019_CS.pdf, pages: [1, 16], paper_code: "CS Set-2 / GA Set-6",
+     layout: ga-first-restart, key: {kind: ocr-embedded-table, pdf: data/raw/papers/2019_CS.pdf, pages: [17, 19]}}
+
+  # 2020: question images with 'Q.No. N' overlays; key table pp.17-18 has a text layer.
+  - {year: 2020, session: CS-1, file: data/raw/papers/2020_CS.pdf, pages: [1, 16], ocr: always, layout: ga-first-restart,
+     key: {kind: tabular, pdf: data/raw/papers/2020_CS.pdf, pages: [17, 18]}}
+
+  # 2021: two sessions bundled in one 91-page scan (GA Q1-10 then CS Q1-55 per session, then each session's
+  # own key pages). The separate official key PDF (image, OCR) holds both sessions: pp.1-3 = CS-1, pp.4-6 = CS-2.
+  - {year: 2021, session: CS-1, file: data/raw/papers/2021/CS_2021.pdf, pages: [2, 41], layout: ga-first-restart,
+     key: {kind: ocr-tabular, pdf: data/raw/keys/2021/CS_Keys_2021.pdf, pages: [1, 3]}}
+  - {year: 2021, session: CS-2, file: data/raw/papers/2021/CS_2021.pdf, pages: [46, 88], layout: ga-first-restart,
+     key: {kind: ocr-tabular, pdf: data/raw/keys/2021/CS_Keys_2021.pdf, pages: [4, 6]}}
+
+  # ---- 2007-2010: photographed/scanned booklets - deferred by the owner (focus is 2011-2026) ----
+  - {year: 2007, session: CS-1, file: data/raw/papers/2007_CS.pdf, status: skip, note: "photographed pages; deferred by owner"}
+  - {year: 2008, session: CS-1, file: data/raw/papers/2008_CS.pdf, status: skip, note: "photographed pages; deferred by owner"}
+  - {year: 2009, session: CS-1, file: data/raw/papers/2009_CS.pdf, status: skip, note: "photographed pages; deferred by owner"}
+  - {year: 2010, session: CS-1, file: data/raw/papers/2010_CS.pdf, status: skip, note: "photographed pages; deferred by owner"}
+
+  # ---- 2022-2026: modern layout, continuous Q1-65, official tabular key PDFs ----
+  - {year: 2022, session: CS-1, file: data/raw/papers/2022/CS_2022.pdf, pages: [1, 41],
+     layout: continuous-modern, key: {kind: tabular, pdf: data/raw/keys/2022/CS_Keys_2022.pdf}}
+  - {year: 2023, session: CS-1, file: data/raw/papers/2023/CS_2023.pdf,
+     layout: continuous-modern, key: {kind: tabular, pdf: data/raw/keys/2023/CS_Keys_2023.pdf}}
+  - {year: 2024, session: CS-1, file: data/raw/papers/2024/CS1_2024.pdf,
+     layout: continuous-modern, key: {kind: tabular, pdf: data/raw/keys/2024/CS1_Keys_2024.pdf}}
+  - {year: 2024, session: CS-2, file: data/raw/papers/2024/CS2_2024.pdf,
+     layout: continuous-modern, key: {kind: tabular, pdf: data/raw/keys/2024/CS2_Keys_2024.pdf}}
+  - {year: 2025, session: CS-1, file: data/raw/papers/2025/CS1_2025.pdf,
+     layout: continuous-modern, key: {kind: tabular, pdf: data/raw/keys/2025/CS1_Keys_2025.pdf, csv: data/raw/keys/2025/CS1_keys_2025.csv}}
+  - {year: 2025, session: CS-2, file: data/raw/papers/2025/CS2_2025.pdf,
+     layout: continuous-modern, key: {kind: tabular, pdf: data/raw/keys/2025/CS2_Keys_2025.pdf}}
+  - {year: 2026, session: CS-1, file: data/raw/papers/2026/CS1_2026.pdf,
+     layout: continuous-modern, key: {kind: tabular, pdf: data/raw/keys/2026/CS1_Keys_2026.pdf, csv: data/raw/keys/2026/CS1_keys_2026.csv}}
+  - {year: 2026, session: CS-2, file: data/raw/papers/2026/CS2_2026.pdf,
+     layout: continuous-modern, key: {kind: tabular, pdf: data/raw/keys/2026/CS2_Keys_2026.pdf}}
