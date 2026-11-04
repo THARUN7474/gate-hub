@@ -2,21 +2,21 @@
 
 ## Day-0 input checklist
 
-- [ ] 2027 CS syllabus PDF (gate2027.iitm.ac.in, sha256 in taxonomy.yaml matches download)
-- [ ] 2027 GA syllabus PDF
-- [ ] CS.zip from official Drive bulk archive (2007-2026, ~66 MB)
-- [ ] Year-wise papers + keys 2021-2026 from gate2027.iitm.ac.in/download
+- [x] 2027 CS syllabus PDF (`data/raw/syllabus/CS_GATE2027_Syllabus.pdf`)
+- [ ] 2027 GA syllabus PDF as a separate file (GA topics in taxonomy.yaml follow the official GA syllabus)
+- [x] Papers 2007-2026 in `data/raw/papers/` (2007-2010 photographed pages deferred)
+- [x] Year-wise papers + keys 2021-2026 in `data/raw/` (20 papers with official keys in total)
 - [ ] Optional: PYQ books/solutions - local only, never cloud-processed without consent
-- [ ] Docker Desktop, Python 3.12+, git installed; repo tests pass
+- [x] Docker Desktop, Python 3.12+, git installed; repo tests pass (223, 5 Nov 2026)
 
-## Per-paper reconciliation checklist (every paper, every run)
+## Per-paper reconciliation checklist (every paper, every run) - all 29 papers, 5 Nov 2026
 
-- [ ] Manifest exists with expected counts (or explicitly null = derive)
-- [ ] Extracted count/marks match manifest, or paper parked unreconciled with numbers recorded
-- [ ] Zero unexplained NULL marks/type (each NULL is a review-queue item with a reason)
-- [ ] Every question joins to a key where a key exists; missing keys listed
-- [ ] NAT ranges / MSQ sets / dropped questions modelled, not flattened
-- [ ] 5 random crops eyeballed against the PDF
+- [x] Manifest exists with expected counts (or explicitly null = derive)
+- [x] Extracted count/marks match manifest - 29/29 reconciled (65 questions / 100 marks each)
+- [x] Zero unexplained NULL marks/type (24 NULL questions, all flagged with a reason - `validate`)
+- [x] Every question joins to a key where a key exists (1,300 key rows); the 9 key-less papers are listed in docs/16
+- [x] NAT ranges / MSQ sets / dropped questions modelled, not flattened (covered by tests)
+- [ ] 5 random crops per paper eyeballed against the PDF (spot checks only so far; part of your review)
 
 ## Definition of done (mirrored by automated tests) - status 5 Nov 2026
 
@@ -71,7 +71,7 @@ AI review (Claude, labelled as such, NOT verification): 65 questions of 2026 CS-
 - [x] Dry run read: 29 in manifest, 2 live, 27 to add
 - [x] Rehearsal on a copy: 29 papers / 1,885 questions; existing review events and classifications unchanged
 - [x] **Owner approval and the real promotion** (5 Nov 2026, 03:07) - 29/29 reconciled, pre-existing rows proven unchanged
-- [x] Candidate labels imported (`scripts/import_candidate_labels.py --yes`): 1,802 labels, 413 events, 13 cleanups, 120 benchmark rows
+- [x] Candidate labels imported (`scripts/import_candidate_labels.py --yes`; the script was removed after use, recoverable from git commit 71d0558; candidate DB retired to `backups/`): 1,802 labels, 413 events, 13 cleanups, 120 benchmark rows
 - [x] `repair-text --paper GATE-CS-2025-S1 --yes` (Q59 completed)
 - [x] Extractor fixes applied (`scripts/repair_extraction.py --paper all --yes --rebaseline-pending`): 67 questions, audited
 

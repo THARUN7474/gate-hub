@@ -1,5 +1,7 @@
 # Real-paper validation: GATE 2026 CS-1 (3 Nov 2026)
 
+> **Historical record (3 Nov 2026).** Kept for provenance; it is not the current state. Current state: `docs/CURRENT_STATUS.md`.
+
 The first real paper run through the pipeline. Inputs supplied by the owner
 (stored in `data/raw/`):
 
@@ -19,14 +21,14 @@ The supplied syllabus PDF is **byte-identical** (sha256 match) to the official
    100.0 marks, reconciled against expected 65/100. Zero NULL marks/type.
    The real paper needed the predicted pattern tuning (see below).
 2. **Key import**: the key PDF table was transcribed to CSV programmatically
-   (`scripts/keypdf_to_csv_2026_cs1.py`) and imported through the tested CSV
+   (`scripts/keypdf_to_csv_2026_cs1.py`, (removed 5 Nov 2026 after use; recoverable from git history, commit 71d0558)) and imported through the tested CSV
    path: 65/65 imported, 0 unmatched. Before import, every key row was
    cross-checked against extraction: **question type matches for all 65**
    (MSQ reads as MCQ pre-import by design), **marks match for all 65**, and
    the extracted NAT set is exactly the key's NAT set
    {32,33,34,35,57,58,59,60,61,62,63,64,65}.
 3. **Classification**: all 65 questions classified against the 2027 taxonomy
-   by agent analysis (`scripts/agent_classify_2026_cs1.py`,
+   by agent analysis (`scripts/agent_classify_2026_cs1.py` (removed 5 Nov 2026 after use; recoverable from git history, commit 71d0558),
    provider=`agent-analysis`, prompt_version=`agent-v1`, model=
    `claude-agent-manual-v1`). **This is not a paid LLM API run and not the
    MockProvider; it is an independent agent pass.** Every row is

@@ -1,6 +1,6 @@
 # Setup + Input Gathering
 
-## Fast path (v7) - Windows
+## Fast path - Windows (current)
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts\setup.ps1     # Python 3.12 venv (via uv), packages, .env, DB, tests, doctor
@@ -10,7 +10,11 @@ powershell -ExecutionPolicy Bypass -File scripts\setup.ps1     # Python 3.12 ven
 ```
 macOS/Linux: `bash scripts/setup.sh`, then `make app`. `setup` never overwrites `.env` or a database, and generates a random
 local `POSTGRES_PASSWORD` the first time it creates `.env`. Raw data layout and how to add a paper: docs/15_DATA_ONBOARDING.md.
-Postgres evidence and commands: docs/14_POSTGRES_E2E.md. Everything below is the older (v4-v6) detail.
+Postgres evidence and commands: docs/14_POSTGRES_E2E.md.
+
+**Fresh clone** (`git clone https://github.com/THARUN7474/gate-hub.git`): the repo has no PDFs, database, `.env` or backups. Copy your PDFs into `data/raw/`, run setup, then copy your `data/gate_cse.sqlite` across (keeps reviews) or rebuild with `promote.cmd`. LLM: `setkey.cmd freellmapi` (docs/23_LLM_ROUTER_AND_DECISION_MODELS.md).
+
+Everything below is the older (v4-v6) detail.
 
 ## Machine prerequisites
 
@@ -21,7 +25,7 @@ Postgres evidence and commands: docs/14_POSTGRES_E2E.md. Everything below is the
 ## Install
 
 ```bash
-git clone <your repo> && cd gate-cse-intelligence
+git clone https://github.com/THARUN7474/gate-hub.git && cd gate-hub
 python3.12 -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 cp .env.example .env     # then fill in what you have; never commit .env

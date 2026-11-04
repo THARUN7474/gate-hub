@@ -128,3 +128,15 @@ Git repository initialised; remote `origin` = https://github.com/THARUN7474/gate
 Not in git (see `.gitignore`): `.env`, `*.sqlite` databases, `backups/` (DB snapshots + old ZIPs in
 `backups/zips/`), `data/raw/` PDFs, OCR cache, generated exports. Keep `data/gate_cse.sqlite` backed
 up yourself (`backup.cmd`) - it holds your reviews and is not on GitHub.
+
+## Cleanup (5 Nov 2026, second commit)
+
+Removed because they had already run and nothing uses them any more (all recoverable from git commit `71d0558`):
+`scripts/agent_classify_2026_cs1.py`, `apply_agent_classifications.py`, `build_workbook.py`,
+`curate_concepts_2026_cs1.py`, `keypdf_to_csv_2026_cs1.py`, `semantic_review_2026_cs1.py`,
+`import_candidate_labels.py`; the old UI screenshots (`docs/screenshots/`, v6-v9, earlier data);
+agent session logs (`docs/handoff/session-logs/`); `docs/RECONCILIATION.md` (for a draft pack no longer present).
+Local only (never in git): the candidate DB was retired to `backups/gate_cse.candidate.retired-20261105.sqlite`;
+stale chat batches and exports were deleted and the exports regenerated from the live DB; caches cleared.
+`scripts/ui_apptest.py`, `scripts/ui_browser_test.py` and `tests/test_prompt_v2.py` now read a copy of the live DB.
+Tests after cleanup: 223 passed, AppTest all PASS, `validate` 10/10.

@@ -66,10 +66,10 @@ def test_conflict_rule():
     assert cl._position_conflict("CS", o("GA")) and not cl._position_conflict("CS", o("EM"))
     assert not cl._position_conflict(None, o("GA")) and not cl._position_conflict(None, o("EM"))
 
-@pytest.mark.skipif(not (ROOT / "data" / "gate_cse.candidate.sqlite").exists(), reason="staging DB not present")
+@pytest.mark.skipif(not (ROOT / "data" / "gate_cse.sqlite").exists(), reason="live DB not present (fresh clone)")
 def test_every_loaded_paper_has_a_known_layout():
     """Evidence run on 4 Nov 2026: 21 papers GA-first, 8 GA-last, none unknown (spot-checked against question text)."""
-    db = sqlite3.connect(f"file:{ROOT / 'data' / 'gate_cse.candidate.sqlite'}?mode=ro", uri=True)
+    db = sqlite3.connect(f"file:{ROOT / 'data' / 'gate_cse.sqlite'}?mode=ro", uri=True)
     seen = {}
     for (pid,) in db.execute("select id from papers").fetchall():
         marks = dict(db.execute("select q_number, marks from questions where paper_id=?", (pid,)).fetchall())

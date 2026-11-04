@@ -1,7 +1,9 @@
 # Where the 65 GATE 2026 CS-1 classifications came from
 
+> Since 5 Nov 2026 the other 1,802 first-pass labels are in the live database too (imported from the candidate DB with a content-hash check), and AI-review opinions are recorded separately (`docs/23_LLM_ROUTER_AND_DECISION_MODELS.md`).
+
 Checked on 4 Nov 2026 directly against the live database (`data/gate_cse.sqlite`), the staging database and the two scripts below.
-This replaces the v4-era description in `docs/GATE_v7_docs_update/16_CLASSIFICATION_PROVENANCE.md` (the owner's draft is kept unchanged;
+This replaces the v4-era description in the owner's draft `GATE_v7_docs_update/16_CLASSIFICATION_PROVENANCE.md` (no longer in the repo; the draft was kept unchanged;
 where it differs from the facts, this page says so).
 
 ## What the database says
@@ -23,12 +25,12 @@ The sections below remain the accurate history of the FIRST 65 rows only.
 
 ## How they were made (the source scripts)
 
-1. **`scripts/agent_classify_2026_cs1.py`** - an earlier *coding agent* (Claude, working in a coding session) read each extracted
+1. **`scripts/agent_classify_2026_cs1.py`** (removed 5 Nov 2026 after use; recoverable from git history, commit 71d0558) - an earlier *coding agent* (Claude, working in a coding session) read each extracted
    2026 CS-1 question and typed a hand-written table into this script: per question a section, primary topic, a confidence it chose
    itself, and a one-line "what it tests". Running the script writes those 65 rows with `provenance=inferred`, `status=suggested`.
    It makes **no API call** and is **not** the `MockProvider` keyword stub (the stub exists for offline tests only and never produced
    these rows).
-2. **`scripts/curate_concepts_2026_cs1.py`** - a second agent pass: added `concept_ids` for all 65 questions, derived
+2. **`scripts/curate_concepts_2026_cs1.py`** (removed 5 Nov 2026 after use; recoverable from git history, commit 71d0558) - a second agent pass: added `concept_ids` for all 65 questions, derived
    `prerequisite_ids` from the taxonomy's concept edges, and applied two corrections relayed from an outside audit (Q51, Q65) **as
    suggestions**, each logged as a review event. Status stayed `suggested`.
 

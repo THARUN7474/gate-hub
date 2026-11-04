@@ -17,10 +17,8 @@ sys.path.insert(0, str(ROOT))
 
 tmp = Path(tempfile.mkdtemp(prefix="gate-apptest-"))
 db = tmp / "test.db"
-# Source DB to COPY (never modified): $GATE_APPTEST_DB, else the loaded candidate, else the live DB.
-_src = Path(os.environ.get("GATE_APPTEST_DB") or
-            (ROOT / "data" / "gate_cse.candidate.sqlite" if (ROOT / "data" / "gate_cse.candidate.sqlite").exists()
-             else ROOT / "data" / "gate_cse.sqlite"))
+# Source DB to COPY (never modified): $GATE_APPTEST_DB, else the live DB (all 29 papers since 5 Nov 2026).
+_src = Path(os.environ.get("GATE_APPTEST_DB") or (ROOT / "data" / "gate_cse.sqlite"))
 shutil.copy(_src, db)
 os.environ["GATE_DB_URL"] = f"sqlite:///{db}"
 os.environ["GATE_REVIEWER"] = "TEST-AUTOMATION"     # synthetic clicks are never attributed to a human

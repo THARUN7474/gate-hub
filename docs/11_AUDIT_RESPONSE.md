@@ -1,5 +1,7 @@
 # Response to the independent audit (3 Nov 2026, v4)
 
+> **Historical record (v4 audit).** Kept for provenance; it is not the current state. Current state: `docs/CURRENT_STATUS.md`.
+
 An independent audit (relayed by the owner) extracted the v2 ZIP, ran the
 tests, re-extracted the paper, reviewed 12 classifications and listed 7
 priority fixes. It inspected **v2**; v3 had already replaced stored image
@@ -22,7 +24,7 @@ the database and the source PDFs before acting.
    verbatim syllabus text, provenance=inferred) + 29 curated prerequisite
    edges with per-edge source notes ("curated from standard CS curriculum
    ordering; unverified curation"). All 65 questions now carry curated
-   concept_ids (scripts/curate_concepts_2026_cs1.py is the curation record)
+   concept_ids (scripts/curate_concepts_2026_cs1.py is the curation record, (removed 5 Nov 2026 after use; recoverable from git history, commit 71d0558))
    and prerequisite_ids derived mechanically from the edge set. Concepts and
    edges are exported (concepts.csv, prerequisite_edges.csv) and shown in the
    workbook and the Review Workspace. They are marked curation, not

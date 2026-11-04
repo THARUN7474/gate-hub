@@ -1,39 +1,44 @@
-# Decisions Only the Owner Can Make (answer before/at Day 1)
+# Owner decisions - made and still open (updated 5 Nov 2026)
 
-1. How will you supply the papers?
-   (a) Download CS.zip from the official Drive folder yourself, or
-   (b) point an agent at the year-wise downloads 2021-2026 first and open
-       CS.zip later, or
-   (c) you already have PDFs locally.
-   Recommended: (b) gets the Day-2 vertical slice unblocked fastest; (a) can
-   run in parallel.
+The original Day-0 questions (paper supply, OS, which LLM provider) are all answered; see "Made".
+The older v4-v7 wording is in git history.
 
-2. Which ONE LLM provider for classification?
-   Claude API or OpenAI API. You have Claude Code etc., but a Claude Code
-   subscription is NOT API credit - classification needs an API key and
-   approved spend (estimate first; expect a small number for ~1-2k questions,
-   measured by --estimate-cost, not guessed). Until you decide, the mock
-   provider keeps everything testable.
+## Made
 
-3. Development machine OS? (Windows / macOS / Linux)
-   Setup commands in docs/06_SETUP.md assume bash; on Windows use WSL2 or the
-   noted activation path. Also confirm Docker Desktop can run (needed for the
-   locked Postgres stack; SQLite fallback exists if not).
+- [x] **Papers:** supplied locally in `data/raw/` (2007-2026). 2011-2026 are loaded; 2007-2010
+  (photographed pages) are deferred.
+- [x] **Machine:** Windows 11, Python 3.12 venv, Docker Desktop. SQLite is the default database;
+  PostgreSQL 17 is an option.
+- [x] **Missing answer keys:** the 9 key-less papers are used for questions only. Keys are never guessed,
+  and the 2015 printed ticks are never used.
+- [x] **Promotion to the live database:** approved and done on 5 Nov 2026.
+- [x] **LLM access:** every chat-LLM call goes through the local FreeLLMAPI router with ONE unified key
+  (`GATE_LLM_ROUTER_ONLY=1`). Direct Gemini is no longer used.
+- [x] **Decision models** (OpenAI Decisions, Jev): kept separate from FreeLLMAPI, paid, and off by default.
+- [x] **AI review:** Claude may review questions as an AI reviewer. It is always labelled as such and is
+  never human verification or gold.
+- [x] **Free-plan statement** (`GATE_LLM_FREE_PLAN_CONFIRMED=1`): given by you. Set it to 0 if you add a
+  paid key to the router.
+- [x] **Repository:** github.com/THARUN7474/gate-hub. No keys, databases, PDFs or backups are in git.
+- [x] **Auditor 52/10/3 file:** deferred ("check later").
 
-Also needed from you during the week (the human bottlenecks):
-- ~30-45 min Day 1: approve the taxonomy topic splits in taxonomy.yaml.
-- ~2 hrs Day 3: blind-label the gold set (60-100 questions).
-- 15-30 min per paper Days 3-5: review queue.
+## Still open (only you can decide)
 
-## v4 additions
+- [ ] **Review scope:** start with the 120-question benchmark sample (recommended,
+  `docs/22_BENCHMARK_REVIEW_GUIDE.md`). Decide later whether to review whole papers or the full bank.
+- [ ] **The 18 software-engineering questions:** adopt the proposed deprecated `LEGACY.SE` category, or
+  keep them unclassified (`docs/handoff/se18-syllabus-audit.md`).
+- [ ] **Topics outside the 2027 syllabus** (e.g. RSA in 2017-S1 Q44, three-schema architecture in
+  2026-S2 Q15): keep them on the nearest topic, or give them a legacy tag.
+- [ ] **First FreeLLMAPI run:** save the key, run the 5-question `classify-compare` test, then decide on a
+  proposals run (`docs/23_LLM_ROUTER_AND_DECISION_MODELS.md`).
+- [ ] **Decision-model bake-off:** run Jev (~$0.007) or OpenAI Decisions (~$0.017) on the 120 questions
+  *after* gold exists, or skip it.
+- [ ] **Enrichment:** decide whether concepts / what-it-tests / prerequisites come from review, chat batches
+  or an API proposals run.
 
-- **Multi-year import (audit priority fix 7)**: do not import historical
-  papers until the extractor is validated against at least two historical
-  layouts (font/header/segmentation drift). No additional papers were
-  supplied with the audit; coverage remains GATE 2026 CS-1 only. When papers
-  arrive, run `drift-check` per paper and expect pattern tuning.
-- **LLM provider spend**: providers are implemented (v4). Owner must pick ONE
-  (anthropic or openai), set its key + GATE_LLM_MODEL, run
-  `python -m src.cli classify --estimate-cost --price-in X --price-out Y`
-  with prices from the provider's CURRENT pricing page, then approve
-  `--allow-spend`. A Claude Code subscription is not API credit.
+## Your time, roughly
+
+- Benchmark sample: 120 questions at 1-2 min each, so 2-4 hours. About 50 already give a first accuracy
+  figure.
+- One full paper: 65 questions, about 1.5-2 hours.

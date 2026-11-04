@@ -1,5 +1,7 @@
 # Agent Work Split
 
+> **Historical record (how the original work was split between agents).** Kept for provenance; it is not the current state. Current state: `docs/CURRENT_STATUS.md`.
+
 Ownership by module, not by day. Contracts are established FIRST (they already
 exist in this starter), then agents work in parallel on different files.
 

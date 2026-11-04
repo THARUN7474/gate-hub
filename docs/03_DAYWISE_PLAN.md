@@ -1,5 +1,7 @@
 # 5-Day Critical Path
 
+> **Historical record (the original five-day plan).** Kept for provenance; it is not the current state. Current state: `docs/CURRENT_STATUS.md`.
+
 Agents do the building; the owner's time goes to inputs, taxonomy approval,
 gold-set labelling and review. Exit criteria are per day - a missed criterion
 moves scope, it does not get waved through.

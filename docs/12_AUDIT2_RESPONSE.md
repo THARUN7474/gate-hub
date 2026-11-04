@@ -1,5 +1,7 @@
 # 12 - Response to the v4 independent audit (this build, v5)
 
+> **Historical record (v5 audit; the exports/semantic_review_2026_cs1.* files it mentions were stale generated output and were removed 5 Nov 2026).** Kept for provenance; it is not the current state. Current state: `docs/CURRENT_STATUS.md`.
+
 Scope: glossary/docs page request + the user's pasted v4 audit. Everything below
 was run locally on this build; what could not be run here is marked UNVERIFIED.
 

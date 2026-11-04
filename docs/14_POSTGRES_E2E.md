@@ -23,7 +23,7 @@ evidence for the CURRENT code.
 docker compose up -d                       # gate-postgres  Up (healthy)
 $env:GATE_DB_URL = "postgresql+psycopg://gate_user:<pw>@127.0.0.1:5432/gate_cse"
 .venv\Scripts\python -m alembic upgrade head          # -> 0005 (head), "pgvector extension: ENABLED"
-.venv\Scripts\python scripts\sqlite_to_postgres.py --source sqlite:///data/gate_cse.candidate.sqlite --replace
+.venv\Scripts\python scripts\sqlite_to_postgres.py --source sqlite:///data/gate_cse.sqlite --replace   # the 4 Nov run used the now-retired candidate DB
 .venv\Scripts\python scripts\verify_postgres.py       # 10/10 checks
 $env:GATE_TEST_DB_URL = "postgresql+psycopg://gate_user:<pw>@127.0.0.1:5432/gate_test"
 .venv\Scripts\python -m pytest tests -q               # 113 passed, 1 skipped (SQLite-only test)
@@ -49,7 +49,7 @@ The docs said an earlier version had been verified on Postgres, but the current 
 5. A test inserted rows that violate foreign keys (`Question` with no `Paper`, `AnswerKey` before its `Question`) - SQLite
    never enforced them. Fixed in the test.
 
-## Parity: SQLite candidate -> PostgreSQL (all 13 tables, content checksums)
+## Parity: SQLite (4 Nov: the then-staging candidate DB) -> PostgreSQL (all 13 tables, content checksums)
 
 ```
 OK   documents          src=   29 dst=   29      OK   papers         src=   29 dst=   29

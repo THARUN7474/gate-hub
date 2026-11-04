@@ -1,6 +1,8 @@
 # Human review and scoring (as implemented, 4 Nov 2026)
 
-Reconciled from the owner's draft `docs/GATE_v7_docs_update/17_HUMAN_REVIEW_AND_SCORING.md`. Everything below exists in the app and is
+> **5 Nov 2026:** the Review Workspace also shows an **AI review** box (Claude's opinion, never verification). Step-by-step for the benchmark sample: `docs/22_BENCHMARK_REVIEW_GUIDE.md`.
+
+Reconciled from the owner's draft `GATE_v7_docs_update/17_HUMAN_REVIEW_AND_SCORING.md` (no longer in the repo). Everything below exists in the app and is
 covered by tests (`tests/test_review_rubric.py`, `scripts/ui_browser_test.py`). What is NOT implemented is listed at the end.
 
 ## The Review Workspace, one question at a time

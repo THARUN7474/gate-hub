@@ -1,5 +1,7 @@
 # LLM providers, setup and combined scores (v6)
 
+> **Updated 5 Nov 2026:** all chat-LLM calls now go through the local FreeLLMAPI router with one key (`GATE_LLM_ROUTER_ONLY=1`); direct Gemini/Groq/OpenRouter keys are ignored in that mode. Setup: `docs/23_LLM_ROUTER_AND_DECISION_MODELS.md`. The consent gates, pacing and run guard described below still apply unchanged; the Gemini sections are kept as the record of the 4 Nov pilots.
+
 ## One-file setup
 
 `cp .env.example .env` and add what you have. The CLI, the app and every

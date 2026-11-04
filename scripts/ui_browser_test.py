@@ -1,6 +1,6 @@
 """Real-browser UI test (Playwright + Chromium) - closes handoff gap G6.
 
-    python scripts/ui_browser_test.py [--source-db data/gate_cse.candidate.sqlite] [--keep]
+    python scripts/ui_browser_test.py [--source-db data/gate_cse.sqlite] [--keep]
 
 What it does, on a THROWAWAY COPY of the database:
   1. copies the source DB, starts `streamlit run app.py` against the copy (reviewer name TEST-AUTOMATION)
@@ -84,7 +84,7 @@ CLIPPED_JS = """() => {
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--source-db", default=str(ROOT / "data" / "gate_cse.candidate.sqlite"))
+    ap.add_argument("--source-db", default=str(ROOT / "data" / "gate_cse.sqlite"))
     ap.add_argument("--keep", action="store_true", help="keep the temp copy for inspection")
     ap.add_argument("--port", type=int, default=8612)
     a = ap.parse_args()

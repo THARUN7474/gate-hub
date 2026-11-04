@@ -1,38 +1,47 @@
-# Safe local restart in five steps (Windows)
+# Safe local restart in five steps (Windows) - updated 5 Nov 2026
 
-Reconciled from `docs/GATE_v7_docs_update/18_LOCAL_RESTART_5_STEPS.md`. Every command here was run on this machine on 4 Nov 2026
-(except the `--yes`/`YES` promotion, which is your decision). Work in `C:\Users\Tharun\Desktop\2027\gate-hub`.
+Work in `C:\Users\Tharun\Desktop\2027\gate-hub`. Promotion is done (5 Nov 2026). It is no longer part
+of a restart.
 
-## 1. Stop the old instance - only that one
-Close the black `start.cmd` window (that stops the app). If you are unsure whether something still listens on port 8501:
+## 1. Stop the old app instance, and only that one
+
+Close the black `start.cmd` window; that stops the app. If you're not sure whether something is still
+listening on port 8501:
+
 ```powershell
 $c = Get-NetTCPConnection -LocalPort 8501 -State Listen -ErrorAction SilentlyContinue
 if ($c) { Get-CimInstance Win32_Process -Filter "ProcessId=$($c.OwningProcess)" | Select-Object ProcessId, CommandLine }
 ```
-Stop it **only** if the command line is `... streamlit run app.py` from this folder: `Stop-Process -Id <that ProcessId>`.
-Never stop all Python processes. PostgreSQL/Docker does not need stopping for an app restart.
 
-## 2. Back up and check health
-Double-click `backup.cmd` (a verified copy goes to `backups\`), then `doctor.cmd`. You want `0 fail`.
-Note the backup file name it prints.
+Stop it **only** if its command line is `... streamlit run app.py` from this folder:
+`Stop-Process -Id <that ProcessId>`. Never stop all Python processes. Docker Desktop (FreeLLMAPI,
+Postgres) stays running.
 
-## 3. Preview the promotion (changes nothing)
-Double-click `promote.cmd` and read the preview **only**; at the question type anything except `YES` to cancel.
-(Or `.\scripts\dev.ps1 promote`.) Today it shows: 29 papers in the manifest, 2 already live, 27 to be added (the schema column it used to list was added
-through the app's upgrade button on 4 Nov, 14:15). A rehearsal on a copy (4 Nov) ended with 29 papers / 1,885 questions, 1,300 key rows,
-all 3 existing review events and all 65 classifications byte-unchanged.
+## 2. Open the project
 
-## 4. Promote - only if you decide to
-Run `promote.cmd` again and type `YES` (or `.\scripts\dev.ps1 promote --yes`). It backs up first, adds the schema column, loads the
-papers and keys, and then proves every earlier review event and classification is unchanged; any mismatch prints FAIL and the backup
-to restore. After it says DONE, optionally complete 2025 Q59's text: `.\scripts\dev.ps1 repair-text --paper GATE-CS-2025-S1` (preview),
-then add `--yes`.
+1. Open Docker Desktop. The FreeLLMAPI router restarts by itself; check that http://127.0.0.1:3001 opens.
+2. Open the folder in VS Code and open a terminal (Ctrl+`).
+3. Run `git status`. It should say "nothing to commit" unless you have edits in progress.
 
-## 5. Start and check
-Double-click `start.cmd` and open http://localhost:8501. Look at Pipeline Status, Question Browser, Analysis Matrix, Review Workspace
-and Approve Queue. In Review Workspace open 2026 CS-1 Q21, Q37, Q48: compare the image with the text, answer the five review checks,
-save without verifying, reload the page, and confirm the checks and the audit history are still there.
+## 3. Back up and check health
 
-## No API key needed
-Browsing and reviewing the 65 existing suggestions needs no key. To add more suggestions without a key use the chat round trip in
-`docs/20_CHAT_ASSISTED_CLASSIFICATION.md`. Unattended runs over all 28 papers need an API provider (`docs/13_LLM_SETUP.md`).
+Double-click `backup.cmd` (a verified copy goes to `backups\`), then run:
+
+```powershell
+.\.venv\Scripts\python.exe -X utf8 -m src.cli doctor
+```
+
+You want 0 fail. A warning about the FreeLLMAPI key is expected until you save it with
+`setkey.cmd freellmapi`.
+
+## 4. Start the app
+
+Double-click `start.cmd` (or run `.\scripts\dev.ps1 app`) and open http://localhost:8501. Quick check:
+- Pipeline Status shows 29 papers.
+- Review Workspace with Show set to "benchmark sample (gold review)" lists 120 pending questions.
+
+## 5. After working
+
+- After a review session, run `backup.cmd`. Your reviews are in `data\gate_cse.sqlite`, which is not in git.
+- After changing code or docs, run `git add .`, then `git commit -m "what changed"`, then `git push`.
+- Close the black window to stop the app.

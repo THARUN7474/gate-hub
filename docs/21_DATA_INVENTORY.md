@@ -1,7 +1,7 @@
 # Data inventory: GATE CS papers 2007-2026
 
 Generated on 4 Nov 2026 from `manifests/papers.yaml`, the files in `data/raw` and the 29-paper staging database
-(`data/gate_cse.candidate.sqlite`). The same tables are live in the app on the **About the Data** screen
+(then `data/gate_cse.candidate.sqlite`; since 5 Nov 2026 the same 29 papers are in the live `data/gate_cse.sqlite`). The same tables are live in the app on the **About the Data** screen
 (`src/analytics/inventory.py`), so they stay correct when a paper is added. "Paper" = one exam session: 65 questions, 100 marks.
 
 ## The answer in numbers
@@ -14,7 +14,7 @@ Generated on 4 Nov 2026 from `manifests/papers.yaml`, the files in `data/raw` an
 | Separate official key PDFs | **9** (2021-2026 only; older keys sit inside the question PDF) |
 | Active papers with an official key | **20** of 29 (9 without: 2011, 2013 x4, 2015 x3, 2017 CS-1) |
 | Questions in the active papers | **1,885** = 29 x 65, all extracted and reconciled in staging |
-| Questions in the live database today | 130 (2025 CS-1, 2026 CS-1) until promotion |
+| Questions in the live database today | 1,885 (all 29 papers; promoted 5 Nov 2026) |
 
 ## Three groups of years
 
