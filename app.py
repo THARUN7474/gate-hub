@@ -581,8 +581,10 @@ elif page == "Analysis Matrix":
         _stat_counts = dict(session.execute(
             select(Classification.status, func.count()).group_by(Classification.status)).all())
         _n_cls = sum(_stat_counts.values())
-        st.subheader("Subject x year (marks)")
-        st.caption(f"Click any number to see its questions. Bottom row = column totals; bottom-right = grand total. {_n_cls:,} of {_tot_q:,} questions counted.")
+        st.subheader("Subject x year")
+        st.caption(f"Two views of the same questions: marks (a 2-mark question counts 2) and question counts. "
+                   f"One paper = 65 questions = 100 marks, so {_tot_q // 65} papers = {_tot_q:,} questions = {_tot_q // 65 * 100:,} marks. "
+                   f"Click any number to see its questions. Bottom row = column totals; bottom-right = grand total. {_n_cls:,} of {_tot_q:,} questions counted.")
         with how_to_read():
             st.markdown("Primary topic only; totals always reconcile to paper totals. Only classified questions are "
                         f"included: **{_n_cls} of {_tot_q} questions** "
@@ -591,7 +593,11 @@ elif page == "Analysis Matrix":
                         f"them). The LEGACY column is historical software engineering, out of the 2027 syllabus.")
             if _ppy_txt:
                 st.caption(_ppy_txt)
-        st.markdown(nav.matrix_html(m, _mnames), unsafe_allow_html=True)
+        _tm, _tq = st.tabs(["Marks", "Questions"])
+        with _tm:
+            st.markdown(nav.matrix_html(m, _mnames), unsafe_allow_html=True)
+        with _tq:
+            st.markdown(nav.matrix_html(m, _mnames, metric="questions"), unsafe_allow_html=True)
         with st.expander("Drill down (fallback dropdowns)", icon=":material/filter_list:"):
             d1, d2 = st.columns(2)
             d_sec = d1.selectbox("Cell subject", list(m["sections"].keys()) or ["-"], format_func=lambda x: named(x, _mnames))

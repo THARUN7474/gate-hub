@@ -160,7 +160,7 @@ Tests after cleanup: 223 passed, AppTest all PASS, `validate` 10/10.
 - **Review Workspace**: filters for extraction issues and AI-reviewed; per-question status strip (extraction / machine label / AI review / decision models / human review, each with where the fact comes from); numbered sections 1 Original source, 2 Machine label, 3 Second opinions, 4 Your decision; a step-by-step guide of what a human does and what changes.
 - **Full names** in every subject/topic dropdown; codes stay the filter values.
 - **Question Browser** lists every match (the old 500-row cap is gone) and breaks results down by subject and status.
-- **Analysis Matrix** has a column-totals row and grand total (2,900 = 29 papers x 100).
+- **Analysis Matrix** has Marks and Questions tabs (1,885 questions = 2,900 marks = 29 papers x 65 / x 100), each with a column-totals row and grand total.
 - **Glossary**: the blank Sections table is fixed (one very long text column broke the grid); syllabus PDF paths and checksum check shown.
 - **Decision models**: code and `.env` settings were already in place (OpenAI `/v1/decisions` gpt-6-luna, TypeSafe Jev jev-1.14.0; docs checked 4-5 Nov). LLM Classify now shows their status, a benchmark cost estimate and the exact commands. Still off until you add a key and set `DECISIONS_ENABLED=1`.
 - Helpers: `src/analytics/opinions.py`; `search_questions(limit=None, extraction_issue=...)`; matrix totals in `links.py`.

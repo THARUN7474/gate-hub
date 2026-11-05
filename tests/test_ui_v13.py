@@ -51,8 +51,8 @@ def test_search_has_no_cap_and_filters_extraction(db_url):
 
 def test_matrix_html_has_column_totals_and_grand_total():
     m = {"years": [2020, 2021], "sections": {
-        "OS": {"years": {2020: {"marks": 5, "questions": 3}, 2021: {"marks": 2, "questions": 1}}, "total_marks": 7},
-        "DB": {"years": {2020: {"marks": 4, "questions": 2}}, "total_marks": 4}}}
+        "OS": {"years": {2020: {"marks": 5, "questions": 3}, 2021: {"marks": 2, "questions": 1}}, "total_marks": 7, "total_q": 4},
+        "DB": {"years": {2020: {"marks": 4, "questions": 2}}, "total_marks": 4, "total_q": 2}}}
     html = nav.matrix_html(m, {"OS": "Operating System"})
     foot = html[html.index("<tfoot>"):]
     assert ">9<" in foot and ">2<" in foot and ">11<" in foot           # 5+4, 2, grand 11
@@ -60,3 +60,11 @@ def test_matrix_html_has_column_totals_and_grand_total():
     t = nav.topic_matrix_html([{"topic": "OS.MEM", "year": 2020, "questions": 2},
                                {"topic": "OS.PROC", "year": 2020, "questions": 3}])
     assert ">5<" in t[t.index("<tfoot>"):]
+
+
+def test_matrix_html_question_counts():
+    m = {"years": [2020], "sections": {
+        "OS": {"years": {2020: {"marks": 5, "questions": 3}}, "total_marks": 5, "total_q": 3},
+        "DB": {"years": {2020: {"marks": 4, "questions": 2}}, "total_marks": 4, "total_q": 2}}}
+    foot = nav.matrix_html(m, metric="questions").split("<tfoot>")[1]
+    assert ">5<" in foot and ">9<" not in foot                         # 3+2 questions, not 9 marks

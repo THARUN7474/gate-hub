@@ -67,10 +67,11 @@ def topic_matrix_html(rows: list[dict], names: dict | None = None) -> str:
     out.append(f"<td {_TF}>{sum(col.values())}</td></tr></tfoot></table>")
     return "".join(out)
 
-def matrix_html(m: dict, names: dict | None = None) -> str:
+def matrix_html(m: dict, names: dict | None = None, metric: str = "marks") -> str:
     """Section x year marks matrix as an HTML table; every non-empty cell is a
     link into its drill-down. A bottom Total row sums each year's column and the
-    bottom-right cell is the grand total. Input shape: analyze.section_year_matrix()."""
+    bottom-right cell is the grand total. metric: 'marks' or 'questions'.
+    Input shape: analyze.section_year_matrix()."""
     names = names or {}
     years = m["years"]
     out = ['<table style="border-collapse:collapse; width:100%">', "<thead><tr>",
@@ -83,17 +84,18 @@ def matrix_html(m: dict, names: dict | None = None) -> str:
         out.append("<tr>" + _label_cell(sec, names.get(sec)))
         for y in years:
             cell = d["years"].get(y, {})
-            marks = cell.get("marks")
+            marks = cell.get(metric)
             if marks is None:
                 out.append(f"<td {_TD}></td>")
             else:
                 col[y] += marks
                 out.append(
                     f'<td {_TD}><a href="{drill_href(sec, y)}" target="_self" '
-                    f'title="{cell.get("questions", 0)} questions - click to drill down">'
+                    f'title="{cell.get("questions", 0)} questions, {cell.get("marks", 0):g} marks - click to drill down">'
                     f'{marks:g}</a></td>')
-        grand += d["total_marks"]
-        out.append(f'<td {_TD}><b>{d["total_marks"]:g}</b></td></tr>')
+        _rt = d["total_q" if metric == "questions" else "total_marks"]
+        grand += _rt
+        out.append(f'<td {_TD}><b>{_num(_rt)}</b></td></tr>')
     out.append("</tbody><tfoot><tr><td style=\"padding:6px 8px; border-top:2px solid #888; font-weight:700\">Total</td>")
     out += [f"<td {_TF}>{_num(col[y])}</td>" for y in years]
     out.append(f"<td {_TF}>{_num(grand)}</td></tr></tfoot></table>")

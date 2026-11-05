@@ -32,7 +32,7 @@ Full detail: **[docs/CURRENT_STATUS.md](docs/CURRENT_STATUS.md)** (current) - `d
 - [x] Labels on all 1,885 questions (1,510 suggested, 374 flagged, 1 human-verified); the 18 historical software-engineering questions sit in a separate `LEGACY` section (out of the 2027 syllabus)
 - [x] Extractor defects fixed (page footer in options, glued options, opening sentence above centred labels) - 67 questions repaired, audited
 - [x] `validate` 10/10; `papers-drift` exact on 1,875/1,885 (the 10 left are known OCR-noise questions, fixed by hand during review)
-- [x] 234 automated tests + Streamlit AppTest pass
+- [x] 235 automated tests + Streamlit AppTest pass
 - [x] AI review by Claude of 2026 CS-2 (65 q), the 120-question benchmark sample and the 18 SE questions - labelled as AI review, never verified
 - [x] Cleaner app: every screen opens with a one-line purpose; details are in collapsed toggles; progress bars on Pipeline Status
 - [x] FreeLLMAPI wired in as the ONLY chat-LLM path (one unified key); decision models (OpenAI Decisions, Jev) wired in, separate, off

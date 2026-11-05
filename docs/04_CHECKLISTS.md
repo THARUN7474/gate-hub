@@ -110,12 +110,12 @@ AI review (Claude, labelled as such, NOT verification): 65 questions of 2026 CS-
 - [x] Review Workspace: Show filter gains "extraction issues" and "AI-reviewed"; status strip per question (extraction, machine label, AI review, decision models, human review, with sources); numbered sections; step-by-step "What you do here"; optional fields folded away
 - [x] Full names in every subject/topic dropdown (codes still used underneath)
 - [x] Question Browser: no 500-row cap (all 1,885 listed), extraction filter, results breakdown by subject/status
-- [x] Analysis Matrix: column totals row + grand total (2,900 = 29 papers x 100 marks), full names under codes
+- [x] Analysis Matrix: Marks and Questions tabs (1,885 questions = 2,900 marks), column totals row + grand total, full names under codes
 - [x] Glossary: Sections table fixed (was blank - long text column), syllabus file paths + checksum check
 - [x] Approve Queue explains when to use it; shows only ready-to-approve questions by default
 - [x] LLM Classify split into tabs; new Decision models tab (status, benchmark cost estimate, exact commands)
 - [x] "What this page gives you" guide on every screen
-- [x] Tests: 234 passed (`tests/test_ui_v13.py`), AppTest all PASS, browser-checked
+- [x] Tests: 234 passed (`tests/test_ui_v13.py`; 235 after the Questions tab), AppTest all PASS, browser-checked
 
 ## Repository checklist
 
