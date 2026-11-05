@@ -9,7 +9,7 @@
 - [x] Papers 2007-2026 in `data/raw/papers/` (2007-2010 photographed pages deferred)
 - [x] Year-wise papers + keys 2021-2026 in `data/raw/` (20 papers with official keys in total)
 - [ ] Optional: PYQ books/solutions - local only, never cloud-processed without consent
-- [x] Docker Desktop, Python 3.12+, git installed; repo tests pass (236, 5 Nov 2026)
+- [x] Docker Desktop, Python 3.12+, git installed; repo tests pass (238, 6 Nov 2026)
 
 ## Per-paper reconciliation checklist (every paper, every run) - all 29 papers, 5 Nov 2026
 
@@ -118,6 +118,19 @@ AI review (Claude, labelled as such, NOT verification): 65 questions of 2026 CS-
 - [x] New **Engine & Pipeline** screen: live pipeline diagram (coloured by state), what one question holds + a live diagram for any question, syllabus tree per subject, how labels were really made (Claude first pass; AI review, API proposals and decision models are parallel opinions; only humans verify), status lifecycle, live CSE 15-stage checklist, and a full new-branch (ECE) guide + checklist
 - [x] Label statuses explained: dropdowns read e.g. "verified (you checked and approved it)"; a "What the statuses mean" toggle (live counts, related terms, how a question moves) on Pipeline Status, Question Browser, Review Workspace, Second Opinions, Approve Queue; shown in full on the Glossary
 - [x] Tests: 236 passed (`tests/test_ui_v13.py`), AppTest all PASS, browser-checked
+
+## AI review v2 + question type (6 Nov 2026)
+
+- [x] Prompt `prompts/ai_review_v2.md`: decide the TYPE (MCQ/MSQ/NAT), solve, compare with key, choose section -> topic -> concepts, name rejected alternatives, only then compare with the label; JSON with why / alternatives / solution / key check / difficulty / flag reason
+- [x] `scripts/ai_review.py`: `export --next N` batches (skips extraction issues, un-gold benchmark and your verified questions), `progress`, v2 import validates type and secondary topics; v2 NEVER changes a label - a different topic or type only flags it for you
+- [x] Review Workspace: "Question type" row (extractor / AI review / you), type shown in the machine label, AI v2 opinion with a "Why the AI thinks so" toggle, AI opinion hidden on benchmark questions until you verify them, **Question type** is part of Your decision
+- [x] Second Opinions: v2 count, stored vs AI type, key check, "why" column, "different type" filter, the full prompt + commands
+- [x] Pilot batch: 20 questions (2011 CS-1) - 12 agree, 4 correct, 4 flag (2 NAT->MCQ type errors, 2 extraction, 1 out of syllabus)
+- [ ] AI review v2 on the remaining 1,589 ready questions (batches of 20)
+- [ ] AI review v2 on the 165 extraction-issue questions after you fix them
+- [ ] AI review v2 on the 110 benchmark questions after your gold review
+- [ ] Score machine labels + AI review v2 against the gold 120; then FreeLLMAPI and decision models on the 120
+- [x] Tests: 238 passed (`tests/test_ai_review_v2.py`), AppTest all PASS
 
 ## Repository checklist
 

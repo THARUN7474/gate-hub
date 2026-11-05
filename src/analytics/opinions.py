@@ -34,12 +34,19 @@ def ai_review_rows(s: Session) -> list[dict]:
         return []
     cls = {c.question_id: c for c in s.scalars(select(Classification).where(
         Classification.question_id.in_(list(latest))))}
-    papers = dict(s.execute(select(Question.id, Question.paper_id).where(Question.id.in_(list(latest)))).all())
+    qinfo = {r[0]: (r[1], r[2]) for r in s.execute(select(Question.id, Question.paper_id, Question.q_type)
+                                                    .where(Question.id.in_(list(latest)))).all()}
     out = []
     for qid, e in latest.items():
         d = _load(e.after)
         c = cls.get(qid)
-        out.append({"question_id": qid, "paper": papers.get(qid, ""), "verdict": d.get("verdict") or "",
+        paper, qtype = qinfo.get(qid, ("", None))
+        out.append({"question_id": qid, "paper": paper, "verdict": d.get("verdict") or "",
+                    "version": d.get("prompt_version") or "ai-review-v1",
+                    "stored_type": qtype, "ai_type": d.get("question_type"),
+                    "type_differs": bool(d.get("question_type") and d.get("question_type") != qtype),
+                    "key_check": d.get("key_check"), "difficulty": d.get("difficulty"),
+                    "why": d.get("why_this_topic") or "",
                     "ai_section": d.get("section_id"), "ai_topic": d.get("primary_topic_id"),
                     "ai_confidence": d.get("confidence"),
                     "label_topic": c.primary_topic_id if c else None,
@@ -84,7 +91,8 @@ def stage_summary(s: Session) -> dict:
     dec = s.scalar(select(func.count(func.distinct(ClassificationProposal.question_id))).where(
         ClassificationProposal.provider.in_(DECISION_PROVIDERS))) or 0
     bench = dict(s.execute(select(BenchmarkSample.status, func.count()).group_by(BenchmarkSample.status)).all())
-    return {"questions": total, "classified": classified, "verified": verified,
+    v2 = sum(1 for r in ai if r["version"] == "ai-review-v2")
+    return {"questions": total, "classified": classified, "ai_reviewed_v2": v2, "verified": verified,
             "extraction_issues": extraction, "ai_reviewed": len(ai), "ai_verdicts": verdicts,
             "decision_questions": dec, "benchmark_total": sum(bench.values()),
             "benchmark_gold": bench.get("gold_verified", 0)}
@@ -147,7 +155,12 @@ def question_stages(s: Session, qid: str) -> dict:
     if bm is not None:
         human = (human[0], human[1], human[2] + (" · benchmark gold" if bm.status == "gold_verified"
                                                  else " · in the benchmark sample"))
-    return {"extraction": extraction, "text_source": src, "machine": machine, "ai_review": aiv,
+    t_ev = s.scalar(select(ReviewEvent).where(ReviewEvent.question_id == qid, ReviewEvent.field == "q_type")
+                    .order_by(ReviewEvent.id.desc()).limit(1))
+    ai_t = next((r.get("question_type") for r in reversed(ai) if r.get("question_type")), None)
+    qtype = {"stored": q.q_type, "ai": ai_t, "ai_differs": bool(ai_t and ai_t != q.q_type),
+             "human": (t_ev.after, t_ev.reviewer) if t_ev is not None else None}
+    return {"qtype": qtype, "extraction": extraction, "text_source": src, "machine": machine, "ai_review": aiv,
             "decision_models": decv, "human": human, "ai_rows": ai, "decision_rows": dec}
 
 
@@ -156,7 +169,8 @@ def ai_review_rows_for(s: Session, qid: str) -> list[dict]:
     for e in s.scalars(select(ReviewEvent).where(ReviewEvent.question_id == qid, ReviewEvent.field == "ai_review")
                        .order_by(ReviewEvent.id)):
         d = _load(e.after)
-        out.append({"reviewer": e.reviewer, "when": str(e.created_at)[:16], "verdict": d.get("verdict") or "",
+        out.append({**d, "reviewer": e.reviewer, "when": str(e.created_at)[:16], "verdict": d.get("verdict") or "",
+                    "version": d.get("prompt_version") or "ai-review-v1",
                     "section_id": d.get("section_id"), "primary_topic_id": d.get("primary_topic_id"),
                     "confidence": d.get("confidence"), "note": d.get("note") or ""})
     return out

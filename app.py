@@ -20,7 +20,7 @@ from src import settings
 from src.analytics import analyze as az, links as nav, opinions as op, search as srch
 from src.classification import classify as cl
 from src.taxonomy import glossary as glos
-from src.db.models import (AnswerKey, Classification, Document, Option, Paper,
+from src.db.models import (AnswerKey, BenchmarkSample, Classification, Document, Option, Paper,
                            Question, ReviewEvent, TaxonomyNode)
 from src.db.session import make_session
 from src.extraction import render as rnd
@@ -890,6 +890,14 @@ elif page == "Review Workspace":
             with _c.container(border=True, height="stretch"):
                 st.markdown(f"**{_ic} {_t}**  \n:{_color}-badge[{_state}]")
                 st.caption(f"{_detail}  \n*{_src}*")
+        _qt = _stg["qtype"]
+        _ai_t = ("not reviewed with v2" if not _qt["ai"] else
+                 f":red-badge[{_qt['ai']} - differs]" if _qt["ai_differs"] else f":green-badge[{_qt['ai']} - same]")
+        _hu_t = (f":green-badge[set to {_qt['human'][0]}] by {_qt['human'][1]}" if _qt["human"] else
+                 ":green-badge[accepted when you verified]" if cls is not None and cls.status == "verified"
+                 else ":gray-badge[not confirmed yet]")
+        st.markdown(f":material/category: **Question type** (MCQ = one answer · MSQ = one or more · NAT = a number) - "
+                    f"extractor read: :blue-badge[{_qt['stored'] or '?'}] · AI review: {_ai_t} · you: {_hu_t}")
 
         left, right = st.columns(2, gap="large")
         with left:
@@ -956,7 +964,9 @@ elif page == "Review Workspace":
             if cls:
                 with st.container(border=True):
                     st.markdown(f"**Subject:** {named(cls.section_id, names)}  \n"
-                                f"**Topic:** {named(cls.primary_topic_id, names)}")
+                                f"**Topic:** {named(cls.primary_topic_id, names)}  \n"
+                                f"**Type:** {qu.q_type or '?'} *(read by the extractor - the labeller does not "
+                                f"decide the type)*")
                     _sc = {"verified": "green", "flagged": "orange"}.get(cls.status, "blue")
                     st.markdown(f":{_sc}-badge[{cls.status}] :gray-badge[confidence {cls.confidence:.2f}] "
                                 f":gray-badge[{(cls.model or 'unknown model')[:40]}]")
@@ -981,13 +991,44 @@ elif page == "Review Workspace":
 
             st.subheader(":material/forum: 3 · Second opinions", divider="gray",
                          help="AI review and decision models. Opinions only - never verification, never gold.")
-            if _stg["ai_rows"]:
-                for _r in _stg["ai_rows"]:
+            _bm = session.scalar(select(BenchmarkSample).where(BenchmarkSample.question_id == uid))
+            _hide = (_bm is not None and _bm.status != "gold_verified" and _stg["ai_rows"]
+                     and not st.toggle("Show the AI opinion anyway", key=f"rw_showai_{uid}",
+                                       help="Benchmark question: the AI opinion is hidden until you verify it, so "
+                                            "your gold label stays your own judgement."))
+            if _hide:
+                st.caption(":material/visibility_off: AI review hidden - this is a benchmark question you have not "
+                           "verified yet. Decide first, then look.")
+            elif _stg["ai_rows"]:
+                for _r in _stg["ai_rows"][-2:]:
                     _box = {"agree": st.success, "flag": st.warning, "correct": st.error}.get(_r["verdict"], st.info)
                     _same = cls is not None and _r["primary_topic_id"] == cls.primary_topic_id
-                    _box(f"**AI review: {_r['verdict']}** → {named(_r['primary_topic_id'], names)}"
-                         f"{' (same as the label)' if _same else ' (DIFFERENT from the label)'}  \n"
+                    _tline = ""
+                    if _r.get("question_type"):
+                        _tline = (f"  \nType: **{_r['question_type']}**"
+                                  + (f" - DIFFERENT from stored {qu.q_type}" if _r["question_type"] != qu.q_type else " (same)"))
+                    _box(f"**AI review {'v2' if _r['version'] == 'ai-review-v2' else 'v1'}: {_r['verdict']}** → "
+                         f"{named(_r['primary_topic_id'], names)}"
+                         f"{' (same as the label)' if _same else ' (DIFFERENT from the label)'}{_tline}  \n"
                          f"{_r['note']}  \n*{_r['reviewer']} · {_r['when']}*", icon=":material/smart_toy:")
+                    if _r["version"] == "ai-review-v2":
+                        with st.expander("Why the AI thinks so", icon=":material/psychology_alt:"):
+                            st.markdown(f"**What it tests:** {_r.get('what_it_tests') or '-'}  \n"
+                                        f"**Why this topic:** {_r.get('why_this_topic') or '-'}")
+                            for _alt in _r.get("alternatives_considered") or []:
+                                st.markdown(f"- not **{named(_alt.get('topic_id'), names)}** - {_alt.get('why_not', '')}")
+                            if _r.get("secondary_topic_ids"):
+                                st.markdown("**Also uses:** " + ", ".join(named(x, names) for x in _r["secondary_topic_ids"]))
+                            if _r.get("concept_ids"):
+                                st.markdown("**Concepts:** " + ", ".join(named(x, names) for x in _r["concept_ids"]))
+                            st.markdown(f"**Solution sketch:** {_r.get('solution_sketch') or '-'}  \n"
+                                        f"**AI's answer:** {_r.get('my_answer') or '-'} · key check: "
+                                        f"**{_r.get('key_check') or '-'}** · difficulty: {_r.get('difficulty') or '-'} · "
+                                        f"confidence {(_r.get('confidence') or 0):.2f}"
+                                        + (f" · flag reason: **{_r['flag_reason']}**" if _r.get("flag_reason") else ""))
+                            _ck = _r.get("checks") or {}
+                            if _ck:
+                                st.caption(" · ".join(f"{k.replace('_', ' ')}: {'ok' if v else 'PROBLEM'}" for k, v in _ck.items()))
             else:
                 st.caption("AI review: none for this question.")
             if _stg["decision_rows"]:
@@ -1000,6 +1041,13 @@ elif page == "Review Workspace":
             if cls:
                 st.subheader(":material/how_to_reg: 4 · Your decision", divider="gray",
                              help="The only step that makes a label true. Every action is written to the audit log.")
+                _dtypes = ["MCQ", "MSQ", "NAT"]
+                new_qtype = st.selectbox("Question type", _dtypes, key=f"rw_dtype_{uid}",
+                                         index=_dtypes.index(qu.q_type) if qu.q_type in _dtypes else 0,
+                                         format_func=lambda x: {"MCQ": "MCQ (one correct option)",
+                                                                "MSQ": "MSQ (one or more correct options)",
+                                                                "NAT": "NAT (numeric answer, no options)"}[x],
+                                         help="Check against the PDF and the key. Verifying confirms this type.")
                 cur_sec = cls.section_id if cls.section_id in secs else secs[0]
                 new_sec = st.selectbox("Section", secs, index=secs.index(cur_sec),
                                        format_func=lambda x: named(x, names), key=f"rw_sec_{uid}")
@@ -1049,6 +1097,9 @@ elif page == "Review Workspace":
                 def _apply_corrections(reviewer=None):
                     reviewer = reviewer or REVIEWER
                     changed = False
+                    if new_qtype != qu.q_type:
+                        rv.apply_decision(session, uid, "q_type", new_qtype, reviewer, note)
+                        changed = True
                     if new_sec != cls.section_id:
                         rv.apply_decision(session, uid, "section_id", new_sec, reviewer, note)
                         changed = True
@@ -1145,7 +1196,9 @@ elif page == "Second Opinions":
     for r in _ai_rows:
         _vc[r["verdict"]] = _vc.get(r["verdict"], 0) + 1
     with st.container(horizontal=True):
-        st.metric("AI-reviewed questions", len(_ai_rows), border=True)
+        st.metric("AI-reviewed questions", len(_ai_rows), border=True,
+                  help=f"{sum(1 for r in _ai_rows if r['version'] == 'ai-review-v2')} of them with the v2 prompt "
+                       "(type + full reasoning)")
         st.metric("Agree", _vc.get("agree", 0), help="the AI found the label right", border=True)
         st.metric("Flag", _vc.get("flag", 0), help="label probably fine, but something else needs a look "
                                                    "(often the extraction)", border=True)
@@ -1155,22 +1208,37 @@ elif page == "Second Opinions":
     st.info("**What to do:** open the **correct** rows first (the AI disagrees with the topic), then **flag** "
             "(usually an extraction problem). Click a row to open it in the Review Workspace and decide yourself. "
             "These opinions never change a label on their own.", icon=":material/lightbulb:")
+    with st.expander("The AI review prompt (v2) and how a batch is run", icon=":material/description:"):
+        st.markdown("Every question gets the same instructions plus the full 2027 syllabus (codes, names, official "
+                    "text). The AI decides the **type**, solves it, picks section -> topic -> concepts, names the "
+                    "alternatives it rejected, and only then compares with the current label. v2 **never changes a "
+                    "label**: a different topic or type only flags it for you.")
+        st.code("python scripts/ai_review.py progress            # how far the v2 pass has got\n"
+                "python scripts/ai_review.py export --next 20     # next batch -> exports/ai_review/v2-<id>.json\n"
+                "python scripts/ai_review.py import exports/ai_review/v2-<id>.decisions.json        # dry run\n"
+                "python scripts/ai_review.py import exports/ai_review/v2-<id>.decisions.json --yes  # backup + write",
+                language="bash")
+        _pf = Path(__file__).parent / "prompts" / "ai_review_v2.md"
+        st.code(_pf.read_text(encoding="utf-8") if _pf.exists() else "prompts/ai_review_v2.md not found", language="text")
     _tab_ai, _tab_dec = st.tabs([f"AI review ({len(_ai_rows)})", f"Decision models ({len(_dec_rows)})"])
     with _tab_ai:
         if not _ai_rows:
             st.caption("No AI-review opinions recorded yet.")
         else:
-            o1, o2, o3 = st.columns(3)
+            o1, o2, o3, o4 = st.columns(4)
             _verd = o1.multiselect("Verdict", ["correct", "flag", "agree"], default=["correct", "flag", "agree"])
             _papers = sorted({r["paper"] for r in _ai_rows})
             _pp = o2.selectbox("Paper", ["(all)"] + _papers, key="so_paper")
             _diff = o3.toggle("Only where the AI picked a different topic", key="so_diff")
+            _tdiff = o4.toggle("Only where the AI reads a different type", key="so_tdiff")
             _view = [r for r in _ai_rows if r["verdict"] in _verd and (_pp == "(all)" or r["paper"] == _pp)
-                     and (not _diff or not r["same_topic"])]
+                     and (not _diff or not r["same_topic"]) and (not _tdiff or r["type_differs"])]
             _df = pd.DataFrame([{
                 "question": r["question_id"], "verdict": r["verdict"],
                 "AI's topic": named(r["ai_topic"], _onames), "current label": named(r["label_topic"], _onames),
-                "same?": r["same_topic"], "label status": r["label_status"], "AI's note": r["note"],
+                "same?": r["same_topic"], "type (stored)": r["stored_type"], "type (AI)": r["ai_type"] or "-",
+                "key check": r["key_check"] or "-", "label status": r["label_status"],
+                "why": r["why"] or r["note"], "AI's note": r["note"], "prompt": r["version"],
                 "reviewer": r["reviewer"].split(" ")[0], "when": r["when"]} for r in _view])
             st.session_state["so_grid_ids"] = [r["question_id"] for r in _view]
 
@@ -1185,7 +1253,8 @@ elif page == "Second Opinions":
             st.dataframe(_df, hide_index=True, width="stretch", on_select=_jump_so, selection_mode="single-row",
                          key="so_grid",
                          column_config={"question": st.column_config.TextColumn(pinned=True),
-                                        "AI's note": st.column_config.TextColumn(width="large")})
+                                        "why": st.column_config.TextColumn(width="large"),
+                                        "AI's note": st.column_config.TextColumn(width="medium")})
     with _tab_dec:
         if _dec_rows:
             st.dataframe(pd.DataFrame([{**r, "topic": named(r["topic"], _onames)} for r in _dec_rows]),
@@ -1520,11 +1589,13 @@ elif page == "Engine & Pipeline":
         st.dataframe(pd.DataFrame(eng.label_sources(session)), hide_index=True, width="stretch")
         st.markdown(
             "**The order, precisely:**\n"
+            "0. **Question type** (MCQ / MSQ / NAT) - read by the **extractor** from the PDF layout and the key. "
+            "The AI review v2 checks it, and **you** confirm or change it in *Your decision*.\n"
             "1. **First-pass label** - Claude labelled every question through the chat-assisted batches (no API key, "
             "no GPT). Status *suggested*, or *flagged* when it was unsure.\n"
-            "2. **AI review** - Claude, acting as a reviewer, gave a second opinion on 198 questions (2026 CS-2, the "
-            "benchmark, the 18 SE questions). It is stored **beside** the label; it only created labels for the 18 "
-            "SE questions and corrected 5.\n"
+            "2. **AI review** - Claude, acting as a reviewer. v1 gave a short opinion on 198 questions. **v2** "
+            "(prompt in Second Opinions) re-reviews all 1,885 with the type, a solution, the reasons and the "
+            "alternatives it rejected. Stored **beside** the label; v2 never changes a label, it only flags it.\n"
             "3. **API proposals (FreeLLMAPI)** - optional, not run yet. Stored as proposals beside the label; they do "
             "not replace it (only an explicit, audited re-classify run can replace an unverified label).\n"
             "4. **Decision models** - optional, paid, not run yet. Also only proposals.\n"
