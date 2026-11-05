@@ -18,6 +18,7 @@ from pathlib import Path
 
 from src import settings
 from src.analytics import analyze as az, links as nav, opinions as op, search as srch
+from src.analytics import dupes as dp
 from src.classification import classify as cl
 from src.taxonomy import glossary as glos
 from src.db.models import (AnswerKey, BenchmarkSample, Classification, Document, Option, Paper,
@@ -181,6 +182,8 @@ def status_guide_md(session) -> str:
         "**Related words used around the app**\n"
         f"- **Classified / labelled** = has any label (suggested + flagged + verified): {_lab:,} of {_tot:,}.\n"
         f"- **Awaiting your decision** = suggested + flagged ({_sug + _fl:,}): every label you have not approved yet.\n"
+        "- **Duplicate copy** = a question of GATE 2013 sets 2-4 that repeats set 1. It keeps its own row "
+        "(totals include it) but follows its original's label; you review the original only.\n"
         f"- **Extraction issue** ({_ext:,}) is separate: it is about whether the question text and options were read "
         "correctly from the PDF, not about the topic label. That is why it has its own **Extraction** filter.\n"
         "- **AI review** (agree / flag / correct) and **decision models** are opinions stored beside the label. They "
@@ -369,13 +372,18 @@ if page == "Pipeline Status":
     S = op.stage_summary(session)
     with st.container(horizontal=True):
         for label, val, hlp in [("Papers", cov["papers"], "exam sessions loaded (65 questions / 100 marks each)"),
-                                ("Questions", cov["questions"], "all loaded questions"),
+                                ("Questions", cov["questions"], "all loaded questions, duplicate copies included"),
+                                ("Unique questions", S["unique"], "each question counted once: GATE 2013 sets 2-4 repeat "
+                                 "set 1, so their 195 copies are not counted. Reviews and classification run on these."),
                                 ("With official keys", cov["with_keys"], "questions with an official answer key"),
                                 ("Labelled", cov["classified"], "questions with a topic label (machine suggestion or verified)"),
                                 ("Human-verified", cov["verified_by_human"], "approved by a human after the five review checks"),
                                 ("Waiting for a human", cov["pending_review"], "every question without a human-verified label")]:
             st.metric(label, f"{val:,}", help=hlp, border=True)
 
+    st.info(dp.summary_line(session) + " Human review, the gold set, AI review, API proposals and decision "
+            "models work on unique questions only; a copy follows its original. Details: About the Data -> "
+            "Special cases.", icon=":material/content_copy:")
     st.subheader("Stages", help="Left to right is the order work flows in. Each card: how far it got, what to do, "
                                 "and a button that opens the right page with the filters already set.")
     _nq = S["questions"] or 1
@@ -384,7 +392,8 @@ if page == "Pipeline Status":
     STAGES = [
         ("1 · Read from the PDFs", ":material/description:",
          (S["questions"] - S["extraction_issues"]) / _nq,
-         f"{S['questions'] - S['extraction_issues']:,} clean · **{S['extraction_issues']} need a check**",
+         f"{S['questions'] - S['extraction_issues']:,} clean · **{S['extraction_on_originals']} need a check** "
+         f"(+{S['extraction_on_copies']} on 2013 duplicate copies - not needed)",
          "The extractor could not read some questions cleanly (options that are only a figure, OCR noise, a "
          "type mismatch with the key). Open each, compare with the PDF image, fix the text or confirm it.",
          "Fix extraction issues", "Review Workspace",
@@ -394,11 +403,11 @@ if page == "Pipeline Status":
          "Done. These are machine guesses - they become true only when you verify them. Browse them by "
          "subject or topic if you want to look around.",
          "Browse questions", "Question Browser", {}),
-        ("3 · AI review (second opinion)", ":material/forum:", S["ai_reviewed"] / _nq,
-         f"{S['ai_reviewed']} reviewed · {_v.get('agree', 0)} agree · **{_v.get('flag', 0)} flag · "
-         f"{_v.get('correct', 0)} correct**",
-         "Claude's opinion on 2026 CS-2, the benchmark and the 18 SE questions. Not verification. "
-         "Read the 'flag' and 'correct' ones first - that is where it disagreed.",
+        ("3 · AI review (second opinion)", ":material/forum:", S["ai_reviewed_v2"] / max(S["unique"], 1),
+         f"v2 (type + reasons): {S['ai_reviewed_v2']} of {S['unique']:,} unique · all latest: "
+         f"{_v.get('agree', 0)} agree · **{_v.get('flag', 0)} flag · {_v.get('correct', 0)} correct**",
+         "Claude's second opinion with the question type, a solution and its reasons. The whole gold set is "
+         "done; the rest follows in batches. Not verification. Read the 'flag' and 'correct' ones first.",
          "See AI opinions", "Second Opinions", {}),
         ("4 · Decision models", ":material/psychology:", S["decision_questions"] / _bt,
          f"{S['decision_questions']} questions answered" if S["decision_questions"] else "Not run yet (paid, off)",
@@ -526,8 +535,12 @@ elif page == "Question Browser":
                                 help="Full explanation: 'What the statuses mean' below the filters.")
         f_ext = st.selectbox("Extraction", ["(all)", "has an issue", "clean"], key="qb_ext", format_func=status_label,
                              help="'has an issue' = the extractor flagged the text/options for a check.")
+        f_dup = st.selectbox("Duplicates", ["(all)", "unique only (originals)", "duplicate copies only"],
+                             key="qb_dup", help="GATE 2013 sets 2-4 repeat set 1 (195 copies). 'unique only' "
+                                                "counts each question once.")
         q_text = st.text_input("Search question text", placeholder="e.g. deadlock, eigenvalue, B+ tree")
     status_guide(session)
+    _copy_of = dp.duplicate_map(session)["copy_of"]
     _ext = {"(all)": None, "has an issue": True, "clean": False}[f_ext]
     rows = srch.search_questions(
         session, text_query=q_text or None, years=f_years or None,
@@ -537,7 +550,10 @@ elif page == "Question Browser":
         status=None if f_status in ("(all)", "unclassified") else f_status)
     if f_status == "unclassified":
         rows = [r for r in rows if not r.get("primary_topic_id")]
+    if f_dup != "(all)":
+        rows = [r for r in rows if (r["id"] in _copy_of) == (f_dup == "duplicate copies only")]
     for r in rows:
+        r["duplicate of"] = _copy_of.get(r["id"], "")
         r["subject"] = _names.get(r.get("section_id") or "", r.get("section_id") or "")
         r["topic"] = _names.get(r.get("primary_topic_id") or "", r.get("primary_topic_id") or "")
         r["status"] = r.get("status") or "unclassified"
@@ -545,8 +561,11 @@ elif page == "Question Browser":
     st.session_state["browser_grid_ids"] = [r["id"] for r in rows]
 
     _total = session.scalar(select(func.count()).select_from(Question))
+    _ncopy = sum(1 for r in rows if r["id"] in _copy_of)
     st.markdown(f"**{len(rows):,}** of {_total:,} questions match"
-                + ("" if len(rows) == _total else " these filters") + ". Click a row to open it for review.")
+                + ("" if len(rows) == _total else " these filters")
+                + (f" (**{len(rows) - _ncopy:,} unique** + {_ncopy} duplicate copies from 2013 sets 2-4)" if _ncopy else "")
+                + ". Click a row to open it for review.")
 
     def _jump_from_grid():
         sel_rows = st.session_state["browser_grid"].selection.rows
@@ -557,7 +576,7 @@ elif page == "Question Browser":
             st.session_state.pop("browser_grid", None)
 
     _bcols = ["id", "year", "session", "q_number", "marks", "q_type", "subject", "topic",
-              "status", "confidence", "extraction"]
+              "status", "confidence", "extraction", "duplicate of"]
     st.dataframe(pd.DataFrame(rows, columns=_bcols + ["section_id", "primary_topic_id"])[_bcols], width="stretch",
                  hide_index=True, on_select=_jump_from_grid, selection_mode="single-row", key="browser_grid",
                  column_config={"id": st.column_config.TextColumn("question", pinned=True),
@@ -601,16 +620,25 @@ elif page == "Analysis Matrix":
     _yrs = [y for (y,) in session.execute(select(Paper.year).distinct().order_by(Paper.year))] or [2011, 2026]
     yf = c1.number_input("From year", 2007, 2100, max(min(_yrs), 2007))
     yt = c2.number_input("To year", 2007, 2100, max(_yrs))
-    m = az.section_year_matrix(session, yf, yt)
     _ppy = az.papers_per_year(session)
     avg_mode = st.checkbox(
         "Average over sessions (divide each year by its number of classified papers)",
         help="Years with several sessions (e.g. 2013 had 4 papers) otherwise show several times the marks of a "
              "single-paper year. Averaging makes years comparable; clicking a cell still lists the real questions.")
+    uniq_only = st.checkbox("Count each question once (leave out the 195 duplicate copies of GATE 2013 sets 2-4)",
+                            key="am_unique",
+                            help="Off (default): every loaded question counts, so 2013 shows its four sets. On: only "
+                                 "unique questions - 2013 counts once, like a single-paper year.")
+    _excl = set(dp.duplicate_map(session)["copy_of"]) if uniq_only else None
+    if uniq_only:                     # duplicate sets no longer count as extra sessions when averaging
+        for _y, _ps in dp.duplicate_map(session)["years"].items():
+            if _y in _ppy:
+                _ppy[_y] = max(1, _ppy[_y] - (len(_ps) - 1))
+    m = az.section_year_matrix(session, yf, yt, exclude_ids=_excl)
     ver_only = st.checkbox("Count verified only (hide machine suggestions)",
                            help="Until human review happens this shows zeros - that is honest, not a bug.")
     if ver_only:
-        m = az.section_year_matrix(session, yf, yt, verified_only=True)
+        m = az.section_year_matrix(session, yf, yt, verified_only=True, exclude_ids=_excl)
     if avg_mode:
         m = az.averaged_matrix(m, _ppy)
     _ppy_txt = ("Classified papers per year: " + ", ".join(f"{y}: {_ppy.get(y, 0)}" for y in m["years"])) if m["years"] else ""
@@ -640,6 +668,11 @@ elif page == "Analysis Matrix":
             select(Classification.status, func.count()).group_by(Classification.status)).all())
         _n_cls = sum(_stat_counts.values())
         st.subheader("Subject x year")
+        st.info(dp.summary_line(session) + (" **This view counts unique questions only** (2013 = set 1)."
+                                            if uniq_only else " **This view includes the copies**, so 2013 shows "
+                                            "four sets (4 x 65 questions); tick 'Count each question once' above "
+                                            "or 'Average over sessions' to compare 2013 fairly."),
+                icon=":material/content_copy:")
         st.caption(f"Two views of the same questions: marks (a 2-mark question counts 2) and question counts. "
                    f"One paper = 65 questions = 100 marks, so {_tot_q // 65} papers = {_tot_q:,} questions = {_tot_q // 65 * 100:,} marks. "
                    f"Click any number to see its questions. Bottom row = column totals; bottom-right = grand total. {_n_cls:,} of {_tot_q:,} questions counted.")
@@ -651,11 +684,12 @@ elif page == "Analysis Matrix":
                         f"them). The LEGACY column is historical software engineering, out of the 2027 syllabus.")
             if _ppy_txt:
                 st.caption(_ppy_txt)
+        _ymark = {} if uniq_only else {y: f"{len(p)} sets" for y, p in dp.duplicate_map(session)["years"].items()}
         _tm, _tq = st.tabs(["Marks", "Questions"])
         with _tm:
-            st.markdown(nav.matrix_html(m, _mnames), unsafe_allow_html=True)
+            st.markdown(nav.matrix_html(m, _mnames, year_marks=_ymark), unsafe_allow_html=True)
         with _tq:
-            st.markdown(nav.matrix_html(m, _mnames, metric="questions"), unsafe_allow_html=True)
+            st.markdown(nav.matrix_html(m, _mnames, metric="questions", year_marks=_ymark), unsafe_allow_html=True)
         with st.expander("Drill down (fallback dropdowns)", icon=":material/filter_list:"):
             d1, d2 = st.columns(2)
             d_sec = d1.selectbox("Cell subject", list(m["sections"].keys()) or ["-"], format_func=lambda x: named(x, _mnames))
@@ -667,7 +701,7 @@ elif page == "Analysis Matrix":
     st.subheader("Topic x year (questions)")
     _secs, _tbs2, _, _names2 = taxonomy_maps(session)
     t_sec = st.selectbox("Subject for the topic matrix", _secs, key="topic_matrix_sec", format_func=lambda x: named(x, _names2))
-    t_rows = az.topic_year_matrix(session, t_sec, yf, yt)
+    t_rows = az.topic_year_matrix(session, t_sec, yf, yt, exclude_ids=_excl)
     if t_rows:
         st.caption("Every number is clickable and opens that cell's contributing questions (counts are "
                    "machine suggestions until verified).")
@@ -829,8 +863,11 @@ elif page == "Review Workspace":
                    "auto-approved. Verified ones leave this list.")
     elif f_show == "extraction issues":
         _ext = set(session.scalars(select(Question.id).where(Question.needs_review == True)))  # noqa: E712
-        all_ids = [i for i in all_ids if i in _ext]
-        st.caption("Compare the text and options with the PDF image, then fix them under *Correct the extraction*.")
+        _cp = dp.duplicate_map(session)["copy_of"]
+        all_ids = [i for i in all_ids if i in _ext and i not in _cp]
+        st.caption("Compare the text and options with the PDF image, then fix them under *Correct the extraction*. "
+                   f"({sum(1 for i in _ext if i in _cp)} more are on 2013 duplicate copies - not needed, the "
+                   "original is what gets reviewed.)")
     elif f_show == "AI-reviewed":
         _air = set(session.scalars(select(ReviewEvent.question_id).where(ReviewEvent.field == "ai_review")))
         all_ids = [i for i in all_ids if i in _air]
@@ -1040,7 +1077,17 @@ elif page == "Review Workspace":
             else:
                 st.caption("Decision models: not run (paid, off by default).")
 
-            if cls:
+            _orig = dp.duplicate_map(session)["copy_of"].get(uid)
+            if _orig:
+                st.subheader(":material/content_copy: 4 · Duplicate copy - review the original", divider="gray")
+                st.info(f"This question is a **duplicate copy** of **{_orig}** (GATE 2013 was one exam printed in "
+                        "four shuffled sets; sets 2-4 repeat set 1). You review the original only: when you verify "
+                        "or flag it, this copy gets the same label and status automatically (audited as 'follows "
+                        "original'). AI review, API proposals and decision models also skip copies.",
+                        icon=":material/content_copy:")
+                st.button("Open the original", icon=":material/arrow_forward:", type="primary",
+                          on_click=goto("Review Workspace", review_pick=_orig), key=f"rw_orig_{uid}")
+            elif cls:
                 st.subheader(":material/how_to_reg: 4 · Your decision", divider="gray",
                              help="The only step that makes a label true. Every action is written to the audit log.")
                 _dtypes = ["MCQ", "MSQ", "NAT"]
@@ -1612,6 +1659,8 @@ elif page == "Engine & Pipeline":
         _rows = eng.stage_rows(K)
         _done = sum(1 for r in _rows if r["state"] == "done")
         st.progress(_done / len(_rows), text=f"CSE: {_done} of {len(_rows)} stages complete")
+        st.info(dp.summary_line(session) + " Every stage below works on unique questions; copies follow their "
+                "original.", icon=":material/content_copy:")
         _ico = {"done": "[x]", "doing": "[~]", "todo": "[ ]", "optional": "[ ] (optional)"}
         st.markdown("\n".join(f"- **{_ico[r['state']]} {r['stage']}** - {r['detail']}" for r in _rows))
         st.info("**You are at stage 10:** verify the 385 gold-set questions (Pipeline Status -> Review the "
@@ -1658,6 +1707,8 @@ elif page == "Engine & Pipeline":
             "should fit; older years may need a new layout entry)\n"
             "- [ ] The LEGACY section is CS-only - skip it for EC unless old EC syllabus topics appear\n\n"
             "**D. Load and check**\n"
+            "- [ ] Check for **duplicate sets** (one exam printed in several shuffled sets, like GATE CS 2013): "
+            "they are found automatically (About the Data -> Special cases) and reviewed once\n"
             "- [ ] `papers-probe` (dry check of pages/layouts) -> `papers-load --manifest manifests/papers-ec.yaml` (keys load with it) -> `validate` (every paper 65 Q / 100 marks)\n"
             "- [ ] Open the app with the EC database; fix extraction issues it flags\n\n"
             "**E. Classify**\n"
@@ -1675,6 +1726,8 @@ elif page == "Engine & Pipeline":
 
 elif page == "About the Data":
     render_data_inventory(session)
+    st.subheader("Special cases", divider="gray")
+    st.markdown(dp.special_cases_md(session))
 
 else:  # Glossary & Syllabus
     page_header("Glossary & Syllabus")
@@ -1683,6 +1736,8 @@ else:  # Glossary & Syllabus
     _tax = _yaml.safe_load((APP_ROOT / "taxonomy.yaml").read_text(encoding="utf-8"))
     st.subheader("Statuses and terms", divider="gray")
     st.markdown(status_guide_md(session))
+    st.subheader("Special cases (data rules)", divider="gray")
+    st.markdown(dp.special_cases_md(session))
     st.subheader("Where the syllabus comes from", divider="gray")
     _src_rows = []
     for _lab, _pk, _hk in [("CS syllabus 2027 (official PDF)", "source_pdf", "source_sha256"),

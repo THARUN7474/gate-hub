@@ -1,0 +1,1230 @@
+{
+ "reviewer": "claude-opus-5-5",
+ "prompt_version": "ai-review-v2",
+ "decisions": [
+  {
+   "question_id": "GATE-CS-2013-S1-Q03",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.LA",
+   "secondary_topic_ids": [],
+   "concept_ids": [],
+   "what_it_tests": "Which determinant differs (row operations).",
+   "why_this_topic": "Determinant properties are linear algebra.",
+   "alternatives_considered": [],
+   "solution_sketch": "Cannot solve: the determinants are flattened into unreadable text.",
+   "my_answer": "unsure",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.85,
+   "note": "Matrices lost in extraction - needs the PDF. Original of the 2013 sets 2-4 copies."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q04",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "DL",
+   "primary_topic_id": "DL.NUM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DL.NUM.FIXED"
+   ],
+   "what_it_tests": "Range of 8-bit two's complement.",
+   "why_this_topic": "Fixed-point representation.",
+   "alternatives_considered": [],
+   "solution_sketch": "-2^7 = -128.",
+   "my_answer": "B",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.96,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q09",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "CD",
+   "primary_topic_id": "CD.LEX",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "CD.LEX.PARSE"
+   ],
+   "what_it_tests": "Maximum reductions in bottom-up parsing without epsilon/unit productions.",
+   "why_this_topic": "Shift-reduce parsing.",
+   "alternatives_considered": [],
+   "solution_sketch": "Each reduction shrinks the sentential form by at least 1: at most n - 1.",
+   "my_answer": "B",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.82,
+   "note": "Label was flagged earlier; topic right."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q11",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "CN",
+   "primary_topic_id": "CN.APP",
+   "secondary_topic_ids": [],
+   "concept_ids": [],
+   "what_it_tests": "Matching SOA concepts (publish-find-bind, XML, BPMN).",
+   "why_this_topic": "Service-oriented computing is not in the GATE CS 2027 syllabus.",
+   "alternatives_considered": [
+    {
+     "topic_id": "LEGACY.SE",
+     "why_not": "closest old area but not SE proper"
+    }
+   ],
+   "solution_sketch": "P-3, Q-1, R-4, S-2.",
+   "my_answer": "C",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": false
+   },
+   "flag_reason": "out_of_syllabus",
+   "confidence": 0.4,
+   "note": "Out of syllabus (web services)."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q12",
+   "verdict": "correct",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "CN",
+   "primary_topic_id": "CN.TCP",
+   "secondary_topic_ids": [
+    "CN.APP"
+   ],
+   "concept_ids": [
+    "CN.TCP.CONN"
+   ],
+   "what_it_tests": "TCP vs UDP for multimedia, FTP, DNS and email.",
+   "why_this_topic": "The asked property is the transport protocol (transport layer); the applications are examples.",
+   "alternatives_considered": [
+    {
+     "topic_id": "CN.APP",
+     "why_not": "application knowledge helps but is not what is asked"
+    }
+   ],
+   "solution_sketch": "UDP, TCP, UDP, TCP -> C.",
+   "my_answer": "C",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.62,
+   "note": "CN.TCP vs CN.APP boundary - your call."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q14",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "CN",
+   "primary_topic_id": "CN.LAYER",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "CN.LAYER.LAYER"
+   ],
+   "what_it_tests": "Layer visits through two routers.",
+   "why_this_topic": "Per-hop layer processing is layering.",
+   "alternatives_considered": [],
+   "solution_sketch": "Network 4, data link 6.",
+   "my_answer": "C",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q15",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "DB",
+   "primary_topic_id": "DB.IDX",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DB.IDX.IDX"
+   ],
+   "what_it_tests": "Definition of a clustered index.",
+   "why_this_topic": "Indexing.",
+   "alternatives_considered": [],
+   "solution_sketch": "Records ordered like the index entries.",
+   "my_answer": "C",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Label was flagged earlier; topic right."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q18",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "TOC",
+   "primary_topic_id": "TOC.TM",
+   "secondary_topic_ids": [
+    "ALGO.GRAPH"
+   ],
+   "concept_ids": [],
+   "what_it_tests": "P, NP, NP-completeness facts.",
+   "why_this_topic": "Complexity classes are not in the GATE CS 2027 syllabus.",
+   "alternatives_considered": [
+    {
+     "topic_id": "ALGO.GRAPH",
+     "why_not": "cycle detection is only the example"
+    }
+   ],
+   "solution_sketch": "All three true.",
+   "my_answer": "A",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": false
+   },
+   "flag_reason": "out_of_syllabus",
+   "confidence": 0.5,
+   "note": "Out of syllabus."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q24",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.PS",
+   "secondary_topic_ids": [
+    "EM.DM"
+   ],
+   "concept_ids": [
+    "EM.PS.RV"
+   ],
+   "what_it_tests": "Expected number of triangles in a random graph.",
+   "why_this_topic": "Linearity of expectation.",
+   "alternatives_considered": [
+    {
+     "topic_id": "EM.DM",
+     "why_not": "graph only supplies the objects"
+    }
+   ],
+   "solution_sketch": "56 x 1/8 = 7.",
+   "my_answer": "C",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.88,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q32",
+   "verdict": "correct",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "TOC",
+   "primary_topic_id": "TOC.RCFL",
+   "secondary_topic_ids": [
+    "TOC.CFG"
+   ],
+   "concept_ids": [
+    "TOC.RCFL.CLOSURE"
+   ],
+   "what_it_tests": "Class membership and closure of 0^p1^q0^r variants.",
+   "why_this_topic": "Regular vs context-free and closure decide every option.",
+   "alternatives_considered": [
+    {
+     "topic_id": "TOC.CFG",
+     "why_not": "no grammar or PDA is built"
+    }
+   ],
+   "solution_sketch": "L1 is regular, so its complement is regular: D is false.",
+   "my_answer": "D",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.75,
+   "note": "Exponents and subscripts garbled."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q34",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "OS",
+   "primary_topic_id": "OS.SYNC",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "OS.SYNC.SYNC"
+   ],
+   "what_it_tests": "Race condition with a counting semaphore of 2.",
+   "why_this_topic": "Synchronization.",
+   "alternatives_considered": [],
+   "solution_sketch": "Max x = 2.",
+   "my_answer": "D",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.88,
+   "note": "Label was flagged earlier; topic right."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q38",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "LEGACY",
+   "primary_topic_id": "LEGACY.SE",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "LEGACY.SE.DESIGN"
+   ],
+   "what_it_tests": "Effect of moving a method on cohesion and coupling.",
+   "why_this_topic": "Old-syllabus software design.",
+   "alternatives_considered": [],
+   "solution_sketch": "Needs the access-graph figure.",
+   "my_answer": "unsure",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.85,
+   "note": "Figure question."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q39",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "OS",
+   "primary_topic_id": "OS.SYNC",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "OS.SYNC.SYNC"
+   ],
+   "what_it_tests": "Semaphore entry/exit for producer-consumer ordering.",
+   "why_this_topic": "Synchronization.",
+   "alternatives_considered": [],
+   "solution_sketch": "Cannot verify: option A holds two options' code and C is empty.",
+   "my_answer": "unsure",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.9,
+   "note": "Options scrambled."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q40",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "CD",
+   "primary_topic_id": "CD.LEX",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "CD.LEX.PARSE"
+   ],
+   "what_it_tests": "Merging LR(1) item sets in LALR.",
+   "why_this_topic": "Parsing.",
+   "alternatives_considered": [],
+   "solution_sketch": "Same core: they merge with no conflict -> all four statements false.",
+   "my_answer": "D",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.88,
+   "note": "Label was flagged earlier; topic right."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q41",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "TOC",
+   "primary_topic_id": "TOC.TM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "TOC.TM.UNDEC"
+   ],
+   "what_it_tests": "Which grammar/automaton problems are undecidable.",
+   "why_this_topic": "Decidability.",
+   "alternatives_considered": [],
+   "solution_sketch": "CFG = Sigma* and TM-regularity undecidable -> 2 and 3.",
+   "my_answer": "D",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q42",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.C",
+   "secondary_topic_ids": [
+    "PDS.REC"
+   ],
+   "concept_ids": [
+    "PDS.C.SCOPE"
+   ],
+   "what_it_tests": "Recursion with by-reference and by-value parameters.",
+   "why_this_topic": "Parameter passing decides the result.",
+   "alternatives_considered": [
+    {
+     "topic_id": "PDS.REC",
+     "why_not": "recursion is simple"
+    }
+   ],
+   "solution_sketch": "x ends at 9: 9^4 = 6561.",
+   "my_answer": "B",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.78,
+   "note": "Uses C++ '&' reference syntax."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q46",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "DL",
+   "primary_topic_id": "DL.CIRC",
+   "secondary_topic_ids": [
+    "COA.MEM"
+   ],
+   "concept_ids": [
+    "DL.CIRC.COMB"
+   ],
+   "what_it_tests": "Decoders needed for RAM expansion.",
+   "why_this_topic": "Decoder-based chip select.",
+   "alternatives_considered": [
+    {
+     "topic_id": "COA.MEM",
+     "why_not": "setting only"
+    }
+   ],
+   "solution_sketch": "4 + 1 = 5 decoders.",
+   "my_answer": "B",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.72,
+   "note": "Label was flagged earlier."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q49",
+   "verdict": "correct",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "CD",
+   "primary_topic_id": "CD.OPT",
+   "secondary_topic_ids": [
+    "COA.ISA"
+   ],
+   "concept_ids": [
+    "CD.OPT.DFLOW"
+   ],
+   "what_it_tests": "Minimum registers via liveness.",
+   "why_this_topic": "Register count from simultaneous liveness is data-flow analysis.",
+   "alternatives_considered": [
+    {
+     "topic_id": "COA.ISA",
+     "why_not": "framing only"
+    }
+   ],
+   "solution_sketch": "At most 4 values live at once -> 4.",
+   "my_answer": "B",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.65,
+   "note": "CD vs COA boundary."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q56",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.VA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.VA.VOCAB"
+   ],
+   "what_it_tests": "Meaning of 'nadir'.",
+   "why_this_topic": "Vocabulary.",
+   "alternatives_considered": [],
+   "solution_sketch": "Lowest point.",
+   "my_answer": "B",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.96,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q58",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.QA",
+   "secondary_topic_ids": [],
+   "concept_ids": [],
+   "what_it_tests": "Maximum sum of a decreasing AP.",
+   "why_this_topic": "Arithmetic progression.",
+   "alternatives_considered": [],
+   "solution_sketch": "44 + 42 + ... + 2 = 506.",
+   "my_answer": "C",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q61",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.QA",
+   "secondary_topic_ids": [],
+   "concept_ids": [],
+   "what_it_tests": "Telescoping sum of 1/(sqrt k + sqrt(k+1)).",
+   "why_this_topic": "Telescoping series.",
+   "alternatives_considered": [],
+   "solution_sketch": "Sum = sqrt 81 - 1 = 8.",
+   "my_answer": "B",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.85,
+   "note": "Fractions and roots lost in extraction."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q62",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.QA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.QA.PROB"
+   ],
+   "what_it_tests": "Probability not divisible by 7.",
+   "why_this_topic": "Counting probability.",
+   "alternatives_considered": [],
+   "solution_sketch": "77/90.",
+   "my_answer": "D",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q63",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.VA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.VA.RC"
+   ],
+   "what_it_tests": "Moral supported by a passage.",
+   "why_this_topic": "Reading comprehension.",
+   "alternatives_considered": [],
+   "solution_sketch": "No adversity justifies giving up hope.",
+   "my_answer": "D",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.85,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q65",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.QA",
+   "secondary_topic_ids": [],
+   "concept_ids": [],
+   "what_it_tests": "Cost after proportional changes.",
+   "why_this_topic": "Ratio arithmetic.",
+   "alternatives_considered": [],
+   "solution_sketch": "13200 x 6/5 x 23/24 = 15180.",
+   "my_answer": "B",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.93,
+   "note": "'END OF THE QUESTION PAPER' leaked into option A."
+  },
+  {
+   "question_id": "GATE-CS-2014-S1-Q54",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "COA",
+   "primary_topic_id": "COA.MEM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "COA.MEM.CACHE"
+   ],
+   "what_it_tests": "Miss ratio under LRU when reuse distance fits in the set.",
+   "why_this_topic": "Cache replacement behaviour.",
+   "alternatives_considered": [],
+   "solution_sketch": "Associativity >= k means only first-time (compulsory) misses: n/N.",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2014-S2-Q58",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.DM",
+   "secondary_topic_ids": [
+    "EM.PS"
+   ],
+   "concept_ids": [
+    "EM.DM.COUNT"
+   ],
+   "what_it_tests": "Inclusion-exclusion for numbers coprime to 2, 3, 5.",
+   "why_this_topic": "Counting.",
+   "alternatives_considered": [
+    {
+     "topic_id": "EM.PS",
+     "why_not": "the probability is only count/100"
+    }
+   ],
+   "solution_sketch": "74 divisible by 2, 3 or 5 -> 26/100 = 0.26.",
+   "my_answer": "0.26",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2014-S3-Q45",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "TOC",
+   "primary_topic_id": "TOC.TM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "TOC.TM.UNDEC"
+   ],
+   "what_it_tests": "Which CFG problem is undecidable.",
+   "why_this_topic": "Decidability.",
+   "alternatives_considered": [],
+   "solution_sketch": "CFG ambiguity is undecidable; membership, emptiness, finiteness are decidable.",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "Label was flagged earlier; topic right."
+  },
+  {
+   "question_id": "GATE-CS-2015-S1-Q60",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.LIN",
+   "secondary_topic_ids": [
+    "ALGO.CMPLX"
+   ],
+   "concept_ids": [
+    "PDS.LIN.ARR"
+   ],
+   "what_it_tests": "Choosing a data structure for a mix of find, insert, delete, decrease-key.",
+   "why_this_topic": "Comparing operation costs of arrays, heaps and lists.",
+   "alternatives_considered": [
+    {
+     "topic_id": "ALGO.CMPLX",
+     "why_not": "total complexity is the measure"
+    }
+   ],
+   "solution_sketch": "With few deletes/decrease-keys and many inserts, an unsorted array gives the best total -> A.",
+   "my_answer": "A",
+   "key_check": "no_key",
+   "difficulty": "hard",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.7,
+   "note": "The start of the stem (operation counts) is missing; response-sheet junk in options."
+  },
+  {
+   "question_id": "GATE-CS-2015-S2-Q65",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "DL",
+   "primary_topic_id": "DL.CIRC",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DL.CIRC.COMB"
+   ],
+   "what_it_tests": "Propagation delay of a 4-bit ripple-carry adder.",
+   "why_this_topic": "Adder delay is combinational-circuit design.",
+   "alternatives_considered": [
+    {
+     "topic_id": "COA.ALU",
+     "why_not": "an ALU context is not needed"
+    }
+   ],
+   "solution_sketch": "Carry path per full adder plus the first sum path gives 19.2 us.",
+   "my_answer": "19.2",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.85,
+   "note": "Answer printed in the stem; label was flagged earlier."
+  },
+  {
+   "question_id": "GATE-CS-2015-S3-Q59",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "DL",
+   "primary_topic_id": "DL.NUM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DL.NUM.FIXED"
+   ],
+   "what_it_tests": "Base equation with unknown bases.",
+   "why_this_topic": "Number systems.",
+   "alternatives_considered": [],
+   "solution_sketch": "4x + 3 = 8y + 3 -> x = 2y, x > 4, y <= 7 -> y = 3..7 -> 5.",
+   "my_answer": "5",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Answer printed in the stem."
+  },
+  {
+   "question_id": "GATE-CS-2016-S1-Q36",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.DM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.DM.COUNT"
+   ],
+   "what_it_tests": "Coefficient via generating functions.",
+   "why_this_topic": "Generating functions.",
+   "alternatives_considered": [],
+   "solution_sketch": "x^9 (1 - x)^-3: coefficient of x^3 is C(5,2) = 10.",
+   "my_answer": "10",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "Exponents flattened."
+  },
+  {
+   "question_id": "GATE-CS-2016-S2-Q56",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "CD",
+   "primary_topic_id": "CD.LEX",
+   "secondary_topic_ids": [
+    "TOC.CFG"
+   ],
+   "concept_ids": [
+    "CD.LEX.PARSE"
+   ],
+   "what_it_tests": "Which grammars generate C-like array declarations.",
+   "why_this_topic": "Grammar design for a language construct is syntax analysis.",
+   "alternatives_considered": [
+    {
+     "topic_id": "TOC.CFG",
+     "why_not": "grammar theory also fits"
+    }
+   ],
+   "solution_sketch": "Both grammars derive id[num]...[num] correctly.",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.66,
+   "note": "Productions run together in the text."
+  },
+  {
+   "question_id": "GATE-CS-2017-S1-Q64",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.QA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.QA.COUNT"
+   ],
+   "what_it_tests": "Assignments avoiding two forbidden choices.",
+   "why_this_topic": "Counting with inclusion-exclusion.",
+   "alternatives_considered": [],
+   "solution_sketch": "24 - 6 - 6 + 2 = 14.",
+   "my_answer": "D",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2017-S2-Q40",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "TOC",
+   "primary_topic_id": "TOC.RCFL",
+   "secondary_topic_ids": [
+    "TOC.TM"
+   ],
+   "concept_ids": [
+    "TOC.RCFL.PUMPL"
+   ],
+   "what_it_tests": "Classifying four languages.",
+   "why_this_topic": "Regular/CFL/recursive classification.",
+   "alternatives_considered": [],
+   "solution_sketch": "I false, II false (L2 is CFL), III true, IV true -> D.",
+   "my_answer": "D",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Label was flagged earlier; topic right."
+  },
+  {
+   "question_id": "GATE-CS-2018-S1-Q42",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.C",
+   "secondary_topic_ids": [
+    "ALGO.CMPLX"
+   ],
+   "concept_ids": [],
+   "what_it_tests": "Nested halving loops.",
+   "why_this_topic": "Tracing C loops.",
+   "alternatives_considered": [
+    {
+     "topic_id": "ALGO.CMPLX",
+     "why_not": "the log-log effect is incidental"
+    }
+   ],
+   "solution_sketch": "j = 40; halving 40, 20, 10, 5, 2 -> sum = 5.",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.88,
+   "note": "'2 40' is 2^40."
+  },
+  {
+   "question_id": "GATE-CS-2019-S1-Q40",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "DL",
+   "primary_topic_id": "DL.BOOL",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DL.BOOL.ALG"
+   ],
+   "what_it_tests": "Minterms of (f1 AND f2) XOR f3.",
+   "why_this_topic": "Boolean functions as minterm sets.",
+   "alternatives_considered": [],
+   "solution_sketch": "f1.f2 = {2,8,14}; XOR {2,7,11,14} = {7,8,11}.",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2020-S1-Q58",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.C",
+   "secondary_topic_ids": [],
+   "concept_ids": [],
+   "what_it_tests": "Fast exponentiation via a binary-digit array.",
+   "why_this_topic": "Tracing C functions.",
+   "alternatives_considered": [],
+   "solution_sketch": "4 = 100b; tot multiplies 3^4 = 81.",
+   "my_answer": "81",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.88,
+   "note": "The two functions are interleaved in the text."
+  },
+  {
+   "question_id": "GATE-CS-2021-S1-Q55",
+   "verdict": "agree",
+   "question_type": "MSQ",
+   "type_check": "matches",
+   "section_id": "CN",
+   "primary_topic_id": "CN.ROUTE",
+   "secondary_topic_ids": [
+    "CN.TCP"
+   ],
+   "concept_ids": [
+    "CN.ROUTE.IPV4"
+   ],
+   "what_it_tests": "IPv4 fragmentation and retransmission.",
+   "why_this_topic": "IP fragmentation.",
+   "alternatives_considered": [],
+   "solution_sketch": "1420-byte datagram over MTU 820: 800 + 600 payload -> second is 620 bytes; IP never resends, TCP resends the segment -> A, C.",
+   "my_answer": "A;C",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "Extractor reported an empty option, but all four are present."
+  },
+  {
+   "question_id": "GATE-CS-2021-S2-Q63",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "COA",
+   "primary_topic_id": "COA.PIPE",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "COA.PIPE.HAZARD",
+    "COA.PIPE.PERF"
+   ],
+   "what_it_tests": "Speed-up from operand forwarding in a dependent chain.",
+   "why_this_topic": "Data hazards and forwarding.",
+   "alternatives_considered": [],
+   "solution_sketch": "Cycle counts with and without forwarding give 1.875.",
+   "my_answer": "1.875",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.88,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2022-S1-Q56",
+   "verdict": "flag",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "DB",
+   "primary_topic_id": "DB.REL",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DB.REL.SQL"
+   ],
+   "what_it_tests": "Relational division with NOT EXISTS/EXCEPT.",
+   "why_this_topic": "SQL.",
+   "alternatives_considered": [],
+   "solution_sketch": "Needs the table instances, which are not in the text.",
+   "my_answer": "unsure",
+   "key_check": "unsure",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.88,
+   "note": "Table data missing."
+  },
+  {
+   "question_id": "GATE-CS-2023-S1-Q59",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.LIN",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "PDS.LIN.STACKQ"
+   ],
+   "what_it_tests": "Stack and queue operation trace.",
+   "why_this_topic": "Stacks and queues.",
+   "alternatives_considered": [],
+   "solution_sketch": "After the operations the stack top is 8.",
+   "my_answer": "8",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "Clear."
+  }
+ ]
+}

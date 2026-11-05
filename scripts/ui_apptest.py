@@ -262,6 +262,23 @@ def main() -> None:
     assert ls.format_func("verified").startswith("verified (you checked")
     print("PASS status guide on Glossary + explained Label status dropdown")
 
+    # duplicates (GATE 2013 sets 2-4): unique count, special-cases section, matrix switch, copy -> original
+    at.sidebar.radio[0].set_value("Pipeline Status")
+    at.run()
+    assert any(m.label == "Unique questions" for m in at.metric), "unique-questions metric missing"
+    at.sidebar.radio[0].set_value("About the Data")
+    at.run()
+    assert any("Duplicate question papers" in (m.value or "") for m in at.markdown), "special cases missing"
+    at.sidebar.radio[0].set_value("Analysis Matrix")
+    at.run()
+    next(c for c in at.checkbox if c.key == "am_unique").check().run()
+    assert not at.exception and any("counts unique questions only" in (i.value or "") for i in at.info)
+    at.sidebar.radio[0].set_value("Review Workspace")
+    at.session_state["review_pick"] = "GATE-CS-2013-S2-Q01"
+    at.run()
+    assert not at.exception and any("duplicate copy" in (i.value or "") for i in at.info), "copy banner missing"
+    print("PASS duplicates: unique metric, special cases, unique-only matrix, copy points to its original")
+
     print("ALL APPTEST CHECKS PASSED (scratch DB:", db, ")")
 
 if __name__ == "__main__":

@@ -112,10 +112,14 @@ def eligible(s) -> tuple[list, dict]:
     sampled = {b.question_id: b.status for b in s.scalars(select(BenchmarkSample))}
     done = reviewed_v2(s)
     verified = set(s.scalars(select(Classification.question_id).where(Classification.status == "verified")))
+    from src.analytics.dupes import duplicate_map
+    copies = duplicate_map(s)["copy_of"]
     gold, rest = [], []
-    held = {"already reviewed (v2)": 0, "verified by you - left alone": 0, "extraction issue - fix it first": 0}
+    held = {"already reviewed (v2)": 0, "duplicate copy - follows its original": 0,
+            "verified by you - left alone": 0, "extraction issue - fix it first": 0}
     for q in s.scalars(select(Question).order_by(Question.paper_id, Question.q_number)):
-        if q.id in done: held["already reviewed (v2)"] += 1
+        if q.id in copies: held["duplicate copy - follows its original"] += 1
+        elif q.id in done: held["already reviewed (v2)"] += 1
         elif q.id in verified: held["verified by you - left alone"] += 1
         elif q.id in sampled: gold.append(q)
         elif q.needs_review: held["extraction issue - fix it first"] += 1

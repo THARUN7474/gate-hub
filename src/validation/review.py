@@ -35,8 +35,12 @@ def review_queue(s: Session, classified_only: bool = False) -> list[dict]:
          .order_by(Question.paper_id, Question.q_number))
     if classified_only:
         q = q.where(Classification.status.in_(["suggested", "flagged"]))
+    from ..analytics.dupes import duplicate_map
+    copies = duplicate_map(s)["copy_of"]          # duplicate copies follow their original - never queued
     rows = []
     for qu, c in s.execute(q):
+        if qu.id in copies:
+            continue
         reasons = []
         if qu.needs_review:
             reasons.append("extraction: " + (qu.review_reason or "flagged"))
@@ -321,7 +325,41 @@ def set_status(s: Session, question_id: str, status: str, reviewer: str, note: s
         # verification is revoked - a formerly verified label must not stay scored.
         from . import benchmark as _bm
         _bm.revoke_gold(s, question_id, f"revoked: re-flagged by {reviewer}")
+    mirror_to_copies(s, question_id, reviewer)
     s.flush()
+
+MIRRORED = ("section_id", "primary_topic_id", "concept_ids", "topic_weight", "what_it_tests", "prerequisite_ids")
+
+def mirror_to_copies(s: Session, question_id: str, reviewer: str) -> int:
+    """A duplicate copy (e.g. GATE 2013 sets 2-4) follows its original: after a human verifies or flags the
+    original, each copy gets the same label and status. Every change is audited as 'follows original'.
+    Returns the number of copies updated (0 when the question has none)."""
+    from ..analytics.dupes import copies_of
+    o = s.scalar(select(Classification).where(Classification.question_id == question_id))
+    if o is None:
+        return 0
+    n = 0
+    for cid in copies_of(s, question_id):
+        c = s.scalar(select(Classification).where(Classification.question_id == cid))
+        tag = f"follows original {question_id} (duplicate copy)"
+        if c is None:
+            c = Classification(question_id=cid, taxonomy_version=o.taxonomy_version, section_id=o.section_id,
+                               primary_topic_id=o.primary_topic_id, confidence=o.confidence, provenance=o.provenance,
+                               status=o.status, model=f"copy of {question_id}", prompt_version=o.prompt_version)
+            s.add(c)
+        for f in MIRRORED:
+            if getattr(c, f) != getattr(o, f):
+                s.add(ReviewEvent(question_id=cid, field=f, before=json.dumps(getattr(c, f)) if not isinstance(getattr(c, f), str) else getattr(c, f),
+                                  after=json.dumps(getattr(o, f)) if not isinstance(getattr(o, f), str) else getattr(o, f),
+                                  reviewer=reviewer, note=tag))
+                setattr(c, f, getattr(o, f))
+        if c.status != o.status:
+            s.add(ReviewEvent(question_id=cid, field="status", before=c.status, after=o.status,
+                              reviewer=reviewer, note=tag))
+            c.status = o.status
+        c.provenance = o.provenance
+        n += 1
+    return n
 
 def approve_batch(s: Session, question_ids: list[str], reviewer: str,
                   corrections: dict[str, dict] | None = None,

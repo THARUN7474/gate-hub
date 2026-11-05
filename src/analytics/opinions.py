@@ -92,7 +92,13 @@ def stage_summary(s: Session) -> dict:
         ClassificationProposal.provider.in_(DECISION_PROVIDERS))) or 0
     bench = dict(s.execute(select(BenchmarkSample.status, func.count()).group_by(BenchmarkSample.status)).all())
     v2 = sum(1 for r in ai if r["version"] == "ai-review-v2")
-    return {"questions": total, "classified": classified, "ai_reviewed_v2": v2, "verified": verified,
+    from .dupes import duplicate_map
+    D = duplicate_map(s)
+    ext_ids = set(s.scalars(select(Question.id).where(Question.needs_review == True)))  # noqa: E712
+    ext_copies = len(ext_ids & set(D["copy_of"]))
+    return {"questions": total, "unique": D["unique"], "copies": len(D["copy_of"]),
+            "extraction_on_originals": extraction - ext_copies, "extraction_on_copies": ext_copies,
+            "classified": classified, "ai_reviewed_v2": v2, "verified": verified,
             "extraction_issues": extraction, "ai_reviewed": len(ai), "ai_verdicts": verdicts,
             "decision_questions": dec, "benchmark_total": sum(bench.values()),
             "benchmark_gold": bench.get("gold_verified", 0)}

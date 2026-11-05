@@ -498,6 +498,9 @@ def decisions(provider: str = typer.Argument(..., help="openai-decisions | jev")
             qs = [s.get(Question, i) for i in ids]
         else:
             qs = s.scalars(select(Question).where(Question.paper_id == paper_id).order_by(Question.q_number)).all()
+        from .analytics.dupes import duplicate_map
+        _copies = duplicate_map(s)["copy_of"]
+        qs = [q for q in qs if q.id not in _copies]          # duplicate copies follow their original
         res = dm.run(s, provider, qs, yes=yes, allow_spend=allow_spend, max_calls=max_calls, with_images=with_images)
     if res.get("dry_run"):
         res["first_payload"] = json.dumps(res["first_payload"], ensure_ascii=False)[:1500] + " ..."

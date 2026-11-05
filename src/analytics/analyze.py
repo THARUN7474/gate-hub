@@ -8,7 +8,7 @@ from sqlalchemy.orm import Session
 from ..db.models import AnswerKey, Classification, Paper, Question, TaxonomyNode
 
 def section_year_matrix(s: Session, year_from: int = 2012, year_to: int = 2026,
-                        verified_only: bool = False) -> dict:
+                        verified_only: bool = False, exclude_ids: set | None = None) -> dict:
     q = (select(Classification.section_id, Paper.year,
                 func.count().label("questions"), func.coalesce(func.sum(Question.marks), 0).label("marks"))
          .join(Question, Question.id == Classification.question_id)
@@ -18,6 +18,8 @@ def section_year_matrix(s: Session, year_from: int = 2012, year_to: int = 2026,
          .order_by(Classification.section_id, Paper.year))
     if verified_only:
         q = q.where(Classification.status == "verified")
+    if exclude_ids:
+        q = q.where(Question.id.not_in(list(exclude_ids)))
     years: set[int] = set()
     sections: dict[str, dict] = {}
     for sec, yr, qc, marks in s.execute(q):
@@ -38,7 +40,7 @@ def drill_down(s: Session, section_id: str, year: int) -> list[str]:
     return list(s.scalars(q))
 
 def topic_year_matrix(s: Session, section_id: str | None = None,
-                      year_from: int = 2012, year_to: int = 2026) -> list[dict]:
+                      year_from: int = 2012, year_to: int = 2026, exclude_ids: set | None = None) -> list[dict]:
     q = (select(Classification.primary_topic_id, Paper.year,
                 func.count().label("questions"), func.coalesce(func.sum(Question.marks), 0).label("marks"))
          .join(Question, Question.id == Classification.question_id)
@@ -48,6 +50,8 @@ def topic_year_matrix(s: Session, section_id: str | None = None,
          .order_by(Classification.primary_topic_id, Paper.year))
     if section_id:
         q = q.where(Classification.section_id == section_id)
+    if exclude_ids:
+        q = q.where(Question.id.not_in(list(exclude_ids)))
     return [{"topic": t, "year": y, "questions": qc, "marks": float(m)}
             for t, y, qc, m in s.execute(q)]
 

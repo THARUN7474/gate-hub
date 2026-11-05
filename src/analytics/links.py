@@ -67,7 +67,7 @@ def topic_matrix_html(rows: list[dict], names: dict | None = None) -> str:
     out.append(f"<td {_TF}>{sum(col.values())}</td></tr></tfoot></table>")
     return "".join(out)
 
-def matrix_html(m: dict, names: dict | None = None, metric: str = "marks") -> str:
+def matrix_html(m: dict, names: dict | None = None, metric: str = "marks", year_marks: dict | None = None) -> str:
     """Section x year marks matrix as an HTML table; every non-empty cell is a
     link into its drill-down. A bottom Total row sums each year's column and the
     bottom-right cell is the grand total. metric: 'marks' or 'questions'.
@@ -76,7 +76,10 @@ def matrix_html(m: dict, names: dict | None = None, metric: str = "marks") -> st
     years = m["years"]
     out = ['<table style="border-collapse:collapse; width:100%">', "<thead><tr>",
            '<th style="text-align:left; padding:6px 8px; border-bottom:2px solid #888">Section</th>']
-    out += [f"<th {_TH}>{y}</th>" for y in years]
+    ym = year_marks or {}
+    out += [f"<th {_TH}>{y}" + (f'<br><span style="font-size:0.75em; color:#f0b429" title="duplicate sets: this year '
+                                 f'counts {ym[y]} of the same exam">*{ym[y]}</span>' if y in ym else "") + "</th>"
+            for y in years]
     out.append(f"<th {_TH}>Total</th></tr></thead><tbody>")
     col = {y: 0 for y in years}
     grand = 0

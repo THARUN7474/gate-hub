@@ -30,7 +30,8 @@ def select_benchmark_sample(s: Session, n: int, seed: int, batch: str) -> dict:
     rows with status='pending_user_review' (commit is the caller's job)."""
     if n <= 0:
         raise ValueError("n must be positive")
-    already = set(s.scalars(select(BenchmarkSample.question_id)).all())
+    from ..analytics.dupes import duplicate_map
+    already = set(s.scalars(select(BenchmarkSample.question_id)).all()) | set(duplicate_map(s)["copy_of"])
     strata: dict[str, list[tuple[Paper, Question]]] = defaultdict(list)
     rows = s.execute(select(Paper, Question).join(Question, Question.paper_id == Paper.id)
                      .order_by(Paper.year, Paper.session, Question.q_number)).all()
@@ -44,7 +45,8 @@ def select_benchmark_sample(s: Session, n: int, seed: int, batch: str) -> dict:
     target = min(n, total_avail)
     # proportional allocation with largest remainder; every stratum gets >= 1 when possible
     keys = sorted(strata)
-    alloc = {k: min(len(strata[k]), 1) for k in keys}
+    # every stratum gets >= 1 only when the target is large enough; a small top-up must not overshoot
+    alloc = {k: (min(len(strata[k]), 1) if target >= len(keys) else 0) for k in keys}
     remaining = target - sum(alloc.values())
     quotas = sorted(((len(strata[k]) / total_avail * target - alloc[k], k) for k in keys),
                     key=lambda t: (-t[0], t[1]))

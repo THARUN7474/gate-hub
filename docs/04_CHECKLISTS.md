@@ -9,7 +9,7 @@
 - [x] Papers 2007-2026 in `data/raw/papers/` (2007-2010 photographed pages deferred)
 - [x] Year-wise papers + keys 2021-2026 in `data/raw/` (20 papers with official keys in total)
 - [ ] Optional: PYQ books/solutions - local only, never cloud-processed without consent
-- [x] Docker Desktop, Python 3.12+, git installed; repo tests pass (238, 6 Nov 2026)
+- [x] Docker Desktop, Python 3.12+, git installed; repo tests pass (243, 6 Nov 2026)
 
 ## Per-paper reconciliation checklist (every paper, every run) - all 29 papers, 5 Nov 2026
 
@@ -132,9 +132,12 @@ AI review (Claude, labelled as such, NOT verification): 65 questions of 2026 CS-
 - [x] Gold set grown to **385** questions (120 + 265, stratified by paper x marks); verifying one = gold + human verification
 - [x] AI review v2 on **all 385 gold questions** (295 agree, 18 correct, 72 flag: 59 extraction, 10 out of syllabus, 2 type, 1 ambiguous; 6 type differences; key check 236 match, 0 differ) - shown in the Review Workspace while you review
 - [ ] YOU: gold review of the 385 (Pipeline Status -> Review the benchmark)
-- [ ] Decide: 2013 is stored as 4 papers but is one exam in 4 shuffled sets (60 of 65 questions shared) - keep one set?
+- [x] Duplicate question papers handled (decision: keep the copies, always say so): GATE 2013 S2-S4 repeat S1 question for question -> **1,885 loaded = 1,690 unique + 195 copies**, found from the data (`src/analytics/dupes.py`; same year + marks + text/options >= 85%, common-data questions matched on the sub-question). Other years checked: no repeats
+- [x] Copies follow their original: review queue, AI review, chat batches, API `classify`, `decisions` and gold sampling skip them; verifying/flagging an original updates its copies (audited 'follows original')
+- [x] Gold set holds originals only (24 moved to originals, 17 replaced; still 385; `scripts/dedupe_gold_set.py`); sampler no longer overshoots small top-ups; all 385 have AI review v2
+- [x] Shown everywhere: Pipeline Status 'Unique questions' metric + note, extraction card (150 + 15 on copies), Analysis Matrix note + '*4 sets' on 2013 + 'Count each question once' switch, Question Browser 'duplicate of' column + filter, Review Workspace copy -> 'Open the original', About the Data + Glossary 'Special cases', Engine & Pipeline note + ECE checklist item
 - [ ] Score machine labels + AI review v2 against the gold 385; then FreeLLMAPI and decision models on the 385
-- [x] Tests: 238 passed (`tests/test_ai_review_v2.py`), AppTest all PASS
+- [x] Tests: 243 passed (`tests/test_ai_review_v2.py`, `tests/test_duplicates.py`), AppTest all PASS
 
 ## Repository checklist
 

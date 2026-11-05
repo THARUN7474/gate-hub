@@ -843,15 +843,22 @@ def parse_years(spec: str | None) -> list[int] | None:
         years.update(range(a, b + 1))
     return sorted(years)
 
-def _select_questions(s: Session, paper_id: str | None = None, years: Sequence[int] | None = None) -> list[Question]:
+def _select_questions(s: Session, paper_id: str | None = None, years: Sequence[int] | None = None,
+                      include_copies: bool = False) -> list[Question]:
     """Deterministic order: newest year first, then paper id, then question number (so a resumed run continues
-    exactly where the last one stopped)."""
+    exactly where the last one stopped). Duplicate copies (e.g. GATE 2013 sets 2-4) are skipped: they follow
+    their original (src/analytics/dupes.py)."""
     q = select(Question).join(Paper, Paper.id == Question.paper_id)
     if paper_id:
         q = q.where(Question.paper_id == paper_id)
     if years:
         q = q.where(Paper.year.in_(list(years)))
-    return list(s.scalars(q.order_by(Paper.year.desc(), Paper.id, Question.q_number)).all())
+    out = list(s.scalars(q.order_by(Paper.year.desc(), Paper.id, Question.q_number)).all())
+    if include_copies:
+        return out
+    from ..analytics.dupes import duplicate_map
+    copies = duplicate_map(s)["copy_of"]
+    return [x for x in out if x.id not in copies]
 
 def _spread(items: list, sample: float) -> list:
     """`sample` fraction picked EVENLY across the list (not the first N: the first questions of a paper are all
