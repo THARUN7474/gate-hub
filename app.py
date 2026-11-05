@@ -66,6 +66,7 @@ PAGE_INFO = {
     "Second Opinions": (":material/forum:", "Everything the AI reviewer and decision models said, beside the current label."),
     "Approve Queue": (":material/playlist_add_check:", "Bulk-approve questions you already checked in the Review Workspace."),
     "LLM Classify": (":material/smart_toy:", "Machines that propose labels: FreeLLMAPI runs, comparisons and decision models."),
+    "Engine & Pipeline": (":material/schema:", "How the engine works: diagrams of the pipeline and of one question, where CSE stands, and how to do another branch."),
     "Glossary & Syllabus": (":material/menu_book:", "What every code means, with the official syllabus text and where it comes from."),
 }
 
@@ -118,6 +119,12 @@ PAGE_GUIDE = {
         ["Check which label providers are ready, estimate cost, preview payloads, and run or compare classification.",
          "Decision models (paid, off by default) for a calibrated second opinion."],
         ["You do not need this page to review questions. Every run is gated by consent settings in .env."]),
+    "Engine & Pipeline": (
+        ["See the whole pipeline as a diagram, coloured by what is done now.",
+         "See what one question holds (paper, year, Q number, marks, type, key, subject, topic, concepts) - live for any question.",
+         "Learn exactly how labels were made and how a status moves to verified.",
+         "A live CSE stage checklist, and a full checklist for adding another branch such as ECE."],
+        ["Diagrams are Graphviz, drawn from live database counts on every load."]),
     "Glossary & Syllabus": (
         ["What every label status means (suggested, flagged, verified, unclassified) and related terms.",
          "Every section, topic and concept code with its full name and the verbatim 2027 syllabus text.",
@@ -344,7 +351,7 @@ if rv.has_fixture_data(session):
     st.error(FIXTURE_BANNER)
 SCREENS = ["Pipeline Status", "About the Data", "Question Browser", "Analysis Matrix", "Topic Report",
            "Subject Overview", "Review Workspace", "Second Opinions", "Approve Queue", "LLM Classify",
-           "Glossary & Syllabus"]
+           "Engine & Pipeline", "Glossary & Syllabus"]
 st.sidebar.markdown("### :material/school: GATE CSE Intelligence")
 st.sidebar.caption("Local, phase 1. Every figure is computed live from the question records - historical "
                    "description only, not a prediction for GATE 2027.")
@@ -1461,6 +1468,137 @@ elif page == "LLM Classify":
                 "python -m src.cli evaluate-benchmark --provider jev                          # score vs your gold",
                 language="bash")
         st.caption("Details: docs/23_LLM_ROUTER_AND_DECISION_MODELS.md")
+
+elif page == "Engine & Pipeline":
+    page_header("Engine & Pipeline")
+    from src.analytics import engine as eng
+    K = eng.counts(session)
+    _t1, _t2, _t3, _t4, _t5 = st.tabs(["1 · The pipeline", "2 · One question", "3 · How labels are made",
+                                       "4 · CSE: where we are", "5 · Do another branch (e.g. ECE)"])
+    with _t1:
+        st.markdown("Every question goes **left to right**: PDF -> extracted question -> machine label -> "
+                    "second opinions -> **your** verification -> analysis. Colours are live: "
+                    ":green-badge[done] :orange-badge[in progress] :gray-badge[not started] "
+                    ":violet-badge[opinion / optional]. The gold-bordered box is where you are now.")
+        st.graphviz_chart(eng.pipeline_dot(K), width="stretch")
+        with st.expander("What each stage does (and which code does it)", icon=":material/info:"):
+            st.markdown(
+                "| Stage | What happens | Where |\n|---|---|---|\n"
+                "| Collect | Question PDFs, key PDFs and the syllabus PDFs are placed in `data/raw/` | you |\n"
+                "| Manifest | One entry per session: which PDF, which pages, layout family, where the key is | `manifests/papers.yaml` |\n"
+                "| Extract | Text (digital, or OCR for scans), options, marks, type and the **PDF region** of every question | `src/extraction/`, `papers-load` |\n"
+                "| Keys | Official answers parsed from key PDFs/CSVs; missing keys are listed, never guessed | `src/ingestion/keypdf.py`, `keys.py` |\n"
+                "| Reconcile | Each paper must come to 65 questions / 100 marks, or it is not accepted | `validate` |\n"
+                "| Taxonomy | Syllabus -> sections -> topics -> concepts, with official text | `taxonomy.yaml`, `cli taxonomy` |\n"
+                "| First-pass label | A model picks section + primary topic (+ concepts) per question; status *suggested* or *flagged* | `chat-export/chat-import` (Claude), or `classify` (API) |\n"
+                "| AI review | A reviewer model's verdict (agree / flag / correct) stored beside the label | `scripts/ai_review.py` |\n"
+                "| API proposals | Optional FreeLLMAPI second opinion, stored as proposals (never overwrites) | `classify --proposals`, LLM Classify |\n"
+                "| Decision models | Optional paid typed answer with a probability, stored as proposals | `cli decisions` |\n"
+                "| Human review | You compare with the PDF, fix extraction, correct the label, 5 checks, Verify | Review Workspace |\n"
+                "| Analysis | Matrices, topic report, exports - from the labels (verified-only switch available) | Analysis Matrix, `export` |")
+
+    with _t2:
+        st.markdown("**What one question record holds** and how it hangs off the syllabus: subject (section) -> "
+                    "chapter (topic) -> concepts.")
+        st.graphviz_chart(eng.question_model_dot(), width="stretch")
+        st.markdown("**A real question, live from the database** - pick any one:")
+        _pq = st.selectbox("Pick a question", [r for r in session.scalars(select(Question.id).order_by(Question.paper_id, Question.q_number))],
+                           index=None, placeholder="e.g. GATE-CS-2011-S1-Q15", key="eng_q")
+        _pq = _pq or "GATE-CS-2011-S1-Q15"
+        if session.get(Question, _pq):
+            st.graphviz_chart(eng.question_dot(session, _pq), width="stretch")
+            st.button("Open this question in the Review Workspace", icon=":material/arrow_forward:",
+                      on_click=goto("Review Workspace", review_pick=_pq))
+        _secs_e, _, _, _ne = taxonomy_maps(session)
+        st.markdown("**The syllabus tree for one subject** (question counts are current labels):")
+        _es = st.selectbox("Subject", _secs_e, format_func=lambda x: named(x, _ne), key="eng_sec",
+                           index=_secs_e.index("DL") if "DL" in _secs_e else 0)
+        st.graphviz_chart(eng.taxonomy_dot(session, _es), width="content")
+
+    with _t3:
+        st.markdown("#### Who made the labels you see now")
+        st.dataframe(pd.DataFrame(eng.label_sources(session)), hide_index=True, width="stretch")
+        st.markdown(
+            "**The order, precisely:**\n"
+            "1. **First-pass label** - Claude labelled every question through the chat-assisted batches (no API key, "
+            "no GPT). Status *suggested*, or *flagged* when it was unsure.\n"
+            "2. **AI review** - Claude, acting as a reviewer, gave a second opinion on 198 questions (2026 CS-2, the "
+            "benchmark, the 18 SE questions). It is stored **beside** the label; it only created labels for the 18 "
+            "SE questions and corrected 5.\n"
+            "3. **API proposals (FreeLLMAPI)** - optional, not run yet. Stored as proposals beside the label; they do "
+            "not replace it (only an explicit, audited re-classify run can replace an unverified label).\n"
+            "4. **Decision models** - optional, paid, not run yet. Also only proposals.\n"
+            "5. **Human verification** - you. The only step that makes a label true; verified labels are never "
+            "overwritten by any later run.\n\n"
+            "So steps 2-4 are **opinions in parallel** that help you decide - not layers stacked on the label.")
+        st.markdown("#### How a label's status moves")
+        st.graphviz_chart(eng.lifecycle_dot(), width="stretch")
+        status_guide(session)
+
+    with _t4:
+        _rows = eng.stage_rows(K)
+        _done = sum(1 for r in _rows if r["state"] == "done")
+        st.progress(_done / len(_rows), text=f"CSE: {_done} of {len(_rows)} stages complete")
+        _ico = {"done": "[x]", "doing": "[~]", "todo": "[ ]", "optional": "[ ] (optional)"}
+        st.markdown("\n".join(f"- **{_ico[r['state']]} {r['stage']}** - {r['detail']}" for r in _rows))
+        st.info("**You are at stage 10:** verify the 120 benchmark questions (Pipeline Status -> Review the "
+                "benchmark). Then fix extraction issues and verify the rest in priority order.",
+                icon=":material/flag:")
+
+    with _t5:
+        st.markdown(
+            "The engine is built per **branch**: a branch = its own papers, its own syllabus taxonomy and its own "
+            "database. Everything else (extraction, keys, reconciliation, review, analysis, this app) is reused. "
+            "Below is the full path for **ECE** (works the same for any GATE paper with 65 questions / 100 marks).")
+        st.graphviz_chart(f'''digraph B {{ rankdir=LR; {eng._G}
+  subgraph cluster_new {{ label="NEW for ECE"; color="#f0b429"; fontcolor="#f0b429";
+    a [label="EC question + key PDFs\\ndata/raw/ec/", fillcolor="#7a5a12"];
+    b [label="EC 2027 syllabus PDF", fillcolor="#7a5a12"];
+    c [label="manifests/papers-ec.yaml\\nbranch: EC", fillcolor="#7a5a12"];
+    d [label="taxonomy-ec.yaml\\ngate-ec-2027", fillcolor="#7a5a12"];
+    e [label="own database\\ndata/gate_ece.sqlite", fillcolor="#7a5a12"]; }}
+  subgraph cluster_reuse {{ label="REUSED as-is"; color="#3ecf8e"; fontcolor="#3ecf8e";
+    x [label="extract + OCR\\nkeys + reconcile", fillcolor="#1f5f3a"];
+    y [label="labels: chat batches,\\nFreeLLMAPI, decision models", fillcolor="#1f5f3a"];
+    z [label="Review Workspace,\\nbenchmark, analysis, app", fillcolor="#1f5f3a"]; }}
+  a -> c -> x; b -> d -> y; e -> x; x -> y -> z;
+}}''', width="stretch")
+        st.markdown("#### Checklist: a new branch, start to finish")
+        st.markdown(
+            "**A. Collect the input data**\n"
+            "- [ ] Download every GATE EC question paper you want (e.g. 2011-2026) from the official GATE sites / IIT archives\n"
+            "- [ ] Download the official answer keys (separate key PDFs, or keys printed inside the paper)\n"
+            "- [ ] Download the official **GATE 2027 EC syllabus PDF** (and reuse the GA syllabus - it is the same for all branches)\n"
+            "- [ ] Put them under `data/raw/ec/papers/`, `data/raw/ec/keys/`, `data/raw/syllabus/`; note which sessions each PDF holds\n\n"
+            "**B. Set up the branch**\n"
+            "- [ ] Create a separate database: `GATE_DB_URL=sqlite:///data/gate_ece.sqlite` (keeps CS data untouched)\n"
+            "- [ ] Write `taxonomy-ec.yaml`: copy the GA and EM-style structure, then one section per EC subject (Networks, "
+            "Signals & Systems, Electronic Devices, Analog, Digital, Control, Communications, Electromagnetics) with the "
+            "**verbatim** syllabus text, then topics and concepts under each; record the PDF path + sha256\n"
+            "- [ ] Load it: `python -m src.cli taxonomy --config taxonomy-ec.yaml`\n"
+            "- [ ] Write `manifests/papers-ec.yaml` with `defaults: branch: EC` and one entry per session (file, pages, "
+            "layout, key) - copy the nearest CS entry for each year's layout\n\n"
+            "**C. Small code changes needed first (one-time)**\n"
+            "- [ ] Make the taxonomy version configurable instead of the fixed `gate-cs-2027` (app LLM Classify, "
+            "`cli` defaults, `chat_batch.py`, `decision_models.py`) - e.g. a `GATE_TAXONOMY` setting\n"
+            "- [ ] Check the extractor's layout families against EC papers (same exam format since 2021, so most "
+            "should fit; older years may need a new layout entry)\n"
+            "- [ ] The LEGACY section is CS-only - skip it for EC unless old EC syllabus topics appear\n\n"
+            "**D. Load and check**\n"
+            "- [ ] `papers-probe` (dry check of pages/layouts) -> `papers-load --manifest manifests/papers-ec.yaml` (keys load with it) -> `validate` (every paper 65 Q / 100 marks)\n"
+            "- [ ] Open the app with the EC database; fix extraction issues it flags\n\n"
+            "**E. Classify**\n"
+            "- [ ] First pass: `chat-export` batches -> label them in chat (Claude) -> `chat-import` (free, no key); or "
+            "FreeLLMAPI `classify` through the router\n"
+            "- [ ] Optional second opinions: AI review (`scripts/ai_review.py`), FreeLLMAPI proposals, decision models\n\n"
+            "**F. Review and measure**\n"
+            "- [ ] `benchmark-sample --n 120` -> verify those 120 in the Review Workspace (gold)\n"
+            "- [ ] `evaluate-benchmark` for the first-pass accuracy; then verify the rest in priority order\n\n"
+            "**G. Use it**\n"
+            "- [ ] Analysis Matrix, Topic Report, Subject Overview, `export` - exactly as for CS")
+        st.caption("Rough effort: data collection 1-2 days; taxonomy 1 day; code changes in C about half a day "
+                   "(ask Claude); loading + fixes 1-2 days; first-pass labels a few hours of chat batches; your "
+                   "benchmark review 2-4 hours.")
 
 elif page == "About the Data":
     render_data_inventory(session)

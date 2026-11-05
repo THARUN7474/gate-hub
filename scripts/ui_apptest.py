@@ -57,11 +57,11 @@ def main() -> None:
     # every screen renders cleanly
     for screen in ["Pipeline Status", "About the Data", "Question Browser", "Analysis Matrix",
                    "Topic Report", "Subject Overview", "Review Workspace", "Second Opinions", "Approve Queue",
-                   "LLM Classify", "Glossary & Syllabus"]:
+                   "LLM Classify", "Engine & Pipeline", "Glossary & Syllabus"]:
         at.sidebar.radio[0].set_value(screen)
         at.run()
         assert not at.exception, (screen, at.exception)
-    print("PASS all 11 screens render")
+    print("PASS all 12 screens render")
 
     at.sidebar.radio[0].set_value("Review Workspace")
     at.run()

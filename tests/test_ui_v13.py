@@ -68,3 +68,17 @@ def test_matrix_html_question_counts():
         "DB": {"years": {2020: {"marks": 4, "questions": 2}}, "total_marks": 4, "total_q": 2}}}
     foot = nav.matrix_html(m, metric="questions").split("<tfoot>")[1]
     assert ">5<" in foot and ">9<" not in foot                         # 3+2 questions, not 9 marks
+
+
+def test_engine_counts_stages_and_diagrams(db_url):
+    from src.analytics import engine as eng
+    with make_session(db_url) as s:
+        _seed(s)
+        k = eng.counts(s)
+        assert k["questions"] == 3 and k["labelled"] == 1 and k["extraction_issues"] == 1 and k["ai_reviewed"] == 1
+        rows = {r["stage"]: r["state"] for r in eng.stage_rows(k)}
+        assert rows["7. First-pass labels"] == "doing" and rows["12. Decision models"] == "optional"
+        assert eng.label_sources(s)[0]["labels"] == 1
+        for dot in (eng.pipeline_dot(k), eng.question_model_dot(), eng.lifecycle_dot(), eng.question_dot(s, "P-1-Q1")):
+            assert dot.startswith("digraph") and dot.rstrip().endswith("}") and dot.count("{") == dot.count("}")
+        assert "AI review: correct" in eng.question_dot(s, "P-1-Q1")

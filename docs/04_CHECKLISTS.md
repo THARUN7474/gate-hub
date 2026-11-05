@@ -9,7 +9,7 @@
 - [x] Papers 2007-2026 in `data/raw/papers/` (2007-2010 photographed pages deferred)
 - [x] Year-wise papers + keys 2021-2026 in `data/raw/` (20 papers with official keys in total)
 - [ ] Optional: PYQ books/solutions - local only, never cloud-processed without consent
-- [x] Docker Desktop, Python 3.12+, git installed; repo tests pass (234, 5 Nov 2026)
+- [x] Docker Desktop, Python 3.12+, git installed; repo tests pass (236, 5 Nov 2026)
 
 ## Per-paper reconciliation checklist (every paper, every run) - all 29 papers, 5 Nov 2026
 
@@ -115,8 +115,9 @@ AI review (Claude, labelled as such, NOT verification): 65 questions of 2026 CS-
 - [x] Approve Queue explains when to use it; shows only ready-to-approve questions by default
 - [x] LLM Classify split into tabs; new Decision models tab (status, benchmark cost estimate, exact commands)
 - [x] "What this page gives you" guide on every screen
+- [x] New **Engine & Pipeline** screen: live pipeline diagram (coloured by state), what one question holds + a live diagram for any question, syllabus tree per subject, how labels were really made (Claude first pass; AI review, API proposals and decision models are parallel opinions; only humans verify), status lifecycle, live CSE 15-stage checklist, and a full new-branch (ECE) guide + checklist
 - [x] Label statuses explained: dropdowns read e.g. "verified (you checked and approved it)"; a "What the statuses mean" toggle (live counts, related terms, how a question moves) on Pipeline Status, Question Browser, Review Workspace, Second Opinions, Approve Queue; shown in full on the Glossary
-- [x] Tests: 234 passed (`tests/test_ui_v13.py`; 235 after the Questions tab), AppTest all PASS, browser-checked
+- [x] Tests: 236 passed (`tests/test_ui_v13.py`), AppTest all PASS, browser-checked
 
 ## Repository checklist
 
