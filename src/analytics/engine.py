@@ -94,7 +94,7 @@ def stage_rows(k: dict) -> list[dict]:
          "detail": f"{k['extraction_issues']} questions still flagged by the extractor"},
         {"stage": "9. AI review (second opinion)", "state": "doing" if k["ai_reviewed"] else "todo",
          "detail": f"{k['ai_reviewed']} reviewed (2026 CS-2, benchmark, SE questions)"},
-        {"stage": "10. Benchmark gold (your 120)", "state": st(k["bench_gold"], k["bench_total"]),
+        {"stage": "10. Benchmark gold (your gold set)", "state": st(k["bench_gold"], k["bench_total"]),
          "detail": f"{k['bench_gold']} of {k['bench_total']} verified by you  <- YOU ARE HERE"},
         {"stage": "11. API second opinion (FreeLLMAPI)", "state": "optional" if not k["api_proposals"] else "doing",
          "detail": f"{k['api_proposals']} questions; optional, free via the router"},
@@ -155,7 +155,7 @@ def question_model_dot() -> str:
   sec2 [label="Secondary topics\\n(tags, never counted)", fillcolor="#3a3f4a"];
   ops [label="Opinions\\nAI review, API proposals,\\ndecision models", fillcolor="{FILL['opinion']}"];
   ev [label="Audit log\\nevery change: who, old, new,\\nwhen; 5 review checks", fillcolor="#3a3f4a"];
-  bm [label="Benchmark sample\\n(120) -> gold", fillcolor="#7a5a12"];
+  bm [label="Gold set (385)\\nverified by you only", fillcolor="#7a5a12"];
   paper -> q [label="65 per paper"]; q -> opt; q -> key; q -> lab; lab -> sec -> top -> con;
   lab -> sec2 [style=dashed]; q -> ops [style=dashed]; q -> ev; q -> bm [style=dashed];
 }}'''

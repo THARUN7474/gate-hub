@@ -103,7 +103,7 @@ PAGE_GUIDE = {
         ["Topics/concepts come from taxonomy.yaml; prerequisites are curated, not official."]),
     "Review Workspace": (
         ["The original PDF crop (the truth) beside what the computer read and every opinion on the label.",
-         "Filter to extraction issues, items awaiting you, AI-reviewed items or the 120-question benchmark.",
+         "Filter to extraction issues, items awaiting you, AI-reviewed items or the 385-question gold set.",
          "Correct text/options, correct the topic, answer five checks, then Verify - your decision is what counts."],
         ["Every change is an audit event with your name, the old and the new value.",
          "Verifying a benchmark question records it as gold; nothing is ever auto-approved."]),
@@ -185,7 +185,7 @@ def status_guide_md(session) -> str:
         "correctly from the PDF, not about the topic label. That is why it has its own **Extraction** filter.\n"
         "- **AI review** (agree / flag / correct) and **decision models** are opinions stored beside the label. They "
         "never turn a label into verified.\n"
-        "- **Benchmark gold** = a verified label on one of the 120 sampled questions; it is what accuracy is measured "
+        "- **Benchmark gold** = a verified label on one of the 385 gold-set questions (set by you only); it is what accuracy is measured "
         "against.\n\n"
         "**How a question moves:** unclassified -> suggested or flagged (a machine labels it) -> **verified** (you "
         "approve it). If you correct the topic before verifying, your corrected topic is what gets verified."
@@ -407,7 +407,7 @@ if page == "Pipeline Status":
          "Open decision models", "LLM Classify", {}),
         ("5 · Your benchmark (gold)", ":material/workspace_premium:", S["benchmark_gold"] / _bt,
          f"**{S['benchmark_gold']} of {S['benchmark_total']}** verified by you",
-         "Start here. 120 sampled questions; verifying them measures how accurate the machine labels are. "
+         "Start here. 385 gold-set questions; verifying them measures how accurate the machine labels are. "
          "About 2-4 hours in total, 50 already give a first figure.",
          "Review the benchmark", "Review Workspace",
          {"rw_paper": "(all papers)", "rw_show": "benchmark sample (gold review)", "rw_order": "paper order"}),
@@ -781,7 +781,7 @@ elif page == "Review Workspace":
                        f"{counts['of_which_unverified_suggestions']} unverified suggestions", border=True)
         st.metric("Extraction issues", f"{counts['of_which_extraction_issues']:,}",
                   help="questions whose text/options the extractor flagged for a check", border=True)
-        st.metric("Benchmark gold", f"{_gold} of {len(_sample)}", help="the 120-question sample you verify first",
+        st.metric("Benchmark gold", f"{_gold} of {len(_sample)}", help="the 385-question gold set you verify first",
                   border=True)
     status_guide(session)
     with st.expander("What you do here - step by step", icon=":material/school:"):
@@ -993,12 +993,14 @@ elif page == "Review Workspace":
                          help="AI review and decision models. Opinions only - never verification, never gold.")
             _bm = session.scalar(select(BenchmarkSample).where(BenchmarkSample.question_id == uid))
             _hide = (_bm is not None and _bm.status != "gold_verified" and _stg["ai_rows"]
-                     and not st.toggle("Show the AI opinion anyway", key=f"rw_showai_{uid}",
-                                       help="Benchmark question: the AI opinion is hidden until you verify it, so "
-                                            "your gold label stays your own judgement."))
+                     and st.toggle("Hide the AI opinion until I decide", key=f"rw_hideai_{uid}",
+                                   help="Gold-set question: optionally decide blind first, then compare."))
+            if _bm is not None:
+                st.caption(":material/workspace_premium: **Gold-set question** - verifying it makes your label the "
+                           "gold answer **and** counts as human verification. Check the machine label and the AI "
+                           "review below, then decide.")
             if _hide:
-                st.caption(":material/visibility_off: AI review hidden - this is a benchmark question you have not "
-                           "verified yet. Decide first, then look.")
+                st.caption(":material/visibility_off: AI review hidden until you decide.")
             elif _stg["ai_rows"]:
                 for _r in _stg["ai_rows"][-2:]:
                     _box = {"agree": st.success, "flag": st.warning, "correct": st.error}.get(_r["verdict"], st.info)
@@ -1533,7 +1535,7 @@ elif page == "LLM Classify":
                 "# then in .env:  DECISIONS_ENABLED=1", language="bash")
         st.markdown("**Run (after you verified the benchmark)** - dry run first, it prints the payload and cost:")
         st.code("python -m src.cli decisions jev --benchmark                                  # dry run, free\n"
-                "python -m src.cli decisions jev --benchmark --yes --allow-spend --max-calls 120\n"
+                "python -m src.cli decisions jev --benchmark --yes --allow-spend --max-calls 385\n"
                 "python -m src.cli evaluate-benchmark --provider jev                          # score vs your gold",
                 language="bash")
         st.caption("Details: docs/23_LLM_ROUTER_AND_DECISION_MODELS.md")
@@ -1612,7 +1614,7 @@ elif page == "Engine & Pipeline":
         st.progress(_done / len(_rows), text=f"CSE: {_done} of {len(_rows)} stages complete")
         _ico = {"done": "[x]", "doing": "[~]", "todo": "[ ]", "optional": "[ ] (optional)"}
         st.markdown("\n".join(f"- **{_ico[r['state']]} {r['stage']}** - {r['detail']}" for r in _rows))
-        st.info("**You are at stage 10:** verify the 120 benchmark questions (Pipeline Status -> Review the "
+        st.info("**You are at stage 10:** verify the 385 gold-set questions (Pipeline Status -> Review the "
                 "benchmark). Then fix extraction issues and verify the rest in priority order.",
                 icon=":material/flag:")
 
@@ -1663,7 +1665,7 @@ elif page == "Engine & Pipeline":
             "FreeLLMAPI `classify` through the router\n"
             "- [ ] Optional second opinions: AI review (`scripts/ai_review.py`), FreeLLMAPI proposals, decision models\n\n"
             "**F. Review and measure**\n"
-            "- [ ] `benchmark-sample --n 120` -> verify those 120 in the Review Workspace (gold)\n"
+            "- [ ] `benchmark-sample --n 385` -> verify those 385 in the Review Workspace (gold)\n"
             "- [ ] `evaluate-benchmark` for the first-pass accuracy; then verify the rest in priority order\n\n"
             "**G. Use it**\n"
             "- [ ] Analysis Matrix, Topic Report, Subject Overview, `export` - exactly as for CS")

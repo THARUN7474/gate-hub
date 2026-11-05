@@ -47,8 +47,8 @@ def test_v2_import_flags_never_changes_and_stores_reasoning(db_url, tmp_path, mo
     with make_session(db_url) as s:
         _seed(s)
         ok, held = air.eligible(s)
-        assert [q.id for q in ok] == ["P-Q1", "P-Q2"]                     # Q3 benchmark, Q4 extraction issue
-        assert held["benchmark - after your gold review"] == 1 and held["extraction issue - fix it first"] == 1
+        assert [q.id for q in ok] == ["P-Q3", "P-Q1", "P-Q2"]              # gold set first; Q4 extraction issue held
+        assert held["of which gold set still to review"] == 1 and held["extraction issue - fix it first"] == 1
     f = tmp_path / "d.json"
     f.write_text(json.dumps({"reviewer": "claude-test", "prompt_version": "ai-review-v2", "decisions": [
         _dec("P-Q1", "correct", topic="DL.NUM"), _dec("P-Q2", "flag", qtype="MCQ")]}), encoding="utf-8")
@@ -66,9 +66,29 @@ def test_v2_import_flags_never_changes_and_stores_reasoning(db_url, tmp_path, mo
         flag = s.scalar(select(ReviewEvent).where(ReviewEvent.question_id == "P-Q2",
                                                   ReviewEvent.field == "classification_flagged"))
         assert "AI says type MCQ" in flag.note
-        assert [q.id for q in air.eligible(s)[0]] == []                  # both done with v2
+        assert [q.id for q in air.eligible(s)[0]] == ["P-Q3"]            # Q1, Q2 done with v2
         r = {x["question_id"]: x for x in op.ai_review_rows(s)}
         assert r["P-Q2"]["type_differs"] and r["P-Q1"]["version"] == "ai-review-v2"
+
+
+def test_reset_unverifies_and_tops_up_gold(db_url):
+    spec = importlib.util.spec_from_file_location("reset_hr", ROOT / "scripts" / "reset_human_review.py")
+    rh = importlib.util.module_from_spec(spec); spec.loader.exec_module(rh)
+    import src.backup
+    src.backup.backup, _orig = (lambda url: {"file": "x", "integrity_check": "ok"}), src.backup.backup
+    try:
+        with make_session(db_url) as s:
+            _seed(s)
+            c = s.scalar(select(Classification).where(Classification.question_id == "P-Q1"))
+            c.status, c.provenance = "verified", "validated"
+            s.commit()
+        out = rh.run(db_url, 3, yes=True)
+    finally:
+        src.backup.backup = _orig
+    assert out["unverify"] == ["P-Q1"] and out["verified_after"] == 0 and out["gold_set_after"] == 3
+    with make_session(db_url) as s:
+        c = s.scalar(select(Classification).where(Classification.question_id == "P-Q1"))
+        assert c.status == "suggested" and c.primary_topic_id == "DL.CIRC"             # label kept
 
 
 def test_v2_rejects_bad_type(db_url, tmp_path):

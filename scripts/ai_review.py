@@ -107,19 +107,21 @@ def reviewed_v2(s) -> set:
         if f'"prompt_version": "{PROMPT_VERSION}"' in (e.after or "")}
 
 def eligible(s) -> tuple[list, dict]:
-    """Questions the v2 pass may review NOW, in paper order, and why the rest are held back."""
+    """Questions the v2 pass may review NOW and why the rest are held back. The GOLD SET comes first (all of it,
+    extraction issues included, so it is ready for your gold review); then the rest in paper order."""
     sampled = {b.question_id: b.status for b in s.scalars(select(BenchmarkSample))}
     done = reviewed_v2(s)
     verified = set(s.scalars(select(Classification.question_id).where(Classification.status == "verified")))
-    ok, held = [], {"already reviewed (v2)": 0, "verified by you - left alone": 0,
-                    "extraction issue - fix it first": 0, "benchmark - after your gold review": 0}
+    gold, rest = [], []
+    held = {"already reviewed (v2)": 0, "verified by you - left alone": 0, "extraction issue - fix it first": 0}
     for q in s.scalars(select(Question).order_by(Question.paper_id, Question.q_number)):
         if q.id in done: held["already reviewed (v2)"] += 1
         elif q.id in verified: held["verified by you - left alone"] += 1
+        elif q.id in sampled: gold.append(q)
         elif q.needs_review: held["extraction issue - fix it first"] += 1
-        elif q.id in sampled and sampled[q.id] != "gold_verified": held["benchmark - after your gold review"] += 1
-        else: ok.append(q)
-    return ok, held
+        else: rest.append(q)
+    held["of which gold set still to review"] = len(gold)
+    return gold + rest, held
 
 def cmd_progress(a) -> int:
     with make_session(a.db_url) as s:
