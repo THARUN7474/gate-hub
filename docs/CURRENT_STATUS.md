@@ -166,3 +166,4 @@ Tests after cleanup: 223 passed, AppTest all PASS, `validate` 10/10.
 - Helpers: `src/analytics/opinions.py`; `search_questions(limit=None, extraction_issue=...)`; matrix totals in `links.py`.
 - Tests: 234 passed; AppTest all PASS (new checks: extraction filter, stage buttons, all 1,885 listed); every screen checked in a real browser on a copy of the DB.
 
+- **Statuses explained** (5 Nov): suggested / flagged / verified / unclassified + related terms (classified, awaiting your decision, extraction issue, AI review, benchmark gold) - one shared text with live counts, shown as a "What the statuses mean" toggle wherever statuses appear and in full on the Glossary; dropdowns show "status (short meaning)".

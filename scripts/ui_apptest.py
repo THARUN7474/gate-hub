@@ -252,6 +252,16 @@ def main() -> None:
     assert any(f"**{nq:,}** of {nq:,}" in (m.value or "") for m in at.markdown), "browser should list all questions"
     print(f"PASS Question Browser lists all {nq} questions")
 
+    # v13: status guide shown on the Glossary and as a dropdown explanation in the browser
+    at.sidebar.radio[0].set_value("Glossary & Syllabus")
+    at.run()
+    assert any("Awaiting your decision" in (m.value or "") for m in at.markdown), "status guide missing on Glossary"
+    at.sidebar.radio[0].set_value("Question Browser")
+    at.run()
+    ls = next(s for s in at.selectbox if s.label == "Label status")
+    assert ls.format_func("verified").startswith("verified (you checked")
+    print("PASS status guide on Glossary + explained Label status dropdown")
+
     print("ALL APPTEST CHECKS PASSED (scratch DB:", db, ")")
 
 if __name__ == "__main__":

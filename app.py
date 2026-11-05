@@ -119,7 +119,8 @@ PAGE_GUIDE = {
          "Decision models (paid, off by default) for a calibrated second opinion."],
         ["You do not need this page to review questions. Every run is gated by consent settings in .env."]),
     "Glossary & Syllabus": (
-        ["Every section, topic and concept code with its full name and the verbatim 2027 syllabus text.",
+        ["What every label status means (suggested, flagged, verified, unclassified) and related terms.",
+         "Every section, topic and concept code with its full name and the verbatim 2027 syllabus text.",
          "Where the syllabus files live on disk and their checksums."],
         ["Sections are official text; topics/concepts are our curated split; LEGACY is historical (pre-2016)."]),
 }
@@ -137,6 +138,55 @@ def page_header(name: str) -> None:
 def how_to_read(label: str = "How to read this page"):
     """Long explanations live here, collapsed, so each page opens on its main content."""
     return st.expander(label, icon=":material/help:")
+
+# ---- label statuses: one definition, used by every dropdown and every "What the statuses mean" toggle ----
+STATUS_SHORT = {
+    "(all)": "(all)",
+    "suggested": "suggested (machine guess, not checked yet)",
+    "flagged": "flagged (doubtful - look at these first)",
+    "verified": "verified (you checked and approved it)",
+    "unclassified": "unclassified (no label at all)",
+    "has an issue": "has an issue (text/options may be misread from the PDF)",
+    "clean": "clean (no extraction problem found)",
+}
+
+def status_label(x) -> str:
+    return STATUS_SHORT.get(x, str(x))
+
+def status_guide_md(session) -> str:
+    """The full explanation of every status and related term, with live counts."""
+    _c = dict(session.execute(select(Classification.status, func.count()).group_by(Classification.status)).all())
+    _tot = session.scalar(select(func.count()).select_from(Question)) or 0
+    _sug, _fl, _ver = _c.get("suggested", 0), _c.get("flagged", 0), _c.get("verified", 0)
+    _lab = _sug + _fl + _ver
+    _ext = session.scalar(select(func.count()).select_from(Question).where(Question.needs_review == True)) or 0  # noqa: E712
+    return (
+        "The **label status** says how far a question's topic label has got: a machine guess, a guess marked "
+        "doubtful, or checked by you.\n\n"
+        "| Status | What it means | Who sets it | Count now |\n|---|---|---|---|\n"
+        f"| **suggested** | A machine model proposed a subject and topic and was reasonably confident. It is a "
+        f"**guess** you have not checked yet. | The classifier model | {_sug:,} |\n"
+        f"| **flagged** | It has a label too, but something marked it as **doubtful**: low model confidence, an AI "
+        f"reviewer raising a concern, or you pressing **Flag**. Look at these first. | Classifier, AI review, or you | {_fl:,} |\n"
+        f"| **verified** | **You checked it and approved it** in the Review Workspace (the five checks passed, then "
+        f"Verify). The only status that means \"true\". | Only a human | {_ver:,} |\n"
+        f"| **unclassified** | The question has **no label at all**. | - | {_tot - _lab:,} |\n\n"
+        "**Related words used around the app**\n"
+        f"- **Classified / labelled** = has any label (suggested + flagged + verified): {_lab:,} of {_tot:,}.\n"
+        f"- **Awaiting your decision** = suggested + flagged ({_sug + _fl:,}): every label you have not approved yet.\n"
+        f"- **Extraction issue** ({_ext:,}) is separate: it is about whether the question text and options were read "
+        "correctly from the PDF, not about the topic label. That is why it has its own **Extraction** filter.\n"
+        "- **AI review** (agree / flag / correct) and **decision models** are opinions stored beside the label. They "
+        "never turn a label into verified.\n"
+        "- **Benchmark gold** = a verified label on one of the 120 sampled questions; it is what accuracy is measured "
+        "against.\n\n"
+        "**How a question moves:** unclassified -> suggested or flagged (a machine labels it) -> **verified** (you "
+        "approve it). If you correct the topic before verifying, your corrected topic is what gets verified."
+    )
+
+def status_guide(session, label: str = "What the statuses mean") -> None:
+    with st.expander(label, icon=":material/info:"):
+        st.markdown(status_guide_md(session))
 
 def goto(screen: str, **state):
     """Button callback: open another screen with its filters preset (applied before widgets exist)."""
@@ -399,6 +449,7 @@ if page == "Pipeline Status":
                    f"the PDF image in the Review Workspace is always the truth). **official_keys**: {len(nokey)} papers "
                    f"have no key ({', '.join(nokey) or 'none'}) - listed as missing, never guessed. 2007-2010 are deferred.")
 
+    status_guide(session)
     with how_to_read("How these numbers are counted"):
         st.markdown(f"- **Waiting for a human** = every question without a human-verified label "
                     f"({cov['pending_review']:,}). Of those, {cov['of_which_extraction_issues']} also have an "
@@ -464,12 +515,12 @@ elif page == "Question Browser":
     f_type = c4.selectbox("Type", ["(all)", "MCQ", "MSQ", "NAT"])
     with st.container(horizontal=True, vertical_alignment="bottom"):
         f_status = st.selectbox("Label status", ["(all)", "suggested", "flagged", "verified", "unclassified"],
-                                key="qb_status",
-                                help="suggested/flagged = machine proposals awaiting a human; verified = a human "
-                                     "approved it; unclassified = no label yet.")
-        f_ext = st.selectbox("Extraction", ["(all)", "has an issue", "clean"], key="qb_ext",
+                                key="qb_status", format_func=status_label,
+                                help="Full explanation: 'What the statuses mean' below the filters.")
+        f_ext = st.selectbox("Extraction", ["(all)", "has an issue", "clean"], key="qb_ext", format_func=status_label,
                              help="'has an issue' = the extractor flagged the text/options for a check.")
         q_text = st.text_input("Search question text", placeholder="e.g. deadlock, eigenvalue, B+ tree")
+    status_guide(session)
     _ext = {"(all)": None, "has an issue": True, "clean": False}[f_ext]
     rows = srch.search_questions(
         session, text_query=q_text or None, years=f_years or None,
@@ -725,6 +776,7 @@ elif page == "Review Workspace":
                   help="questions whose text/options the extractor flagged for a check", border=True)
         st.metric("Benchmark gold", f"{_gold} of {len(_sample)}", help="the 120-question sample you verify first",
                   border=True)
+    status_guide(session)
     with st.expander("What you do here - step by step", icon=":material/school:"):
         st.markdown(
             "**What you have for each question:** the **original PDF crop** (the truth), the **text the computer "
@@ -1078,6 +1130,7 @@ elif page == "Review Workspace":
 
 elif page == "Second Opinions":
     page_header("Second Opinions")
+    status_guide(session)
     _, _, _, _onames = taxonomy_maps(session)
     _ai_rows = op.ai_review_rows(session)
     _dec_rows = op.decision_rows(session)
@@ -1137,6 +1190,7 @@ elif page == "Second Opinions":
 
 elif page == "Approve Queue":
     page_header("Approve Queue")
+    status_guide(session)
     st.info("**When to use this:** after you checked questions in the Review Workspace and pressed *Save without "
             "verifying* (corrections + passing checks saved). Here you approve them in one go. A question without "
             "saved, passing checks can never be approved here - an AI suggestion alone is never enough.",
@@ -1416,6 +1470,8 @@ else:  # Glossary & Syllabus
     import hashlib as _hl
     import yaml as _yaml
     _tax = _yaml.safe_load((APP_ROOT / "taxonomy.yaml").read_text(encoding="utf-8"))
+    st.subheader("Statuses and terms", divider="gray")
+    st.markdown(status_guide_md(session))
     st.subheader("Where the syllabus comes from", divider="gray")
     _src_rows = []
     for _lab, _pk, _hk in [("CS syllabus 2027 (official PDF)", "source_pdf", "source_sha256"),

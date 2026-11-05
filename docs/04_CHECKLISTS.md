@@ -115,6 +115,7 @@ AI review (Claude, labelled as such, NOT verification): 65 questions of 2026 CS-
 - [x] Approve Queue explains when to use it; shows only ready-to-approve questions by default
 - [x] LLM Classify split into tabs; new Decision models tab (status, benchmark cost estimate, exact commands)
 - [x] "What this page gives you" guide on every screen
+- [x] Label statuses explained: dropdowns read e.g. "verified (you checked and approved it)"; a "What the statuses mean" toggle (live counts, related terms, how a question moves) on Pipeline Status, Question Browser, Review Workspace, Second Opinions, Approve Queue; shown in full on the Glossary
 - [x] Tests: 234 passed (`tests/test_ui_v13.py`; 235 after the Questions tab), AppTest all PASS, browser-checked
 
 ## Repository checklist
