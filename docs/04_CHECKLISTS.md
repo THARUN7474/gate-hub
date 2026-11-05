@@ -126,10 +126,14 @@ AI review (Claude, labelled as such, NOT verification): 65 questions of 2026 CS-
 - [x] Review Workspace: "Question type" row (extractor / AI review / you), type shown in the machine label, AI v2 opinion with a "Why the AI thinks so" toggle, AI opinion hidden on benchmark questions until you verify them, **Question type** is part of Your decision
 - [x] Second Opinions: v2 count, stored vs AI type, key check, "why" column, "different type" filter, the full prompt + commands
 - [x] Pilot batch: 20 questions (2011 CS-1) - 12 agree, 4 correct, 4 flag (2 NAT->MCQ type errors, 2 extraction, 1 out of syllabus)
-- [ ] AI review v2 on the remaining 1,589 ready questions (batches of 20)
+- [ ] AI review v2 on the remaining 1,344 ready questions (batches of 30)
 - [ ] AI review v2 on the 165 extraction-issue questions after you fix them
-- [ ] AI review v2 on the 110 benchmark questions after your gold review
-- [ ] Score machine labels + AI review v2 against the gold 120; then FreeLLMAPI and decision models on the 120
+- [x] Human review reset (6 Nov, your request): 0 verified (2011-S1-Q01 back to suggested, label kept, audited) - `scripts/reset_human_review.py`
+- [x] Gold set grown to **385** questions (120 + 265, stratified by paper x marks); verifying one = gold + human verification
+- [x] AI review v2 on **all 385 gold questions** (295 agree, 18 correct, 72 flag: 59 extraction, 10 out of syllabus, 2 type, 1 ambiguous; 6 type differences; key check 236 match, 0 differ) - shown in the Review Workspace while you review
+- [ ] YOU: gold review of the 385 (Pipeline Status -> Review the benchmark)
+- [ ] Decide: 2013 is stored as 4 papers but is one exam in 4 shuffled sets (60 of 65 questions shared) - keep one set?
+- [ ] Score machine labels + AI review v2 against the gold 385; then FreeLLMAPI and decision models on the 385
 - [x] Tests: 238 passed (`tests/test_ai_review_v2.py`), AppTest all PASS
 
 ## Repository checklist

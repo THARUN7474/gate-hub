@@ -1,0 +1,859 @@
+{
+ "reviewer": "claude-opus-5-5",
+ "prompt_version": "ai-review-v2",
+ "decisions": [
+  {
+   "question_id": "GATE-CS-2023-S1-Q18",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.LA",
+   "secondary_topic_ids": [],
+   "concept_ids": [],
+   "what_it_tests": "Determinant change under a row swap.",
+   "why_this_topic": "Determinant properties are linear algebra.",
+   "alternatives_considered": [],
+   "solution_sketch": "B is A with rows 1 and 3 swapped -> det(B) = -det(A).",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Matrices flattened in the text; no determinant concept in the taxonomy."
+  },
+  {
+   "question_id": "GATE-CS-2023-S1-Q24",
+   "verdict": "agree",
+   "question_type": "MSQ",
+   "type_check": "matches",
+   "section_id": "TOC",
+   "primary_topic_id": "TOC.RCFL",
+   "secondary_topic_ids": [
+    "TOC.TM"
+   ],
+   "concept_ids": [
+    "TOC.RCFL.CLOSURE"
+   ],
+   "what_it_tests": "Closure under intersection across language classes.",
+   "why_this_topic": "Closure properties.",
+   "alternatives_considered": [],
+   "solution_sketch": "Regular, recursive and RE are closed under intersection; CFLs are not -> A, C, D.",
+   "my_answer": "A;C;D",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "Label was flagged earlier; topic right."
+  },
+  {
+   "question_id": "GATE-CS-2023-S1-Q34",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "COA",
+   "primary_topic_id": "COA.IO",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "COA.IO.INTR"
+   ],
+   "what_it_tests": "Polling vs interrupt CPU overhead.",
+   "why_this_topic": "I/O by polling vs interrupts.",
+   "alternatives_considered": [],
+   "solution_sketch": "Polling: 100 x 100 us + 200 us = 10.2 ms; interrupts 1 ms -> 10.2.",
+   "my_answer": "10.2",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2023-S1-Q35",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.C",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "PDS.C.SCOPE"
+   ],
+   "what_it_tests": "Static local variable across calls.",
+   "why_this_topic": "Static storage in C.",
+   "alternatives_considered": [],
+   "solution_sketch": "x = 2; y = 3 + 2 = 5; prints 7.",
+   "my_answer": "7",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2023-S1-Q48",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.DM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.DM.COUNT"
+   ],
+   "what_it_tests": "Counting permutations that separate two k-sets.",
+   "why_this_topic": "Counting.",
+   "alternatives_considered": [],
+   "solution_sketch": "Choose 2k positions, order A-block/B-block 2 ways, arrange inside (k!)^2, rest (n-2k)!.",
+   "my_answer": "D",
+   "key_check": "matches",
+   "difficulty": "hard",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.85,
+   "note": "Options' binomial notation destroyed by extraction."
+  },
+  {
+   "question_id": "GATE-CS-2023-S1-Q50",
+   "verdict": "agree",
+   "question_type": "MSQ",
+   "type_check": "matches",
+   "section_id": "CN",
+   "primary_topic_id": "CN.TCP",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "CN.TCP.CONN"
+   ],
+   "what_it_tests": "Sequence-number length to avoid wrap-around within the MSL.",
+   "why_this_topic": "TCP sequence-number design.",
+   "alternatives_considered": [],
+   "solution_sketch": "100 Mbps x 120 s = 1.5 x 10^9 bytes -> at least 31 bits -> 32, 34, 36.",
+   "my_answer": "B;C;D",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2023-S1-Q55",
+   "verdict": "agree",
+   "question_type": "MSQ",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.DM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.DM.GRAPH"
+   ],
+   "what_it_tests": "Properties of greedy vertex colouring.",
+   "why_this_topic": "Graph colouring.",
+   "alternatives_considered": [],
+   "solution_sketch": "Proper colouring with at most Delta + 1 colours; not always Delta, not always optimal.",
+   "my_answer": "A;B",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2023-S1-Q57",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "OS",
+   "primary_topic_id": "OS.MEM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "OS.MEM.VMEM"
+   ],
+   "what_it_tests": "Page faults for column-wise traversal with LRU.",
+   "why_this_topic": "Demand paging.",
+   "alternatives_considered": [],
+   "solution_sketch": "Each column touches 32 pages with 30 frames -> every access to a new page faults: 128 x 32 = 4096.",
+   "my_answer": "4096",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2023-S1-Q64",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "COA",
+   "primary_topic_id": "COA.MEM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "COA.MEM.CACHE"
+   ],
+   "what_it_tests": "Tag bits of an 8-way 64 KB cache.",
+   "why_this_topic": "Cache address split.",
+   "alternatives_considered": [],
+   "solution_sketch": "Index + offset = log2(64K/8) = 13 bits -> tag 19.",
+   "my_answer": "19",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2024-S1-Q07",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.QA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.QA.GEOM"
+   ],
+   "what_it_tests": "Volume ratio of a rolled tube to a cube of equal surface.",
+   "why_this_topic": "Mensuration.",
+   "alternatives_considered": [],
+   "solution_sketch": "Joining the 54 cm edges: circumference 4, height 54 -> V = 216/pi; cube of area 216 -> side 6, V = 216 -> 1/pi.",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2024-S1-Q13",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "DL",
+   "primary_topic_id": "DL.NUM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DL.NUM.FIXED"
+   ],
+   "what_it_tests": "Overflow in 5-bit two's complement.",
+   "why_this_topic": "Two's complement arithmetic.",
+   "alternatives_considered": [],
+   "solution_sketch": "A = 10, B = -6: A - B = 16 > 15 overflows.",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2024-S1-Q18",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.C",
+   "secondary_topic_ids": [],
+   "concept_ids": [],
+   "what_it_tests": "Integer division making a loop infinite.",
+   "why_this_topic": "Tracing C.",
+   "alternatives_considered": [],
+   "solution_sketch": "a becomes 6/12 + 1 = 1, then stays 1 < 10 forever.",
+   "my_answer": "C",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2024-S1-Q27",
+   "verdict": "agree",
+   "question_type": "MSQ",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.PS",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.PS.COND"
+   ],
+   "what_it_tests": "Independence and set probabilities from P(A), P(B), P(A and B).",
+   "why_this_topic": "Basic probability.",
+   "alternatives_considered": [],
+   "solution_sketch": "0.15 != 0.1 (not independent); P(A or B) = 0.7; P(A and not B) = 0.2; P(neither) = 0.3 -> B, C.",
+   "my_answer": "B;C",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.93,
+   "note": "Options C and D run together in the text."
+  },
+  {
+   "question_id": "GATE-CS-2024-S1-Q29",
+   "verdict": "agree",
+   "question_type": "MSQ",
+   "type_check": "matches",
+   "section_id": "CN",
+   "primary_topic_id": "CN.TCP",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "CN.TCP.CONN"
+   ],
+   "what_it_tests": "Initial sequence and acknowledgement numbers.",
+   "why_this_topic": "TCP connection establishment.",
+   "alternatives_considered": [],
+   "solution_sketch": "ISN is random; SYN-ACK acknowledges N_P + 1 -> A, D.",
+   "my_answer": "A;D",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2024-S1-Q31",
+   "verdict": "agree",
+   "question_type": "MSQ",
+   "type_check": "matches",
+   "section_id": "CN",
+   "primary_topic_id": "CN.ROUTE",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "CN.ROUTE.NAT"
+   ],
+   "what_it_tests": "IP header fields rewritten by NAT on egress.",
+   "why_this_topic": "NAT.",
+   "alternatives_considered": [],
+   "solution_sketch": "Source IP and therefore the header checksum.",
+   "my_answer": "A;C",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.93,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2024-S1-Q32",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.DM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.DM.REL"
+   ],
+   "what_it_tests": "Bijections A->B and AxA -> A u B.",
+   "why_this_topic": "Functions and cardinality.",
+   "alternatives_considered": [],
+   "solution_sketch": "|A| = |B| = n, n^2 = |A u B| <= 2n -> n = 1 or 2 -> 2 values.",
+   "my_answer": "2",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2024-S1-Q36",
+   "verdict": "correct",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "CN",
+   "primary_topic_id": "CN.LAYER",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "CN.LAYER.LAYER"
+   ],
+   "what_it_tests": "Pipelined store-and-forward of 1000 chunks through one router.",
+   "why_this_topic": "Store-and-forward pipelining is the switching part of 'Layering and switching'; no link-layer protocol is involved.",
+   "alternatives_considered": [
+    {
+     "topic_id": "CN.DLL",
+     "why_not": "links are the setting, not the topic"
+    }
+   ],
+   "solution_sketch": "Each chunk 8 ms; P finishes at 8 s; last chunk reaches R 8 ms later -> 8.008 s.",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.65,
+   "note": "'10 6' is 10^6. Same switching-delay placement as 2015-S3-Q56."
+  },
+  {
+   "question_id": "GATE-CS-2024-S1-Q37",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "CD",
+   "primary_topic_id": "CD.SDT",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "CD.SDT.SDD"
+   ],
+   "what_it_tests": "Evaluating a syntax-directed definition on an input.",
+   "why_this_topic": "SDD evaluation.",
+   "alternatives_considered": [],
+   "solution_sketch": "D = 5 + 5 - 5 = 5; H = 50 - 10 = 40; T = -5; U = 5 -> 45.",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2024-S1-Q41",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.TREE",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "PDS.TREE.HEAP"
+   ],
+   "what_it_tests": "Build-max-heap result.",
+   "why_this_topic": "Binary heaps.",
+   "alternatives_considered": [],
+   "solution_sketch": "Bottom-up heapify puts 131 at the root with 111 and 90 below.",
+   "my_answer": "D",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2024-S1-Q53",
+   "verdict": "agree",
+   "question_type": "MSQ",
+   "type_check": "matches",
+   "section_id": "COA",
+   "primary_topic_id": "COA.MEM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "COA.MEM.CACHE"
+   ],
+   "what_it_tests": "Write-back vs write-through behaviour.",
+   "why_this_topic": "Cache write policies.",
+   "alternatives_considered": [],
+   "solution_sketch": "WTC never writes back on a read miss; WBC write hit can set the dirty bit -> B, C.",
+   "my_answer": "B;C",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Option text runs across option letters in the extraction."
+  },
+  {
+   "question_id": "GATE-CS-2024-S1-Q57",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "OS",
+   "primary_topic_id": "OS.PROC",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "OS.PROC.PROC"
+   ],
+   "what_it_tests": "Counting printf calls with fork in a loop.",
+   "why_this_topic": "Process creation.",
+   "alternatives_considered": [],
+   "solution_sketch": "2 + 4 + 8 = 14.",
+   "my_answer": "14",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2024-S1-Q61",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "TOC",
+   "primary_topic_id": "TOC.REG",
+   "secondary_topic_ids": [
+    "EM.DM"
+   ],
+   "concept_ids": [
+    "TOC.REG.RE"
+   ],
+   "what_it_tests": "Counting strings outside two regular expressions.",
+   "why_this_topic": "Understanding regular expressions; counting is the method.",
+   "alternatives_considered": [
+    {
+     "topic_id": "EM.DM",
+     "why_not": "counting is secondary"
+    }
+   ],
+   "solution_sketch": "63 strings of length <= 5; r has 11, s has 10, overlap 2 -> 63 - 19 = 44.",
+   "my_answer": "44",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2024-S2-Q02",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.QA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.QA.COUNT"
+   ],
+   "what_it_tests": "Orderings of four elements.",
+   "why_this_topic": "Counting.",
+   "alternatives_considered": [],
+   "solution_sketch": "4! = 24.",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2024-S2-Q04",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.QA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.QA.FUNC"
+   ],
+   "what_it_tests": "Log identity forcing x = y.",
+   "why_this_topic": "Logarithms.",
+   "alternatives_considered": [],
+   "solution_sketch": "(x+y)/2 = sqrt(xy) -> x = y -> x/y + y/x = 2.",
+   "my_answer": "C",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Fractions flattened in the stem."
+  },
+  {
+   "question_id": "GATE-CS-2024-S2-Q08",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.QA",
+   "secondary_topic_ids": [],
+   "concept_ids": [],
+   "what_it_tests": "Percent increase of renewable share from pie charts.",
+   "why_this_topic": "Data interpretation.",
+   "alternatives_considered": [],
+   "solution_sketch": "Renewables 40% -> 65% -> 62.5% increase (values read from scrambled chart text).",
+   "my_answer": "D",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.82,
+   "note": "Pie-chart labels scrambled - check against the PDF."
+  },
+  {
+   "question_id": "GATE-CS-2024-S2-Q23",
+   "verdict": "agree",
+   "question_type": "MSQ",
+   "type_check": "matches",
+   "section_id": "CN",
+   "primary_topic_id": "CN.ROUTE",
+   "secondary_topic_ids": [
+    "CN.DLL"
+   ],
+   "concept_ids": [],
+   "what_it_tests": "Destination IP and MAC of a routed packet leaving the host.",
+   "why_this_topic": "IP forwarding with next-hop MAC.",
+   "alternatives_considered": [
+    {
+     "topic_id": "CN.DLL",
+     "why_not": "MAC addressing is involved"
+    }
+   ],
+   "solution_sketch": "Destination IP is Y; destination MAC is R's (the switch is transparent) -> B only.",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2024-S2-Q25",
+   "verdict": "agree",
+   "question_type": "MSQ",
+   "type_check": "matches",
+   "section_id": "OS",
+   "primary_topic_id": "OS.PROC",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "OS.PROC.PROC"
+   ],
+   "what_it_tests": "Events that always move a process out of running.",
+   "why_this_topic": "Process states.",
+   "alternatives_considered": [],
+   "solution_sketch": "Blocking read and a page fault from swap always block P; interrupts need not.",
+   "my_answer": "A;B",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2024-S2-Q28",
+   "verdict": "agree",
+   "question_type": "MSQ",
+   "type_check": "matches",
+   "section_id": "CN",
+   "primary_topic_id": "CN.ROUTE",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "CN.ROUTE.IPV4"
+   ],
+   "what_it_tests": "Where IPv4 fragmentation and reassembly happen.",
+   "why_this_topic": "IPv4.",
+   "alternatives_considered": [],
+   "solution_sketch": "Any router may fragment; only the destination reassembles -> B, C.",
+   "my_answer": "B;C",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "Option text runs across option letters in the extraction."
+  },
+  {
+   "question_id": "GATE-CS-2024-S2-Q32",
+   "verdict": "agree",
+   "question_type": "MSQ",
+   "type_check": "matches",
+   "section_id": "CN",
+   "primary_topic_id": "CN.ROUTE",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "CN.ROUTE.IPV4"
+   ],
+   "what_it_tests": "Header fields every router changes.",
+   "why_this_topic": "IPv4 forwarding.",
+   "alternatives_considered": [],
+   "solution_sketch": "TTL and header checksum.",
+   "my_answer": "C;D",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2024-S2-Q38",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "CN",
+   "primary_topic_id": "CN.ROUTE",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "CN.ROUTE.CIDR"
+   ],
+   "what_it_tests": "CIDR prefix for a 512-address range.",
+   "why_this_topic": "CIDR.",
+   "alternatives_considered": [],
+   "solution_sketch": "10.12.2.0 to 10.12.3.255 is 2^9 addresses -> /23.",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.96,
+   "note": "Clear."
+  }
+ ]
+}

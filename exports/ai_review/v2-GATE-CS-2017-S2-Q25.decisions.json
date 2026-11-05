@@ -1,0 +1,859 @@
+{
+ "reviewer": "claude-opus-5-5",
+ "prompt_version": "ai-review-v2",
+ "decisions": [
+  {
+   "question_id": "GATE-CS-2017-S2-Q25",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "TOC",
+   "primary_topic_id": "TOC.REG",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "TOC.REG.FA"
+   ],
+   "what_it_tests": "Minimum DFA states for a positional-plus-length language.",
+   "why_this_topic": "Minimal DFA construction is finite automata.",
+   "alternatives_considered": [],
+   "solution_sketch": "3 states to read w1, check 'a', 4 counting states for |w2| >= 3, 1 dead state -> 8.",
+   "my_answer": "8",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2017-S2-Q27",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "DL",
+   "primary_topic_id": "DL.BOOL",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DL.BOOL.ALG"
+   ],
+   "what_it_tests": "Which Boolean identity is incorrect.",
+   "why_this_topic": "Boolean algebra identities.",
+   "alternatives_considered": [],
+   "solution_sketch": "Verified only partly: the complement bars were lost, so the identities cannot be checked from the text.",
+   "my_answer": "C",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.8,
+   "note": "Overbars lost in extraction - compare with the PDF."
+  },
+  {
+   "question_id": "GATE-CS-2017-S2-Q28",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "DL",
+   "primary_topic_id": "DL.BOOL",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DL.BOOL.MINIM"
+   ],
+   "what_it_tests": "Minimum POS from a K-map with don't-cares.",
+   "why_this_topic": "K-map minimisation.",
+   "alternatives_considered": [],
+   "solution_sketch": "Cannot verify: all four options read identically because complement bars were lost.",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.9,
+   "note": "All options identical in the text; 'Sigma a' should be 'Sigma d'."
+  },
+  {
+   "question_id": "GATE-CS-2017-S2-Q30",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "ALGO",
+   "primary_topic_id": "ALGO.CMPLX",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "ALGO.CMPLX.RECUR"
+   ],
+   "what_it_tests": "Solve T(n) = 2T(sqrt n) + 1.",
+   "why_this_topic": "Recurrence solving.",
+   "alternatives_considered": [],
+   "solution_sketch": "n = 2^m: S(m) = 2S(m/2) + 1 = Theta(m) = Theta(log n).",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Recurrence text scrambled ('= (u)l 2T...')."
+  },
+  {
+   "question_id": "GATE-CS-2017-S2-Q33",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "OS",
+   "primary_topic_id": "OS.DL",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "OS.DL.BANKER"
+   ],
+   "what_it_tests": "Safety of a tape-drive allocation.",
+   "why_this_topic": "Banker's safety check.",
+   "alternatives_considered": [],
+   "solution_sketch": "Free 2: P3 finishes (5), P1 (8), P2 -> safe and not deadlocked.",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2017-S2-Q34",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "CN",
+   "primary_topic_id": "CN.DLL",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "CN.DLL.ERR"
+   ],
+   "what_it_tests": "Minimum Hamming distance and correction capability.",
+   "why_this_topic": "Error-detecting/correcting codes are data-link error control.",
+   "alternatives_considered": [
+    {
+     "topic_id": "EM.DM",
+     "why_not": "no"
+    }
+   ],
+   "solution_sketch": "Pairwise distances 3 or 4 -> p = 3, q = floor((3-1)/2) = 1.",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "Label was flagged earlier; topic right."
+  },
+  {
+   "question_id": "GATE-CS-2017-S2-Q35",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "CN",
+   "primary_topic_id": "CN.DLL",
+   "secondary_topic_ids": [
+    "CN.LAYER"
+   ],
+   "concept_ids": [],
+   "what_it_tests": "Transmission vs propagation delay.",
+   "why_this_topic": "Basic link delays; no 2027 topic is a perfect home, and the link-level framing fits.",
+   "alternatives_considered": [
+    {
+     "topic_id": "CN.LAYER",
+     "why_not": "delay basics also fit"
+    }
+   ],
+   "solution_sketch": "Tt = 400000 / 10^6 = 400 ms; Tp = 10^7 / (2 x 10^8) = 50 ms.",
+   "my_answer": "D",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.6,
+   "note": "Basic delay questions have no clear topic - decide once."
+  },
+  {
+   "question_id": "GATE-CS-2017-S2-Q49",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "DB",
+   "primary_topic_id": "DB.IDX",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DB.IDX.IDX"
+   ],
+   "what_it_tests": "Maximum order of a B+ tree node.",
+   "why_this_topic": "B+ tree node sizing.",
+   "alternatives_considered": [],
+   "solution_sketch": "2p + 8(p - 1) <= 512 -> p = 52.",
+   "my_answer": "52",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2018-S1-Q06",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.QA",
+   "secondary_topic_ids": [],
+   "concept_ids": [],
+   "what_it_tests": "Total payout with fractional claims.",
+   "why_this_topic": "Ratio arithmetic.",
+   "alternatives_considered": [],
+   "solution_sketch": "(8/9) x 750 = (2/3) x 1000 = 666.67 per citizen -> 300 x 666.67 = 2,00,000.",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2018-S1-Q08",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.QA",
+   "secondary_topic_ids": [],
+   "concept_ids": [],
+   "what_it_tests": "Male:female ratio among attendees.",
+   "why_this_topic": "Percentages.",
+   "alternatives_considered": [],
+   "solution_sketch": "80 attend: all 40 women, so 40 men -> 1:1.",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.96,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2018-S1-Q11",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.DM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.DM.COUNT"
+   ],
+   "what_it_tests": "Closed form of a generating function for 2n + 3.",
+   "why_this_topic": "Generating functions are counting in discrete mathematics.",
+   "alternatives_considered": [],
+   "solution_sketch": "sum (2n+3)x^n = 3/(1-x) + 2x/(1-x)^2 = (3 - x)/(1 - x)^2.",
+   "my_answer": "D",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.88,
+   "note": "Options are fractions destroyed in extraction."
+  },
+  {
+   "question_id": "GATE-CS-2018-S1-Q14",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "DL",
+   "primary_topic_id": "DL.BOOL",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DL.BOOL.ALG"
+   ],
+   "what_it_tests": "XOR/XNOR identities.",
+   "why_this_topic": "Boolean algebra.",
+   "alternatives_considered": [],
+   "solution_sketch": "P xor not-P = 1 and P xnor not-P = 0, so D's two sides differ.",
+   "my_answer": "D",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.82,
+   "note": "Overbars partly lost - check against the PDF."
+  },
+  {
+   "question_id": "GATE-CS-2018-S1-Q22",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "DB",
+   "primary_topic_id": "DB.REL",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DB.REL.SQL"
+   ],
+   "what_it_tests": "Which outer join is a superset.",
+   "why_this_topic": "SQL joins.",
+   "alternatives_considered": [],
+   "solution_sketch": "Full outer join contains the others.",
+   "my_answer": "D",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2018-S1-Q25",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.PS",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.PS.DIST"
+   ],
+   "what_it_tests": "Probability of winning on the third trial (geometric).",
+   "why_this_topic": "Independent trials / geometric distribution.",
+   "alternatives_considered": [],
+   "solution_sketch": "P(tie) = 1/6: (1/6)^2 x 5/6 = 0.023.",
+   "my_answer": "0.023",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2018-S1-Q32",
+   "verdict": "flag",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "DL",
+   "primary_topic_id": "DL.CIRC",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DL.CIRC.SEQ"
+   ],
+   "what_it_tests": "Self-loops in a two-flip-flop state diagram.",
+   "why_this_topic": "Sequential-circuit analysis.",
+   "alternatives_considered": [],
+   "solution_sketch": "Needs the circuit figure.",
+   "my_answer": "unsure",
+   "key_check": "unsure",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.88,
+   "note": "Circuit is a figure."
+  },
+  {
+   "question_id": "GATE-CS-2018-S1-Q33",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "COA",
+   "primary_topic_id": "COA.MEM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "COA.MEM.HIER"
+   ],
+   "what_it_tests": "Time lost to DRAM refresh.",
+   "why_this_topic": "DRAM refresh is memory organisation.",
+   "alternatives_considered": [],
+   "solution_sketch": "2^14 rows x 50 ns = 0.82 ms per 2 ms -> 41% refresh -> 59% available.",
+   "my_answer": "59",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.8,
+   "note": "'2 14' is 2^14. Label was flagged earlier."
+  },
+  {
+   "question_id": "GATE-CS-2018-S1-Q38",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.DM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.DM.LOGIC"
+   ],
+   "what_it_tests": "Small-model property of an exists-forall sentence.",
+   "why_this_topic": "First-order logic models.",
+   "alternatives_considered": [],
+   "solution_sketch": "With 3 existential witnesses, the substructure on them is still a model -> size <= 3 exists.",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "hard",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.88,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2018-S1-Q39",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.C",
+   "secondary_topic_ids": [],
+   "concept_ids": [],
+   "what_it_tests": "Swapping pointers by value vs by pointer-to-pointer.",
+   "why_this_topic": "C pointers and parameter passing.",
+   "alternatives_considered": [],
+   "solution_sketch": "fun1 swaps copies (no effect); fun2 swaps the real pointers -> Hi Bye Bye Hi.",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2018-S1-Q53",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.DM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.DM.GRAPH"
+   ],
+   "what_it_tests": "Degree and components of the adjacent-transposition graph.",
+   "why_this_topic": "Graph properties.",
+   "alternatives_considered": [],
+   "solution_sketch": "Each permutation has 99 adjacent swaps; adjacent swaps generate all permutations -> 1 component; 99 + 10 = 109.",
+   "my_answer": "109",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2018-S1-Q57",
+   "verdict": "flag",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "ALGO",
+   "primary_topic_id": "ALGO.GRAPH",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "ALGO.GRAPH.MST"
+   ],
+   "what_it_tests": "Choosing x to maximise the number of MSTs.",
+   "why_this_topic": "MST.",
+   "alternatives_considered": [],
+   "solution_sketch": "Needs the graph figure.",
+   "my_answer": "unsure",
+   "key_check": "unsure",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.88,
+   "note": "Graph is a figure."
+  },
+  {
+   "question_id": "GATE-CS-2018-S1-Q58",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "ALGO",
+   "primary_topic_id": "ALGO.DESIGN",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "ALGO.DESIGN.GREEDY",
+    "ALGO.DESIGN.DP"
+   ],
+   "what_it_tests": "0/1 knapsack: greedy by ratio vs optimal.",
+   "why_this_topic": "Greedy vs exact design paradigms.",
+   "alternatives_considered": [],
+   "solution_sketch": "Greedy: items 4, 3 -> 44; optimal: item 1 -> 60; difference 16.",
+   "my_answer": "16",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Label was flagged earlier; topic right."
+  },
+  {
+   "question_id": "GATE-CS-2019-S1-Q04",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "differs",
+   "section_id": "GA",
+   "primary_topic_id": "GA.QA",
+   "secondary_topic_ids": [],
+   "concept_ids": [],
+   "what_it_tests": "Shared cost when two people drop out.",
+   "why_this_topic": "Arithmetic.",
+   "alternatives_considered": [],
+   "solution_sketch": "C/8 - C/10 = 150 -> C = 6000.",
+   "my_answer": "C",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "type",
+   "confidence": 0.92,
+   "note": "Stored as NAT, but it is an MCQ (options inside the stem; the key is a letter)."
+  },
+  {
+   "question_id": "GATE-CS-2019-S1-Q05",
+   "verdict": "correct",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.AA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.AA.ANALOGY"
+   ],
+   "what_it_tests": "Word analogy court:judge :: school:teacher.",
+   "why_this_topic": "Analogy is listed under analytical aptitude.",
+   "alternatives_considered": [
+    {
+     "topic_id": "GA.VA",
+     "why_not": "words, but the skill is the relationship"
+    }
+   ],
+   "solution_sketch": "A judge works in a court; a teacher in a school.",
+   "my_answer": "D",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.72,
+   "note": "Same analogy placement decision as 2015-S3-Q02."
+  },
+  {
+   "question_id": "GATE-CS-2019-S1-Q09",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.QA",
+   "secondary_topic_ids": [],
+   "concept_ids": [],
+   "what_it_tests": "Venn-diagram total with 75% in no club.",
+   "why_this_topic": "Set counting.",
+   "alternatives_considered": [],
+   "solution_sketch": "Pair counts include the 2 in all three: 60+80+30+38+10+5+2 = 225 = 25% -> 900.",
+   "my_answer": "C",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.85,
+   "note": "Page header leaked into option D."
+  },
+  {
+   "question_id": "GATE-CS-2019-S1-Q21",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "DB",
+   "primary_topic_id": "DB.TXN",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DB.TXN.TXN"
+   ],
+   "what_it_tests": "Strict 2PL and Thomas' write rule.",
+   "why_this_topic": "Concurrency control.",
+   "alternatives_considered": [],
+   "solution_sketch": "Strict 2PL is conflict-serializable and recoverable; Thomas' rule allows view- but not conflict-serializable schedules.",
+   "my_answer": "C",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2019-S1-Q24",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "DB",
+   "primary_topic_id": "DB.IDX",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DB.IDX.IDX"
+   ],
+   "what_it_tests": "B+ tree properties.",
+   "why_this_topic": "Indexing.",
+   "alternatives_considered": [],
+   "solution_sketch": "Only leaves point to records in a B+ tree.",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2019-S1-Q26",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "CN",
+   "primary_topic_id": "CN.APP",
+   "secondary_topic_ids": [],
+   "concept_ids": [],
+   "what_it_tests": "Send and retrieve email protocols.",
+   "why_this_topic": "Application protocols (email).",
+   "alternatives_considered": [],
+   "solution_sketch": "SMTP to send, POP3 to retrieve.",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "No email concept in the taxonomy (only HTTP, DNS)."
+  },
+  {
+   "question_id": "GATE-CS-2019-S1-Q35",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "ALGO",
+   "primary_topic_id": "ALGO.DESIGN",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "ALGO.DESIGN.DAC",
+    "ALGO.DESIGN.DP"
+   ],
+   "what_it_tests": "Maximum subarray sum.",
+   "why_this_topic": "Max-subarray is a classic design-paradigm problem (divide and conquer or DP).",
+   "alternatives_considered": [],
+   "solution_sketch": "6 + 3 - 1 - 2 + 13 + 4 - 9 - 1 + 4 + 12 = 29.",
+   "my_answer": "29",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Summation limits lost in the text."
+  },
+  {
+   "question_id": "GATE-CS-2019-S1-Q39",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "CN",
+   "primary_topic_id": "CN.ROUTE",
+   "secondary_topic_ids": [
+    "CN.DLL"
+   ],
+   "concept_ids": [
+    "CN.ROUTE.IPV4"
+   ],
+   "what_it_tests": "How ARP finds a MAC in the same subnet.",
+   "why_this_topic": "ARP is an IP support protocol.",
+   "alternatives_considered": [
+    {
+     "topic_id": "CN.DLL",
+     "why_not": "MAC addresses are involved, but ARP is listed with IP"
+    }
+   ],
+   "solution_sketch": "ARP request with broadcast MAC on the local subnet.",
+   "my_answer": "C",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2019-S1-Q42",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "DB",
+   "primary_topic_id": "DB.NF",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DB.NF.NF",
+    "DB.NF.FD"
+   ],
+   "what_it_tests": "BCNF and lossless/dependency-preserving decomposition.",
+   "why_this_topic": "Normal forms and decomposition properties.",
+   "alternatives_considered": [],
+   "solution_sketch": "Z with S -> Q is not BCNF; the split is lossless (R -> P) and preserves all FDs -> II only.",
+   "my_answer": "C",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "Clear."
+  }
+ ]
+}

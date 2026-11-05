@@ -1,0 +1,869 @@
+{
+ "reviewer": "claude-opus-5-5",
+ "prompt_version": "ai-review-v2",
+ "decisions": [
+  {
+   "question_id": "GATE-CS-2016-S2-Q03",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.VA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.VA.VOCAB"
+   ],
+   "what_it_tests": "Odd word out among synonyms of ridicule.",
+   "why_this_topic": "Vocabulary.",
+   "alternatives_considered": [],
+   "solution_sketch": "mock, deride, jeer ridicule; praise is the odd one.",
+   "my_answer": "C",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.96,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2016-S2-Q05",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.QA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.QA.FUNC"
+   ],
+   "what_it_tests": "(a^n + b^n)/(a^-n + b^-n) equals (ab)^n.",
+   "why_this_topic": "Algebra - quantitative aptitude.",
+   "alternatives_considered": [],
+   "solution_sketch": "Multiply top and bottom by (ab)^n: ratio = (ab)^n = 4^n.",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "Math symbols doubled by the PDF font ('alpha alpha n n'); exponents lost in options."
+  },
+  {
+   "question_id": "GATE-CS-2016-S2-Q08",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.AA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.AA.DEDUCT"
+   ],
+   "what_it_tests": "Valid inference from 'all hill-stations have a lake'.",
+   "why_this_topic": "Logical deduction - analytical aptitude.",
+   "alternatives_considered": [],
+   "solution_sketch": "Having a lake does not limit the number of lakes: neither inference follows.",
+   "my_answer": "D",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2016-S2-Q10",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.QA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.QA.FUNC"
+   ],
+   "what_it_tests": "Identify f(x) from its graph.",
+   "why_this_topic": "Reading a function from a graph - quantitative aptitude.",
+   "alternatives_considered": [],
+   "solution_sketch": "Needs the graph (peak at x = 1 with value 2 gives 2 - |x - 1|).",
+   "my_answer": "C",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.85,
+   "note": "Graph is a figure; 'END OF THE QUESTION PAPER' leaked into option C."
+  },
+  {
+   "question_id": "GATE-CS-2016-S2-Q13",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.DM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.DM.GRAPH"
+   ],
+   "what_it_tests": "Chromatic number bound for planar graphs.",
+   "why_this_topic": "Graph colouring is graph theory.",
+   "alternatives_considered": [],
+   "solution_sketch": "Four colour theorem -> 4.",
+   "my_answer": "4",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.96,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2016-S2-Q31",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "DB",
+   "primary_topic_id": "DB.IDX",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DB.IDX.IDX"
+   ],
+   "what_it_tests": "Why B+ trees are balanced.",
+   "why_this_topic": "B+ tree indexing.",
+   "alternatives_considered": [],
+   "solution_sketch": "All leaves at the same depth.",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2016-S2-Q35",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "CN",
+   "primary_topic_id": "CN.APP",
+   "secondary_topic_ids": [
+    "CN.TCP"
+   ],
+   "concept_ids": [
+    "CN.APP.DNS",
+    "CN.APP.HTTP"
+   ],
+   "what_it_tests": "Packet order when a browser fetches a page after a restart.",
+   "why_this_topic": "DNS resolution then HTTP over TCP - application-layer flow.",
+   "alternatives_considered": [
+    {
+     "topic_id": "CN.TCP",
+     "why_not": "the SYN is transport, but the order is driven by DNS/HTTP"
+    }
+   ],
+   "solution_sketch": "DNS query, TCP SYN, HTTP GET.",
+   "my_answer": "C",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2016-S2-Q46",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.TREE",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "PDS.TREE.TRAV"
+   ],
+   "what_it_tests": "A root-right-left traversal of an expression tree built from postfix.",
+   "why_this_topic": "Tree traversals.",
+   "alternatives_considered": [],
+   "solution_sketch": "Tree: - ( ^ ( - (* 3 4) 5 ) 2 ) ( + (* 6 7) 1 ); root-right-left gives - + 1 * 7 6 ^ 2 - 5 * 4 3.",
+   "my_answer": "C",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2016-S2-Q62",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "DB",
+   "primary_topic_id": "DB.REL",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DB.REL.SQL"
+   ],
+   "what_it_tests": "Tuples returned by a WITH/aggregate query.",
+   "why_this_topic": "SQL aggregation.",
+   "alternatives_considered": [],
+   "solution_sketch": "District totals 20, 40, 30, 10; average 25 -> Bikaner, Churu -> 2.",
+   "my_answer": "2",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "Label was flagged earlier; topic right."
+  },
+  {
+   "question_id": "GATE-CS-2016-S2-Q63",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "CN",
+   "primary_topic_id": "CN.DLL",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "CN.DLL.MAC"
+   ],
+   "what_it_tests": "Minimum CSMA/CD frame size.",
+   "why_this_topic": "CSMA/CD is medium access control.",
+   "alternatives_considered": [],
+   "solution_sketch": "2 x 40 us x 20 Mbps = 1600 bits = 200 bytes.",
+   "my_answer": "200",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2016-S2-Q64",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "CN",
+   "primary_topic_id": "CN.DLL",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "CN.DLL.MAC"
+   ],
+   "what_it_tests": "802.11 MAC facts (channels, RTS/CTS, ACKs).",
+   "why_this_topic": "Wireless MAC is medium access control.",
+   "alternatives_considered": [],
+   "solution_sketch": "I true (1, 6, 11); RTS/CTS avoids rather than detects collisions; unicast frames are ACKed -> I and III.",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.75,
+   "note": "802.11 detail is at the edge of the 2027 syllabus."
+  },
+  {
+   "question_id": "GATE-CS-2016-S2-Q65",
+   "verdict": "correct",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "CN",
+   "primary_topic_id": "CN.TCP",
+   "secondary_topic_ids": [
+    "CN.DLL"
+   ],
+   "concept_ids": [
+    "CN.TCP.FLOW"
+   ],
+   "what_it_tests": "Selective-repeat sequence bits for full utilisation on a satellite link.",
+   "why_this_topic": "Window sizing is sliding-window flow control, which the 2027 syllabus lists under the transport layer.",
+   "alternatives_considered": [
+    {
+     "topic_id": "CN.DLL",
+     "why_not": "textbook link-layer placement; same decision as 2014-S1-Q38"
+    }
+   ],
+   "solution_sketch": "Tt = 64 ms; N = (64 + 300)/64 = 5.7 -> 6; SR needs 12 numbers -> 4 bits.",
+   "my_answer": "4",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.6,
+   "note": "Same sliding-window placement decision as 2014-S1-Q38."
+  },
+  {
+   "question_id": "GATE-CS-2017-S1-Q06",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.TREE",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "PDS.TREE.BST"
+   ],
+   "what_it_tests": "Minimum and maximum height of a 15-node BST.",
+   "why_this_topic": "BST shape bounds.",
+   "alternatives_considered": [],
+   "solution_sketch": "Complete tree height 3; chain height 14.",
+   "my_answer": "B",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2017-S1-Q10",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "TOC",
+   "primary_topic_id": "TOC.CFG",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "TOC.CFG.CFG"
+   ],
+   "what_it_tests": "Language generated by a CFG.",
+   "why_this_topic": "Reading a grammar is context-free grammars.",
+   "alternatives_considered": [],
+   "solution_sketch": "Each S adds 'ab' and a matching 'c T', T gives b^m -> (ab)^n c b^m1 ... c b^mn.",
+   "my_answer": "B",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Exponents lost in the options."
+  },
+  {
+   "question_id": "GATE-CS-2017-S1-Q13",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.C",
+   "secondary_topic_ids": [],
+   "concept_ids": [],
+   "what_it_tests": "Spotting a memory leak with malloc.",
+   "why_this_topic": "Pointer and dynamic-memory behaviour in C.",
+   "alternatives_considered": [],
+   "solution_sketch": "The first block is overwritten by a new malloc without free -> memory leak.",
+   "my_answer": "D",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "No 'pointers/memory' concept in the taxonomy."
+  },
+  {
+   "question_id": "GATE-CS-2017-S1-Q18",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "OS",
+   "primary_topic_id": "OS.PROC",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "OS.PROC.PROC"
+   ],
+   "what_it_tests": "What threads of a process share.",
+   "why_this_topic": "Threads.",
+   "alternatives_considered": [],
+   "solution_sketch": "Threads share heap and globals.",
+   "my_answer": "D",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.96,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2017-S1-Q27",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "OS",
+   "primary_topic_id": "OS.DL",
+   "secondary_topic_ids": [
+    "OS.SYNC"
+   ],
+   "concept_ids": [
+    "OS.DL.DLOCK"
+   ],
+   "what_it_tests": "Smallest deadlock with non-reentrant locks.",
+   "why_this_topic": "Deadlock conditions.",
+   "alternatives_considered": [
+    {
+     "topic_id": "OS.SYNC",
+     "why_not": "locks are synchronization, but the question is about deadlock"
+    }
+   ],
+   "solution_sketch": "One thread re-acquiring its own non-reentrant lock blocks forever: x = 1, y = 1.",
+   "my_answer": "D",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.85,
+   "note": "Label was flagged earlier; topic right."
+  },
+  {
+   "question_id": "GATE-CS-2017-S1-Q29",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.DM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.DM.LOGIC"
+   ],
+   "what_it_tests": "Using a contradiction to simplify another formula.",
+   "why_this_topic": "Propositional logic.",
+   "alternatives_considered": [],
+   "solution_sketch": "r false and p -> q true; then (r -> p) is true so the expression equals q: true whenever q is true.",
+   "my_answer": "D",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2017-S1-Q31",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.LA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.LA.EIGEN"
+   ],
+   "what_it_tests": "Eigenvalue facts for a rank-2 symmetric matrix with entry sum 50.",
+   "why_this_topic": "Eigenvalues of symmetric matrices.",
+   "alternatives_considered": [],
+   "solution_sketch": "With rank 2 and n >= 3, a zero eigenvalue exists (I holds); II need not hold -> I only.",
+   "my_answer": "B",
+   "key_check": "no_key",
+   "difficulty": "hard",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.8,
+   "note": "Double-sum notation garbled in the stem."
+  },
+  {
+   "question_id": "GATE-CS-2017-S1-Q35",
+   "verdict": "correct",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.REC",
+   "secondary_topic_ids": [
+    "PDS.C"
+   ],
+   "concept_ids": [
+    "PDS.REC.REC"
+   ],
+   "what_it_tests": "Output of two mutually recursive functions with ++n.",
+   "why_this_topic": "Tracing mutual recursion is the recursion topic; the C syntax is incidental.",
+   "alternatives_considered": [
+    {
+     "topic_id": "PDS.C",
+     "why_not": "printf and ++n are only details"
+    }
+   ],
+   "solution_sketch": "Trace gives 5 3 4 2 3 1 2 2 2 3 3 4 4 5.",
+   "my_answer": "A",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.78,
+   "note": "The two function bodies are interleaved in the extracted text."
+  },
+  {
+   "question_id": "GATE-CS-2017-S1-Q44",
+   "verdict": "flag",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.DM",
+   "secondary_topic_ids": [],
+   "concept_ids": [],
+   "what_it_tests": "RSA private key from p, q and e.",
+   "why_this_topic": "RSA/cryptography is not in the GATE CS 2027 syllabus; the arithmetic is modular inverse.",
+   "alternatives_considered": [],
+   "solution_sketch": "phi = 192; 35 x 11 = 385 = 1 mod 192 -> d = 11.",
+   "my_answer": "11",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": false
+   },
+   "flag_reason": "out_of_syllabus",
+   "confidence": 0.5,
+   "note": "Cryptography is out of syllabus."
+  },
+  {
+   "question_id": "GATE-CS-2017-S1-Q47",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.DM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.DM.COUNT"
+   ],
+   "what_it_tests": "Inclusion-exclusion count.",
+   "why_this_topic": "Counting.",
+   "alternatives_considered": [],
+   "solution_sketch": "166 + 100 + 71 - 33 - 23 - 14 + 4 = 271.",
+   "my_answer": "271",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2017-S1-Q54",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "COA",
+   "primary_topic_id": "COA.MEM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "COA.MEM.CACHE"
+   ],
+   "what_it_tests": "Tag length change from direct-mapped to 16-way.",
+   "why_this_topic": "Cache address split.",
+   "alternatives_considered": [],
+   "solution_sketch": "16-way cuts the index by 4 bits -> tag 10 + 4 = 14.",
+   "my_answer": "14",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2017-S1-Q56",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.VA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.VA.GRAM"
+   ],
+   "what_it_tests": "Tense agreement.",
+   "why_this_topic": "Grammar.",
+   "alternatives_considered": [],
+   "solution_sketch": "'wished' (simple past).",
+   "my_answer": "C",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Blank lost in the stem."
+  },
+  {
+   "question_id": "GATE-CS-2017-S1-Q58",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.AA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.AA.ORDER"
+   ],
+   "what_it_tests": "Seating around a square table.",
+   "why_this_topic": "Arrangement puzzle - analytical aptitude.",
+   "alternatives_considered": [],
+   "solution_sketch": "Placing R left of M and S right of A puts Srinivas opposite Murali.",
+   "my_answer": "C",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.88,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2017-S2-Q07",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "OS",
+   "primary_topic_id": "OS.PROC",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "OS.PROC.PROC"
+   ],
+   "what_it_tests": "What all threads share.",
+   "why_this_topic": "Threads.",
+   "alternatives_considered": [],
+   "solution_sketch": "Only the address space.",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.96,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2017-S2-Q11",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.DM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.DM.LOGIC"
+   ],
+   "what_it_tests": "Translating English into propositional logic ('only if').",
+   "why_this_topic": "Propositional logic.",
+   "alternatives_considered": [],
+   "solution_sketch": "'not pleasant only if raining and cold' = not r -> (p and q).",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2017-S2-Q14",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.C",
+   "secondary_topic_ids": [],
+   "concept_ids": [],
+   "what_it_tests": "Pointer aliasing of a local parameter.",
+   "why_this_topic": "C pointers.",
+   "alternatives_considered": [],
+   "solution_sketch": "y = 0 then *ptr = 1 sets x = 1 -> 1,0.",
+   "my_answer": "C",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "Option C reads '1.0' (should be 1,0)."
+  },
+  {
+   "question_id": "GATE-CS-2017-S2-Q22",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.LA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.LA.RANK"
+   ],
+   "what_it_tests": "Rank of a matrix sum.",
+   "why_this_topic": "Rank.",
+   "alternatives_considered": [],
+   "solution_sketch": "P + Q = [[0,-1,-2],[8,9,10],[8,8,8]]; row2 - row3 = -row1 -> rank 2.",
+   "my_answer": "2",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.88,
+   "note": "Matrices flattened in the text; readable with care."
+  },
+  {
+   "question_id": "GATE-CS-2017-S2-Q23",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.DM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.DM.GRAPH"
+   ],
+   "what_it_tests": "Max vertices given edges and minimum degree.",
+   "why_this_topic": "Handshake lemma.",
+   "alternatives_considered": [],
+   "solution_sketch": "3n <= 2 x 25 -> n <= 16.",
+   "my_answer": "16",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  }
+ ]
+}

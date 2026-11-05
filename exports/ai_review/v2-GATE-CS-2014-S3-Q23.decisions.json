@@ -1,0 +1,893 @@
+{
+ "reviewer": "claude-opus-5-5",
+ "prompt_version": "ai-review-v2",
+ "decisions": [
+  {
+   "question_id": "GATE-CS-2014-S3-Q23",
+   "verdict": "flag",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "ALGO",
+   "primary_topic_id": "ALGO.GRAPH",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "ALGO.GRAPH.TRAV"
+   ],
+   "what_it_tests": "Maximum DFS recursion depth on a given graph.",
+   "why_this_topic": "Recursion depth of DFS is graph traversal.",
+   "alternatives_considered": [],
+   "solution_sketch": "Needs the graph figure.",
+   "my_answer": "unsure",
+   "key_check": "unsure",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.88,
+   "note": "Graph is a figure - check the PDF."
+  },
+  {
+   "question_id": "GATE-CS-2014-S3-Q30",
+   "verdict": "flag",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "OS",
+   "primary_topic_id": "OS.MEM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "OS.MEM.VMEM"
+   ],
+   "what_it_tests": "LRU page faults for a reference string.",
+   "why_this_topic": "Page replacement is virtual memory.",
+   "alternatives_considered": [],
+   "solution_sketch": "The page reference string is missing from the text.",
+   "my_answer": "unsure",
+   "key_check": "unsure",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.9,
+   "note": "Reference string lost - copy it from the PDF."
+  },
+  {
+   "question_id": "GATE-CS-2014-S3-Q46",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "TOC",
+   "primary_topic_id": "TOC.CFG",
+   "secondary_topic_ids": [
+    "TOC.RCFL"
+   ],
+   "concept_ids": [
+    "TOC.CFG.PDA"
+   ],
+   "what_it_tests": "Which languages are deterministic context-free.",
+   "why_this_topic": "DCFL membership is about deterministic pushdown automata.",
+   "alternatives_considered": [
+    {
+     "topic_id": "TOC.RCFL",
+     "why_not": "class question, but determinism of PDAs decides it"
+    }
+   ],
+   "solution_sketch": "0^n1^n and wcw^R have DPDAs (the c marks the middle); ww^R needs guessing -> only L1, L2.",
+   "my_answer": "C",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.82,
+   "note": "Label was flagged earlier; topic right."
+  },
+  {
+   "question_id": "GATE-CS-2014-S3-Q47",
+   "verdict": "flag",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "ALGO",
+   "primary_topic_id": "ALGO.DESIGN",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "ALGO.DESIGN.DP"
+   ],
+   "what_it_tests": "Minimum-steps recurrence with shortcuts on a number line.",
+   "why_this_topic": "T(k) = 1 + min over next positions is a dynamic-programming recurrence, not a graph-algorithm question.",
+   "alternatives_considered": [
+    {
+     "topic_id": "ALGO.GRAPH",
+     "why_not": "could be modelled as BFS, but the question asks for the DP recurrence"
+    }
+   ],
+   "solution_sketch": "From 9 you can step to 10 or take the shortcut to 15 -> y z = 10 x 15 = 150.",
+   "my_answer": "150",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.65,
+   "note": "Stem partly destroyed by OCR; I suggest ALGO.DESIGN (DP) instead of ALGO.GRAPH."
+  },
+  {
+   "question_id": "GATE-CS-2014-S3-Q49",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.TREE",
+   "secondary_topic_ids": [
+    "ALGO.CMPLX"
+   ],
+   "concept_ids": [
+    "PDS.TREE.BST"
+   ],
+   "what_it_tests": "Range sum in a balanced BST.",
+   "why_this_topic": "Range queries on a balanced BST are the BST topic.",
+   "alternatives_considered": [
+    {
+     "topic_id": "ALGO.CMPLX",
+     "why_not": "only the bound format"
+    }
+   ],
+   "solution_sketch": "O(log n + m): a = 0, b = 1, c = 1, d = 0 -> 110.",
+   "my_answer": "110",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.88,
+   "note": "The exponent 'c' is missing from the extracted formula."
+  },
+  {
+   "question_id": "GATE-CS-2014-S3-Q54",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "COA",
+   "primary_topic_id": "COA.MEM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "COA.MEM.CACHE"
+   ],
+   "what_it_tests": "Average access time with separate read/write hit and miss costs.",
+   "why_this_topic": "Average memory access time with a hit ratio is cache performance.",
+   "alternatives_considered": [],
+   "solution_sketch": "Reads 160 x 1.4 + writes 40 x 2.8 = 336 / 200 = 1.68 ns.",
+   "my_answer": "1.68",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "Header text leaked into the stem."
+  },
+  {
+   "question_id": "GATE-CS-2014-S3-Q55",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "DL",
+   "primary_topic_id": "DL.CIRC",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DL.CIRC.SEQ"
+   ],
+   "what_it_tests": "State sequence of a JK flip-flop circuit.",
+   "why_this_topic": "Sequential-circuit state tracing.",
+   "alternatives_considered": [],
+   "solution_sketch": "Needs the circuit figure.",
+   "my_answer": "unsure",
+   "key_check": "unsure",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.88,
+   "note": "Circuit is a figure; OCR text unreliable."
+  },
+  {
+   "question_id": "GATE-CS-2015-S1-Q10",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.QA",
+   "secondary_topic_ids": [],
+   "concept_ids": [],
+   "what_it_tests": "Class average from a marks table.",
+   "why_this_topic": "Data interpretation is quantitative aptitude.",
+   "alternatives_considered": [],
+   "solution_sketch": "Total = 42 + 45 + 11 + 46 + 155 = 299 over 44 students = 6.795.",
+   "my_answer": "C",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Response-sheet junk ('x x B 3 C', section headers) in the options."
+  },
+  {
+   "question_id": "GATE-CS-2015-S1-Q14",
+   "verdict": "correct",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "ALGO",
+   "primary_topic_id": "ALGO.SORT",
+   "secondary_topic_ids": [
+    "ALGO.CMPLX"
+   ],
+   "concept_ids": [
+    "ALGO.SORT.SORT"
+   ],
+   "what_it_tests": "Worst-case quicksort recurrence.",
+   "why_this_topic": "The answer needs knowing quicksort's worst-case split (n-1 and 1); writing it as a recurrence is secondary.",
+   "alternatives_considered": [
+    {
+     "topic_id": "ALGO.CMPLX",
+     "why_not": "plausible - it is a recurrence question - but the sorting algorithm's behaviour decides it"
+    }
+   ],
+   "solution_sketch": "Worst split gives T(n) = T(n-1) + T(1) + cn.",
+   "my_answer": "B",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.62,
+   "note": "Boundary SORT vs CMPLX. Response-sheet junk in option D."
+  },
+  {
+   "question_id": "GATE-CS-2015-S1-Q16",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "LEGACY",
+   "primary_topic_id": "LEGACY.SE",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "LEGACY.SE.TEST"
+   ],
+   "what_it_tests": "Matching testing techniques to testing types.",
+   "why_this_topic": "Software testing - old syllabus SE.",
+   "alternatives_considered": [],
+   "solution_sketch": "Condition coverage white-box, equivalence classes black-box, volume -> performance, alpha -> system -> C.",
+   "my_answer": "C",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Response-sheet junk in options."
+  },
+  {
+   "question_id": "GATE-CS-2015-S1-Q17",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.TREE",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "PDS.TREE.BST",
+    "PDS.TREE.TRAV"
+   ],
+   "what_it_tests": "Valid BST inorder sequences.",
+   "why_this_topic": "Inorder of a BST is sorted - BST property plus traversal.",
+   "alternatives_considered": [],
+   "solution_sketch": "Only I and IV are sorted.",
+   "my_answer": "A",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "Roman numerals and options garbled by OCR."
+  },
+  {
+   "question_id": "GATE-CS-2015-S1-Q23",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "CN",
+   "primary_topic_id": "CN.TCP",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "CN.TCP.FLOW",
+    "CN.TCP.CONN"
+   ],
+   "what_it_tests": "False statements about TCP sequence numbers, timeout and windows.",
+   "why_this_topic": "Sequence numbers, RTO and advertised window are TCP.",
+   "alternatives_considered": [],
+   "solution_sketch": "I false (seq advances by bytes), III false (window changes); II and IV true -> I and III.",
+   "my_answer": "B",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.85,
+   "note": "Option B reads 'I and I only' - should be 'I and III only'."
+  },
+  {
+   "question_id": "GATE-CS-2015-S1-Q30",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "OS",
+   "primary_topic_id": "OS.SYNC",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "OS.SYNC.SYNC"
+   ],
+   "what_it_tests": "Possible final values of a shared variable under interleaving.",
+   "why_this_topic": "Interleavings of non-atomic updates are concurrency.",
+   "alternatives_considered": [],
+   "solution_sketch": "Interleavings give B in {2, 3, 4} -> 3 values.",
+   "my_answer": "3",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.85,
+   "note": "'Correct Answer : 3' is printed in the stem - the key can be loaded from it."
+  },
+  {
+   "question_id": "GATE-CS-2015-S1-Q32",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "DB",
+   "primary_topic_id": "DB.IDX",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DB.IDX.IDX"
+   ],
+   "what_it_tests": "Definition of a clustered index.",
+   "why_this_topic": "Indexing.",
+   "alternatives_considered": [],
+   "solution_sketch": "Clustered.",
+   "my_answer": "C",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Response-sheet junk in options."
+  },
+  {
+   "question_id": "GATE-CS-2015-S1-Q37",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.TREE",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "PDS.TREE.HEAP"
+   ],
+   "what_it_tests": "Inserting into a max-heap array.",
+   "why_this_topic": "Heap insertion with sift-up is binary heaps.",
+   "alternatives_considered": [],
+   "solution_sketch": "35 at index 10, swap with 15 (index 5) then 30 (index 2) -> 40,35,20,10,30,16,17,8,4,15.",
+   "my_answer": "B",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Response-sheet junk in options."
+  },
+  {
+   "question_id": "GATE-CS-2015-S1-Q42",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.DM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.DM.REL"
+   ],
+   "what_it_tests": "Probability a lattice satisfies distributivity on random triples.",
+   "why_this_topic": "Lattices are partial orders in discrete mathematics.",
+   "alternatives_considered": [],
+   "solution_sketch": "Needs the Hasse diagram; options scrambled.",
+   "my_answer": "unsure",
+   "key_check": "no_key",
+   "difficulty": "hard",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.85,
+   "note": "Figure question, options broken - check the PDF."
+  },
+  {
+   "question_id": "GATE-CS-2015-S1-Q46",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "CD",
+   "primary_topic_id": "CD.OPT",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "CD.OPT.DFLOW"
+   ],
+   "what_it_tests": "Live variables at two statements in a CFG.",
+   "why_this_topic": "Liveness is data-flow analysis in code optimisation.",
+   "alternatives_considered": [],
+   "solution_sketch": "At blocks 2 and 3 the variables used before redefinition on some path are r and u.",
+   "my_answer": "C",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.8,
+   "note": "CFG figure flattened into the text; check block contents in the PDF."
+  },
+  {
+   "question_id": "GATE-CS-2015-S1-Q53",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "DL",
+   "primary_topic_id": "DL.CIRC",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DL.CIRC.SEQ"
+   ],
+   "what_it_tests": "Output sequence of a D and JK flip-flop pair.",
+   "why_this_topic": "Sequential-circuit tracing.",
+   "alternatives_considered": [],
+   "solution_sketch": "Cannot solve: the circuit connection text is destroyed.",
+   "my_answer": "unsure",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.85,
+   "note": "Stem garbled - check the PDF."
+  },
+  {
+   "question_id": "GATE-CS-2015-S1-Q54",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "OS",
+   "primary_topic_id": "OS.FS",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "OS.FS.DISK"
+   ],
+   "what_it_tests": "Time to read a file sector-by-sector with seeks.",
+   "why_this_topic": "Disk access time is disk organisation.",
+   "alternatives_considered": [],
+   "solution_sketch": "Per sector 4 + 3 + 0.01 ms; x 2000 = 14020 ms.",
+   "my_answer": "14020",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "'10o00' = 10000 RPM (OCR). Answer printed in the stem."
+  },
+  {
+   "question_id": "GATE-CS-2015-S1-Q55",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "COA",
+   "primary_topic_id": "COA.PIPE",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "COA.PIPE.PERF"
+   ],
+   "what_it_tests": "Speed-up of a pipelined processor with a slower clock.",
+   "why_this_topic": "Pipeline speed-up.",
+   "alternatives_considered": [],
+   "solution_sketch": "1.6 ns / 0.5 ns = 3.2.",
+   "my_answer": "3.2",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "Answer printed in the stem."
+  },
+  {
+   "question_id": "GATE-CS-2015-S2-Q04",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.AA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.AA.DEDUCT"
+   ],
+   "what_it_tests": "Data sufficiency.",
+   "why_this_topic": "Deciding whether statements suffice is analytical aptitude.",
+   "alternatives_considered": [],
+   "solution_sketch": "I gives 20 kg/pole; II gives 8w = 160 -> 20 kg: either alone suffices.",
+   "my_answer": "C",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Label was flagged earlier; topic right."
+  },
+  {
+   "question_id": "GATE-CS-2015-S2-Q08",
+   "verdict": "flag",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.QA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.QA.FUNC"
+   ],
+   "what_it_tests": "Evaluating nested max/min/h functions.",
+   "why_this_topic": "Function evaluation puzzle - quantitative aptitude.",
+   "alternatives_considered": [],
+   "solution_sketch": "Cannot verify: the definition of h was destroyed.",
+   "my_answer": "unsure",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.8,
+   "note": "Stem garbled; answer 8 printed in the text."
+  },
+  {
+   "question_id": "GATE-CS-2015-S2-Q10",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.QA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.QA.GEOM"
+   ],
+   "what_it_tests": "Distance between points from compass directions.",
+   "why_this_topic": "Coordinate geometry - quantitative aptitude.",
+   "alternatives_considered": [],
+   "solution_sketch": "Place O at origin: N (0.71, -0.71), M (0.71, 3.29), P (0, -2) -> MP = 5.34.",
+   "my_answer": "A",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Section headers leaked into options."
+  },
+  {
+   "question_id": "GATE-CS-2015-S2-Q15",
+   "verdict": "flag",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.LA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.LA.EIGEN"
+   ],
+   "what_it_tests": "Larger eigenvalue of a 2x2 matrix.",
+   "why_this_topic": "Eigenvalues are linear algebra.",
+   "alternatives_considered": [],
+   "solution_sketch": "Matrix [[4,5],[2,1]] (as far as readable): l^2 - 5l - 6 = 0 -> 6.",
+   "my_answer": "6",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.85,
+   "note": "Matrix scrambled in the text - check it."
+  },
+  {
+   "question_id": "GATE-CS-2015-S2-Q18",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "COA",
+   "primary_topic_id": "COA.MEM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "COA.MEM.CACHE"
+   ],
+   "what_it_tests": "Average read time with a hit ratio.",
+   "why_this_topic": "Cache performance.",
+   "alternatives_considered": [],
+   "solution_sketch": "0.8 x 5 + 0.2 x 50 = 14 ns.",
+   "my_answer": "14",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.96,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2015-S2-Q22",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.TREE",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "PDS.TREE.HEAP"
+   ],
+   "what_it_tests": "Cost to fix a heap whose subtrees are heaps.",
+   "why_this_topic": "Heapify is binary heaps.",
+   "alternatives_considered": [],
+   "solution_sketch": "One sift-down: Omega(log n).",
+   "my_answer": "A",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.88,
+   "note": "Options merged into (A); B-D empty."
+  },
+  {
+   "question_id": "GATE-CS-2015-S2-Q24",
+   "verdict": "correct",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.REC",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "PDS.REC.REC"
+   ],
+   "what_it_tests": "Evaluating a recursive function (Catalan-like).",
+   "why_this_topic": "The task is tracing a recursive C function; no complexity analysis is asked.",
+   "alternatives_considered": [
+    {
+     "topic_id": "ALGO.CMPLX",
+     "why_not": "nothing about running time"
+    }
+   ],
+   "solution_sketch": "f1=1, f2=2, f3=5, f4=15, f5=1+15+10+10+15 = 51.",
+   "my_answer": "51",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.8,
+   "note": "Answer printed in the stem."
+  },
+  {
+   "question_id": "GATE-CS-2015-S2-Q28",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "CD",
+   "primary_topic_id": "CD.RUNTIME",
+   "secondary_topic_ids": [
+    "CD.OPT"
+   ],
+   "concept_ids": [
+    "CD.RUNTIME.IR"
+   ],
+   "what_it_tests": "AST vs control-flow graph properties.",
+   "why_this_topic": "ASTs and CFGs are intermediate representations.",
+   "alternatives_considered": [
+    {
+     "topic_id": "CD.OPT",
+     "why_not": "CFGs are used by optimisation, but the question compares representations"
+    }
+   ],
+   "solution_sketch": "Cannot verify options - only A survived.",
+   "my_answer": "unsure",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.75,
+   "note": "Options B-D lost; suggests CD.RUNTIME (IR) over CD.OPT."
+  },
+  {
+   "question_id": "GATE-CS-2015-S2-Q46",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "TOC",
+   "primary_topic_id": "TOC.RCFL",
+   "secondary_topic_ids": [
+    "TOC.REG"
+   ],
+   "concept_ids": [],
+   "what_it_tests": "Which of three languages are regular.",
+   "why_this_topic": "Deciding regularity of languages is the regular/context-free languages topic.",
+   "alternatives_considered": [
+    {
+     "topic_id": "TOC.REG",
+     "why_not": "no automaton is built"
+    }
+   ],
+   "solution_sketch": "L1 regular (w can be one symbol), L2 not regular, L3 regular -> L1 and L3.",
+   "my_answer": "A",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.72,
+   "note": "Option D empty, exponents lost. Suggests TOC.RCFL."
+  },
+  {
+   "question_id": "GATE-CS-2015-S2-Q47",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "ALGO",
+   "primary_topic_id": "ALGO.DESIGN",
+   "secondary_topic_ids": [
+    "ALGO.GRAPH"
+   ],
+   "concept_ids": [
+    "ALGO.DESIGN.GREEDY",
+    "ALGO.DESIGN.DP",
+    "ALGO.DESIGN.DAC"
+   ],
+   "what_it_tests": "Matching algorithms to design paradigms.",
+   "why_this_topic": "Design paradigms of known algorithms.",
+   "alternatives_considered": [],
+   "solution_sketch": "Dijkstra greedy, Floyd-Warshall DP, binary search D&C, backtracking DFS -> C.",
+   "my_answer": "C",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "Response-sheet junk in option D."
+  }
+ ]
+}

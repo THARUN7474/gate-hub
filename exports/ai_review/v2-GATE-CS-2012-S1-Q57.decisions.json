@@ -1,0 +1,921 @@
+{
+ "reviewer": "claude-opus-5-5",
+ "prompt_version": "ai-review-v2",
+ "decisions": [
+  {
+   "question_id": "GATE-CS-2012-S1-Q57",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.VA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.VA.VOCAB"
+   ],
+   "what_it_tests": "Sentence completion with a contrast word ('despite ... succeeded').",
+   "why_this_topic": "Choosing the word that fits the sentence's logic is verbal aptitude.",
+   "alternatives_considered": [],
+   "solution_sketch": "'Despite setbacks ... succeeded' - the contrast needs a negative word.",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2012-S1-Q59",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.VA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.VA.GRAM"
+   ],
+   "what_it_tests": "Spotting the ungrammatical sentence ('very less').",
+   "why_this_topic": "Grammar error detection is verbal aptitude.",
+   "alternatives_considered": [],
+   "solution_sketch": "'Very less' is wrong usage (should be 'very little/low').",
+   "my_answer": "D",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q01",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.DM",
+   "secondary_topic_ids": [],
+   "concept_ids": [],
+   "what_it_tests": "Commutativity and associativity of x op y = x^2 + y^2.",
+   "why_this_topic": "Properties of binary operations belong to the algebraic-structures part of discrete mathematics (monoids, groups).",
+   "alternatives_considered": [
+    {
+     "topic_id": "GA.QA",
+     "why_not": "formal algebraic properties, not aptitude"
+    }
+   ],
+   "solution_sketch": "Symmetric in x, y -> commutative; (x^2+y^2)^2+z^2 != x^2+(y^2+z^2)^2 -> not associative.",
+   "my_answer": "A",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.88,
+   "note": "Exponents lost in extraction; no concept for algebraic structures exists in the taxonomy."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q02",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.PS",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.PS.DIST"
+   ],
+   "what_it_tests": "Poisson probability P(X < 3) with mean 3.",
+   "why_this_topic": "Applying the Poisson pmf is probability distributions.",
+   "alternatives_considered": [],
+   "solution_sketch": "e^-3 (1 + 3 + 9/2) = 17/(2e^3).",
+   "my_answer": "C",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "Stray characters ('1', 'x x 2') leaked into options B and C."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q07",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.TREE",
+   "secondary_topic_ids": [
+    "ALGO.CMPLX"
+   ],
+   "concept_ids": [
+    "PDS.TREE.BST"
+   ],
+   "what_it_tests": "Worst-case insertion cost in an unbalanced BST.",
+   "why_this_topic": "BST insertion and its worst case (a skewed tree) is the binary search tree topic.",
+   "alternatives_considered": [
+    {
+     "topic_id": "ALGO.CMPLX",
+     "why_not": "only the bound is asked; the structure decides it"
+    }
+   ],
+   "solution_sketch": "A skewed BST has height n, so insertion is O(n).",
+   "my_answer": "C",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "Duplicate of 2013-S2-Q19."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q10",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "OS",
+   "primary_topic_id": "OS.SCHED",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "OS.SCHED.SCHED"
+   ],
+   "what_it_tests": "Priority-by-waiting-time scheduling equals round robin.",
+   "why_this_topic": "Comparing scheduling policies is CPU scheduling.",
+   "alternatives_considered": [],
+   "solution_sketch": "The process that waited longest runs next for T units -> processes take turns -> round robin.",
+   "my_answer": "B",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.88,
+   "note": "Label was flagged earlier; topic right."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q13",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "CN",
+   "primary_topic_id": "CN.APP",
+   "secondary_topic_ids": [],
+   "concept_ids": [],
+   "what_it_tests": "Key order for sign-then-encrypt with public-key cryptography.",
+   "why_this_topic": "Cryptography / network security is not in the GATE CS 2027 syllabus; CN.APP is only the nearest home.",
+   "alternatives_considered": [
+    {
+     "topic_id": "LEGACY.SE",
+     "why_not": "not software engineering"
+    }
+   ],
+   "solution_sketch": "Sign with X private, encrypt with Y public; decrypt with Y private, verify with X public.",
+   "my_answer": "D",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": false
+   },
+   "flag_reason": "out_of_syllabus",
+   "confidence": 0.5,
+   "note": "Network security is out of the 2027 syllabus - part of the out-of-syllabus decision."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q20",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "COA",
+   "primary_topic_id": "COA.MEM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "COA.MEM.CACHE"
+   ],
+   "what_it_tests": "Which cache lines a block may occupy in a k-way set-associative cache.",
+   "why_this_topic": "Set-associative mapping is cache organisation.",
+   "alternatives_considered": [],
+   "solution_sketch": "Set = j mod v; its lines are (j mod v)k ... (j mod v)k + k - 1.",
+   "my_answer": "A",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q25",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.DM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.DM.GRAPH"
+   ],
+   "what_it_tests": "Handshake lemma facts.",
+   "why_this_topic": "Degree-sum facts are graph theory in discrete mathematics.",
+   "alternatives_considered": [],
+   "solution_sketch": "Sum of degrees = 2|E| is even, so the number of odd-degree vertices is even: both true.",
+   "my_answer": "C",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q28",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "COA",
+   "primary_topic_id": "COA.ALU",
+   "secondary_topic_ids": [
+    "COA.IO"
+   ],
+   "concept_ids": [
+    "COA.ALU.CTRL",
+    "COA.IO.INTR"
+   ],
+   "what_it_tests": "Reading a micro-operation sequence: save PC, jump - interrupt entry.",
+   "why_this_topic": "Micro-operations belong to datapath and control-unit design; the sequence they spell out is entering an interrupt routine.",
+   "alternatives_considered": [
+    {
+     "topic_id": "COA.IO",
+     "why_not": "interrupts are what the sequence does, but the skill is reading micro-operations"
+    }
+   ],
+   "solution_sketch": "PC saved to memory via MBR, PC loaded with Y -> initiation of interrupt service.",
+   "my_answer": "D",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.72,
+   "note": "CTRL vs IO boundary - either is defensible."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q29",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "OS",
+   "primary_topic_id": "OS.FS",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "OS.FS.DISK"
+   ],
+   "what_it_tests": "Locating the last sector of a contiguous file on a disk.",
+   "why_this_topic": "Disk addressing <cylinder, surface, sector> is disk organisation in the OS syllabus.",
+   "alternatives_considered": [
+    {
+     "topic_id": "COA.MEM",
+     "why_not": "storage geometry is taught with OS disks"
+    }
+   ],
+   "solution_sketch": "85594 sectors; start offset 9x64+40 = 616 in cylinder 1200; (616+85593)/1024 = 84 -> cylinder 1284.",
+   "my_answer": "D",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q33",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "TOC",
+   "primary_topic_id": "TOC.REG",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "TOC.REG.FA",
+    "TOC.REG.RE"
+   ],
+   "what_it_tests": "Properties of a given DFA: minimality, language, regex equivalence.",
+   "why_this_topic": "Reasoning about a DFA and an equivalent regular expression is finite automata and regular expressions.",
+   "alternatives_considered": [],
+   "solution_sketch": "Needs the DFA figure, which is not in the text.",
+   "my_answer": "unsure",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.88,
+   "note": "The DFA is a figure - check it in the PDF. Duplicate of 2013-S2-Q40."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q35",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "DB",
+   "primary_topic_id": "DB.REL",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DB.REL.SQL",
+    "DB.REL.ALG",
+    "DB.REL.CALC"
+   ],
+   "what_it_tests": "Equivalence of one query in SQL, algebra, tuple and domain calculus.",
+   "why_this_topic": "All four forms are the relational model's query languages.",
+   "alternatives_considered": [
+    {
+     "topic_id": "DB.NF",
+     "why_not": "no constraints or normal forms"
+    }
+   ],
+   "solution_sketch": "All four return names of students with >90 in course 107.",
+   "my_answer": "A",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.88,
+   "note": "Label was flagged earlier; topic right."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q45",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "COA",
+   "primary_topic_id": "COA.PIPE",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "COA.PIPE.HAZARD",
+    "COA.PIPE.PERF"
+   ],
+   "what_it_tests": "Pipeline time with a taken branch and no prediction.",
+   "why_this_topic": "Cycle time from stage delays plus a control-hazard stall is pipelining.",
+   "alternatives_considered": [],
+   "solution_sketch": "Cycle = 10 + 1 = 11 ns; 15 cycles with the branch penalty -> 165 ns.",
+   "my_answer": "B",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.88,
+   "note": "Duplicate of 2013-S2-Q28."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q47",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.DM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.DM.LOGIC"
+   ],
+   "what_it_tests": "Equivalences of a negated quantified formula.",
+   "why_this_topic": "Pushing negation through quantifiers is first-order logic.",
+   "alternatives_considered": [],
+   "solution_sketch": "Cannot verify: predicate arguments alpha(x,y), beta(x,z) were lost and options C, D are empty.",
+   "my_answer": "unsure",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.9,
+   "note": "Symbols lost in extraction - needs the PDF."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q50",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.C",
+   "secondary_topic_ids": [
+    "LEGACY.SE"
+   ],
+   "concept_ids": [],
+   "what_it_tests": "Finding which test inputs expose a chained-replacement bug in a C loop.",
+   "why_this_topic": "The skill is tracing the C loop over arrays to see when a replaced character is replaced again.",
+   "alternatives_considered": [
+    {
+     "topic_id": "LEGACY.SE",
+     "why_not": "framed as testing, but no testing technique is needed"
+    }
+   ],
+   "solution_sketch": "Cases 3 (b->c->d) and 4 (a->b->a) trigger chained replacement; 1 and 2 do not -> two.",
+   "my_answer": "B",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.66,
+   "note": "Text truncated ('ca...'). Duplicate of 2013-S2-Q48."
+  },
+  {
+   "question_id": "GATE-CS-2013-S1-Q54",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "DB",
+   "primary_topic_id": "DB.NF",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DB.NF.FD"
+   ],
+   "what_it_tests": "Counting candidate keys from FDs.",
+   "why_this_topic": "Closures and candidate keys from functional dependencies are the FD/normalisation topic.",
+   "alternatives_considered": [
+    {
+     "topic_id": "DB.REL",
+     "why_not": "keys here are derived from FDs"
+    }
+   ],
+   "solution_sketch": "D is on no right side; AD, BD, ED, FD each determine everything -> 4.",
+   "my_answer": "B",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2013-S2-Q08",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "TOC",
+   "primary_topic_id": "TOC.TM",
+   "secondary_topic_ids": [
+    "ALGO.GRAPH"
+   ],
+   "concept_ids": [],
+   "what_it_tests": "P, NP and NP-completeness of simple problems.",
+   "why_this_topic": "P/NP/NP-completeness is not in the GATE CS 2027 syllabus; TOC.TM is the nearest home.",
+   "alternatives_considered": [
+    {
+     "topic_id": "ALGO.GRAPH",
+     "why_not": "cycle detection is only the example"
+    }
+   ],
+   "solution_sketch": "Cycle detection is in P (so in NP); NP-complete problems have nondeterministic polynomial algorithms -> all three.",
+   "my_answer": "A",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": false
+   },
+   "flag_reason": "out_of_syllabus",
+   "confidence": 0.5,
+   "note": "Complexity classes are out of the 2027 syllabus."
+  },
+  {
+   "question_id": "GATE-CS-2013-S2-Q11",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "DB",
+   "primary_topic_id": "DB.IDX",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DB.IDX.IDX"
+   ],
+   "what_it_tests": "Definition of a clustered index.",
+   "why_this_topic": "Index types are file organisation and indexing.",
+   "alternatives_considered": [],
+   "solution_sketch": "Clustered = records stored in the same order as the index entries.",
+   "my_answer": "C",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Label was flagged earlier; topic right."
+  },
+  {
+   "question_id": "GATE-CS-2013-S2-Q12",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "CN",
+   "primary_topic_id": "CN.LAYER",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "CN.LAYER.LAYER"
+   ],
+   "what_it_tests": "Layer visits along a path through two routers.",
+   "why_this_topic": "Counting network- and link-layer processing per hop is layering.",
+   "alternatives_considered": [
+    {
+     "topic_id": "CN.ROUTE",
+     "why_not": "no routing algorithm"
+    }
+   ],
+   "solution_sketch": "Network layer: S, R1, R2, D = 4; data link: 1 + 2 + 2 + 1 = 6.",
+   "my_answer": "C",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2013-S2-Q15",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "CN",
+   "primary_topic_id": "CN.APP",
+   "secondary_topic_ids": [],
+   "concept_ids": [],
+   "what_it_tests": "Matching SOA concepts (publish-find-bind, XML, BPMN).",
+   "why_this_topic": "Service-oriented computing and BPMN are not in the GATE CS 2027 syllabus; no topic fits well.",
+   "alternatives_considered": [
+    {
+     "topic_id": "LEGACY.SE",
+     "why_not": "closest old-syllabus area but not software engineering proper"
+    }
+   ],
+   "solution_sketch": "P-3, Q-1, R-4, S-2.",
+   "my_answer": "C",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": false
+   },
+   "flag_reason": "out_of_syllabus",
+   "confidence": 0.4,
+   "note": "Out of the 2027 syllabus (web services) - part of the out-of-syllabus decision."
+  },
+  {
+   "question_id": "GATE-CS-2013-S2-Q17",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "CD",
+   "primary_topic_id": "CD.LEX",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "CD.LEX.PARSE"
+   ],
+   "what_it_tests": "Maximum reductions in bottom-up parsing without epsilon/unit productions.",
+   "why_this_topic": "Counting reduce moves of a shift-reduce parser is parsing.",
+   "alternatives_considered": [],
+   "solution_sketch": "Each reduction shrinks the sentential form by at least 1 symbol: n -> 1 needs at most n - 1 reductions.",
+   "my_answer": "B",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.82,
+   "note": "Label was flagged earlier; topic right."
+  },
+  {
+   "question_id": "GATE-CS-2013-S2-Q19",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.TREE",
+   "secondary_topic_ids": [
+    "ALGO.CMPLX"
+   ],
+   "concept_ids": [
+    "PDS.TREE.BST"
+   ],
+   "what_it_tests": "Worst-case insertion cost in an unbalanced BST.",
+   "why_this_topic": "BST insertion worst case (skewed tree) is the BST topic.",
+   "alternatives_considered": [
+    {
+     "topic_id": "ALGO.CMPLX",
+     "why_not": "the structure decides the bound"
+    }
+   ],
+   "solution_sketch": "Skewed BST -> O(n).",
+   "my_answer": "C",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "Duplicate of 2013-S1-Q07."
+  },
+  {
+   "question_id": "GATE-CS-2013-S2-Q23",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.LA",
+   "secondary_topic_ids": [],
+   "concept_ids": [],
+   "what_it_tests": "Which determinant differs from a given one (row operations).",
+   "why_this_topic": "Determinant properties are linear algebra.",
+   "alternatives_considered": [],
+   "solution_sketch": "Cannot solve: all determinants are flattened into unreadable text.",
+   "my_answer": "unsure",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.85,
+   "note": "Matrices lost in extraction - needs the PDF; no 'determinant' concept in the taxonomy."
+  },
+  {
+   "question_id": "GATE-CS-2013-S2-Q28",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "COA",
+   "primary_topic_id": "COA.PIPE",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "COA.PIPE.HAZARD",
+    "COA.PIPE.PERF"
+   ],
+   "what_it_tests": "Pipeline time with a taken branch and no prediction.",
+   "why_this_topic": "Cycle time and a control-hazard stall are pipelining.",
+   "alternatives_considered": [],
+   "solution_sketch": "Cycle = 11 ns; 15 cycles -> 165 ns.",
+   "my_answer": "B",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.88,
+   "note": "Duplicate of 2013-S1-Q45."
+  },
+  {
+   "question_id": "GATE-CS-2013-S2-Q34",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "OS",
+   "primary_topic_id": "OS.SYNC",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "OS.SYNC.SYNC"
+   ],
+   "what_it_tests": "Semaphore entry/exit code so Y consumes a[i] only after X produces it.",
+   "why_this_topic": "Ordering two processes with semaphores is synchronization.",
+   "alternatives_considered": [],
+   "solution_sketch": "Cannot verify: option A holds two options' code and C is empty.",
+   "my_answer": "unsure",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.9,
+   "note": "Options scrambled in extraction - needs the PDF."
+  },
+  {
+   "question_id": "GATE-CS-2013-S2-Q39",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "OS",
+   "primary_topic_id": "OS.SYNC",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "OS.SYNC.SYNC"
+   ],
+   "what_it_tests": "Race condition with a counting semaphore of 2.",
+   "why_this_topic": "Lost updates under a semaphore that admits two is concurrency and synchronization.",
+   "alternatives_considered": [],
+   "solution_sketch": "Let Y and Z's updates be lost: W and X each finish last -> max x = 2.",
+   "my_answer": "D",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.88,
+   "note": "Label was flagged earlier; topic right."
+  },
+  {
+   "question_id": "GATE-CS-2013-S2-Q40",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "TOC",
+   "primary_topic_id": "TOC.REG",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "TOC.REG.FA",
+    "TOC.REG.RE"
+   ],
+   "what_it_tests": "Properties of a given DFA.",
+   "why_this_topic": "DFA reasoning and regex equivalence are regular languages.",
+   "alternatives_considered": [],
+   "solution_sketch": "Needs the DFA figure.",
+   "my_answer": "unsure",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.88,
+   "note": "DFA is a figure. Duplicate of 2013-S1-Q33."
+  },
+  {
+   "question_id": "GATE-CS-2013-S2-Q48",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.C",
+   "secondary_topic_ids": [
+    "LEGACY.SE"
+   ],
+   "concept_ids": [],
+   "what_it_tests": "Which test inputs expose a chained-replacement bug.",
+   "why_this_topic": "Tracing the C loop is the deciding skill.",
+   "alternatives_considered": [
+    {
+     "topic_id": "LEGACY.SE",
+     "why_not": "framed as testing, but tracing decides it"
+    }
+   ],
+   "solution_sketch": "Cases 3 and 4 trigger it -> two.",
+   "my_answer": "B",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.66,
+   "note": "Duplicate of 2013-S1-Q50."
+  },
+  {
+   "question_id": "GATE-CS-2013-S2-Q61",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.QA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.QA.PROB"
+   ],
+   "what_it_tests": "Probability a two-digit number is not divisible by 7.",
+   "why_this_topic": "Simple counting probability is quantitative aptitude.",
+   "alternatives_considered": [
+    {
+     "topic_id": "EM.PS",
+     "why_not": "GA section question"
+    }
+   ],
+   "solution_sketch": "90 two-digit numbers, 13 multiples of 7 -> 77/90.",
+   "my_answer": "D",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  }
+ ]
+}

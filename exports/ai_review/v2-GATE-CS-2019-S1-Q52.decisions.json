@@ -1,0 +1,896 @@
+{
+ "reviewer": "claude-opus-5-5",
+ "prompt_version": "ai-review-v2",
+ "decisions": [
+  {
+   "question_id": "GATE-CS-2019-S1-Q52",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "OS",
+   "primary_topic_id": "OS.FS",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "OS.FS.FS"
+   ],
+   "what_it_tests": "Maximum file size from inode pointer structure.",
+   "why_this_topic": "Inode-based allocation is file systems.",
+   "alternatives_considered": [],
+   "solution_sketch": "1024 addresses per block: (12 + 1024 + 1024^2) x 4 KB = about 4.0 GB.",
+   "my_answer": "4.0",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "Key accepts 3.7-3.8 or 4.0-4.1 (unit ambiguity)."
+  },
+  {
+   "question_id": "GATE-CS-2019-S1-Q56",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.PS",
+   "secondary_topic_ids": [
+    "PDS.TREE"
+   ],
+   "concept_ids": [
+    "EM.PS.RV"
+   ],
+   "what_it_tests": "Expected distance between two random leaves of a full binary tree.",
+   "why_this_topic": "Expectation over a distribution of distances is random variables; the tree only supplies the distances.",
+   "alternatives_considered": [
+    {
+     "topic_id": "PDS.TREE",
+     "why_not": "tree structure is the setting, not the skill"
+    }
+   ],
+   "solution_sketch": "P(0) = 1/8, P(2) = 1/8, P(4) = 2/8, P(6) = 4/8 -> 4.25.",
+   "my_answer": "4.25",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.85,
+   "note": "Label was flagged earlier; topic right."
+  },
+  {
+   "question_id": "GATE-CS-2019-S1-Q60",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "DL",
+   "primary_topic_id": "DL.BOOL",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DL.BOOL.MINIM"
+   ],
+   "what_it_tests": "Minimum NOR gates for a 4-variable function.",
+   "why_this_topic": "Minimising the function (it is B xnor D) then mapping to NOR is Boolean minimisation.",
+   "alternatives_considered": [
+    {
+     "topic_id": "DL.CIRC",
+     "why_not": "gate-level realisation is secondary"
+    }
+   ],
+   "solution_sketch": "f = BD + B'D' = (B + D')(B' + D) -> two NORs feeding one NOR = 3.",
+   "my_answer": "3",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2019-S1-Q62",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.C",
+   "secondary_topic_ids": [],
+   "concept_ids": [],
+   "what_it_tests": "Counting loop iterations with floating-point halving.",
+   "why_this_topic": "Tracing a C loop.",
+   "alternatives_considered": [],
+   "solution_sketch": "i/j = 2, 1, 0.5, 0.25, 0.125 > 0.0625 -> 5 prints.",
+   "my_answer": "5",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Loop body garbled ('1f + f = {' is 'j = j + j;')."
+  },
+  {
+   "question_id": "GATE-CS-2020-S1-Q01",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.VA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.VA.GRAM"
+   ],
+   "what_it_tests": "Prepositions of time.",
+   "why_this_topic": "Grammar.",
+   "alternatives_considered": [],
+   "solution_sketch": "'within six months', 'for the last three weeks'.",
+   "my_answer": "D",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Blanks lost in the stem."
+  },
+  {
+   "question_id": "GATE-CS-2020-S1-Q04",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.VA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.VA.RC"
+   ],
+   "what_it_tests": "Inference from a passage on glaciers.",
+   "why_this_topic": "Reading comprehension.",
+   "alternatives_considered": [],
+   "solution_sketch": "Only D is stated or implied.",
+   "my_answer": "D",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2020-S1-Q07",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.QA",
+   "secondary_topic_ids": [],
+   "concept_ids": [],
+   "what_it_tests": "Powers-of-3 letter sequence.",
+   "why_this_topic": "Number patterns.",
+   "alternatives_considered": [],
+   "solution_sketch": "P..T = 3^1..3^5 -> Q + S = 9 + 81 = 90.",
+   "my_answer": "C",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2020-S1-Q09",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.QA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.QA.GEOM"
+   ],
+   "what_it_tests": "Angles of perpendicular lines with the x-axis.",
+   "why_this_topic": "Geometry.",
+   "alternatives_considered": [],
+   "solution_sketch": "Slopes multiply to -1 with acute angles -> alpha + beta = 90 degrees.",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.93,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2020-S1-Q15",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.TREE",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "PDS.TREE.TRAV",
+    "PDS.TREE.BST"
+   ],
+   "what_it_tests": "Postorder of a BST from its preorder.",
+   "why_this_topic": "BST rebuilding plus traversal.",
+   "alternatives_considered": [],
+   "solution_sketch": "Root 15; left 10 -> 12 -> 11; right 20 -> 18 -> 16, 19 -> postorder 11 12 10 16 19 18 20 15.",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.96,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2020-S1-Q27",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.DM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.DM.REL"
+   ],
+   "what_it_tests": "Probability a random relation on 3 elements is reflexive.",
+   "why_this_topic": "Counting relations.",
+   "alternatives_considered": [],
+   "solution_sketch": "2^6 / 2^9 = 1/8.",
+   "my_answer": "0.125",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2020-S1-Q29",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "DL",
+   "primary_topic_id": "DL.CIRC",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DL.CIRC.COMB"
+   ],
+   "what_it_tests": "Select lines for a 32-input multiplexer.",
+   "why_this_topic": "Multiplexers are combinational circuits.",
+   "alternatives_considered": [],
+   "solution_sketch": "log2 32 = 5.",
+   "my_answer": "5",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.97,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2020-S1-Q30",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "DL",
+   "primary_topic_id": "DL.CIRC",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DL.CIRC.COMB"
+   ],
+   "what_it_tests": "Decoder size for 1 KB RAM.",
+   "why_this_topic": "Decoders are combinational circuits.",
+   "alternatives_considered": [
+    {
+     "topic_id": "COA.MEM",
+     "why_not": "addressing is the setting"
+    }
+   ],
+   "solution_sketch": "10 inputs, 1024 outputs -> 1034.",
+   "my_answer": "1034",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "Label was flagged earlier; topic right."
+  },
+  {
+   "question_id": "GATE-CS-2020-S1-Q40",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "COA",
+   "primary_topic_id": "COA.MEM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "COA.MEM.CACHE"
+   ],
+   "what_it_tests": "Which addresses share a cache set.",
+   "why_this_topic": "Set-associative mapping.",
+   "alternatives_considered": [],
+   "solution_sketch": "64 sets -> set = address bits 8-13; A2 and A3 both give set 0x28.",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2020-S1-Q46",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "DB",
+   "primary_topic_id": "DB.NF",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DB.NF.NF"
+   ],
+   "what_it_tests": "What a 3NF-but-not-BCNF relation must have.",
+   "why_this_topic": "Normal forms.",
+   "alternatives_considered": [],
+   "solution_sketch": "3NF allows X -> A with A prime; BCNF does not.",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2020-S1-Q53",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "COA",
+   "primary_topic_id": "COA.PIPE",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "COA.PIPE.PERF"
+   ],
+   "what_it_tests": "Pipeline speed-up with cache-miss and branch stalls.",
+   "why_this_topic": "Pipeline performance.",
+   "alternatives_considered": [],
+   "solution_sketch": "CPI = 1 + 0.75 + 0.1 = 1.85 at 0.5 ns vs 5 x 0.4 ns = 2 ns -> 2.16.",
+   "my_answer": "2.16",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2020-S1-Q56",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.C",
+   "secondary_topic_ids": [
+    "PDS.REC"
+   ],
+   "concept_ids": [
+    "PDS.C.SCOPE"
+   ],
+   "what_it_tests": "Static locals in recursive functions.",
+   "why_this_topic": "Static storage duration is the C topic; recursion is the vehicle.",
+   "alternatives_considered": [
+    {
+     "topic_id": "PDS.REC",
+     "why_not": "recursion alone does not explain the accumulation"
+    }
+   ],
+   "solution_sketch": "fun1(n) returns n(n+1)/2-style running counts; fun2(5) accumulates to 55.",
+   "my_answer": "55",
+   "key_check": "matches",
+   "difficulty": "hard",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.82,
+   "note": "The two functions are interleaved in the extracted text."
+  },
+  {
+   "question_id": "GATE-CS-2020-S1-Q62",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.DM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.DM.GRAPH"
+   ],
+   "what_it_tests": "Edge chromatic number of K3,4 plus a universal vertex.",
+   "why_this_topic": "Edge colouring.",
+   "alternatives_considered": [],
+   "solution_sketch": "Max degree 7 (vertex s) and 7 colours suffice -> 7.",
+   "my_answer": "7",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.88,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2021-S1-Q03",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.VA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.VA.GRAM"
+   ],
+   "what_it_tests": "Grammaticality and pronoun ambiguity.",
+   "why_this_topic": "Grammar.",
+   "alternatives_considered": [],
+   "solution_sketch": "(i) correct; (ii) 'he' is ambiguous.",
+   "my_answer": "C",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2021-S1-Q04",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.SA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.SA.TRANSFORM"
+   ],
+   "what_it_tests": "Paper folding and punching.",
+   "why_this_topic": "Spatial aptitude.",
+   "alternatives_considered": [],
+   "solution_sketch": "Options are figures.",
+   "my_answer": "unsure",
+   "key_check": "unsure",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.9,
+   "note": "Figure question - check the PDF."
+  },
+  {
+   "question_id": "GATE-CS-2021-S1-Q12",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "ALGO",
+   "primary_topic_id": "ALGO.CMPLX",
+   "secondary_topic_ids": [
+    "ALGO.SORT"
+   ],
+   "concept_ids": [],
+   "what_it_tests": "Exact comparison bound for simultaneous min and max.",
+   "why_this_topic": "Lower/upper bounds on comparisons are complexity analysis.",
+   "alternatives_considered": [
+    {
+     "topic_id": "ALGO.SORT",
+     "why_not": "searching for min/max is close"
+    }
+   ],
+   "solution_sketch": "Pairwise method: ceil(3n/2) - 2 comparisons -> C.",
+   "my_answer": "C",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.7,
+   "note": "Ceiling brackets lost in the options."
+  },
+  {
+   "question_id": "GATE-CS-2021-S1-Q18",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "CN",
+   "primary_topic_id": "CN.ROUTE",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "CN.ROUTE.IPV4"
+   ],
+   "what_it_tests": "ARP request vs reply addressing.",
+   "why_this_topic": "ARP is an IP support protocol.",
+   "alternatives_considered": [
+    {
+     "topic_id": "CN.DLL",
+     "why_not": "MAC level, but ARP is listed with IP"
+    }
+   ],
+   "solution_sketch": "Request is broadcast; reply is unicast.",
+   "my_answer": "C",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2021-S1-Q29",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.DM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.DM.COUNT"
+   ],
+   "what_it_tests": "Onto-style assignment counting.",
+   "why_this_topic": "Counting.",
+   "alternatives_considered": [],
+   "solution_sketch": "Remaining 4 jobs to 3 computers with the middle one non-empty: 3^4 - 2^4 = 65.",
+   "my_answer": "65",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "Label was flagged earlier; topic right."
+  },
+  {
+   "question_id": "GATE-CS-2021-S1-Q33",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "DB",
+   "primary_topic_id": "DB.REL",
+   "secondary_topic_ids": [
+    "EM.PS"
+   ],
+   "concept_ids": [
+    "DB.REL.ALG"
+   ],
+   "what_it_tests": "Estimated size of a selection with OR.",
+   "why_this_topic": "Selection in relational algebra with independence assumptions.",
+   "alternatives_considered": [
+    {
+     "topic_id": "EM.PS",
+     "why_not": "probability is the method"
+    }
+   ],
+   "solution_sketch": "P = 2/3 + 1/20 - 1/30 = 0.683 -> 820 tuples.",
+   "my_answer": "820",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.62,
+   "note": "Selectivity estimation is borderline syllabus."
+  },
+  {
+   "question_id": "GATE-CS-2021-S1-Q38",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "DL",
+   "primary_topic_id": "DL.CIRC",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DL.CIRC.SEQ"
+   ],
+   "what_it_tests": "Next states of a T flip-flop counter.",
+   "why_this_topic": "Sequential circuits.",
+   "alternatives_considered": [],
+   "solution_sketch": "Needs the circuit figure.",
+   "my_answer": "unsure",
+   "key_check": "unsure",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.88,
+   "note": "Circuit is a figure."
+  },
+  {
+   "question_id": "GATE-CS-2021-S1-Q46",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.DM",
+   "secondary_topic_ids": [
+    "EM.LA"
+   ],
+   "concept_ids": [
+    "EM.DM.GRAPH"
+   ],
+   "what_it_tests": "Diameter of the square graph.",
+   "why_this_topic": "Graph distance properties.",
+   "alternatives_considered": [
+    {
+     "topic_id": "EM.LA",
+     "why_not": "the matrix only defines G^2"
+    }
+   ],
+   "solution_sketch": "Two steps in G become one in G^2 -> diam(G^2) = ceil(diam(G)/2).",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.88,
+   "note": "Ceiling brackets lost."
+  },
+  {
+   "question_id": "GATE-CS-2021-S1-Q49",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "TOC",
+   "primary_topic_id": "TOC.TM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "TOC.TM.UNDEC"
+   ],
+   "what_it_tests": "Decidability of 'more than 2021 steps on all/some inputs'.",
+   "why_this_topic": "Decidability.",
+   "alternatives_considered": [],
+   "solution_sketch": "Only inputs up to length 2021 matter, so both are decidable by simulation.",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "hard",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Extractor reported an empty option, but all four are present."
+  },
+  {
+   "question_id": "GATE-CS-2021-S1-Q50",
+   "verdict": "agree",
+   "question_type": "MSQ",
+   "type_check": "matches",
+   "section_id": "ALGO",
+   "primary_topic_id": "ALGO.DESIGN",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "ALGO.DESIGN.DP"
+   ],
+   "what_it_tests": "Rod-cutting optimum and its solutions.",
+   "why_this_topic": "Rod cutting is dynamic programming.",
+   "alternatives_considered": [],
+   "solution_sketch": "R7 = 18 via 7, 1+6, 2+2+3 -> A and C.",
+   "my_answer": "A;C",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "Label was flagged earlier; topic right."
+  },
+  {
+   "question_id": "GATE-CS-2021-S1-Q58",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.C",
+   "secondary_topic_ids": [],
+   "concept_ids": [],
+   "what_it_tests": "Horner evaluation in a C loop.",
+   "why_this_topic": "Tracing a C function.",
+   "alternatives_considered": [],
+   "solution_sketch": "All ones, x = 2: 2^10 - 1 = 1023.",
+   "my_answer": "1023",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "Label was flagged earlier."
+  },
+  {
+   "question_id": "GATE-CS-2021-S1-Q60",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "CD",
+   "primary_topic_id": "CD.OPT",
+   "secondary_topic_ids": [
+    "CD.RUNTIME"
+   ],
+   "concept_ids": [
+    "CD.OPT.DFLOW"
+   ],
+   "what_it_tests": "DAG nodes for a basic block with common subexpressions.",
+   "why_this_topic": "DAG construction finds common subexpressions - local optimisation.",
+   "alternatives_considered": [
+    {
+     "topic_id": "CD.RUNTIME",
+     "why_not": "the DAG is an IR, but the count depends on CSE"
+    }
+   ],
+   "solution_sketch": "a = b + c = d and e = f share nodes: b, c, +, 1, +, + -> 6.",
+   "my_answer": "6",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.8,
+   "note": "First line reads 'a = b C' - should be 'a = b + c'."
+  },
+  {
+   "question_id": "GATE-CS-2021-S1-Q65",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "COA",
+   "primary_topic_id": "COA.ISA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "COA.ISA.INSTR"
+   ],
+   "what_it_tests": "Tracing a loop of machine instructions.",
+   "why_this_topic": "Instruction execution and addressing.",
+   "alternatives_considered": [],
+   "solution_sketch": "The loop updates 3000-3009 only; 3010 stays 50.",
+   "my_answer": "50",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "'END OF QUESTION PAPER' leaked into the stem."
+  }
+ ]
+}

@@ -1,0 +1,909 @@
+{
+ "reviewer": "claude-opus-5-5",
+ "prompt_version": "ai-review-v2",
+ "decisions": [
+  {
+   "question_id": "GATE-CS-2014-S1-Q13",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "ALGO",
+   "primary_topic_id": "ALGO.GRAPH",
+   "secondary_topic_ids": [
+    "EM.DM"
+   ],
+   "concept_ids": [
+    "ALGO.GRAPH.TRAV"
+   ],
+   "what_it_tests": "Reversing all edges keeps strongly connected components.",
+   "why_this_topic": "SCCs are computed by graph traversal (the transpose-graph trick of Kosaraju), which is graph algorithms.",
+   "alternatives_considered": [
+    {
+     "topic_id": "EM.DM",
+     "why_not": "pure graph theory would also fit; SCC is taught with traversal algorithms"
+    }
+   ],
+   "solution_sketch": "u and v reach each other in G iff they do in the reversed graph -> B.",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.78,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2014-S1-Q23",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "ALGO",
+   "primary_topic_id": "ALGO.GRAPH",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "ALGO.GRAPH.TRAV"
+   ],
+   "what_it_tests": "Valid topological orderings of a small DAG.",
+   "why_this_topic": "Topological sorting is graph traversal.",
+   "alternatives_considered": [],
+   "solution_sketch": "Needs the graph figure (only 'P R' survived).",
+   "my_answer": "unsure",
+   "key_check": "unsure",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.88,
+   "note": "Graph is a figure - check the PDF. Topic right."
+  },
+  {
+   "question_id": "GATE-CS-2014-S1-Q29",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "OS",
+   "primary_topic_id": "OS.FS",
+   "secondary_topic_ids": [
+    "OS.SCHED"
+   ],
+   "concept_ids": [
+    "OS.FS.DISK"
+   ],
+   "what_it_tests": "SSTF disk scheduling order.",
+   "why_this_topic": "Disk-arm scheduling; the taxonomy keeps disk algorithms under OS.FS.DISK (the syllabus also says 'I/O scheduling').",
+   "alternatives_considered": [
+    {
+     "topic_id": "OS.SCHED",
+     "why_not": "I/O scheduling also fits; DISK concept lives under FS"
+    }
+   ],
+   "solution_sketch": "From 100: 100, 105, 110, then 90 (20 away vs 135 at 25) -> 3 requests before 90.",
+   "my_answer": "3",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.7,
+   "note": "FS vs SCHED placement of disk scheduling is a taxonomy choice - decide once for all such questions."
+  },
+  {
+   "question_id": "GATE-CS-2014-S1-Q31",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "differs",
+   "section_id": "DB",
+   "primary_topic_id": "DB.NF",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DB.NF.FD"
+   ],
+   "what_it_tests": "Finding the key from functional dependencies.",
+   "why_this_topic": "Attribute closure and keys from FDs are the FD topic.",
+   "alternatives_considered": [
+    {
+     "topic_id": "DB.REL",
+     "why_not": "keys derived from FDs"
+    }
+   ],
+   "solution_sketch": "E, F, H appear on no right side; {E,F,H}+ = all attributes.",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.9,
+   "note": "Options broken (C missing, D merged into B); type should be MCQ."
+  },
+  {
+   "question_id": "GATE-CS-2014-S1-Q33",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "CN",
+   "primary_topic_id": "CN.ROUTE",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "CN.ROUTE.ROUTE"
+   ],
+   "what_it_tests": "Link-state vs distance-vector properties.",
+   "why_this_topic": "Comparing routing protocol families is routing.",
+   "alternatives_considered": [],
+   "solution_sketch": "S1 true, S2 false (DV can still loop), S3 true -> D.",
+   "my_answer": "D",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2014-S1-Q38",
+   "verdict": "correct",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "CN",
+   "primary_topic_id": "CN.TCP",
+   "secondary_topic_ids": [
+    "CN.DLL"
+   ],
+   "concept_ids": [
+    "CN.TCP.FLOW"
+   ],
+   "what_it_tests": "Sequence-number bits for selective repeat at 60% utilisation.",
+   "why_this_topic": "Window size for a target utilisation is sliding-window flow control; the 2027 syllabus lists flow control under the transport layer, not the data link layer (framing, error detection, MAC).",
+   "alternatives_considered": [
+    {
+     "topic_id": "CN.DLL",
+     "why_not": "classic textbooks put sliding windows at the link layer; the 2027 syllabus does not"
+    }
+   ],
+   "solution_sketch": "Tt = 8192/1.5M = 5.46 ms; N = 0.6 x (5.46+100)/5.46 = 11.6 -> 12; SR needs 2N = 24 numbers -> 5 bits.",
+   "my_answer": "5",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.6,
+   "note": "Sliding-window questions: decide once whether they live in CN.TCP (flow control) or CN.DLL."
+  },
+  {
+   "question_id": "GATE-CS-2014-S1-Q46",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "differs",
+   "section_id": "TOC",
+   "primary_topic_id": "TOC.REG",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "TOC.REG.RE"
+   ],
+   "what_it_tests": "Which regular expressions describe a given DFA.",
+   "why_this_topic": "DFA-to-regex equivalence is regular expressions.",
+   "alternatives_considered": [],
+   "solution_sketch": "Cannot verify: the DFA is a figure and the options are broken.",
+   "my_answer": "unsure",
+   "key_check": "unsure",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.88,
+   "note": "Options merged/missing; type should be MCQ."
+  },
+  {
+   "question_id": "GATE-CS-2014-S1-Q47",
+   "verdict": "flag",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.DM",
+   "secondary_topic_ids": [
+    "DL.NUM"
+   ],
+   "concept_ids": [],
+   "what_it_tests": "Identifying 11 g bags from a weighted sum with powers of two.",
+   "why_this_topic": "A binary-encoding puzzle; no 2027 topic fits well - it is closer to aptitude than to discrete maths.",
+   "alternatives_considered": [
+    {
+     "topic_id": "GA.QA",
+     "why_not": "it is in the technical part of the paper; DL.NUM: binary representation is the trick"
+    }
+   ],
+   "solution_sketch": "Excess 323 - 310 = 13 = 1 + 4 + 8 -> bags 1, 3, 4 -> product 12.",
+   "my_answer": "12",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "ambiguous",
+   "confidence": 0.5,
+   "note": "'COMPUTER- CS' header text leaked into the stem."
+  },
+  {
+   "question_id": "GATE-CS-2014-S1-Q48",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "TOC",
+   "primary_topic_id": "TOC.TM",
+   "secondary_topic_ids": [],
+   "concept_ids": [],
+   "what_it_tests": "P, NP, NPC Venn diagram if clique is in P.",
+   "why_this_topic": "P/NP/NP-completeness is not in the 2027 syllabus.",
+   "alternatives_considered": [],
+   "solution_sketch": "Clique is NP-complete, so P = NP = NPC (with P = NP).",
+   "my_answer": "D",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": false
+   },
+   "flag_reason": "out_of_syllabus",
+   "confidence": 0.5,
+   "note": "Out of syllabus; option D is a figure (empty)."
+  },
+  {
+   "question_id": "GATE-CS-2014-S1-Q53",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "COA",
+   "primary_topic_id": "COA.PIPE",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "COA.PIPE.PERF"
+   ],
+   "what_it_tests": "Pipeline speed-up with stalls.",
+   "why_this_topic": "Speed-up = depth / (1 + stalls per instruction) is pipeline performance.",
+   "alternatives_considered": [],
+   "solution_sketch": "6 / (1 + 0.25 x 2) = 4.",
+   "my_answer": "4",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2014-S1-Q65",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "COA",
+   "primary_topic_id": "COA.PIPE",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "COA.PIPE.PERF"
+   ],
+   "what_it_tests": "CPU time = IC x CPI / f to find a clock rate.",
+   "why_this_topic": "CPU performance equation; COA.PIPE.PERF is the only performance concept in the taxonomy.",
+   "alternatives_considered": [
+    {
+     "topic_id": "COA.ALU",
+     "why_not": "not datapath design"
+    }
+   ],
+   "solution_sketch": "f2 = f1 x 1.2 / 0.75 = 1.6 GHz.",
+   "my_answer": "1.6",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.66,
+   "note": "Not really pipelining - a 'CPU performance' concept would fit better. 'END OF THE QUESTION PAPER' leaked into the stem."
+  },
+  {
+   "question_id": "GATE-CS-2014-S2-Q08",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.QA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.QA.FUNC"
+   ],
+   "what_it_tests": "Solving an absolute-value quadratic and evaluating a cubic.",
+   "why_this_topic": "Algebra in the GA paper is quantitative aptitude.",
+   "alternatives_considered": [],
+   "solution_sketch": "x^2 - 2x - 8 = 0 -> x = 4, -2; |-x^3 + x^2 - x| = 52, 14.",
+   "my_answer": "D",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2014-S2-Q09",
+   "verdict": "flag",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.QA",
+   "secondary_topic_ids": [],
+   "concept_ids": [],
+   "what_it_tests": "Percent change read from a line graph.",
+   "why_this_topic": "Data interpretation is quantitative aptitude.",
+   "alternatives_considered": [],
+   "solution_sketch": "Needs the graph values (only axis text survived).",
+   "my_answer": "unsure",
+   "key_check": "unsure",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.85,
+   "note": "Graph is a figure - check the PDF."
+  },
+  {
+   "question_id": "GATE-CS-2014-S2-Q10",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.QA",
+   "secondary_topic_ids": [],
+   "concept_ids": [],
+   "what_it_tests": "Clock-hand angle near 60 degrees.",
+   "why_this_topic": "Clock problems are quantitative aptitude.",
+   "alternatives_considered": [],
+   "solution_sketch": "|180 - 5.5m| = 60 -> m = 21.8 -> 6:22.",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "'END OF THE QUESTION PAPER' leaked into option C."
+  },
+  {
+   "question_id": "GATE-CS-2014-S2-Q15",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.CAL",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.CAL.CONT"
+   ],
+   "what_it_tests": "Sign of a cubic outside its three roots.",
+   "why_this_topic": "Sign changes of a polynomial across its roots is calculus/functions.",
+   "alternatives_considered": [
+    {
+     "topic_id": "EM.LA",
+     "why_not": "no matrices"
+    }
+   ],
+   "solution_sketch": "f = k(x-1)(x-2)(x-3): f(0) = -6k, f(4) = 6k -> product < 0.",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.75,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2014-S2-Q18",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "DL",
+   "primary_topic_id": "DL.NUM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DL.NUM.FIXED"
+   ],
+   "what_it_tests": "Base conversion with unknown base.",
+   "why_this_topic": "Number systems and base conversion are number representation.",
+   "alternatives_considered": [],
+   "solution_sketch": "(123)5 = 38 = xy + 8 -> xy = 30 with y > 8: (3,10), (2,15), (1,30) -> 3.",
+   "my_answer": "3",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Label was flagged earlier; topic right."
+  },
+  {
+   "question_id": "GATE-CS-2014-S2-Q23",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "ALGO",
+   "primary_topic_id": "ALGO.CMPLX",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "ALGO.CMPLX.RECUR"
+   ],
+   "what_it_tests": "Solving T(n) = 2T(n/2) + log n.",
+   "why_this_topic": "Recurrence solving is asymptotic complexity.",
+   "alternatives_considered": [],
+   "solution_sketch": "Master theorem case 1: Theta(n).",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "'(n/2)' was lost from the recurrence in extraction."
+  },
+  {
+   "question_id": "GATE-CS-2014-S2-Q27",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "CD",
+   "primary_topic_id": "CD.LEX",
+   "secondary_topic_ids": [
+    "TOC.CFG"
+   ],
+   "concept_ids": [
+    "CD.LEX.PARSE"
+   ],
+   "what_it_tests": "Operator associativity from left/right recursion in a grammar.",
+   "why_this_topic": "Reading associativity from a grammar is part of parsing in compiler design.",
+   "alternatives_considered": [
+    {
+     "topic_id": "TOC.CFG",
+     "why_not": "grammar theory also fits, but associativity is a parsing concern"
+    }
+   ],
+   "solution_sketch": "T -> T*U is left recursive (* left), P -> Q+P is right recursive (+ right).",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.78,
+   "note": "Label was flagged earlier; topic right."
+  },
+  {
+   "question_id": "GATE-CS-2014-S2-Q28",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "differs",
+   "section_id": "CD",
+   "primary_topic_id": "CD.RUNTIME",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "CD.RUNTIME.RT"
+   ],
+   "what_it_tests": "Compile-time vs run-time activities.",
+   "why_this_topic": "Dynamic allocation happens in the runtime environment.",
+   "alternatives_considered": [
+    {
+     "topic_id": "CD.LEX",
+     "why_not": "symbol table is cross-phase"
+    }
+   ],
+   "solution_sketch": "Dynamic memory allocation happens at run time.",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.85,
+   "note": "Option D missing; type should be MCQ."
+  },
+  {
+   "question_id": "GATE-CS-2014-S2-Q30",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "OS",
+   "primary_topic_id": "OS.FS",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "OS.FS.FS"
+   ],
+   "what_it_tests": "Maximum file size after FAT overhead.",
+   "why_this_topic": "FAT allocation is file systems.",
+   "alternatives_considered": [],
+   "solution_sketch": "10^5 blocks x 4 B = 0.4 x 10^6 B overhead -> 99.6 x 10^6 B.",
+   "my_answer": "99.6",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "'106' is 10^6 (superscript lost)."
+  },
+  {
+   "question_id": "GATE-CS-2014-S2-Q40",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "DB",
+   "primary_topic_id": "DB.IDX",
+   "secondary_topic_ids": [],
+   "concept_ids": [],
+   "what_it_tests": "Block accesses of nested-loop join: which relation outside.",
+   "why_this_topic": "Join algorithms (query processing) are not in the 2027 DB syllabus; DB.IDX (file organisation) is the nearest home.",
+   "alternatives_considered": [
+    {
+     "topic_id": "DB.REL",
+     "why_not": "relational algebra only names the join"
+    }
+   ],
+   "solution_sketch": "Smaller relation in the outer loop -> fewer block reads.",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": false
+   },
+   "flag_reason": "out_of_syllabus",
+   "confidence": 0.5,
+   "note": "Query processing is out of the 2027 syllabus."
+  },
+  {
+   "question_id": "GATE-CS-2014-S2-Q46",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "TOC",
+   "primary_topic_id": "TOC.REG",
+   "secondary_topic_ids": [
+    "TOC.RCFL"
+   ],
+   "concept_ids": [],
+   "what_it_tests": "Which of two languages is regular.",
+   "why_this_topic": "Regularity of languages is regular languages.",
+   "alternatives_considered": [],
+   "solution_sketch": "Cannot solve: the language definitions were destroyed by OCR.",
+   "my_answer": "unsure",
+   "key_check": "unsure",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.8,
+   "note": "Stem unreadable - copy from the PDF."
+  },
+  {
+   "question_id": "GATE-CS-2014-S2-Q53",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "COA",
+   "primary_topic_id": "COA.MEM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "COA.MEM.CACHE"
+   ],
+   "what_it_tests": "Effect of cache block size.",
+   "why_this_topic": "Block size trade-offs are cache design.",
+   "alternatives_considered": [],
+   "solution_sketch": "Smaller blocks transfer less on a miss -> lower miss penalty.",
+   "my_answer": "D",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2014-S2-Q63",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.DM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.DM.LOGIC"
+   ],
+   "what_it_tests": "Which formula is not a tautology.",
+   "why_this_topic": "Tautology checking is propositional logic.",
+   "alternatives_considered": [],
+   "solution_sketch": "B fails for a = c = false, b = false.",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.88,
+   "note": "Options C and D are cut off."
+  },
+  {
+   "question_id": "GATE-CS-2014-S3-Q02",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.VA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.VA.GRAM"
+   ],
+   "what_it_tests": "Third conditional tense.",
+   "why_this_topic": "Grammar - verbal aptitude.",
+   "alternatives_considered": [],
+   "solution_sketch": "'If she had known ..., she could have done ...'",
+   "my_answer": "C",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Blanks lost in the stem."
+  },
+  {
+   "question_id": "GATE-CS-2014-S3-Q07",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.VA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.VA.RC"
+   ],
+   "what_it_tests": "Valid inference from a short passage.",
+   "why_this_topic": "Reading comprehension.",
+   "alternatives_considered": [
+    {
+     "topic_id": "GA.AA",
+     "why_not": "inference from text is verbal"
+    }
+   ],
+   "solution_sketch": "Only (iv) follows.",
+   "my_answer": "D",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2014-S3-Q10",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.QA",
+   "secondary_topic_ids": [
+    "DL.NUM"
+   ],
+   "concept_ids": [],
+   "what_it_tests": "Octal subtraction.",
+   "why_this_topic": "Base arithmetic in the GA paper is quantitative aptitude.",
+   "alternatives_considered": [
+    {
+     "topic_id": "DL.NUM",
+     "why_not": "same skill, but it is a GA question"
+    }
+   ],
+   "solution_sketch": "7526 - 4364 = 3142 (octal).",
+   "my_answer": "C",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Page text leaked into options A, B, D."
+  },
+  {
+   "question_id": "GATE-CS-2014-S3-Q12",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.DM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.DM.REL"
+   ],
+   "what_it_tests": "Images and preimages of set operations under a function.",
+   "why_this_topic": "Functions and set images are sets/relations/functions.",
+   "alternatives_considered": [],
+   "solution_sketch": "Preimage preserves intersection: D.",
+   "my_answer": "D",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2014-S3-Q13",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.DM",
+   "secondary_topic_ids": [],
+   "concept_ids": [],
+   "what_it_tests": "Subgroup order by Lagrange's theorem.",
+   "why_this_topic": "Groups are part of discrete mathematics (monoids, groups).",
+   "alternatives_considered": [],
+   "solution_sketch": "Order divides 15, at least 4, not 15 -> 5.",
+   "my_answer": "5",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "No 'groups' concept in the taxonomy."
+  },
+  {
+   "question_id": "GATE-CS-2014-S3-Q20",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.C",
+   "secondary_topic_ids": [
+    "PDS.LIN"
+   ],
+   "concept_ids": [],
+   "what_it_tests": "Double swap in nested loops leaves the matrix unchanged.",
+   "why_this_topic": "Tracing loops over a 2-D array is programming; the skill is noticing each pair is swapped twice.",
+   "alternatives_considered": [
+    {
+     "topic_id": "PDS.LIN",
+     "why_not": "arrays are only the container"
+    }
+   ],
+   "solution_sketch": "Every (i,j) pair is swapped at (i,j) and again at (j,i) -> A unchanged.",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.66,
+   "note": "Label was flagged earlier; PDS.C vs PDS.LIN is close."
+  }
+ ]
+}

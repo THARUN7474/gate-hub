@@ -1,0 +1,861 @@
+{
+ "reviewer": "claude-opus-5-5",
+ "prompt_version": "ai-review-v2",
+ "decisions": [
+  {
+   "question_id": "GATE-CS-2025-S2-Q62",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.C",
+   "secondary_topic_ids": [
+    "PDS.LIN"
+   ],
+   "concept_ids": [],
+   "what_it_tests": "Pointer increments and dereferences on an array.",
+   "why_this_topic": "C pointers.",
+   "alternatives_considered": [],
+   "solution_sketch": "a = 50; arr[1] becomes 51; ptr -> arr[2] = 10; 50 + 10 + 51 = 111.",
+   "my_answer": "111",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2026-S1-Q01",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.VA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.VA.VOCAB"
+   ],
+   "what_it_tests": "Antonym of protagonist.",
+   "why_this_topic": "Vocabulary.",
+   "alternatives_considered": [],
+   "solution_sketch": "Antagonist.",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.97,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2026-S1-Q05",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.AA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.AA.DEDUCT"
+   ],
+   "what_it_tests": "Converse of a conditional is not implied.",
+   "why_this_topic": "Deduction.",
+   "alternatives_considered": [],
+   "solution_sketch": "C is the converse, which does not follow.",
+   "my_answer": "C",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2026-S1-Q07",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.SA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.SA.VIEWS"
+   ],
+   "what_it_tests": "3-D structure matching front and top views.",
+   "why_this_topic": "Spatial aptitude.",
+   "alternatives_considered": [],
+   "solution_sketch": "Needs the figure panels.",
+   "my_answer": "unsure",
+   "key_check": "unsure",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.9,
+   "note": "Figure question."
+  },
+  {
+   "question_id": "GATE-CS-2026-S1-Q16",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "COA",
+   "primary_topic_id": "COA.PIPE",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "COA.PIPE.HAZARD"
+   ],
+   "what_it_tests": "Which dependency causes a data hazard.",
+   "why_this_topic": "Pipeline hazards.",
+   "alternatives_considered": [],
+   "solution_sketch": "Read-after-write (true dependency).",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2026-S1-Q26",
+   "verdict": "agree",
+   "question_type": "MSQ",
+   "type_check": "matches",
+   "section_id": "TOC",
+   "primary_topic_id": "TOC.REG",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "TOC.REG.FA"
+   ],
+   "what_it_tests": "Bounds on DFA size from a 6-state NFA.",
+   "why_this_topic": "Subset construction bound.",
+   "alternatives_considered": [],
+   "solution_sketch": "At most 2^6 = 64 states, so 65 and 128 are impossible.",
+   "my_answer": "B;D",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2026-S1-Q27",
+   "verdict": "agree",
+   "question_type": "MSQ",
+   "type_check": "matches",
+   "section_id": "CD",
+   "primary_topic_id": "CD.LEX",
+   "secondary_topic_ids": [
+    "CD.SDT"
+   ],
+   "concept_ids": [
+    "CD.LEX.LEX"
+   ],
+   "what_it_tests": "Classifying lexical, syntactic and semantic errors.",
+   "why_this_topic": "Compiler phases; the deciding one is the lexical error from an unterminated string.",
+   "alternatives_considered": [
+    {
+     "topic_id": "CD.SDT",
+     "why_not": "semantic checking is the second part"
+    }
+   ],
+   "solution_sketch": "S1 unterminated string -> lexical error; S3 pointer-type mismatch -> semantic error.",
+   "my_answer": "C",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.88,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2026-S1-Q31",
+   "verdict": "agree",
+   "question_type": "MSQ",
+   "type_check": "matches",
+   "section_id": "DB",
+   "primary_topic_id": "DB.NF",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DB.NF.NF"
+   ],
+   "what_it_tests": "Dependency preservation by normal form.",
+   "why_this_topic": "Normal forms.",
+   "alternatives_considered": [],
+   "solution_sketch": "3NF (hence 2NF, 1NF) always dependency-preserving; BCNF not always -> A, B, C.",
+   "my_answer": "A;B;C",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2026-S1-Q36",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "DL",
+   "primary_topic_id": "DL.NUM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DL.NUM.FLOAT"
+   ],
+   "what_it_tests": "Adding two IEEE 754 numbers in hex.",
+   "why_this_topic": "Floating-point representation and arithmetic.",
+   "alternatives_considered": [],
+   "solution_sketch": "X = 1.5 x 2^-20, Y = 1.25 x 2^-22 -> Z = 1.8125 x 2^-20 -> 0x35E80000.",
+   "my_answer": "C",
+   "key_check": "matches",
+   "difficulty": "hard",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.93,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2026-S1-Q38",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "COA",
+   "primary_topic_id": "COA.MEM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "COA.MEM.CACHE"
+   ],
+   "what_it_tests": "Tag growth when moving to K-way associativity.",
+   "why_this_topic": "Cache address split.",
+   "alternatives_considered": [],
+   "solution_sketch": "K = 2^L ways cut the index by L bits -> N = M + L.",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2026-S1-Q41",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "ALGO",
+   "primary_topic_id": "ALGO.GRAPH",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "ALGO.GRAPH.SP"
+   ],
+   "what_it_tests": "Hop-limited shortest-path monotonicity.",
+   "why_this_topic": "Shortest paths (Bellman-Ford style).",
+   "alternatives_considered": [],
+   "solution_sketch": "S1 holds (allowing more edges cannot hurt); S2 fails for hop-limited distances / negative weights.",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "hard",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.85,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2026-S1-Q49",
+   "verdict": "agree",
+   "question_type": "MSQ",
+   "type_check": "matches",
+   "section_id": "ALGO",
+   "primary_topic_id": "ALGO.GRAPH",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "ALGO.GRAPH.MST"
+   ],
+   "what_it_tests": "Cycle and cut properties of MSTs.",
+   "why_this_topic": "MST properties.",
+   "alternatives_considered": [],
+   "solution_sketch": "Heaviest cycle edge is never in the MST; lightest edge at each vertex always is -> A, D.",
+   "my_answer": "A;D",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2026-S1-Q59",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "OS",
+   "primary_topic_id": "OS.FS",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "OS.FS.DISK"
+   ],
+   "what_it_tests": "Disk transfer time with seeks across tracks.",
+   "why_this_topic": "Disk access time.",
+   "alternatives_considered": [],
+   "solution_sketch": "Seeks 5 + 7 + 5 = 17 ms; 30 sectors x (2 + 0.01) ms = 60.3 -> 77.3 ms.",
+   "my_answer": "77.3",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.93,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2026-S1-Q61",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.REC",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "PDS.REC.REC"
+   ],
+   "what_it_tests": "Smallest n for a nested-log recursion value.",
+   "why_this_topic": "Recursion.",
+   "alternatives_considered": [],
+   "solution_sketch": "bar = floor(log2 n); foo(1)=1, foo(2)=2, foo(4)=3, foo(16)=4, foo(65536)=5.",
+   "my_answer": "65536",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q04",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.QA",
+   "secondary_topic_ids": [],
+   "concept_ids": [],
+   "what_it_tests": "Profit from two stock positions.",
+   "why_this_topic": "Arithmetic.",
+   "alternatives_considered": [],
+   "solution_sketch": "2 shares of A + 1 of B: 110 + 70 = 180 = cost -> 0.",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q07",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.SA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.SA.PATTERN"
+   ],
+   "what_it_tests": "Missing tiles in a pattern.",
+   "why_this_topic": "Spatial pattern completion.",
+   "alternatives_considered": [],
+   "solution_sketch": "Needs the figure.",
+   "my_answer": "unsure",
+   "key_check": "unsure",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.9,
+   "note": "Figure question."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q09",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.AA",
+   "secondary_topic_ids": [
+    "GA.SA"
+   ],
+   "concept_ids": [],
+   "what_it_tests": "Shading a grid to match row/column counts.",
+   "why_this_topic": "Logical puzzle on a figure.",
+   "alternatives_considered": [
+    {
+     "topic_id": "GA.SA",
+     "why_not": "visual, but the rule is logical"
+    }
+   ],
+   "solution_sketch": "Needs the figure panels.",
+   "my_answer": "unsure",
+   "key_check": "unsure",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.75,
+   "note": "Figure question."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q11",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.DM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.DM.LOGIC"
+   ],
+   "what_it_tests": "Translating 'a celebrity' statement into predicate logic.",
+   "why_this_topic": "First-order logic.",
+   "alternatives_considered": [],
+   "solution_sketch": "There exists y such that every other x knows y and y does not know x -> A.",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q14",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.PS",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.PS.DIST"
+   ],
+   "what_it_tests": "Recognising a normal density.",
+   "why_this_topic": "Distributions.",
+   "alternatives_considered": [],
+   "solution_sketch": "exp(-x^2/18)/(3 sqrt(2 pi)) is N(0, 9).",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.96,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q16",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "DL",
+   "primary_topic_id": "DL.BOOL",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DL.BOOL.ALG"
+   ],
+   "what_it_tests": "Which is not a Boolean-algebra law.",
+   "why_this_topic": "Boolean algebra.",
+   "alternatives_considered": [],
+   "solution_sketch": "a . a' = 0, not 1.",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.97,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q27",
+   "verdict": "agree",
+   "question_type": "MSQ",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.CAL",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.CAL.INTEG"
+   ],
+   "what_it_tests": "Definite integral with an odd term.",
+   "why_this_topic": "Integration.",
+   "alternatives_considered": [],
+   "solution_sketch": "The ax term integrates to 0: I(a) = 2 + 2 = 4 for all a -> A, C.",
+   "my_answer": "A;C",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "Integration limits flattened in the text."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q35",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "CD",
+   "primary_topic_id": "CD.LEX",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "CD.LEX.LEX"
+   ],
+   "what_it_tests": "Counting tokens with maximal munch.",
+   "why_this_topic": "Lexical analysis.",
+   "alternatives_considered": [],
+   "solution_sketch": "x1, 23, mm, 78, y, 7, z, zz5, 14, A, 8, H, AaYcD -> 13.",
+   "my_answer": "13",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q36",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.DM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.DM.GRAPH"
+   ],
+   "what_it_tests": "Lowest Jaccard similarity of two spanning trees of K_n.",
+   "why_this_topic": "Spanning trees in graph theory.",
+   "alternatives_considered": [
+    {
+     "topic_id": "ALGO.GRAPH",
+     "why_not": "no algorithm"
+    }
+   ],
+   "solution_sketch": "K_n (n > 4) has edge-disjoint spanning trees -> 0.",
+   "my_answer": "C",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q37",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "ALGO",
+   "primary_topic_id": "ALGO.GRAPH",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "ALGO.GRAPH.SP"
+   ],
+   "what_it_tests": "Single-source shortest paths in a DAG.",
+   "why_this_topic": "Shortest paths.",
+   "alternatives_considered": [],
+   "solution_sketch": "Relax in topological order: Theta(m + n).",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "Label was flagged earlier; topic right."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q39",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "ALGO",
+   "primary_topic_id": "ALGO.DESIGN",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "ALGO.DESIGN.DP"
+   ],
+   "what_it_tests": "Valid fill orders for a DP table.",
+   "why_this_topic": "Dynamic programming.",
+   "alternatives_considered": [],
+   "solution_sketch": "Both row-wise and anti-diagonal orders compute dependencies first -> both correct.",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.85,
+   "note": "Algorithm B1's text is missing and B2's leaked into option D - check the PDF."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q47",
+   "verdict": "flag",
+   "question_type": "MSQ",
+   "type_check": "matches",
+   "section_id": "TOC",
+   "primary_topic_id": "TOC.REG",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "TOC.REG.FA"
+   ],
+   "what_it_tests": "Comparing languages of two pictured DFAs.",
+   "why_this_topic": "Finite automata.",
+   "alternatives_considered": [],
+   "solution_sketch": "Needs the automata figures.",
+   "my_answer": "unsure",
+   "key_check": "unsure",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.88,
+   "note": "Figure question."
+  },
+  {
+   "question_id": "GATE-CS-2026-S2-Q53",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "OS",
+   "primary_topic_id": "OS.FS",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "OS.FS.FS"
+   ],
+   "what_it_tests": "Blocks needed for a free-block linked list.",
+   "why_this_topic": "Free-space management in file systems.",
+   "alternatives_considered": [],
+   "solution_sketch": "2^23 block numbers, 511 per block -> 16417 blocks.",
+   "my_answer": "16417",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.93,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2011-S1-Q01",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "CD",
+   "primary_topic_id": "CD.LEX",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "CD.LEX.LEX"
+   ],
+   "what_it_tests": "Phase that recognises keywords.",
+   "why_this_topic": "Lexical analysis.",
+   "alternatives_considered": [],
+   "solution_sketch": "Keywords are tokens recognised by the lexer.",
+   "my_answer": "C",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.97,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2011-S1-Q27",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "CD",
+   "primary_topic_id": "CD.LEX",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "CD.LEX.PARSE"
+   ],
+   "what_it_tests": "Parse tree under given precedence and associativity.",
+   "why_this_topic": "Precedence and associativity in parsing.",
+   "alternatives_considered": [],
+   "solution_sketch": "Options are tree figures flattened into text.",
+   "my_answer": "unsure",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.85,
+   "note": "Parse-tree options are figures; label was flagged earlier."
+  },
+  {
+   "question_id": "GATE-CS-2011-S1-Q29",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.TREE",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "PDS.TREE.BST"
+   ],
+   "what_it_tests": "Ways to fill a fixed tree shape as a BST.",
+   "why_this_topic": "BST property.",
+   "alternatives_considered": [],
+   "solution_sketch": "The inorder positions fix every value -> exactly 1 way.",
+   "my_answer": "B",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  }
+ ]
+}

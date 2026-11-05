@@ -1,0 +1,797 @@
+{
+ "reviewer": "claude-opus-5-5",
+ "prompt_version": "ai-review-v2",
+ "decisions": [
+  {
+   "question_id": "GATE-CS-2011-S1-Q15",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "differs",
+   "section_id": "DL",
+   "primary_topic_id": "DL.CIRC",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DL.CIRC.SEQ"
+   ],
+   "what_it_tests": "Flip-flops needed for a mod-N counter = ceil(log2 N).",
+   "why_this_topic": "Designing a counter is sequential-circuit design; the count of flip-flops follows from the number of states the counter must hold.",
+   "alternatives_considered": [
+    {
+     "topic_id": "DL.NUM",
+     "why_not": "not about number representation, only about state count"
+    }
+   ],
+   "solution_sketch": "2^8=256 < 258 <= 512=2^9, so 9 flip-flops.",
+   "my_answer": "A",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "type",
+   "confidence": 0.9,
+   "note": "Stored as NAT but it is an MCQ - options (A)-(D) sit inside the stem. Topic right."
+  },
+  {
+   "question_id": "GATE-CS-2011-S1-Q20",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "OS",
+   "primary_topic_id": "OS.MEM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "OS.MEM.VMEM"
+   ],
+   "what_it_tests": "Effective memory access time with page faults.",
+   "why_this_topic": "Page-fault service time folded into the average access time is demand paging / virtual memory.",
+   "alternatives_considered": [
+    {
+     "topic_id": "COA.MEM",
+     "why_not": "cache hierarchy is not involved; the miss here is a page fault"
+    }
+   ],
+   "solution_sketch": "EAT = 20 ns + (1/10^6) x 10 ms = 20 + 10 = 30 ns.",
+   "my_answer": "B",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "'106' in the text is 10^6 (superscript lost)."
+  },
+  {
+   "question_id": "GATE-CS-2011-S1-Q28",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "COA",
+   "primary_topic_id": "COA.IO",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "COA.IO.DMA",
+    "COA.IO.INTR"
+   ],
+   "what_it_tests": "Speed-up of DMA over interrupt-driven programmed transfer.",
+   "why_this_topic": "Comparing a CPU copy loop with DMA transfer cycles is the I/O interface topic (interrupt and DMA mode).",
+   "alternatives_considered": [
+    {
+     "topic_id": "COA.PIPE",
+     "why_not": "no pipeline; cycle counting only"
+    }
+   ],
+   "solution_sketch": "Program: 2 + 500 x (2+2+1+1+1) = 3502 cycles; DMA: 20 + 500 x 2 = 1020; speed-up 3.43.",
+   "my_answer": "A",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Label was flagged earlier; topic right."
+  },
+  {
+   "question_id": "GATE-CS-2011-S1-Q33",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.PS",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.PS.RV"
+   ],
+   "what_it_tests": "Effect of a linear transform y = ax + b on mean, median, mode and standard deviation.",
+   "why_this_topic": "Mean/median/mode/standard deviation are in the EM probability and statistics syllabus.",
+   "alternatives_considered": [
+    {
+     "topic_id": "GA.QA",
+     "why_not": "statistics here is the EM kind (moments under transformation)"
+    }
+   ],
+   "solution_sketch": "sd_y = a sd_x (b does not add spread), so D is incorrect.",
+   "my_answer": "D",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.93,
+   "note": "Subscripts lost in OCR (mu_y, sigma_y)."
+  },
+  {
+   "question_id": "GATE-CS-2011-S1-Q40",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.LA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.LA.EIGEN"
+   ],
+   "what_it_tests": "Eigenvalues of a given 4x4/3x3 matrix.",
+   "why_this_topic": "Finding eigenvalues is linear algebra (eigenvalues and eigenvectors).",
+   "alternatives_considered": [],
+   "solution_sketch": "Cannot solve: the matrix entries were lost in extraction.",
+   "my_answer": "unsure",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.85,
+   "note": "Matrix is missing from the text - copy it from the PDF."
+  },
+  {
+   "question_id": "GATE-CS-2011-S1-Q44",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "OS",
+   "primary_topic_id": "OS.FS",
+   "secondary_topic_ids": [
+    "COA.MEM"
+   ],
+   "concept_ids": [
+    "OS.FS.DISK"
+   ],
+   "what_it_tests": "Disk access time = seek + average rotational latency.",
+   "why_this_topic": "Disk timing (seek + rotational latency) is in the OS syllabus under file systems / disk scheduling.",
+   "alternatives_considered": [
+    {
+     "topic_id": "COA.MEM",
+     "why_not": "secondary-storage timing is taught with OS disks"
+    }
+   ],
+   "solution_sketch": "6000 rpm -> 10 ms/rev -> 5 ms average latency; (10+5) ms x 100 = 1.5 s.",
+   "my_answer": "B",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.88,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2011-S1-Q45",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "TOC",
+   "primary_topic_id": "TOC.REG",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "TOC.REG.FA"
+   ],
+   "what_it_tests": "Minimising a DFA and picking the equivalent minimal machine.",
+   "why_this_topic": "DFA minimisation is regular languages and finite automata.",
+   "alternatives_considered": [],
+   "solution_sketch": "Cannot solve: the DFA and option diagrams are figures and the text is scrambled.",
+   "my_answer": "unsure",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.9,
+   "note": "Figure question - options C, D empty; needs the PDF."
+  },
+  {
+   "question_id": "GATE-CS-2011-S1-Q47",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "LEGACY",
+   "primary_topic_id": "LEGACY.SE",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "LEGACY.SE.TEST"
+   ],
+   "what_it_tests": "Choosing a non-redundant black-box test set via equivalence classes.",
+   "why_this_topic": "Black-box test design is old-syllabus software engineering (testing); not in 2027.",
+   "alternatives_considered": [
+    {
+     "topic_id": "PDS.C",
+     "why_not": "the C function is only the specification"
+    }
+   ],
+   "solution_sketch": "Classes: a=0 (T1/T2), D>0 (T5), D=0 (T3/T4), D<0 (T6); only C covers all four.",
+   "my_answer": "C",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.88,
+   "note": "Stem truncated at the end ('Whic...') but the question is clear."
+  },
+  {
+   "question_id": "GATE-CS-2011-S1-Q49",
+   "verdict": "correct",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.REC",
+   "secondary_topic_ids": [
+    "PDS.C"
+   ],
+   "concept_ids": [
+    "PDS.REC.REC"
+   ],
+   "what_it_tests": "Tracing a recursive function that sums base-r digits.",
+   "why_this_topic": "The answer depends on unrolling foo(n/r) recursively; that is recursion, not general C syntax.",
+   "alternatives_considered": [
+    {
+     "topic_id": "PDS.C",
+     "why_not": "no C-specific feature (pointers, scope) is tested"
+    }
+   ],
+   "solution_sketch": "513 = 1000000001 in binary, digit sum 2.",
+   "my_answer": "D",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.8,
+   "note": "OCR noise at the end of the function ('一 |'); linked to Q48."
+  },
+  {
+   "question_id": "GATE-CS-2011-S1-Q51",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "DL",
+   "primary_topic_id": "DL.CIRC",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DL.CIRC.SEQ"
+   ],
+   "what_it_tests": "Counting the states a 3-flip-flop counter goes through.",
+   "why_this_topic": "State sequence of a flip-flop counter is sequential-circuit analysis.",
+   "alternatives_considered": [],
+   "solution_sketch": "Cannot solve without the circuit figure (only labels survived).",
+   "my_answer": "unsure",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.88,
+   "note": "Circuit is a figure; also '14/20' page text leaked into option D."
+  },
+  {
+   "question_id": "GATE-CS-2011-S1-Q57",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.QA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.QA.FUNC"
+   ],
+   "what_it_tests": "Relations between P, Q, R from equal scaled logarithms.",
+   "why_this_topic": "A general-aptitude numerical question on logarithms.",
+   "alternatives_considered": [
+    {
+     "topic_id": "EM.CAL",
+     "why_not": "no calculus"
+    }
+   ],
+   "solution_sketch": "Let k = log P: Q = P^2, R = P^3, so Q^2 = P^4 = PR.",
+   "my_answer": "B",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Exponents lost (Q2 = Q^2)."
+  },
+  {
+   "question_id": "GATE-CS-2011-S1-Q60",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.VA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.VA.VOCAB"
+   ],
+   "what_it_tests": "Antonym of 'amalgamate'.",
+   "why_this_topic": "Vocabulary - verbal aptitude.",
+   "alternatives_considered": [],
+   "solution_sketch": "Amalgamate = combine; opposite = split (separate is close, official answer is split).",
+   "my_answer": "B",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.85,
+   "note": "B and D are near-synonyms; check against the official key."
+  },
+  {
+   "question_id": "GATE-CS-2012-S1-Q01",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.DM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.DM.LOGIC"
+   ],
+   "what_it_tests": "Valid inference: modus tollens vs denying the antecedent.",
+   "why_this_topic": "Propositional logic inference is discrete mathematics.",
+   "alternatives_considered": [
+    {
+     "topic_id": "GA.AA",
+     "why_not": "formal implication rules make it EM logic"
+    }
+   ],
+   "solution_sketch": "I1 is modus tollens (valid); I2 denies the antecedent (invalid).",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2012-S1-Q14",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "DB",
+   "primary_topic_id": "DB.ER",
+   "secondary_topic_ids": [
+    "DB.REL"
+   ],
+   "concept_ids": [
+    "DB.ER.ER"
+   ],
+   "what_it_tests": "Multivalued/composite attributes in ER vs atomic values in relations.",
+   "why_this_topic": "ER allows multivalued and composite attributes; relational rows hold one value - the contrast is ER-model knowledge.",
+   "alternatives_considered": [
+    {
+     "topic_id": "DB.REL",
+     "why_not": "the relational side is only the contrast"
+    }
+   ],
+   "solution_sketch": "C is incorrect: a relational attribute holds one atomic value.",
+   "my_answer": "C",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.85,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2012-S1-Q21",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.PS",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.PS.DIST"
+   ],
+   "what_it_tests": "CDF of a two-point random variable.",
+   "why_this_topic": "Evaluating F(x) = P(X <= x) is random-variable/distribution basics.",
+   "alternatives_considered": [],
+   "solution_sketch": "F(-1) = 0.5, F(1) = 1.",
+   "my_answer": "C",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2012-S1-Q24",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "TOC",
+   "primary_topic_id": "TOC.TM",
+   "secondary_topic_ids": [
+    "TOC.RCFL"
+   ],
+   "concept_ids": [
+    "TOC.TM.UNDEC"
+   ],
+   "what_it_tests": "Which problems about languages and programs are decidable.",
+   "why_this_topic": "Decidability is the Turing-machine/undecidability topic.",
+   "alternatives_considered": [
+    {
+     "topic_id": "TOC.RCFL",
+     "why_not": "closure facts are used, but the question asks decidability"
+    }
+   ],
+   "solution_sketch": "1 undecidable; CFL complement question undecidable; regular and recursive are closed under complement, so 3, 4 decidable.",
+   "my_answer": "D",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.88,
+   "note": "Complement bars over L were lost in extraction."
+  },
+  {
+   "question_id": "GATE-CS-2012-S1-Q26",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.DM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.DM.GRAPH"
+   ],
+   "what_it_tests": "Graph isomorphism.",
+   "why_this_topic": "Isomorphism of graphs is graph theory in discrete mathematics.",
+   "alternatives_considered": [
+    {
+     "topic_id": "PDS.GRAPH",
+     "why_not": "no representation"
+    }
+   ],
+   "solution_sketch": "Cannot solve: the graphs are figures.",
+   "my_answer": "unsure",
+   "key_check": "unsure",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.9,
+   "note": "All options are figures - needs the PDF."
+  },
+  {
+   "question_id": "GATE-CS-2012-S1-Q28",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.CAL",
+   "secondary_topic_ids": [],
+   "concept_ids": [],
+   "what_it_tests": "Number of bisection iterations to hit the root.",
+   "why_this_topic": "Bisection is numerical methods, which is not in the GATE CS 2027 syllabus; EM.CAL is only the nearest home.",
+   "alternatives_considered": [
+    {
+     "topic_id": "LEGACY.SE",
+     "why_not": "not software engineering"
+    }
+   ],
+   "solution_sketch": "f(1)<0, f(9)>0; mids 5 (+), 3 (+), 2 (f=0) -> 3 iterations.",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": false
+   },
+   "flag_reason": "out_of_syllabus",
+   "confidence": 0.5,
+   "note": "Numerical methods were removed from the syllabus - part of the out-of-syllabus decision."
+  },
+  {
+   "question_id": "GATE-CS-2012-S1-Q35",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.LIN",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "PDS.LIN.STACKQ"
+   ],
+   "what_it_tests": "Full/empty conditions of an array circular queue.",
+   "why_this_topic": "Circular queue implementation is queues in data structures.",
+   "alternatives_considered": [],
+   "solution_sketch": "One slot left empty: full when (REAR+1) mod n == FRONT, empty when REAR == FRONT.",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2012-S1-Q46",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "TOC",
+   "primary_topic_id": "TOC.REG",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "TOC.REG.FA"
+   ],
+   "what_it_tests": "Completing a DFA for 'no 3-window has three zeros'.",
+   "why_this_topic": "Building a DFA for a regular language is finite automata.",
+   "alternatives_considered": [],
+   "solution_sketch": "Cannot verify: the DFA and option tables are scrambled figures.",
+   "my_answer": "unsure",
+   "key_check": "unsure",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.88,
+   "note": "Options read identical in text - figure/table question; check the PDF."
+  },
+  {
+   "question_id": "GATE-CS-2012-S1-Q47",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.TREE",
+   "secondary_topic_ids": [
+    "PDS.REC"
+   ],
+   "concept_ids": [
+    "PDS.TREE.BTREE"
+   ],
+   "what_it_tests": "Recursive height of a binary tree.",
+   "why_this_topic": "Height of a binary tree is the trees topic; recursion is the method.",
+   "alternatives_considered": [
+    {
+     "topic_id": "PDS.REC",
+     "why_not": "recursion is secondary"
+    }
+   ],
+   "solution_sketch": "Missing left child: 1 + height(right); both: 1 + max(h1, h2).",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "The '->' arrows were lost (n -> left)."
+  },
+  {
+   "question_id": "GATE-CS-2012-S1-Q52",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "CD",
+   "primary_topic_id": "CD.LEX",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "CD.LEX.PARSE"
+   ],
+   "what_it_tests": "FIRST and FOLLOW sets for LL(1) parsing.",
+   "why_this_topic": "FIRST/FOLLOW computation is part of parsing (lexical analysis and parsing).",
+   "alternatives_considered": [
+    {
+     "topic_id": "CD.SDT",
+     "why_not": "no translation"
+    }
+   ],
+   "solution_sketch": "FIRST(A)=FIRST(B)={a,b,eps}; FOLLOW(A)={a,b}; FOLLOW(B)={a,b,$}.",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.88,
+   "note": "Epsilon and arrow symbols lost in extraction; meaning recoverable."
+  },
+  {
+   "question_id": "GATE-CS-2012-S1-Q54",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "COA",
+   "primary_topic_id": "COA.MEM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "COA.MEM.CACHE"
+   ],
+   "what_it_tests": "Tag bits of a set-associative cache address.",
+   "why_this_topic": "Address split for a set-associative cache is cache organisation.",
+   "alternatives_considered": [],
+   "solution_sketch": "8192 lines / 4 = 2048 sets -> 11 index bits; 5 offset bits; tag = 32-16 = 16.",
+   "my_answer": "C",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.96,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2012-S1-Q55",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "COA",
+   "primary_topic_id": "COA.MEM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "COA.MEM.CACHE"
+   ],
+   "what_it_tests": "Size of the cache tag directory.",
+   "why_this_topic": "Tag-directory size needs the cache organisation and per-line metadata.",
+   "alternatives_considered": [],
+   "solution_sketch": "(16 tag + 2 valid + 1 modified + 1 replacement) x 8192 = 160 Kbits.",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Linked with Q54."
+  },
+  {
+   "question_id": "GATE-CS-2012-S1-Q56",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.QA",
+   "secondary_topic_ids": [
+    "EM.CAL"
+   ],
+   "concept_ids": [
+    "GA.QA.OPTI"
+   ],
+   "what_it_tests": "Production quantity that maximises profit.",
+   "why_this_topic": "A general-aptitude optimisation question.",
+   "alternatives_considered": [
+    {
+     "topic_id": "EM.CAL",
+     "why_not": "one-line maximum of a quadratic; it sits in the GA section"
+    }
+   ],
+   "solution_sketch": "Profit = 50q - 5q^2; maximum at q = 5.",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "'5q 2' = 5q^2 (superscript lost)."
+  }
+ ]
+}

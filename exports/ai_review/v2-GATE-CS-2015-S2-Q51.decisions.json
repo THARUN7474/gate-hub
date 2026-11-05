@@ -1,0 +1,866 @@
+{
+ "reviewer": "claude-opus-5-5",
+ "prompt_version": "ai-review-v2",
+ "decisions": [
+  {
+   "question_id": "GATE-CS-2015-S2-Q51",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "differs",
+   "section_id": "EM",
+   "primary_topic_id": "EM.CAL",
+   "secondary_topic_ids": [],
+   "concept_ids": [],
+   "what_it_tests": "Missing update formula in the secant method.",
+   "why_this_topic": "The secant method is numerical methods, which is not in the GATE CS 2027 syllabus; EM.CAL is only the nearest home.",
+   "alternatives_considered": [],
+   "solution_sketch": "x_t = x_b - (x_b - x_a) f_b / (f_b - f(x_a)).",
+   "my_answer": "C",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": false
+   },
+   "flag_reason": "out_of_syllabus",
+   "confidence": 0.5,
+   "note": "Stored as NAT but it is an MCQ (options inside the stem); numerical methods are out of syllabus."
+  },
+  {
+   "question_id": "GATE-CS-2015-S2-Q53",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "COA",
+   "primary_topic_id": "COA.PIPE",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "COA.PIPE.HAZARD"
+   ],
+   "what_it_tests": "Cycles for a dependent instruction sequence with multi-cycle PO and forwarding.",
+   "why_this_topic": "Data hazards with forwarding and variable execute latency are pipelining.",
+   "alternatives_considered": [],
+   "solution_sketch": "Draw the timing: DIV's 5-cycle PO delays ADD, then SUB -> 13 cycles.",
+   "my_answer": "13",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.88,
+   "note": "Answer printed in the stem; label was flagged earlier."
+  },
+  {
+   "question_id": "GATE-CS-2015-S2-Q63",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.DM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.DM.LOGIC"
+   ],
+   "what_it_tests": "Which first-order formula is a tautology.",
+   "why_this_topic": "Validity of quantified formulas is first-order logic.",
+   "alternatives_considered": [],
+   "solution_sketch": "C is an identity (P -> R is not P or R); D also looks valid. Check the official key.",
+   "my_answer": "C",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.8,
+   "note": "Both C and D appear valid - confirm against the official key."
+  },
+  {
+   "question_id": "GATE-CS-2015-S3-Q02",
+   "verdict": "correct",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.AA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.AA.ANALOGY"
+   ],
+   "what_it_tests": "Word analogy: a group of people to its specialist doctor.",
+   "why_this_topic": "Analogies are listed under analytical aptitude in the GA syllabus (deduction, induction, analogy), not verbal.",
+   "alternatives_considered": [
+    {
+     "topic_id": "GA.VA",
+     "why_not": "it uses words, but the skill is the relationship"
+    }
+   ],
+   "solution_sketch": "Children are a group of people treated by a pediatrician; females by a gynaecologist (kidney, skin are organs).",
+   "my_answer": "B",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.72,
+   "note": "Decide once where analogy questions go (GA.AA.ANALOGY exists for this)."
+  },
+  {
+   "question_id": "GATE-CS-2015-S3-Q10",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.AA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.AA.DEDUCT"
+   ],
+   "what_it_tests": "Assignment satisfying several constraints.",
+   "why_this_topic": "Constraint puzzles are analytical aptitude.",
+   "alternatives_considered": [],
+   "solution_sketch": "B satisfies every rule (U out because S is in; R Home; Q gets Telecom when S gets Power; T in with P).",
+   "my_answer": "B",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Response-sheet junk in option D."
+  },
+  {
+   "question_id": "GATE-CS-2015-S3-Q14",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "OS",
+   "primary_topic_id": "OS.PROC",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "OS.PROC.PROC"
+   ],
+   "what_it_tests": "Ready-queue size does not depend on CPU count.",
+   "why_this_topic": "Process states are the process model.",
+   "alternatives_considered": [],
+   "solution_sketch": "Any number of processes can be ready -> independent of n.",
+   "my_answer": "D",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Label was flagged earlier; topic right."
+  },
+  {
+   "question_id": "GATE-CS-2015-S3-Q21",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.TREE",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "PDS.TREE.BTREE"
+   ],
+   "what_it_tests": "Nodes with two children vs leaves in a binary tree.",
+   "why_this_topic": "Structural property of binary trees.",
+   "alternatives_considered": [],
+   "solution_sketch": "Leaves = (degree-2 nodes) + 1 -> 199.",
+   "my_answer": "199",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.96,
+   "note": "Answer printed in the stem."
+  },
+  {
+   "question_id": "GATE-CS-2015-S3-Q24",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.CAL",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.CAL.CONT"
+   ],
+   "what_it_tests": "Limit of (1 + x^2) e^-x as x -> infinity.",
+   "why_this_topic": "Limits are calculus.",
+   "alternatives_considered": [],
+   "solution_sketch": "The exponential dominates any polynomial -> 0.",
+   "my_answer": "A",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.9,
+   "note": "Options merged into A/B; C, D empty."
+  },
+  {
+   "question_id": "GATE-CS-2015-S3-Q29",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "DB",
+   "primary_topic_id": "DB.REL",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DB.REL.SQL"
+   ],
+   "what_it_tests": "SQL condition for the maximum-capacity theatres.",
+   "why_this_topic": "Nested SQL with ALL is SQL.",
+   "alternatives_considered": [],
+   "solution_sketch": "WHERE P1.capacity >= ALL (SELECT P2.capacity ...) -> A.",
+   "my_answer": "A",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.88,
+   "note": "Options B-D lost or garbled."
+  },
+  {
+   "question_id": "GATE-CS-2015-S3-Q35",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "CN",
+   "primary_topic_id": "CN.DLL",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "CN.DLL.MAC"
+   ],
+   "what_it_tests": "Signal speed from CSMA/CD minimum frame size.",
+   "why_this_topic": "CSMA/CD frame-size rule is medium access control.",
+   "alternatives_considered": [],
+   "solution_sketch": "Tt = 10^4 bits / 10^8 = 100 us = 2 Tp -> Tp = 50 us -> 1 km / 50 us = 20000 km/s.",
+   "my_answer": "D",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "'108' is 10^8; response-sheet junk in option A."
+  },
+  {
+   "question_id": "GATE-CS-2015-S3-Q45",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "OS",
+   "primary_topic_id": "OS.DL",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "OS.DL.DLOCK"
+   ],
+   "what_it_tests": "Which resource policies prevent deadlock.",
+   "why_this_topic": "Deadlock prevention (hold-and-wait, circular wait).",
+   "alternatives_considered": [],
+   "solution_sketch": "I breaks hold-and-wait; II, III, IV impose a total order -> all four.",
+   "my_answer": "D",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.85,
+   "note": "Roman numerals garbled in options."
+  },
+  {
+   "question_id": "GATE-CS-2015-S3-Q54",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.CAL",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.CAL.INTEG"
+   ],
+   "what_it_tests": "Definite integral of a function defined by a functional equation.",
+   "why_this_topic": "Integration is calculus.",
+   "alternatives_considered": [],
+   "solution_sketch": "Cannot solve: the stem and options are destroyed by OCR.",
+   "my_answer": "unsure",
+   "key_check": "no_key",
+   "difficulty": "hard",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.8,
+   "note": "Unreadable - copy from the PDF."
+  },
+  {
+   "question_id": "GATE-CS-2015-S3-Q55",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "ALGO",
+   "primary_topic_id": "ALGO.GRAPH",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "ALGO.GRAPH.MST"
+   ],
+   "what_it_tests": "MST weight after adding a constant to every edge.",
+   "why_this_topic": "MST properties.",
+   "alternatives_considered": [],
+   "solution_sketch": "Same tree stays minimum; 99 edges x 5 added -> 995.",
+   "my_answer": "995",
+   "key_check": "no_key",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Answer printed in the stem."
+  },
+  {
+   "question_id": "GATE-CS-2015-S3-Q56",
+   "verdict": "correct",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "CN",
+   "primary_topic_id": "CN.LAYER",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "CN.LAYER.LAYER"
+   ],
+   "what_it_tests": "Store-and-forward delay for two packets through one switch.",
+   "why_this_topic": "Packet-switching delay is the switching part of 'Layering and switching' in the 2027 syllabus; no routing is involved.",
+   "alternatives_considered": [
+    {
+     "topic_id": "CN.ROUTE",
+     "why_not": "there is no route computation"
+    }
+   ],
+   "solution_sketch": "Tt = 500 us; second packet leaves the switch at 1055, arrives at 1055 + 500 + 20 = 1575 us.",
+   "my_answer": "1575",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.75,
+   "note": "'107' is 10^7 (superscript lost). Answer printed in the stem."
+  },
+  {
+   "question_id": "GATE-CS-2015-S3-Q58",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "LEGACY",
+   "primary_topic_id": "LEGACY.SE",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "LEGACY.SE.TEST"
+   ],
+   "what_it_tests": "McCabe cyclomatic complexity of three programs.",
+   "why_this_topic": "Cyclomatic complexity is old-syllabus software testing.",
+   "alternatives_considered": [],
+   "solution_sketch": "Program-X: 3 decisions + 1 = 4; Y and Z need their figures.",
+   "my_answer": "unsure",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.85,
+   "note": "Control-flow diagrams are figures."
+  },
+  {
+   "question_id": "GATE-CS-2015-S3-Q61",
+   "verdict": "flag",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.PS",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.PS.COND"
+   ],
+   "what_it_tests": "Conditional probability of an XOR of Bernoulli variables.",
+   "why_this_topic": "Conditional probability.",
+   "alternatives_considered": [],
+   "solution_sketch": "Given X3 = 0, Y = X1X2; P(X1X2 = 0) = 3/4 if each is 1 w.p. 1/2.",
+   "my_answer": "0.75",
+   "key_check": "no_key",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.85,
+   "note": "The distribution of X_i was destroyed by OCR; answer printed in the stem."
+  },
+  {
+   "question_id": "GATE-CS-2016-S1-Q01",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.VA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.VA.GRAM"
+   ],
+   "what_it_tests": "Correct 'until' clause.",
+   "why_this_topic": "Grammar.",
+   "alternatives_considered": [],
+   "solution_sketch": "'until the minister meets me'.",
+   "my_answer": "D",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.96,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2016-S1-Q03",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.VA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.VA.VOCAB"
+   ],
+   "what_it_tests": "Figurative vs literal statement.",
+   "why_this_topic": "Vocabulary/usage.",
+   "alternatives_considered": [],
+   "solution_sketch": "Moving the world is figurative.",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2016-S1-Q10",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.QA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.QA.FUNC"
+   ],
+   "what_it_tests": "Exponential decay model fitted from two points.",
+   "why_this_topic": "Exponential functions - quantitative aptitude.",
+   "alternatives_considered": [],
+   "solution_sketch": "e^(40k) = 100; 50 = e^(k(80-L)) -> L = 80 - 40 ln50/ln100 = 46.02.",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "'END OF THE QUESTION PAPER' leaked into option A."
+  },
+  {
+   "question_id": "GATE-CS-2016-S1-Q14",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.PS",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.PS.DIST"
+   ],
+   "what_it_tests": "Normalising a density.",
+   "why_this_topic": "Probability density functions.",
+   "alternatives_considered": [],
+   "solution_sketch": "Integral from a to 1 of 1/x^2 = 1/a - 1 = 1 -> a = 0.5.",
+   "my_answer": "0.5",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.96,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2016-S1-Q18",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "DL",
+   "primary_topic_id": "DL.CIRC",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DL.CIRC.SEQ"
+   ],
+   "what_it_tests": "Flip-flops for a counter with a repeated value in its sequence.",
+   "why_this_topic": "Counter design is sequential circuits.",
+   "alternatives_considered": [],
+   "solution_sketch": "0-1-0-2-0-3 has 6 distinct states -> 3 flip-flops (4 if outputs must be the count directly).",
+   "my_answer": "3",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.88,
+   "note": "Key accepts 3-4."
+  },
+  {
+   "question_id": "GATE-CS-2016-S1-Q33",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "DB",
+   "primary_topic_id": "DB.NF",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DB.NF.NF"
+   ],
+   "what_it_tests": "Weakest normal form gained by a decomposition.",
+   "why_this_topic": "Normal forms.",
+   "alternatives_considered": [],
+   "solution_sketch": "(Volume, Number) -> Year was a partial dependency (not 2NF); the split removes it -> 2NF.",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "Concept should be NF (normal forms) rather than FD."
+  },
+  {
+   "question_id": "GATE-CS-2016-S1-Q34",
+   "verdict": "correct",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "CN",
+   "primary_topic_id": "CN.ROUTE",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "CN.ROUTE.IPV4"
+   ],
+   "what_it_tests": "Which protocol does not map addresses (ARP, RARP, DNS vs DHCP).",
+   "why_this_topic": "ARP/RARP/DHCP are the 'IP support protocols' that the 2027 syllabus lists with IPv4; DNS is only one option.",
+   "alternatives_considered": [
+    {
+     "topic_id": "CN.APP",
+     "why_not": "DNS is application layer, but the deciding protocol (DHCP vs ARP) is network-layer support"
+    }
+   ],
+   "solution_sketch": "DHCP assigns addresses; it does not resolve one form to another.",
+   "my_answer": "C",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.7,
+   "note": "Label was flagged earlier."
+  },
+  {
+   "question_id": "GATE-CS-2016-S1-Q39",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.PS",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.PS.COND"
+   ],
+   "what_it_tests": "Probability with restarts.",
+   "why_this_topic": "Conditional probability / geometric repetition.",
+   "alternatives_considered": [],
+   "solution_sketch": "P(Y) = (1/4) / (1 - 1/4) = 1/3.",
+   "my_answer": "0.33",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2016-S1-Q41",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "COA",
+   "primary_topic_id": "COA.IO",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "COA.IO.DMA"
+   ],
+   "what_it_tests": "DMA bus requests from the count-register size.",
+   "why_this_topic": "DMA operation.",
+   "alternatives_considered": [],
+   "solution_sketch": "16-bit count = 64 KB per grant; 29154 / 64 = 455.5 -> 456.",
+   "my_answer": "456",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2016-S1-Q43",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "COA",
+   "primary_topic_id": "COA.ALU",
+   "secondary_topic_ids": [
+    "DL.CIRC"
+   ],
+   "concept_ids": [
+    "COA.ALU.ALU"
+   ],
+   "what_it_tests": "Delay of a carry-lookahead adder with fan-in 2.",
+   "why_this_topic": "Adder design for the ALU.",
+   "alternatives_considered": [
+    {
+     "topic_id": "DL.CIRC",
+     "why_not": "combinational too; ALU placement is standard"
+    }
+   ],
+   "solution_sketch": "Lookahead tree depth with fan-in 2 is Theta(log n).",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.85,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2016-S1-Q46",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.C",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "PDS.C.SCOPE"
+   ],
+   "what_it_tests": "Output under call-by-reference and dynamic scoping.",
+   "why_this_topic": "Scoping rules and parameter passing are the C programming topic (scope).",
+   "alternatives_considered": [],
+   "solution_sketch": "Official reading treats 'a = 1' in m as a local: y -> global 3, local a = 2, n doubles it to 4 and prints 4, 4.",
+   "my_answer": "D",
+   "key_check": "matches",
+   "difficulty": "hard",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.75,
+   "note": "Ambiguous pseudo-code; the key (D) relies on 'a = 1' declaring a local."
+  },
+  {
+   "question_id": "GATE-CS-2016-S1-Q49",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "ALGO",
+   "primary_topic_id": "ALGO.GRAPH",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "ALGO.GRAPH.MST"
+   ],
+   "what_it_tests": "Largest possible MST weight with given edge weights.",
+   "why_this_topic": "MST properties.",
+   "alternatives_considered": [],
+   "solution_sketch": "Put 1, 2, 3 on a triangle so 3 is unusable: MST = 1 + 2 + 4 = 7.",
+   "my_answer": "7",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2016-S1-Q53",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "TOC",
+   "primary_topic_id": "TOC.CFG",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "TOC.CFG.PDA"
+   ],
+   "what_it_tests": "Language of a given PDA and whether it is deterministic.",
+   "why_this_topic": "Reading a PDA is pushdown automata.",
+   "alternatives_considered": [],
+   "solution_sketch": "Accepts a^n (stop early) or a^n b^n; deterministic -> D.",
+   "my_answer": "D",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.82,
+   "note": "PDA figure flattened to text; transitions readable."
+  },
+  {
+   "question_id": "GATE-CS-2016-S2-Q01",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.VA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.VA.GRAM"
+   ],
+   "what_it_tests": "Article usage.",
+   "why_this_topic": "Grammar.",
+   "alternatives_considered": [],
+   "solution_sketch": "'a security guard at the university'.",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  }
+ ]
+}

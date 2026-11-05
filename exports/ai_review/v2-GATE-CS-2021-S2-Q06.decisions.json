@@ -1,0 +1,868 @@
+{
+ "reviewer": "claude-opus-5-5",
+ "prompt_version": "ai-review-v2",
+ "decisions": [
+  {
+   "question_id": "GATE-CS-2021-S2-Q06",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.AA",
+   "secondary_topic_ids": [
+    "GA.VA"
+   ],
+   "concept_ids": [
+    "GA.AA.DEDUCT"
+   ],
+   "what_it_tests": "Correct inference from a passage on music and learning.",
+   "why_this_topic": "Choosing the inference that follows with certainty is deduction; the passage is the vehicle.",
+   "alternatives_considered": [
+    {
+     "topic_id": "GA.VA.RC",
+     "why_not": "a passage question - same boundary as other inference questions"
+    }
+   ],
+   "solution_sketch": "Exercise effect is clear; learning effect only for some students -> C.",
+   "my_answer": "C",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.65,
+   "note": "Passage-inference questions sit on the GA.VA.RC / GA.AA boundary - decide once."
+  },
+  {
+   "question_id": "GATE-CS-2021-S2-Q08",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.QA",
+   "secondary_topic_ids": [],
+   "concept_ids": [],
+   "what_it_tests": "Ratios before and after adding 18 to each class.",
+   "why_this_topic": "Ratio arithmetic.",
+   "alternatives_considered": [],
+   "solution_sketch": "(3x + 18)/(13x + 18) = 15/35 -> x = 4 -> 22 x 4 = 88.",
+   "my_answer": "C",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2021-S2-Q10",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.AA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.AA.ORDER"
+   ],
+   "what_it_tests": "Ordering heights from clues.",
+   "why_this_topic": "Ordering puzzle.",
+   "alternatives_considered": [],
+   "solution_sketch": "Q < U < R < S < T < P: 3 taller than R = 3 shorter than S.",
+   "my_answer": "C",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Page header leaked into option D."
+  },
+  {
+   "question_id": "GATE-CS-2021-S2-Q14",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "DL",
+   "primary_topic_id": "DL.NUM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DL.NUM.FLOAT"
+   ],
+   "what_it_tests": "Smallest normalised IEEE 754 single-precision number.",
+   "why_this_topic": "Floating-point representation.",
+   "alternatives_considered": [],
+   "solution_sketch": "Exponent 00000001 (biased 1), mantissa all zeros.",
+   "my_answer": "C",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Extractor reported an empty option, but all four are present."
+  },
+  {
+   "question_id": "GATE-CS-2021-S2-Q17",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "CN",
+   "primary_topic_id": "CN.TCP",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "CN.TCP.CONN"
+   ],
+   "what_it_tests": "SYN-ACK header fields.",
+   "why_this_topic": "TCP connection establishment.",
+   "alternatives_considered": [],
+   "solution_sketch": "SYN = 1, SEQ = Y, ACK = 1, ACK number = X + 1.",
+   "my_answer": "C",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.96,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2021-S2-Q20",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.C",
+   "secondary_topic_ids": [
+    "PDS.LIN"
+   ],
+   "concept_ids": [],
+   "what_it_tests": "Pointer arithmetic on a 2-D array.",
+   "why_this_topic": "Row-major pointer arithmetic in C.",
+   "alternatives_considered": [
+    {
+     "topic_id": "PDS.LIN",
+     "why_not": "arrays are the container; the skill is pointer arithmetic"
+    }
+   ],
+   "solution_sketch": "arr[1] + 9 is linear index 14 -> arr[2][4] = 24.",
+   "my_answer": "C",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Braces mis-read as '{ {' in the code."
+  },
+  {
+   "question_id": "GATE-CS-2021-S2-Q27",
+   "verdict": "flag",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "TOC",
+   "primary_topic_id": "TOC.REG",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "TOC.REG.FA"
+   ],
+   "what_it_tests": "Counting accepted strings of length 8 for a given DFA.",
+   "why_this_topic": "Finite automata.",
+   "alternatives_considered": [],
+   "solution_sketch": "Needs the DFA figure.",
+   "my_answer": "unsure",
+   "key_check": "unsure",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.88,
+   "note": "DFA is a figure."
+  },
+  {
+   "question_id": "GATE-CS-2021-S2-Q31",
+   "verdict": "correct",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "DB",
+   "primary_topic_id": "DB.IDX",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DB.IDX.IDX"
+   ],
+   "what_it_tests": "Blocks needed by a secondary index file.",
+   "why_this_topic": "Sizing an index file is file organisation and indexing, not the relational model.",
+   "alternatives_considered": [
+    {
+     "topic_id": "DB.REL",
+     "why_not": "no query or relational concept"
+    }
+   ],
+   "solution_sketch": "19-byte entries, 215 per block; 150000 / 215 -> 698 blocks.",
+   "my_answer": "698",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.88,
+   "note": "Label was flagged earlier."
+  },
+  {
+   "question_id": "GATE-CS-2021-S2-Q34",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.LA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.LA.RANK"
+   ],
+   "what_it_tests": "Rank from the dimension of the null space.",
+   "why_this_topic": "Rank-nullity.",
+   "alternatives_considered": [],
+   "solution_sketch": "Null space is 1-dimensional, 5 columns -> rank 4.",
+   "my_answer": "4",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "The vector was garbled ('[25 43 1]a')."
+  },
+  {
+   "question_id": "GATE-CS-2021-S2-Q38",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "DL",
+   "primary_topic_id": "DL.CIRC",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DL.CIRC.SEQ"
+   ],
+   "what_it_tests": "Next-state and output equations of a two-state Mealy machine.",
+   "why_this_topic": "Sequential-circuit (FSM) design.",
+   "alternatives_considered": [],
+   "solution_sketch": "State remembers the last bit: t = b, y = s.b.",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.85,
+   "note": "Options garbled ('q + s = 7')."
+  },
+  {
+   "question_id": "GATE-CS-2021-S2-Q42",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "DB",
+   "primary_topic_id": "DB.TXN",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "DB.TXN.TXN"
+   ],
+   "what_it_tests": "Conflict serializability and recoverability of a schedule.",
+   "why_this_topic": "Transactions and concurrency control.",
+   "alternatives_considered": [],
+   "solution_sketch": "Precedence T1->T2, T1->T3, T2->T3 (acyclic) -> serializable; T3 reads T1's X, so committing T3 first is not recoverable.",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.94,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2021-S2-Q47",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.LA",
+   "secondary_topic_ids": [],
+   "concept_ids": [],
+   "what_it_tests": "Maximum number of mutually orthogonal non-zero vectors in R^10.",
+   "why_this_topic": "Orthogonality is linear algebra.",
+   "alternatives_considered": [],
+   "solution_sketch": "Orthogonal non-zero vectors are independent -> at most 10.",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.88,
+   "note": "The definition of s(P, Q) (dot product) was garbled; no orthogonality concept in the taxonomy."
+  },
+  {
+   "question_id": "GATE-CS-2021-S2-Q61",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "CD",
+   "primary_topic_id": "CD.LEX",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "CD.LEX.PARSE"
+   ],
+   "what_it_tests": "Items in an LR(0) GOTO set.",
+   "why_this_topic": "LR item-set construction is parsing.",
+   "alternatives_considered": [],
+   "solution_sketch": "GOTO on '<' twice: S -> <.S> plus the 7 closure items = 8.",
+   "my_answer": "8",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.86,
+   "note": "'S -> a q<-s' is OCR for 'S -> a | b'. Label was flagged earlier."
+  },
+  {
+   "question_id": "GATE-CS-2022-S1-Q15",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.LIN",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "PDS.LIN.LL"
+   ],
+   "what_it_tests": "In-place reversal of a singly linked list.",
+   "why_this_topic": "Linked lists.",
+   "alternatives_considered": [],
+   "solution_sketch": "Iterative pointer reversal: Theta(n), O(1) space.",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.93,
+   "note": "Theta symbols lost in the options."
+  },
+  {
+   "question_id": "GATE-CS-2022-S1-Q16",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "ALGO",
+   "primary_topic_id": "ALGO.SORT",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "ALGO.SORT.HASH"
+   ],
+   "what_it_tests": "Expected keys per slot with two uniform hash functions.",
+   "why_this_topic": "Hashing.",
+   "alternatives_considered": [],
+   "solution_sketch": "Each key still lands uniformly -> n/m.",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.92,
+   "note": "Fractions flattened ('m n')."
+  },
+  {
+   "question_id": "GATE-CS-2022-S1-Q17",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "COA",
+   "primary_topic_id": "COA.IO",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "COA.IO.DMA"
+   ],
+   "what_it_tests": "Highest-throughput bulk transfer.",
+   "why_this_topic": "DMA.",
+   "alternatives_considered": [],
+   "solution_sketch": "DMA.",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.97,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2022-S1-Q22",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "CN",
+   "primary_topic_id": "CN.ROUTE",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "CN.ROUTE.CIDR"
+   ],
+   "what_it_tests": "Counting subnets in a routed network.",
+   "why_this_topic": "Subnetting.",
+   "alternatives_considered": [],
+   "solution_sketch": "Needs the network figure.",
+   "my_answer": "unsure",
+   "key_check": "unsure",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.82,
+   "note": "Network diagram is a figure."
+  },
+  {
+   "question_id": "GATE-CS-2022-S1-Q23",
+   "verdict": "agree",
+   "question_type": "MSQ",
+   "type_check": "matches",
+   "section_id": "TOC",
+   "primary_topic_id": "TOC.TM",
+   "secondary_topic_ids": [
+    "TOC.RCFL"
+   ],
+   "concept_ids": [
+    "TOC.TM.TM"
+   ],
+   "what_it_tests": "Closure/decidability facts across language classes.",
+   "why_this_topic": "Most options are about RE/recursive languages (Turing machines).",
+   "alternatives_considered": [
+    {
+     "topic_id": "TOC.RCFL",
+     "why_not": "options C, D use CFL/regular closure"
+    }
+   ],
+   "solution_sketch": "A false; B (RE and co-RE -> recursive), C, D true.",
+   "my_answer": "B;C;D",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.82,
+   "note": "Complement bars and subscripts lost."
+  },
+  {
+   "question_id": "GATE-CS-2022-S1-Q30",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.DM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.DM.GRAPH"
+   ],
+   "what_it_tests": "Maximum edges in a disconnected graph.",
+   "why_this_topic": "Graph theory.",
+   "alternatives_considered": [],
+   "solution_sketch": "K9 plus an isolated vertex: 36.",
+   "my_answer": "36",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2022-S1-Q36",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "EM",
+   "primary_topic_id": "EM.DM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "EM.DM.COUNT"
+   ],
+   "what_it_tests": "Generating function of a piecewise sequence.",
+   "why_this_topic": "Generating functions.",
+   "alternatives_considered": [],
+   "solution_sketch": "Options are fractions destroyed by extraction.",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "hard",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": false,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.85,
+   "note": "Options unreadable."
+  },
+  {
+   "question_id": "GATE-CS-2022-S1-Q42",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "OS",
+   "primary_topic_id": "OS.SCHED",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "OS.SCHED.SCHED"
+   ],
+   "what_it_tests": "Round-robin burst times consistent with given context switches.",
+   "why_this_topic": "CPU scheduling.",
+   "alternatives_considered": [],
+   "solution_sketch": "Simulating each option with quantum 4 shows D violates the context-switch counts.",
+   "my_answer": "D",
+   "key_check": "matches",
+   "difficulty": "hard",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.88,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2022-S1-Q43",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.C",
+   "secondary_topic_ids": [
+    "PDS.LIN"
+   ],
+   "concept_ids": [],
+   "what_it_tests": "Indexing a 3-D array with j fixed at 0.",
+   "why_this_topic": "C array indexing.",
+   "alternatives_considered": [],
+   "solution_sketch": "a[i][0][k]: 1 2 3, 10 11 12, 19 20 21.",
+   "my_answer": "A",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.93,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2022-S1-Q61",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "COA",
+   "primary_topic_id": "COA.PIPE",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "COA.PIPE.PERF",
+    "COA.PIPE.HAZARD"
+   ],
+   "what_it_tests": "Speed-up from a branch predictor.",
+   "why_this_topic": "Control hazards and pipeline performance.",
+   "alternatives_considered": [],
+   "solution_sketch": "CPI 1.6 vs 1.12 -> 1.43.",
+   "my_answer": "1.43",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2022-S1-Q63",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "OS",
+   "primary_topic_id": "OS.FS",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "OS.FS.FS"
+   ],
+   "what_it_tests": "Disk accesses to insert a block: contiguous vs linked.",
+   "why_this_topic": "File allocation methods.",
+   "alternatives_considered": [],
+   "solution_sketch": "Contiguous: move 50 blocks (100 accesses) + write 1 = 101; linked: read 50 + write new + update 1 = 52; total 153.",
+   "my_answer": "153",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.88,
+   "note": "Subscripts lost ('n A n B')."
+  },
+  {
+   "question_id": "GATE-CS-2022-S1-Q64",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "OS",
+   "primary_topic_id": "OS.MEM",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "OS.MEM.VMEM"
+   ],
+   "what_it_tests": "LRU page-fault rate.",
+   "why_this_topic": "Page replacement.",
+   "alternatives_considered": [],
+   "solution_sketch": "9 faults in 15 references -> 0.6.",
+   "my_answer": "0.6",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2022-S1-Q65",
+   "verdict": "agree",
+   "question_type": "NAT",
+   "type_check": "matches",
+   "section_id": "CD",
+   "primary_topic_id": "CD.SDT",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "CD.SDT.SDD"
+   ],
+   "what_it_tests": "Evaluating an expression with a syntax-directed translation scheme.",
+   "why_this_topic": "SDT evaluation.",
+   "alternatives_considered": [],
+   "solution_sketch": "# is multiplication (lowest precedence), % is division (higher, left-assoc): 20 x (10/5) x (8/2/2) = 80.",
+   "my_answer": "80",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.88,
+   "note": "Translation rules garbled by extraction - check the PDF."
+  },
+  {
+   "question_id": "GATE-CS-2023-S1-Q06",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.AA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.AA.DEDUCT"
+   ],
+   "what_it_tests": "Inference with certainty from a policy passage.",
+   "why_this_topic": "Deduction.",
+   "alternatives_considered": [],
+   "solution_sketch": "Only D follows: incentives for cycling imply the government sees it as exercise.",
+   "my_answer": "D",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.9,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2023-S1-Q08",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "GA",
+   "primary_topic_id": "GA.VA",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "GA.VA.SEQ"
+   ],
+   "what_it_tests": "Ordering sentences into a coherent narrative.",
+   "why_this_topic": "Narrative sequencing.",
+   "alternatives_considered": [],
+   "solution_sketch": "(iii) market, (ii) stairs, (i) terrace, (iv) the man.",
+   "my_answer": "D",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.95,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2023-S1-Q12",
+   "verdict": "agree",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "PDS",
+   "primary_topic_id": "PDS.TREE",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "PDS.TREE.HEAP"
+   ],
+   "what_it_tests": "Which array is a max-heap.",
+   "why_this_topic": "Binary heaps.",
+   "alternatives_considered": [],
+   "solution_sketch": "Only B satisfies parent >= children at every node.",
+   "my_answer": "B",
+   "key_check": "matches",
+   "difficulty": "easy",
+   "checks": {
+    "source_fidelity": true,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": null,
+   "confidence": 0.96,
+   "note": "Clear."
+  },
+  {
+   "question_id": "GATE-CS-2023-S1-Q14",
+   "verdict": "flag",
+   "question_type": "MCQ",
+   "type_check": "matches",
+   "section_id": "TOC",
+   "primary_topic_id": "TOC.REG",
+   "secondary_topic_ids": [],
+   "concept_ids": [
+    "TOC.REG.RE",
+    "TOC.REG.FA"
+   ],
+   "what_it_tests": "Regular expression for a given DFA.",
+   "why_this_topic": "DFA to regular expression.",
+   "alternatives_considered": [],
+   "solution_sketch": "Partially readable figure suggests 1(0 + 11)*.",
+   "my_answer": "C",
+   "key_check": "matches",
+   "difficulty": "medium",
+   "checks": {
+    "source_fidelity": false,
+    "options_ok": true,
+    "key_ok": true,
+    "taxonomy_fit": true
+   },
+   "flag_reason": "extraction",
+   "confidence": 0.82,
+   "note": "DFA figure flattened - check the PDF."
+  }
+ ]
+}
