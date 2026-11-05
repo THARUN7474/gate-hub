@@ -25,62 +25,78 @@ def parse_drill_params(params) -> tuple[str | None, int | None]:
 def topic_drill_href(topic: str, year: int) -> str:
     return f"?drill_topic={escape(str(topic))}&drill_year={year}"
 
+_TH = 'style="padding:6px 8px; border-bottom:2px solid #888; text-align:center"'
+_TD = 'style="padding:5px 8px; border-bottom:1px solid #4444; text-align:center"'
+_TF = 'style="padding:6px 8px; border-top:2px solid #888; text-align:center; font-weight:700"'
+
+def _num(v) -> str:
+    return f"{round(v, 2):g}" if isinstance(v, float) else str(v)
+
+def _label_cell(code: str, name: str | None) -> str:
+    sub = (f'<br><span style="font-size:0.78em; opacity:0.7">{escape(name)}</span>' if name else "")
+    return (f'<td style="padding:5px 8px; border-bottom:1px solid #4444; text-align:left" title="{escape(name or code)}">'
+            f'<b>{escape(str(code))}</b>{sub}</td>')
+
 def topic_matrix_html(rows: list[dict], names: dict | None = None) -> str:
     """Topic x year question-count matrix as an HTML table; every non-empty
-    cell links to its drill-down. rows: analyze.topic_year_matrix()."""
+    cell links to its drill-down; a bottom Total row sums each year and the
+    bottom-right cell is the grand total. rows: analyze.topic_year_matrix()."""
     names = names or {}
     years = sorted({r["year"] for r in rows})
     piv: dict[str, dict] = {}
     for r in rows:
         piv.setdefault(r["topic"], {})[r["year"]] = r["questions"]
     out = ['<table style="border-collapse:collapse; width:100%">', "<thead><tr>",
-           '<th style="text-align:left; padding:4px 8px; border-bottom:2px solid #ccc">Topic</th>']
-    for y in years:
-        out.append(f'<th style="padding:4px 8px; border-bottom:2px solid #ccc">{y}</th>')
-    out.append('<th style="padding:4px 8px; border-bottom:2px solid #ccc">Total</th></tr></thead><tbody>')
+           '<th style="text-align:left; padding:6px 8px; border-bottom:2px solid #888">Topic</th>']
+    out += [f"<th {_TH}>{y}</th>" for y in years]
+    out.append(f"<th {_TH}>Total</th></tr></thead><tbody>")
+    col = {y: 0 for y in years}
     for t, d in sorted(piv.items()):
-        label = f"{t} - {names[t]}" if names.get(t) else t
-        out.append(f'<tr><td style="padding:4px 8px; border-bottom:1px solid #eee">'
-                   f'<b>{escape(label)}</b></td>')
+        out.append("<tr>" + _label_cell(t, names.get(t)))
         tot = 0
         for y in years:
             v = d.get(y)
             if v is None:
-                out.append('<td style="padding:4px 8px; border-bottom:1px solid #eee"></td>')
+                out.append(f"<td {_TD}></td>")
             else:
-                tot += v
-                out.append(f'<td style="padding:4px 8px; border-bottom:1px solid #eee; text-align:center">'
-                           f'<a href="{topic_drill_href(t, y)}" target="_self">{v}</a></td>')
-        out.append(f'<td style="padding:4px 8px; border-bottom:1px solid #eee; text-align:center"><b>{tot}</b></td></tr>')
-    out.append("</tbody></table>")
+                tot += v; col[y] += v
+                out.append(f'<td {_TD}><a href="{topic_drill_href(t, y)}" target="_self">{v}</a></td>')
+        out.append(f"<td {_TD}><b>{tot}</b></td></tr>")
+    out.append("</tbody><tfoot><tr><td style=\"padding:6px 8px; border-top:2px solid #888; font-weight:700\">Total</td>")
+    out += [f"<td {_TF}>{col[y]}</td>" for y in years]
+    out.append(f"<td {_TF}>{sum(col.values())}</td></tr></tfoot></table>")
     return "".join(out)
 
-def matrix_html(m: dict) -> str:
+def matrix_html(m: dict, names: dict | None = None) -> str:
     """Section x year marks matrix as an HTML table; every non-empty cell is a
-    link into its drill-down. Input shape: analyze.section_year_matrix()."""
+    link into its drill-down. A bottom Total row sums each year's column and the
+    bottom-right cell is the grand total. Input shape: analyze.section_year_matrix()."""
+    names = names or {}
     years = m["years"]
     out = ['<table style="border-collapse:collapse; width:100%">', "<thead><tr>",
-           '<th style="text-align:left; padding:4px 8px; border-bottom:2px solid #ccc">Section</th>']
-    for y in years:
-        out.append(f'<th style="padding:4px 8px; border-bottom:2px solid #ccc">{y}</th>')
-    out.append('<th style="padding:4px 8px; border-bottom:2px solid #ccc">Total</th></tr></thead><tbody>')
+           '<th style="text-align:left; padding:6px 8px; border-bottom:2px solid #888">Section</th>']
+    out += [f"<th {_TH}>{y}</th>" for y in years]
+    out.append(f"<th {_TH}>Total</th></tr></thead><tbody>")
+    col = {y: 0 for y in years}
+    grand = 0
     for sec, d in m["sections"].items():
-        out.append(f'<tr><td style="padding:4px 8px; border-bottom:1px solid #eee">'
-                   f'<b>{escape(str(sec))}</b></td>')
+        out.append("<tr>" + _label_cell(sec, names.get(sec)))
         for y in years:
             cell = d["years"].get(y, {})
             marks = cell.get("marks")
             if marks is None:
-                out.append('<td style="padding:4px 8px; border-bottom:1px solid #eee"></td>')
+                out.append(f"<td {_TD}></td>")
             else:
+                col[y] += marks
                 out.append(
-                    f'<td style="padding:4px 8px; border-bottom:1px solid #eee; text-align:center">'
-                    f'<a href="{drill_href(sec, y)}" target="_self" '
+                    f'<td {_TD}><a href="{drill_href(sec, y)}" target="_self" '
                     f'title="{cell.get("questions", 0)} questions - click to drill down">'
                     f'{marks:g}</a></td>')
-        out.append(f'<td style="padding:4px 8px; border-bottom:1px solid #eee; text-align:center">'
-                   f'<b>{d["total_marks"]:g}</b></td></tr>')
-    out.append("</tbody></table>")
+        grand += d["total_marks"]
+        out.append(f'<td {_TD}><b>{d["total_marks"]:g}</b></td></tr>')
+    out.append("</tbody><tfoot><tr><td style=\"padding:6px 8px; border-top:2px solid #888; font-weight:700\">Total</td>")
+    out += [f"<td {_TF}>{_num(col[y])}</td>" for y in years]
+    out.append(f"<td {_TF}>{_num(grand)}</td></tr></tfoot></table>")
     return "".join(out)
 
 def drill_list_html(question_ids: list[str]) -> str:

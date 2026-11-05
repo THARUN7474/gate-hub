@@ -9,7 +9,10 @@ from ..db.models import Classification, Paper, Question
 def search_questions(s: Session, text_query: str | None = None, years: list[int] | None = None,
                      section_id: str | None = None, topic_id: str | None = None,
                      q_type: str | None = None, needs_review: bool | None = None,
-                     status: str | None = None, limit: int = 500) -> list[dict]:
+                     status: str | None = None, limit: int | None = None,
+                     extraction_issue: bool | None = None) -> list[dict]:
+    """limit=None returns every match (the bank is ~2k rows). extraction_issue filters on
+    questions.needs_review directly; needs_review keeps its older, broader 'anything unreviewed' meaning."""
     q = (select(Question, Paper, Classification)
          .join(Paper, Paper.id == Question.paper_id)
          .outerjoin(Classification, Classification.question_id == Question.id))
@@ -23,6 +26,8 @@ def search_questions(s: Session, text_query: str | None = None, years: list[int]
             q = q.where(unreviewed_condition())
         else:
             q = q.where(Question.needs_review == False)  # noqa: E712
+    if extraction_issue is not None:
+        q = q.where(Question.needs_review == extraction_issue)
     if section_id:
         q = q.where(Classification.section_id == section_id)
     if topic_id:
@@ -36,7 +41,9 @@ def search_questions(s: Session, text_query: str | None = None, years: list[int]
                 func.plainto_tsquery("english", text_query)))
         else:
             q = q.where(Question.like(f"%{text_query}%")) if False else q.where(Question.text.like(f"%{text_query}%"))
-    q = q.order_by(Paper.year, Question.q_number).limit(limit)
+    q = q.order_by(Paper.year, Question.q_number)
+    if limit:
+        q = q.limit(limit)
     out = []
     for question, paper, cls in s.execute(q):
         out.append({

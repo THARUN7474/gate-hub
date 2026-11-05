@@ -9,7 +9,7 @@
 - [x] Papers 2007-2026 in `data/raw/papers/` (2007-2010 photographed pages deferred)
 - [x] Year-wise papers + keys 2021-2026 in `data/raw/` (20 papers with official keys in total)
 - [ ] Optional: PYQ books/solutions - local only, never cloud-processed without consent
-- [x] Docker Desktop, Python 3.12+, git installed; repo tests pass (230, 5 Nov 2026)
+- [x] Docker Desktop, Python 3.12+, git installed; repo tests pass (234, 5 Nov 2026)
 
 ## Per-paper reconciliation checklist (every paper, every run) - all 29 papers, 5 Nov 2026
 
@@ -101,6 +101,21 @@ AI review (Claude, labelled as such, NOT verification): 65 questions of 2026 CS-
 - [x] Every screen: icon + title + one-line purpose; long explanations moved into collapsed "How to read this page" toggles (nothing removed)
 - [x] Theme: Inter font, tighter heading sizes, bordered metrics (`.streamlit/config.toml`)
 - [x] LLM Classify browser freeze fixed (a `$` in two labels was parsed as LaTeX); regression test `tests/test_ui_v12.py`
+
+## v13 UI: stages, second opinions, clearer review (5 Nov 2026)
+
+- [x] Pipeline Status: six stage cards (read from PDFs / machine label / AI review / decision models / benchmark gold / human-verified), each with a bar, a "what to do" note and a button that opens the right screen with filters preset
+- [x] Extraction issues (165) shown as a stage, with a direct "Fix extraction issues" filter
+- [x] New **Second Opinions** screen: every AI-review verdict (agree / flag / correct) beside the current label, filterable, click to review; decision-model answers tab
+- [x] Review Workspace: Show filter gains "extraction issues" and "AI-reviewed"; status strip per question (extraction, machine label, AI review, decision models, human review, with sources); numbered sections; step-by-step "What you do here"; optional fields folded away
+- [x] Full names in every subject/topic dropdown (codes still used underneath)
+- [x] Question Browser: no 500-row cap (all 1,885 listed), extraction filter, results breakdown by subject/status
+- [x] Analysis Matrix: column totals row + grand total (2,900 = 29 papers x 100 marks), full names under codes
+- [x] Glossary: Sections table fixed (was blank - long text column), syllabus file paths + checksum check
+- [x] Approve Queue explains when to use it; shows only ready-to-approve questions by default
+- [x] LLM Classify split into tabs; new Decision models tab (status, benchmark cost estimate, exact commands)
+- [x] "What this page gives you" guide on every screen
+- [x] Tests: 234 passed (`tests/test_ui_v13.py`), AppTest all PASS, browser-checked
 
 ## Repository checklist
 

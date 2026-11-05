@@ -152,3 +152,17 @@ Tests after cleanup: 223 passed, AppTest all PASS, `validate` 10/10.
 - **App**: every screen has an icon, title and one-line purpose; long explanations sit in collapsed "How to read this page" toggles; Pipeline Status has score cards, four progress bars and a new **Review progress per paper** table (`analyze.paper_review_table`). Theme in `.streamlit/config.toml` (Inter).
 - **Bug fixed**: opening LLM Classify froze the browser - the labels "Input $/M tokens" / "Output $/M tokens" were parsed as LaTeX (pre-existing; found by bisecting in a real browser). Labels now say USD; a test forbids bare `$`.
 - Tests: 230 passed; AppTest all PASS.
+
+## App v13: stages, second opinions, clearer review (5 Nov 2026)
+
+- **Pipeline Status** is now six stage cards in work order. Each has a bar, a "what to do" note and a button that opens the right screen with the filters set: extraction issues (165) -> Review Workspace filtered to them; AI review -> new Second Opinions screen; decision models -> LLM Classify tab; benchmark -> Review Workspace on the 120 sample; human-verified -> priority order.
+- **Second Opinions** (new screen): all 198 AI-review opinions (139 agree, 31 flag, 28 correct) beside the live label, filterable by verdict/paper/"different topic", click a row to review. Decision-model answers appear in their own tab once run.
+- **Review Workspace**: filters for extraction issues and AI-reviewed; per-question status strip (extraction / machine label / AI review / decision models / human review, each with where the fact comes from); numbered sections 1 Original source, 2 Machine label, 3 Second opinions, 4 Your decision; a step-by-step guide of what a human does and what changes.
+- **Full names** in every subject/topic dropdown; codes stay the filter values.
+- **Question Browser** lists every match (the old 500-row cap is gone) and breaks results down by subject and status.
+- **Analysis Matrix** has a column-totals row and grand total (2,900 = 29 papers x 100).
+- **Glossary**: the blank Sections table is fixed (one very long text column broke the grid); syllabus PDF paths and checksum check shown.
+- **Decision models**: code and `.env` settings were already in place (OpenAI `/v1/decisions` gpt-6-luna, TypeSafe Jev jev-1.14.0; docs checked 4-5 Nov). LLM Classify now shows their status, a benchmark cost estimate and the exact commands. Still off until you add a key and set `DECISIONS_ENABLED=1`.
+- Helpers: `src/analytics/opinions.py`; `search_questions(limit=None, extraction_issue=...)`; matrix totals in `links.py`.
+- Tests: 234 passed; AppTest all PASS (new checks: extraction filter, stage buttons, all 1,885 listed); every screen checked in a real browser on a copy of the DB.
+

@@ -55,13 +55,13 @@ def main() -> None:
     assert not at.exception, at.exception
 
     # every screen renders cleanly
-    for screen in ["Pipeline Status", "Question Browser", "Analysis Matrix",
-                   "Topic Report", "Subject Overview", "Review Workspace", "Approve Queue",
+    for screen in ["Pipeline Status", "About the Data", "Question Browser", "Analysis Matrix",
+                   "Topic Report", "Subject Overview", "Review Workspace", "Second Opinions", "Approve Queue",
                    "LLM Classify", "Glossary & Syllabus"]:
         at.sidebar.radio[0].set_value(screen)
         at.run()
         assert not at.exception, (screen, at.exception)
-    print("PASS all 9 screens render")
+    print("PASS all 11 screens render")
 
     at.sidebar.radio[0].set_value("Review Workspace")
     at.run()
@@ -161,6 +161,8 @@ def main() -> None:
     at.sidebar.radio[0].set_value("Approve Queue")
     at.run()
     assert not at.exception, at.exception
+    next(tg for tg in at.toggle if tg.key == "aq_only_ready").set_value(False)
+    at.run()
     appr = [c for c in at.checkbox if c.label == "Approve"]
     assert appr, "no approve checkboxes on Approve Queue"
     qid = appr[0].key.removeprefix("aq_appr_")
@@ -219,6 +221,36 @@ def main() -> None:
     qsel = next(s for s in at.selectbox if s.label == "Question")
     assert all(not str(o).startswith(Q + " ") and str(o).split()[0] != Q for o in qsel.options), "verified gold must leave the pending list"
     print(f"PASS benchmark filter: {len(qsel.options)} pending sample questions listed (gold one excluded)")
+
+    # v13: extraction-issue filter lists only extractor-flagged questions
+    sradio = next(r for r in at.radio if r.label == "Show")
+    sradio.set_value("extraction issues")
+    at.run()
+    assert not at.exception, at.exception
+    qsel = next(s for s in at.selectbox if s.label == "Question")
+    flagged = {r[0] for r in dbval("select id from questions where needs_review=1")}
+    assert qsel.options and all(str(o).split()[0] in flagged for o in qsel.options)
+    print(f"PASS extraction-issues filter: {len(qsel.options)} questions, all extractor-flagged")
+
+    # v13: Pipeline Status stage buttons jump to the right screen with filters preset
+    at.sidebar.radio[0].set_value("Pipeline Status")
+    at.run()
+    next(b for b in at.button if b.label == "Review the benchmark").click().run()
+    assert not at.exception, at.exception
+    assert at.sidebar.radio[0].value == "Review Workspace", at.sidebar.radio[0].value
+    assert next(r for r in at.radio if r.label == "Show").value == "benchmark sample (gold review)"
+    at.sidebar.radio[0].set_value("Pipeline Status")
+    at.run()
+    next(b for b in at.button if b.label == "See AI opinions").click().run()
+    assert at.sidebar.radio[0].value == "Second Opinions" and not at.exception
+    print("PASS stage buttons open the right screen with filters preset")
+
+    # v13: Question Browser lists every question (no 500 cap)
+    at.sidebar.radio[0].set_value("Question Browser")
+    at.run()
+    nq = dbval("select count(*) from questions")[0][0]
+    assert any(f"**{nq:,}** of {nq:,}" in (m.value or "") for m in at.markdown), "browser should list all questions"
+    print(f"PASS Question Browser lists all {nq} questions")
 
     print("ALL APPTEST CHECKS PASSED (scratch DB:", db, ")")
 
